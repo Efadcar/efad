@@ -51,13 +51,13 @@ if (isset($javascripts) && $javascripts != null) {
 					foreach ($messages as $message)
 						switch ($type) {
 							case "error":
-								echo 'toastr.error("' . $message . '", "Error");';
+								echo 'toastr.error("' . $message . '", "خطأ");';
 								break;
 							case "success":
-								echo 'toastr.success("' . $message . '", "Success");';
+								echo 'toastr.success("' . $message . '", "نجاح");';
 								break;
 							case "alert":
-								echo 'toastr.warning("' . $message . '", "Alert");';
+								echo 'toastr.warning("' . $message . '", "تحذير");';
 								break;
 						}
 			}

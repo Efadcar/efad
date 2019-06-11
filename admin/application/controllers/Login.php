@@ -1,20 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * @author Company ASAIT <admin@asait.co>
- *
- * @author Developer Ebrahim Elsawy <eng.ebrahimelsawy@gmail.com> 
- *
- * @link http://asait.co/
- *
- * @copyright 2016-2018 ASAIT
- *
- * @license EULA
- *
- * @version 1.0.0
- */
-
 class Login extends CI_Controller {
 
     public function __construct() {

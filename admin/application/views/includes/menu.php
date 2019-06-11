@@ -52,6 +52,36 @@
                 </a>
             </li>
 			
+			<?php
+            $key = 'faq_categories';
+            if (strpos($this->uri->uri_string(), $key) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('faq_categories/faq_categories_list') ?>" class="nav-link nav-toggle">
+                    <i class="icon-layers"></i>
+                    <span class="title">أقسام الأسئلة المتكررة</span>
+                </a>
+            </li>
+			
+			<?php
+            $key = 'faq';
+            if (strpos($this->uri->uri_string(), $key) !== false && $this->uri->uri_string() == "faq/faq_list") {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('faq/faq_list') ?>" class="nav-link nav-toggle">
+                    <i class="icon-question"></i>
+                    <span class="title">الأسئلة المتكررة</span>
+                </a>
+            </li>
+			
 			
             
             

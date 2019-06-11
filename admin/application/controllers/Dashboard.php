@@ -1,18 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-/**
- * @author Company ASAIT <admin@asait.co>
- *
- * @author Developer Ebrahim Elsawy <eng.ebrahimelsawy@gmail.com> 
- *
- * @link http://asait.co/
- *
- * @copyright 2016-2018 ASAIT
- *
- * @license EULA
- *
- * @version 1.0.0
- */
  
 class Dashboard extends CI_Controller {
 

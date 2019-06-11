@@ -1,26 +1,26 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * This class controll the Pages views.
+ * This class controll the faq views.
  */
-class Pages extends CI_Controller {
+class Faq extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('pages_model');
+        $this->load->model('faq_model');
         $this->load->library('form_validation');
         $this->global_model->config();
     }
 	
-    function pages_list() {
-        //$this->global_model->have_permission('pages_list');
+    function faq_list() {
+        //$this->global_model->have_permission('faq_list');
         if (count($_POST) != 0) {
             $this->session->set_userdata('order_by', $this->input->post('order_by'));
             $this->session->set_userdata('order_type', $this->input->post('order_type'));
         }
         $this->load->library('pagination');
-        $config['base_url'] = site_url('pages/pages_list');
-        $config['total_rows'] = $this->db->get('pages')->num_rows();
+        $config['base_url'] = site_url('faq/faq_list');
+        $config['total_rows'] = $this->db->get('faq')->num_rows();
         $config['per_page'] = $this->session->userdata('sitePerPagePagination');
         $config['num_links'] = 5;
         $config['uri_segment'] = 3;
@@ -45,80 +45,82 @@ class Pages extends CI_Controller {
         $config['last_link'] = 'Last';
         $this->pagination->initialize($config);
         //end pagination
-        $data['rows'] = $this->pages_model->getAll($config['per_page'], $this->uri->segment(3));
+        $data['rows'] = $this->faq_model->getAll($config['per_page'], $this->uri->segment(3));
         $data['total_rows'] = $config['total_rows'];
-        $data['main_content'] = 'pages/pages_list';
-		$data['pageCssFiles'] = $this->_cssFiles('pages_add');
-        $data['javascripts'] = $this->_javascript('pages_add');
-		$data['pageTitle'] = "الصفحات الثابتة";
-		$data['breadcrumbs'] = array("الصفحات الثابتة" => site_url('pages/pages_list'), "عرض كل الصفحات" => site_url('pages/pages_list'));
+        $data['main_content'] = 'faq/faq_list';
+		$data['pageCssFiles'] = $this->_cssFiles('faq_add');
+        $data['javascripts'] = $this->_javascript('faq_add');
+		$data['pageTitle'] = "الأسئلة المتكررة";
+		$data['breadcrumbs'] = array("الأسئلة المتكررة" => site_url('faq/faq_list'), "عرض كل الصفحات" => site_url('faq/faq_list'));
         $this->load->view('includes/template', $data);
     }
 
     /**
      * This load add new category view if form_validation->run() == false 
-	 * else it will insert the submitted data to pages table and redirect to pages list.
+	 * else it will insert the submitted data to faq table and redirect to faq list.
      *
      * @return void
      */
-    function pages_add() {
-        //$this->global_model->have_permission('pages_add');
+    function faq_add() {
+        //$this->global_model->have_permission('faq_add');
 
-        $data['breadcrumbs'] = array("الصفحات الثابتة" => site_url('pages/pages_list'), "إضافة صفحة جديدة" => site_url('pages/pages_add'));
-        $data['javascripts'] = $this->_javascript('pages_add');
-		$data['pageCssFiles'] = $this->_cssFiles('pages_add');
-        $data['main_content'] = 'pages/pages_add';
-        $data['pageTitle'] = "إضافة صفحة جديدة";
-
-        $this->form_validation->set_rules('page_title_english', "عنوان الصفحة باللغة الأنجليزية", 'required|strip_tags');
+        $data['breadcrumbs'] = array("الأسئلة المتكررة" => site_url('faq/faq_list'), "إضافة سؤال جديد" => site_url('faq/faq_add'));
+        $data['javascripts'] = $this->_javascript('faq_add');
+		$data['pageCssFiles'] = $this->_cssFiles('faq_add');
+        $data['main_content'] = 'faq/faq_add';
+        $data['pageTitle'] = "إضافة سؤال جديد";
+        $data['categories'] = $this->faq_model->getAllCategories();
+		
+        $this->form_validation->set_rules('faq_question_english', "عنوان السؤال باللغة الأنجليزية", 'required|strip_tags');
         if($this->form_validation->run() == FALSE) 
 		{
             $this->load->view('includes/template', $data);
         } 
 		else 
 		{
-            $this->pages_model->add();
-            redirect('pages/pages_list');
+            $this->faq_model->add();
+            redirect('faq/faq_list');
         }
     }
 	
     /**
      * This load edit order view if form_validation->run() == false 
-	 * else it will edit the submitted data to order row and redirect to pages list.
+	 * else it will edit the submitted data to order row and redirect to faq list.
      *
      * @return void
      */
-    function pages_edit($id) {
-        //$this->global_model->have_permission('pages_add');
+    function faq_edit($id) {
+        //$this->global_model->have_permission('faq_add');
 
-        $data['breadcrumbs'] = array("الصفحات الثابتة" => site_url('pages/pages_list'), "تعديل صفحة" => site_url('pages/pages_edit/'.$id));
-        $data['javascripts'] = $this->_javascript('pages_add');
-		$data['pageCssFiles'] = $this->_cssFiles('pages_add');
-        $data['main_content'] = 'pages/pages_edit';
-        $data['pageTitle'] = "تعديل صفحة";
+        $data['breadcrumbs'] = array("الأسئلة المتكررة" => site_url('faq/faq_list'), "تعديل سؤال" => site_url('faq/faq_edit/'.$id));
+        $data['javascripts'] = $this->_javascript('faq_add');
+		$data['pageCssFiles'] = $this->_cssFiles('faq_add');
+        $data['main_content'] = 'faq/faq_edit';
+        $data['pageTitle'] = "تعديل سؤال";
         $data['id'] = $id;
-        $data['row'] = $this->pages_model->getByID($id);
+        $data['categories'] = $this->faq_model->getAllCategories();
+        $data['row'] = $this->faq_model->getByID($id);
 		
-        $this->form_validation->set_rules('page_title_english', "عنوان الصفحة باللغة الأنجليزية", 'required|strip_tags');
+        $this->form_validation->set_rules('faq_question_english', "عنوان السؤال باللغة الأنجليزية", 'required|strip_tags');
         if($this->form_validation->run() == FALSE) 
 		{
             $this->load->view('includes/template', $data);
         } 
 		else 
 		{
-            $this->pages_model->edit($id);
-            redirect('pages/pages_list');
+            $this->faq_model->edit($id);
+            redirect('faq/faq_list');
         }
     }
 
     /**
-     * This method delete pages.
+     * This method delete faq.
      *
      * @return void
      */
-    function pages_del($code) {
-        //$this->global_model->have_permission('pages_del');
-		$result = $this->global_model->delete_selected_items("pages", "page_code", $code, "strings", "string_code");
+    function faq_del($code) {
+        //$this->global_model->have_permission('faq_del');
+		$result = $this->global_model->delete_selected_items("faq", "faq_code", $code, "strings", "string_code");
 		if ($result == true) 
 		{
 			$this->messages->add("تم الحذف بنجاح", "success");
@@ -127,7 +129,7 @@ class Pages extends CI_Controller {
 		{
             $this->messages->add("لقد حدث خطأ", "error");
         }
-        redirect("pages/pages_list");
+        redirect("faq/faq_list");
     }
 
     /**
@@ -137,7 +139,7 @@ class Pages extends CI_Controller {
      */
     function _javascript($view) {
         switch ($view) {
-            case 'pages_add':
+            case 'faq_add':
                 $java = array(
                     "'" . base_url() . "../assets/global/plugins/counterup/jquery.waypoints.min.js'",
                     "'" . base_url() . "../assets/global/plugins/counterup/jquery.counterup.min.js'",
@@ -154,7 +156,7 @@ class Pages extends CI_Controller {
 
     function _cssFiles($view) {
         switch ($view) {
-            case 'pages_add':
+            case 'faq_add':
                 $css = '<link href="' . base_url() . '../assets/global/plugins/bootstrap-toastr/toastr-rtl.min.css" rel="stylesheet" type="text/css" />'.
 				'<link href="'.base_url().'../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="' . base_url() . '../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />';

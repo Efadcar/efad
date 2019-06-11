@@ -1,26 +1,26 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * This class controll the Pages views.
+ * This class controll the faq_categories views.
  */
-class Pages extends CI_Controller {
+class Faq_categories extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('pages_model');
+        $this->load->model('faq_categories_model');
         $this->load->library('form_validation');
         $this->global_model->config();
     }
 	
-    function pages_list() {
-        //$this->global_model->have_permission('pages_list');
+    function faq_categories_list() {
+        //$this->global_model->have_permission('faq_categories_list');
         if (count($_POST) != 0) {
             $this->session->set_userdata('order_by', $this->input->post('order_by'));
             $this->session->set_userdata('order_type', $this->input->post('order_type'));
         }
         $this->load->library('pagination');
-        $config['base_url'] = site_url('pages/pages_list');
-        $config['total_rows'] = $this->db->get('pages')->num_rows();
+        $config['base_url'] = site_url('faq_categories/faq_categories_list');
+        $config['total_rows'] = $this->db->get('faq_categories')->num_rows();
         $config['per_page'] = $this->session->userdata('sitePerPagePagination');
         $config['num_links'] = 5;
         $config['uri_segment'] = 3;
@@ -45,80 +45,80 @@ class Pages extends CI_Controller {
         $config['last_link'] = 'Last';
         $this->pagination->initialize($config);
         //end pagination
-        $data['rows'] = $this->pages_model->getAll($config['per_page'], $this->uri->segment(3));
+        $data['rows'] = $this->faq_categories_model->getAll($config['per_page'], $this->uri->segment(3));
         $data['total_rows'] = $config['total_rows'];
-        $data['main_content'] = 'pages/pages_list';
-		$data['pageCssFiles'] = $this->_cssFiles('pages_add');
-        $data['javascripts'] = $this->_javascript('pages_add');
-		$data['pageTitle'] = "الصفحات الثابتة";
-		$data['breadcrumbs'] = array("الصفحات الثابتة" => site_url('pages/pages_list'), "عرض كل الصفحات" => site_url('pages/pages_list'));
+        $data['main_content'] = 'faq_categories/faq_categories_list';
+		$data['pageCssFiles'] = $this->_cssFiles('faq_categories_add');
+        $data['javascripts'] = $this->_javascript('faq_categories_add');
+		$data['pageTitle'] = "أقسام الأسئلة المتكررة";
+		$data['breadcrumbs'] = array("أقسام الأسئلة المتكررة" => site_url('faq_categories/faq_categories_list'), "عرض كل الأقسام" => site_url('faq_categories/faq_categories_list'));
         $this->load->view('includes/template', $data);
     }
 
     /**
      * This load add new category view if form_validation->run() == false 
-	 * else it will insert the submitted data to pages table and redirect to pages list.
+	 * else it will insert the submitted data to faq_categories table and redirect to faq_categories list.
      *
      * @return void
      */
-    function pages_add() {
-        //$this->global_model->have_permission('pages_add');
+    function faq_categories_add() {
+        //$this->global_model->have_permission('faq_categories_add');
 
-        $data['breadcrumbs'] = array("الصفحات الثابتة" => site_url('pages/pages_list'), "إضافة صفحة جديدة" => site_url('pages/pages_add'));
-        $data['javascripts'] = $this->_javascript('pages_add');
-		$data['pageCssFiles'] = $this->_cssFiles('pages_add');
-        $data['main_content'] = 'pages/pages_add';
-        $data['pageTitle'] = "إضافة صفحة جديدة";
+        $data['breadcrumbs'] = array("أقسام الأسئلة المتكررة" => site_url('faq_categories/faq_categories_list'), "إضافة قسم جديد" => site_url('faq_categories/faq_categories_add'));
+        $data['javascripts'] = $this->_javascript('faq_categories_add');
+		$data['pageCssFiles'] = $this->_cssFiles('faq_categories_add');
+        $data['main_content'] = 'faq_categories/faq_categories_add';
+        $data['pageTitle'] = "إضافة قسم جديدة";
 
-        $this->form_validation->set_rules('page_title_english', "عنوان الصفحة باللغة الأنجليزية", 'required|strip_tags');
+        $this->form_validation->set_rules('fc_name_english', "أسم القسم باللغة الإنجليزية", 'required|strip_tags');
         if($this->form_validation->run() == FALSE) 
 		{
             $this->load->view('includes/template', $data);
         } 
 		else 
 		{
-            $this->pages_model->add();
-            redirect('pages/pages_list');
+            $this->faq_categories_model->add();
+            redirect('faq_categories/faq_categories_list');
         }
     }
 	
     /**
      * This load edit order view if form_validation->run() == false 
-	 * else it will edit the submitted data to order row and redirect to pages list.
+	 * else it will edit the submitted data to order row and redirect to faq_categories list.
      *
      * @return void
      */
-    function pages_edit($id) {
-        //$this->global_model->have_permission('pages_add');
+    function faq_categories_edit($id) {
+        //$this->global_model->have_permission('faq_categories_add');
 
-        $data['breadcrumbs'] = array("الصفحات الثابتة" => site_url('pages/pages_list'), "تعديل صفحة" => site_url('pages/pages_edit/'.$id));
-        $data['javascripts'] = $this->_javascript('pages_add');
-		$data['pageCssFiles'] = $this->_cssFiles('pages_add');
-        $data['main_content'] = 'pages/pages_edit';
-        $data['pageTitle'] = "تعديل صفحة";
+        $data['breadcrumbs'] = array("أقسام الأسئلة المتكررة" => site_url('faq_categories/faq_categories_list'), "تعديل قسم" => site_url('faq_categories/faq_categories_edit/'.$id));
+        $data['javascripts'] = $this->_javascript('faq_categories_add');
+		$data['pageCssFiles'] = $this->_cssFiles('faq_categories_add');
+        $data['main_content'] = 'faq_categories/faq_categories_edit';
+        $data['pageTitle'] = "تعديل قسم";
         $data['id'] = $id;
-        $data['row'] = $this->pages_model->getByID($id);
+        $data['row'] = $this->faq_categories_model->getByID($id);
 		
-        $this->form_validation->set_rules('page_title_english', "عنوان الصفحة باللغة الأنجليزية", 'required|strip_tags');
+        $this->form_validation->set_rules('fc_name_english', "أسم القسم باللغة الإنجليزية", 'required|strip_tags');
         if($this->form_validation->run() == FALSE) 
 		{
             $this->load->view('includes/template', $data);
         } 
 		else 
 		{
-            $this->pages_model->edit($id);
-            redirect('pages/pages_list');
+            $this->faq_categories_model->edit($id);
+            redirect('faq_categories/faq_categories_list');
         }
     }
 
     /**
-     * This method delete pages.
+     * This method delete faq_categories.
      *
      * @return void
      */
-    function pages_del($code) {
-        //$this->global_model->have_permission('pages_del');
-		$result = $this->global_model->delete_selected_items("pages", "page_code", $code, "strings", "string_code");
+    function faq_categories_del($code) {
+        //$this->global_model->have_permission('faq_categories_del');
+		$result = $this->global_model->delete_selected_items("faq_categories", "fc_code", $code, "strings", "string_code");
 		if ($result == true) 
 		{
 			$this->messages->add("تم الحذف بنجاح", "success");
@@ -127,7 +127,7 @@ class Pages extends CI_Controller {
 		{
             $this->messages->add("لقد حدث خطأ", "error");
         }
-        redirect("pages/pages_list");
+        redirect("faq_categories/faq_categories_list");
     }
 
     /**
@@ -137,7 +137,7 @@ class Pages extends CI_Controller {
      */
     function _javascript($view) {
         switch ($view) {
-            case 'pages_add':
+            case 'faq_categories_add':
                 $java = array(
                     "'" . base_url() . "../assets/global/plugins/counterup/jquery.waypoints.min.js'",
                     "'" . base_url() . "../assets/global/plugins/counterup/jquery.counterup.min.js'",
@@ -154,7 +154,7 @@ class Pages extends CI_Controller {
 
     function _cssFiles($view) {
         switch ($view) {
-            case 'pages_add':
+            case 'faq_categories_add':
                 $css = '<link href="' . base_url() . '../assets/global/plugins/bootstrap-toastr/toastr-rtl.min.css" rel="stylesheet" type="text/css" />'.
 				'<link href="'.base_url().'../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="' . base_url() . '../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />';
