@@ -86,12 +86,11 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 // API LINKS
 define('FLAGS_IMAGES', "../assets/global/img/flags/");
-define('SERVICES_IMAGES', "../assets/files/services/");
 define('PAGES_IMAGES', "../assets/files/pages/");
 define('BLOGS_IMAGES', "../assets/files/blogs/");
 define('ALBUMS_IMAGES', "../assets/files/albums/");
 define('SITE_IMAGES', "../assets/files/site/");
-define('MUSIC_FILES', "../assets/files/music/");
+define('CARS_TYPES_IMAGES', "../assets/files/cars_types/");
 
 
 

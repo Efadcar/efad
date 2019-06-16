@@ -82,6 +82,51 @@
                 </a>
             </li>
 			
+			<?php
+            $key = 'cars_categories';
+            if (strpos($this->uri->uri_string(), $key) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('cars_categories/cars_categories_list') ?>" class="nav-link nav-toggle">
+                    <i class="fa fa-car"></i>
+                    <span class="title">أقسام السيارات</span>
+                </a>
+            </li>
+			
+			<?php
+            $key = 'cars_types';
+            if (strpos($this->uri->uri_string(), $key) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('cars_types/cars_types_list') ?>" class="nav-link nav-toggle">
+                    <i class="fa fa-car"></i>
+                    <span class="title">أنمطات السيارات</span>
+                </a>
+            </li>
+			
+			<?php
+            $key = 'blogs';
+            if (strpos($this->uri->uri_string(), $key) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('blogs/blogs_list') ?>" class="nav-link nav-toggle">
+                    <i class="icon-speech"></i>
+                    <span class="title">المقالات</span>
+                </a>
+            </li>
+			
 			
             
             
