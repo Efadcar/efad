@@ -13,7 +13,7 @@ class Faq extends CI_Controller {
     }
 	
     function faq_list() {
-        //$this->global_model->have_permission('faq_list');
+        $this->global_model->have_permission('faq_list');
         if (count($_POST) != 0) {
             $this->session->set_userdata('order_by', $this->input->post('order_by'));
             $this->session->set_userdata('order_type', $this->input->post('order_type'));
@@ -62,8 +62,7 @@ class Faq extends CI_Controller {
      * @return void
      */
     function faq_add() {
-        //$this->global_model->have_permission('faq_add');
-
+        $this->global_model->have_permission('faq_add');
         $data['breadcrumbs'] = array("الأسئلة المتكررة" => site_url('faq/faq_list'), "إضافة سؤال جديد" => site_url('faq/faq_add'));
         $data['javascripts'] = $this->_javascript('faq_add');
 		$data['pageCssFiles'] = $this->_cssFiles('faq_add');
@@ -90,8 +89,7 @@ class Faq extends CI_Controller {
      * @return void
      */
     function faq_edit($id) {
-        //$this->global_model->have_permission('faq_add');
-
+        $this->global_model->have_permission('faq_add');
         $data['breadcrumbs'] = array("الأسئلة المتكررة" => site_url('faq/faq_list'), "تعديل سؤال" => site_url('faq/faq_edit/'.$id));
         $data['javascripts'] = $this->_javascript('faq_add');
 		$data['pageCssFiles'] = $this->_cssFiles('faq_add');
@@ -119,7 +117,7 @@ class Faq extends CI_Controller {
      * @return void
      */
     function faq_del($code) {
-        //$this->global_model->have_permission('faq_del');
+        $this->global_model->have_permission('faq_del');
 		$result = $this->global_model->delete_selected_items("faq", "faq_code", $code, "strings", "string_code");
 		if ($result == true) 
 		{

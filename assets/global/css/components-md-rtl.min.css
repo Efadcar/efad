@@ -480,13 +480,16 @@ body {
 	transition-delay: .2s
 }
 .md-checkbox label > .check {
+	
 	top: -4px;
-	right: 6px;
-	width: 10px;
-	height: 20px;
-	border: 2px solid #36c6d3;
-	border-top: none;
-	border-right: none;
+    left: 6px;
+    width: 10px;
+    height: 20px;
+    border: 2px solid #36c6d3;
+    border-top: none;
+    border-left: none;
+	
+
 	opacity: 0;
 	z-index: 5;
 	-webkit-transform: rotate(-180deg);
@@ -498,15 +501,15 @@ body {
 }
 .md-checkbox input[type=checkbox]:checked ~ label > .box {
 	opacity: 0;
-	-webkit-transform: scale(0) rotate(180deg);
-	-moz-transform: scale(0) rotate(180deg);
-	transform: scale(0) rotate(180deg)
+	-webkit-transform: scale(0) rotate(-315deg);
+	-moz-transform: scale(0) rotate(-315deg);
+	transform: scale(0) rotate(-315deg)
 }
 .md-checkbox input[type=checkbox]:checked ~ label > .check {
 	opacity: 1;
-	-webkit-transform: scale(1) rotate(-45deg);
-	-moz-transform: scale(1) rotate(-45deg);
-	transform: scale(1) rotate(-45deg)
+	-webkit-transform: scale(1) rotate(-315deg);
+	-moz-transform: scale(1) rotate(-315deg);
+	transform: scale(1) rotate(-315deg)
 }
 .md-checkbox input[type=checkbox]:disabled:checked ~ label > .check, .md-checkbox input[type=checkbox]:disabled ~ label, .md-checkbox input[type=checkbox]:disabled ~ label > .box, .md-checkbox input[type=checkbox][disabled]:checked ~ label > .check, .md-checkbox input[type=checkbox][disabled] ~ label, .md-checkbox input[type=checkbox][disabled] ~ label > .box {
 	cursor: not-allowed;
@@ -804,7 +807,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 300
 }
 .bars, .chart, .pie, .primary-font {
-	font-family: "Open Sans", sans-serif!important
 }
 h1 {
 	font-size: 36px
@@ -5990,7 +5992,6 @@ td > .mt-checkbox.mt-checkbox-single, td > .mt-radio.mt-radio-single, th > .mt-c
 	font-weight: 300;
 	padding: 3px 6px;
 	color: #fff;
-	font-family: "Open Sans", sans-serif
 }
 .label.label-sm {
 	font-size: 13px;
@@ -12142,7 +12143,6 @@ body[ng-controller] .modal {
 	font-weight: 600;
 	font-size: 13px;
 	color: #93a2a9;
-	font-family: "Open Sans", sans-serif;
 	border: 0;
 	border-bottom: 1px solid #F2F5F8
 }

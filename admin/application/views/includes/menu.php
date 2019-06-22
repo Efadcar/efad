@@ -36,7 +36,7 @@
                     <span class="title">الرئيسية</span>
                 </a>
             </li>
-                 
+            <?php if ($this->global_model->have_permission_menu('pages_menu')) { ?>    
 			<?php
             $key = 'pages';
             if (strpos($this->uri->uri_string(), $key) !== false) {
@@ -51,7 +51,9 @@
                     <span class="title">الصفحات الثابتة</span>
                 </a>
             </li>
+			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('faq_categories_menu')) { ?>    
 			<?php
             $key = 'faq_categories';
             if (strpos($this->uri->uri_string(), $key) !== false) {
@@ -66,7 +68,9 @@
                     <span class="title">أقسام الأسئلة المتكررة</span>
                 </a>
             </li>
+			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('faq_menu')) { ?>    
 			<?php
             $key = 'faq';
             if (strpos($this->uri->uri_string(), $key) !== false && $this->uri->uri_string() == "faq/faq_list") {
@@ -81,7 +85,9 @@
                     <span class="title">الأسئلة المتكررة</span>
                 </a>
             </li>
+			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('cars_categories_menu')) { ?>    
 			<?php
             $key = 'cars_categories';
             if (strpos($this->uri->uri_string(), $key) !== false) {
@@ -96,7 +102,9 @@
                     <span class="title">أقسام السيارات</span>
                 </a>
             </li>
+			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('cars_types_menu')) { ?>    
 			<?php
             $key = 'cars_types';
             if (strpos($this->uri->uri_string(), $key) !== false) {
@@ -111,7 +119,9 @@
                     <span class="title">أنمطات السيارات</span>
                 </a>
             </li>
+			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('blogs_menu')) { ?>    
 			<?php
             $key = 'blogs';
             if (strpos($this->uri->uri_string(), $key) !== false) {
@@ -126,12 +136,44 @@
                     <span class="title">المقالات</span>
                 </a>
             </li>
+			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('admins_menu')) { ?>    
 			
+            <li class="heading">
+				<h3 class="uppercase">خاص بالأدارة</h3>
+			</li> 
             
-            
-            
+			<?php
+            $key = 'admins';
+            if (strpos($this->uri->uri_string(), $key) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('admins/admins_list') ?>" class="nav-link nav-toggle">
+                    <i class="icon-users"></i>
+                    <span class="title">الموظفين</span>
+                </a>
+            </li>
 
+			<?php
+            $key = 'groups';
+            if (strpos($this->uri->uri_string(), $key) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('groups/groups_list') ?>" class="nav-link nav-toggle">
+                    <i class="icon-lock"></i>
+                    <span class="title">المجموعات و الصلاحيات</span>
+                </a>
+            </li>
+			<?php } ?>
 
 
             

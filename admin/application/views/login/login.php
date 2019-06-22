@@ -174,41 +174,8 @@ Author: Eng. Ebrahim Elsawy
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->
-        <script>
-<?php
-$all = $this->messages->get();
-if ($all != null) {
-    foreach ($all as $type => $messages)
-        foreach ($messages as $message)
-            switch ($type) {
-                case "error":
-                    echo 'toastr.error("' . $message . '", "Error");';
-                    break;
-                case "success":
-                    echo 'toastr.success("' . $message . '", "Success");';
-                    break;
-                case "alert":
-                    echo 'toastr.alert("' . $message . '", "Alert");';
-                    break;
-            }
-}
-?>
-			
-			<?php 
-			$valid_error = validation_errors();
-			if (!empty($valid_error)) { 
-			$pieces = explode(".", strip_tags(validation_errors()));
-			$count = count($pieces);
-			if(count($pieces) > 0){
-				$error = '';
-				for($i = 0; $i < $count; $i++){
-					$error .= $pieces[$i]."<br>";	
-				}
-			}
-			$error = trim(preg_replace('/\s+/', ' ', $error));
-			?>
-			toastr.error("<?php echo $error ?>", "Error");
-			<?php } ?>
+
+<script>
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -223,6 +190,40 @@ if ($all != null) {
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
+			<?php
+			$all = $this->messages->get();
+			if ($all != null) {
+				foreach ($all as $type => $messages)
+					foreach ($messages as $message)
+						switch ($type) {
+							case "error":
+								echo 'toastr.error("' . $message . '", "خطأ");';
+								break;
+							case "success":
+								echo 'toastr.success("' . $message . '", "نجاح");';
+								break;
+							case "alert":
+								echo 'toastr.warning("' . $message . '", "تحذير");';
+								break;
+						}
+			}
+			?>
+						
+			<?php 
+			$valid_error = validation_errors();
+			if (!empty($valid_error)) { 
+			$pieces = explode(".", strip_tags(validation_errors()));
+			$count = count($pieces);
+			if(count($pieces) > 0){
+				$error = '';
+				for($i = 0; $i < $count; $i++){
+					$error .= $pieces[$i]."<br>";	
+				}
+			}
+			$error = trim(preg_replace('/\s+/', ' ', $error));
+			?>
+			toastr.error("<?php echo $error ?>", "خطأ");
+			<?php } ?>
 
         </script>
     </body>

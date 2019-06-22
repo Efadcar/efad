@@ -20,7 +20,7 @@ class Login_model extends CI_Model {
             }
 
             $data = array(
-                'admin_full_name' => $row->user_fname." ".$row->user_lname,
+                'admin_full_name' => $row->user_full_name,
                 'admin_uid' => $row->user_uid,
                 'admin_group' => $row->group_uid,
                 'is_logged_in' => true

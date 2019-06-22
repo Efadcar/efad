@@ -70,7 +70,8 @@ class Global_model extends CI_Model {
         }
 
         if (!isset($user_group) || $user_group != true) {
-            redirect('error');
+			$this->messages->add("عفواً، انت لا تمتلك صلاحية لهذة العملية.", "error");
+            redirect($_SERVER['HTTP_REFERER']);
         }
     }
 

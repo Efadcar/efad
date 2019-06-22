@@ -13,7 +13,7 @@ class Cars_categories extends CI_Controller {
     }
 	
     function cars_categories_list() {
-        //$this->global_model->have_permission('cars_categories_list');
+        $this->global_model->have_permission('cars_categories_list');
         if (count($_POST) != 0) {
             $this->session->set_userdata('order_by', $this->input->post('order_by'));
             $this->session->set_userdata('order_type', $this->input->post('order_type'));
@@ -62,8 +62,7 @@ class Cars_categories extends CI_Controller {
      * @return void
      */
     function cars_categories_add() {
-        //$this->global_model->have_permission('cars_categories_add');
-
+        $this->global_model->have_permission('cars_categories_add');
         $data['breadcrumbs'] = array("أقسام السيارات" => site_url('cars_categories/cars_categories_list'), "إضافة قسم جديد" => site_url('cars_categories/cars_categories_add'));
         $data['javascripts'] = $this->_javascript('cars_categories_add');
 		$data['pageCssFiles'] = $this->_cssFiles('cars_categories_add');
@@ -89,8 +88,7 @@ class Cars_categories extends CI_Controller {
      * @return void
      */
     function cars_categories_edit($id) {
-        //$this->global_model->have_permission('cars_categories_add');
-
+        $this->global_model->have_permission('cars_categories_add');
         $data['breadcrumbs'] = array("أقسام السيارات" => site_url('cars_categories/cars_categories_list'), "تعديل قسم" => site_url('cars_categories/cars_categories_edit/'.$id));
         $data['javascripts'] = $this->_javascript('cars_categories_add');
 		$data['pageCssFiles'] = $this->_cssFiles('cars_categories_add');
@@ -117,7 +115,7 @@ class Cars_categories extends CI_Controller {
      * @return void
      */
     function cars_categories_del($code) {
-        //$this->global_model->have_permission('cars_categories_del');
+        $this->global_model->have_permission('cars_categories_del');
 		$result = $this->global_model->delete_selected_items("cars_categories", "page_code", $code, "strings", "string_code");
 		if ($result == true) 
 		{

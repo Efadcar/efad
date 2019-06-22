@@ -76,7 +76,7 @@ if (isset($javascripts) && $javascripts != null) {
 			}
 			$error = trim(preg_replace('/\s+/', ' ', $error));
 			?>
-			toastr.error("<?php echo $error ?>", "Error");
+			toastr.error("<?php echo $error ?>", "خطأ");
 			<?php } ?>
 
         </script>

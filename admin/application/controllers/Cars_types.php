@@ -13,7 +13,7 @@ class Cars_types extends CI_Controller {
     }
 	
     function cars_types_list() {
-        //$this->global_model->have_permission('cars_types_list');
+        $this->global_model->have_permission('cars_types_list');
         if (count($_POST) != 0) {
             $this->session->set_userdata('order_by', $this->input->post('order_by'));
             $this->session->set_userdata('order_type', $this->input->post('order_type'));
@@ -62,8 +62,7 @@ class Cars_types extends CI_Controller {
      * @return void
      */
     function cars_types_add() {
-        //$this->global_model->have_permission('cars_types_add');
-
+        $this->global_model->have_permission('cars_types_add');
         $data['breadcrumbs'] = array("أنمطات السيارات" => site_url('cars_types/cars_types_list'), "إضافة نمط جديد" => site_url('cars_types/cars_types_add'));
         $data['javascripts'] = $this->_javascript('cars_types_add');
 		$data['pageCssFiles'] = $this->_cssFiles('cars_types_add');
@@ -89,8 +88,7 @@ class Cars_types extends CI_Controller {
      * @return void
      */
     function cars_types_edit($id) {
-        //$this->global_model->have_permission('cars_types_add');
-
+        $this->global_model->have_permission('cars_types_add');
         $data['breadcrumbs'] = array("أنمطات السيارات" => site_url('cars_types/cars_types_list'), "تعديل نمط" => site_url('cars_types/cars_types_edit/'.$id));
         $data['javascripts'] = $this->_javascript('cars_types_add');
 		$data['pageCssFiles'] = $this->_cssFiles('cars_types_add');
@@ -117,7 +115,7 @@ class Cars_types extends CI_Controller {
      * @return void
      */
     function cars_types_del($code) {
-        //$this->global_model->have_permission('cars_types_del');
+        $this->global_model->have_permission('cars_types_del');
 		$result = $this->global_model->delete_selected_items("cars_types", "ct_code", $code, "strings", "string_code");
 		if ($result == true) 
 		{
