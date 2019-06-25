@@ -1,0 +1,544 @@
+﻿@import url("ion.rangeSlider.min.css");
+/***********************************
+  cars
+ ***********************************/
+.carname h5 > span:first-child { font-weight:700}
+.carname span{padding-left:10px}
+ span.question-icon{  display:block; height:20px}
+ span.question-icon i{color:rgba(0, 0, 0, 0.3);}
+.thumbnail-container {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+  
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;padding:0.8rem
+
+}
+.price-car {position:relative}
+.price-car .value {
+    font-size: 2.3rem;
+    font-weight: 600;
+    line-height: 2.3rem;
+
+}
+
+
+.price-car .price-was {
+    color: #999;
+    text-decoration: line-through; position:absolute; top:-30px
+}
+.price-car .duration{ font-size: 0.7rem;
+    font-weight: 300;}
+.thumbnail-container .car-img img {
+      -webkit-transition: transform 1s;
+      -o-transition: transform 1s;
+      transition: transform 1s;
+      backface-visibility: hidden; }
+
+ .thumbnail-container:hover {
+     background: #FFFFFF;  border-radius:5px ;}
+
+ .thumbnail-container:hover .car-img img {
+        -webkit-transform: scale3d(1.1, 1.1, 1);
+        -moz-transform: scale3d(1.1, 1.1, 1);
+        -ms-transform: scale3d(1.1, 1.1, 1);
+        -o-transform: scale3d(1.1, 1.1, 1);
+        transform: scale3d(1.1, 1.1, 1); }
+
+
+ 
+
+  /*******  group ******/
+
+  .button-mobile-container {
+    display: none;
+}
+  @media (max-width: 768px){
+        .button-mobile-close {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 520;
+    display: block;
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.11);
+    border: solid 0.5px #e5e5e5;
+}
+        .button-mobile-fixed {
+    position: fixed;
+    bottom: 20px;
+}
+        .button-mobile-container {
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 120;
+    display: block;
+    pointer-events: none;
+}
+        .button-mobile {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 30px;
+    width: 180px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 300;
+    display: inline-block;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+        .search-option {
+    display: none;
+    position: fixed;
+    height: 100%;
+    padding: 10px 20px 275px 20px;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    overflow: scroll;
+    background: #fff;
+    z-index: 510;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden; 
+}
+
+  }
+  .show {
+    display: block!important;
+}
+  
+  .search-option span.labelh{display:block; font-weight: 600 ;  position: relative;}
+
+  hr.line-blue-right {
+    border: 0;
+    height: 3px;
+    background-color:#e7e7e7;
+    width: 50px;
+    margin: 0 0 1rem  0 ; }
+
+    hr.line-gray-right {
+    border: 0;
+    height: 1px;
+    background-color:#e7e7e7;
+  
+    }
+  .planname input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+  .planname label {
+  
+  display: inline-block;
+  cursor: pointer;
+
+  padding: 5px ; flex: 1; text-align:center; margin:0; font-size:0.875rem; line-height:30px
+}
+
+.caronecol .planname label {padding: 0}
+.caronecol  .car_btn .fieldset{margin: 0}
+
+  .planname input[type=radio]:checked + label {
+  color: #fff;
+
+}
+
+  .planname input[type=radio]#blueplan:checked + label {
+  background:#118AFF
+
+}
+  .planname input[type=radio]#greenplan:checked + label {
+  background:#1bbc9d
+
+}
+  .planname input[type=radio]#redplan:checked + label{
+  background:#ce3819
+
+}
+  .planname label + input[type=radio] + label {
+  border-right: solid 1px #d7d7d7;
+}
+
+  .planname.radio-group {
+  border: solid 2px #d7d7d7;
+  display: inline-block;
+  
+  border-radius: 50em;
+  overflow: hidden;
+}
+
+.btn-switch {
+  font-size: 0.5em;
+	position: absolute;
+	display: inline-block;		
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;     height: 25px;
+  width: 40px;
+  top: 26px;
+  left: 100px;
+}
+.btn-switch__radio {
+	display: none;
+}
+.btn-switch__label {
+	display: inline-block;	
+	padding: .75em .5em .75em .75em;
+	vertical-align: top;
+	font-size: 1em;
+	font-weight: 700;
+	line-height: 1.5;
+	color: #666;
+  cursor: pointer;
+	transition: color .2s ease-in-out; margin-bottom:0
+}
+.btn-switch__label + .btn-switch__label {
+  padding-left: 4em;
+	padding-right: 0;
+}
+.btn-switch__txt {
+	position: relative;
+	z-index: 2;
+  display: inline-block;
+   min-width: 1.5em;
+	opacity: 1;
+	pointer-events: none;
+	transition: opacity .2s ease-in-out;
+}
+.btn-switch__radio_no:checked ~ .btn-switch__label_yes .btn-switch__txt,
+.btn-switch__radio_yes:checked ~ .btn-switch__label_no .btn-switch__txt {
+	opacity: 0;
+}
+.btn-switch__label:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #e3e3e3;
+	border-radius: 1.5em;
+	box-shadow: inset 0 .0715em .3572em rgba(43,43,43,.05);
+	transition: background .2s ease-in-out;
+}
+.btn-switch__radio_yes:checked ~ .btn-switch__label:before {
+	background: #003764;
+}
+.btn-switch__label_no:after {
+	content: "";
+	position: absolute;
+	z-index: 2;
+	top: .5em;
+	bottom: .5em;
+	left: .5em;
+	width: 2em;
+	background: #fff;
+	border-radius: 1em;	
+	pointer-events: none;
+	box-shadow: 0 .1429em .2143em rgba(43,43,43,.2), 0 .3572em .3572em rgba(43,43,43,.1);
+	transition: left .2s ease-in-out, background .2s ease-in-out;
+}
+.btn-switch__radio_yes:checked ~ .btn-switch__label_no:after {
+	left: calc(100% - 2.5em);
+	background: #fff;
+}
+.btn-switch__radio_no:checked ~ .btn-switch__label_yes:before,
+.btn-switch__radio_yes:checked ~ .btn-switch__label_no:before {
+	z-index: 1;
+}
+.btn-switch__radio_yes:checked ~ .btn-switch__label_yes {
+	color: #fff;
+}
+/********* menu car ***************/
+
+.car_btn .fieldset {
+
+	position: relative;
+	height: 40px;
+    	display: inline-block;
+
+	border-radius: 50em;
+	border: 0px solid #2d3e50;
+
+}
+.car_btn nav a {
+	line-height: 40px;
+	height: 100%;
+	
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	text-decoration: none;
+
+	text-align: center;
+	color: #333;
+	cursor: pointer;
+}
+.car_btn .fieldset .animation {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	z-index: 0;
+	transition: all .5s ease 0s;
+	border-radius: 50em;
+}
+.car_btn label{ 
+     border-radius: 50em;
+ 
+     color:#333;
+     	position: relative;
+	z-index: 1;
+	display: inline-block;
+	
+    	height: 40px;
+	line-height: 35px;
+	cursor: pointer;
+	font-size: 1rem;
+	margin-bottom: 0; text-align: center;  padding:0 ;  transition: all .2s; font-weight: 600; border:2px solid #f6f6f6
+
+  }
+.car_btn  label.all {
+	width: 90px;
+}
+.car_btn  label.economic {
+	width: 92px;
+}
+.car_btn label.small {
+	width: 90px;
+}
+.car_btn label.mini 
+{
+	width: 90px;
+}
+.car_btn label.big {
+	width: 90px;
+}
+.car_btn label.superior {
+	width: 90px;
+}
+.car_btn nav.start-home, .car_btn  label.all:hover~.animation {
+	width: 90px;
+	right: 0;
+	background-color: #fff;
+}
+.car_btn nav .start-about, .car_btn label.economic:hover~.animation {
+	width: 90px;
+	right: 95px;
+		background-color: #fff;
+
+}
+.car_btn nav .start-blog, .car_btn label.small:hover~.animation {
+	width: 90px;
+	right: 188px;
+	background-color: #fff;
+}
+.car_btn nav .start-portefolio, .car_btn label.mini:hover~.animation {
+	width: 90px;
+	right: 280px;
+	background-color: #fff;
+
+}
+.car_btn nav .start-contact, .car_btn label.big:hover~.animation {
+	width: 90px;
+	right: 373px;
+	background-color: #fff;
+
+}
+
+.car_btn nav .start-contact, .car_btn label.superior:hover~.animation {
+	width: 90px;
+	right: 465px;
+		background-color: #fff;
+
+}
+
+
+.scroll {
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+
+/************************
+	car type 
+*****************************/
+  
+ 
+  
+
+
+    .car_btn.car-y label{ 
+
+    	height: 35px;
+	line-height: 30px;
+ margin-left:5px; padding:0 0.7em;      border: 2px solid #d7d7d7; font-size:0.75rem
+
+  }
+
+
+
+  .car_btn input[type=radio]:checked + label {
+  color: #fff; background:#000; opacity: 1; border:2px solid #000;
+
+}
+
+
+
+  .car_btn input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	  display: none
+}
+
+
+
+
+
+  /**********car color ******************/
+
+  .custom-radios div {
+  display: inline-block; padding:5px
+}
+.custom-radios input[type="checkbox"] {
+  display: none;
+}
+.custom-radios input[type="checkbox"] + label {
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.custom-radios input[type="checkbox"] + label span {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  line-height: 35px;
+}
+.custom-radios input[type="checkbox"] + label span i {
+  opacity: 0;
+  transition: all .3s ease;
+}
+
+.custom-radios input[type="checkbox"]#white + label span {
+  background-color: #ffffff;
+}
+.custom-radios input[type="checkbox"]#gray + label span {
+  background-color: #aaaaaa;
+}
+.custom-radios input[type="checkbox"]#brown + label span {
+  background-color: #D2691E;
+}
+
+.custom-radios input[type="checkbox"]#beige + label span {
+  background-color: #F5F5DC;
+}
+.custom-radios input[type="checkbox"]#green + label span {
+  background-color: #2ecc71;
+}
+.custom-radios input[type="checkbox"]#blue + label span {
+  background-color: #3498db;
+}
+.custom-radios input[type="checkbox"]#yellow + label span {
+  background-color: #f1c40f;
+}
+.custom-radios input[type="checkbox"]#red + label span {
+  background-color: #e74c3c;
+}
+.custom-radios input[type="checkbox"]#black + label span {
+  background-color: #000;
+}
+.custom-radios input[type="checkbox"]:checked + label span i {
+  opacity: 1; color:#fefefe
+}
+
+
+
+.input_hidden {
+    position: absolute;
+ visibility:hidden;
+ opacity:0
+}
+
+.selected {
+    background-color: #ccc;
+}
+
+#sites label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+#sites label:hover {
+    background-color: #efefef;
+}
+
+#sites label img {
+    padding: 3px;
+    
+}
+
+.adv-search {
+    background-color: #fff;
+    box-shadow: 0 0 2px 0 rgba(0,0,0,.1);
+ 
+}
+
+/******* exploresearch ********/
+.adv-search, .exploresearch .form-control {font-size:0.875rem}
+.exploresearch .form-control{ line-height:1.5}
+.exploresearch .labelh {
+    display: inline-block !important;
+    padding: 0 10px;
+}
+.exploresearch .btn-switch {
+    top: 16px;
+    font-size: 0.5em;
+    position: relative;
+    display: inline-block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 22px;
+    width: 37px;
+    left: auto
+   
+}
+
+
+
+.adv-search .car_btn.with-bg{background: #f6f6f6;}
+
+.adv-search .car_btn.with-bg label{border-radius:0; border:0 !important}
+
+.adv-search .car_btn.with-bg .fieldset .animation {
+border-radius:0
+}
+
+.get-nicer {
+       overflow: auto;
+       height: 580px;
+     }
