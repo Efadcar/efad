@@ -121,6 +121,23 @@
             </li>
 			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('cars_brands_menu')) { ?>    
+			<?php
+            $key = 'cars_brands';
+            if (strpos($this->uri->uri_string(), $key) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('cars_brands/cars_brands_list') ?>" class="nav-link nav-toggle">
+                    <i class="fa fa-car"></i>
+                    <span class="title">ماركات السيارات</span>
+                </a>
+            </li>
+			<?php } ?>
+			
             <?php if ($this->global_model->have_permission_menu('blogs_menu')) { ?>    
 			<?php
             $key = 'blogs';

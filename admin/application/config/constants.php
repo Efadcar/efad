@@ -91,6 +91,7 @@ define('BLOGS_IMAGES', "../assets/files/blogs/");
 define('ALBUMS_IMAGES', "../assets/files/albums/");
 define('SITE_IMAGES', "../assets/files/site/");
 define('CARS_TYPES_IMAGES', "../assets/files/cars_types/");
+define('CARS_BRANDS_IMAGES', "../assets/files/cars_brands/");
 
 
 
