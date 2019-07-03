@@ -138,6 +138,24 @@
             </li>
 			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('albums_menu')) { ?>    
+			<?php
+            $key = 'albums';
+            $key2 = 'media';
+            if (strpos($this->uri->uri_string(), $key) !== false || strpos($this->uri->uri_string(), $key2) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('albums/albums_list') ?>" class="nav-link nav-toggle">
+                    <i class="fa fa-car"></i>
+                    <span class="title">صور السيارات</span>
+                </a>
+            </li>
+			<?php } ?>
+			
             <?php if ($this->global_model->have_permission_menu('blogs_menu')) { ?>    
 			<?php
             $key = 'blogs';
