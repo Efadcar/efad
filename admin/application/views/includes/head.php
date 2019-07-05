@@ -17,7 +17,6 @@
         <link href="<?php echo base_url(); ?>../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>../assets/global/plugins/bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url(); ?>../assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>../assets/global/plugins/bootstrap-switch/css/bootstrap-switch-rtl.min.css" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
 
@@ -32,7 +31,6 @@
         <link href="<?php echo base_url(); ?>../assets/layouts/layout/css/layout-rtl.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>../assets/layouts/layout/css/themes/darkblue-rtl.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="<?php echo base_url(); ?>../assets/layouts/layout/css/custom-rtl.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url(); ?>../assets/global/css/loader.css" rel="stylesheet" type="text/css" />
         <style>
             .page-container-bg-solid .page-content{
                 background: #fafafa!important;

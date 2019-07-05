@@ -20849,3 +20849,14 @@ body[ng-controller] .modal {
 		margin-right: 0
 	}
 }
+
+select:required:invalid {
+	color: #999;
+}
+option[value=""][disabled] {
+	display: none;
+}
+option {
+	color: black;
+}
+
