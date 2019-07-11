@@ -79,6 +79,47 @@ if (isset($javascripts) && $javascripts != null) {
 			<?php } ?>
 
         </script>
+
+<script type="text/javascript">
+	$('#city_uid').prop('disabled', 'disabled');
+	$('#country_uid').change(function() {
+		var country_uid = $('#country_uid').val();
+		if (country_uid != "") {
+			var post_url = "<?php echo base_url() . 'members/get_cities/' ?>" + country_uid;
+			$.ajax({
+				type: "POST",
+				url: post_url,
+				success: function(cities) //we're calling the response json array 'cities'
+				{
+					$('#city_uid').empty();
+					$('#city_uid').prop('disabled', false);
+
+					if(cities != false){
+						$.each(cities, function(key, value)
+						{
+							$('#city_uid').
+									append(value);
+						});
+					}else{
+						$('#city_uid').
+									append('<option value="0">لا توجد مدن</option>');
+					}
+
+
+				}, //end success
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(thrownError);
+					alert('error');
+				}
+			}); //end AJAX
+		} else {
+			$('#city_uid').empty();
+		}//end if
+	}); //end change 
+</script>
+
+
 <script type="text/javascript">
     $('#media_image').hide();
     $('#media_video').hide();
@@ -99,51 +140,43 @@ if (isset($javascripts) && $javascripts != null) {
         }//end if
     }); //end change 
 
-jQuery(document).ready(function() {
-	
-	$("#events_add_show").submit(function(e) {
-		var form = $(this);
-		var url = form.attr('action');
-		//alert(url);
+	jQuery(document).ready(function() {
+		var country_uid = $('#country_uid').val();
+		var city_uid_jq = $('#city_uid_jq').val();
+		if (country_uid != "" || country_uid != 0) {
+			var post_url = "<?php echo base_url() . 'members/get_cities/' ?>" + country_uid;
+			$.ajax({
+				type: "POST",
+				url: post_url,
+				success: function(cities) //we're calling the response json array 'cities'
+				{
+					//console.log(cities);
+					$('#city_uid').empty();
+					$('#city_uid').prop('disabled', false);
 
-		$.ajax({
-			   type: "POST",
-			   url: url,
-				dataType : "html",
-			   data: form.serialize(), // serializes the form's elements.
-			   success: function(data)
-			   {
-				   
-				   //var obj = jQuery.parseJSON(data);
-				   //console.log(obj);
-				   window.location.replace('<?= site_url("events/events_edit/"); ?>/'+data);
-				    // show response from the php script.
-			   }
-			 });
+					if(cities != false){
+						$.each(cities, function(key, value)
+						{
+							$('#city_uid').append(value);
+							$("#city_uid").val(city_uid_jq);
+						});
+					}else{
+						$('#city_uid').
+									append('<option value="0">لا توجد مدن</option>');
+					}
 
-		e.preventDefault(); // avoid to execute the actual submit of the form.
+
+				}, //end success
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(thrownError);
+					alert('error');
+				}
+			}); //end AJAX
+		} else {
+			$('#city_uid').prop('disabled', 'disabled');
+		}//end if
 	});
-
-	$(".video").click(function() {
-		$.fancybox({
-			'padding'		: 0,
-			'autoScale'		: false,
-			'transitionIn'	: 'none',
-			'transitionOut'	: 'none',
-			'title'			: this.title,
-			'width'			: 840,
-			'height'		: 585,
-			'href'			: this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
-			'type'			: 'swf',
-			'swf'			: {
-			'wmode'				: 'transparent',
-			'allowfullscreen'	: 'true'
-			}
-		});
-
-		return false;
-	});
-});
 
 </script>
 
