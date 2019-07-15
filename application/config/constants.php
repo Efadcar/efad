@@ -84,7 +84,9 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-define('FLAGS_IMAGES', "assets/global/img/flags/");
+
+
+define('FLAGS_IMAGES', "assets/rtl/js/countries/images/msdropdown/icons/blank.gif");
 define('SERVICES_IMAGES', "assets/files/services/");
 define('PAGES_IMAGES', "assets/files/pages/");
 define('BLOGS_IMAGES', "assets/files/blogs/");

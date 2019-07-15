@@ -76,7 +76,19 @@ class Global_model extends CI_Model {
 		}
 	}
 	
-
+	function getAllCountries() {
+		$this->db->order_by("status", "desc"); 
+		$this->db->order_by("name", "asc"); 
+		$q = $this->db->get('countries');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
 }
 
 ?>

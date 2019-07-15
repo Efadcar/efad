@@ -94,7 +94,7 @@ class Members_model extends CI_Model {
 		   'member_email' => $member_email ,
 		   'member_mobile' => $member_mobile ,
 		   'member_password' => $member_password ,
-		   'country_code' => $country_code ,
+		   'country_uid' => $country_uid ,
 		   'city_uid' => $city_uid ,
 		   'mc_uid' => $mc_uid ,
 		   'member_renewal_date' => $member_renewal_date

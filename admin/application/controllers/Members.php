@@ -61,7 +61,7 @@ class Members extends CI_Controller {
 		$data['pageTitle'] = "إضافة عضو";
 		
         $this->form_validation->set_rules('member_fname', 'الأسم الاول', 'required');
-        $this->form_validation->set_rules('member_lname', 'الأسم الاول', 'required');
+        $this->form_validation->set_rules('member_lname', 'الأسم الاخير', 'required');
         $this->form_validation->set_rules('member_password', 'كلمة المرور', 'required|alpha_numeric|min_length[8]');
         $this->form_validation->set_rules('member_password1', 'تأكيد كلمة المرور', 'required|matches[member_password]');
         $this->form_validation->set_rules('member_email', 'البريد الإلكترونى', 'required|is_unique[members.member_email]|valid_email');
@@ -90,7 +90,7 @@ class Members extends CI_Controller {
 		$data['pageTitle'] = "تعديل العضو ( ".$data['row']->member_fname." ".$data['row']->member_lname." )";
 		
         $this->form_validation->set_rules('member_fname', 'الأسم الاول', 'required');
-        $this->form_validation->set_rules('member_lname', 'الأسم الاول', 'required');
+        $this->form_validation->set_rules('member_lname', 'الأسم الاخير', 'required');
         $this->form_validation->set_rules('member_password1', 'تأكيد كلمة المرور', 'matches[member_password]');
         $this->form_validation->set_rules('member_email', 'البريد الإلكترونى', 'required|valid_email');
         $this->form_validation->set_rules('country_uid', 'الدولة', 'required|min_length[1]');

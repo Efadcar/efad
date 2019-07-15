@@ -253,7 +253,7 @@ select {
 	border-radius: 4px;
 	width: 100%;
 	padding: 20px;
-	font-size: 16px;
+	font-size: 12px !important;
 	color: #3F3F3F;
 
 	/* Here's the code we need */

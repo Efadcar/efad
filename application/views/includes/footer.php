@@ -49,237 +49,171 @@
 </footer>
 
 
-<div style="display:none">
-    <div id="login_form_ajax" class="login-wrap">
-        <div id="login_inputs">
-            <div class="panel" id="login" >
-                <h3>تسجيل الدخول</h3>
-                <div class="form-group">
-                    <input type='tel' name='mobile' id='mobile' value='رقم الجوال'   class="form-control" placeholder="mobile ID" />
-                </div>
-                <div class="form-group">
-                    <div class="input-group" >
-                        <input type="password" class="form-control password-field" name="password" value="كلمة المرور"  placeholder ="كلمة المرور">
-                        <div class="input-group-prepend"> <span class=" input-group-text"> <span toggle=".password-field" class=" fa fa-fw fa-eye field-icon toggle-password"></span></span> </div>
-                    </div>
-                </div>
-                <div class="form-group text-right"> <a class="right_a switchPanelButton  " panelclass="panel" panelid="forgotpassword" href="#">نسيب كلمة المرور؟</a> </div>
-                <input type='submit' name='Submit' class="btn btn-default  btn-block" value='تسجيل الدخول' />
-                <div class="bottom"> <a class="switchPanelButton" panelclass="panel" panelid="register" href="#">ليس لديك حساب؟ إنشاء حساب جديد.</a> </div>
-            </div>
-            <div class="panel" id='register' >
-                <h3>تسجيل حساب جديد</h3>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="الأسم الاول">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="الأسم الأخير">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <select id="inputState" data-placeholder="أختر مدينه" class="form-control ">
-                                <option >أختر مدينه </option>
-                                <option >الرياض</option>
-                                <option >مكة</option>
-                                <option>المدينة</option>
-                                <option >حائل</option>
-                                <option >القطيف</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="رقم الجوال">
-                        </div>
-                    </div>
-                </div>
-                <div class="row  my-2">
-                    <div class="col-sm-12">
-                        <label for="user_password"> كلمة المرور</label>
-                        <div class="input-group" >
-                            <input type="password" class="form-control password-field" name="password" >
-                            <div class="input-group-prepend"> <span class=" input-group-text"> <span toggle=".password-field" class=" fa fa-fw fa-eye field-icon toggle-password"></span></span> </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row my-2">
-                    <div class="col-sm-12">
-                        <label for="user_password">اعادة كتابة كلمة المرور</label>
-                        <div class="input-group" >
-                            <input type="password" class="form-control password-field2" name="password" >
-                            <div class="input-group-prepend"> <span class=" input-group-text"> <span toggle=".password-field2" class=" fa fa-fw fa-eye field-icon toggle-password"></span></span> </div>
-                        </div>
-                    </div>
-                </div>
-                <input type='submit' name='Submit' class="btn btn-default  btn-block my-4" value='إرسال' />
-                <div class="bottom"> <a class="switchPanelButton" panelclass="panel" panelid="login"
-					href="#">لديك حساب. سجل دخول الان</a> </div>
-            </div>
-            <div class="panel" id='forgotpassword'>
-                <h3>إعاده تعين كلمة مرور جديدة</h3>
-                <input type='tel' name='mobile' id='Tel1' value='أدخل رقم الجوال'   class="form-control" placeholder="mobile ID" />
-                <input
-				type='submit' name='Submit' class="btn btn-default  btn-block my-4" value='أستعادة كلمة المرور' />
-                <div class="bottom"> يرجى مراجعه الهاتف و كتابة كود التفعيل </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="<?= base_url()."assets/".$direction; ?>/js/jquery-3.2.1.min.js"></script> 
-
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="<?= base_url()."assets/".$direction; ?>/js/popper.min.js"></script> 
 <script src="<?= base_url()."assets/".$direction; ?>/js/bootstrap-4.0.0.js"></script> 
-
+<script src="<?= base_url()."assets/".$direction; ?>/js/countries/js/msdropdown/jquery.dd.js"></script> 
 <!-- fancybox --> 
 <script type="text/javascript" src="<?= base_url()."assets/".$direction; ?>/js/jquery.fancybox.js"></script> 
+
+
+<?php
+if (isset($javascripts) && $javascripts != null) {
+    foreach ($javascripts as $javascript) {
+        echo "<script src=" . $javascript . "></script>";
+    }
+}
+?> 
+<!-- toaster javascript for form validations -->
+<script>
+	toastr.options = {
+		"closeButton": true,
+		"debug": false,
+		"positionClass": "toast-top-right",
+		"onclick": null,
+		"showDuration": "1000",
+		"hideDuration": "1000",
+		"timeOut": "20000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	}
+	<?php
+	$all = $this->messages->get();
+	if ($all != null) {
+		foreach ($all as $type => $messages)
+			foreach ($messages as $message)
+				switch ($type) {
+					case "error":
+						echo 'toastr.error("' . $message . '", "خطأ");';
+						break;
+					case "success":
+						echo 'toastr.success("' . $message . '", "نجاح");';
+						break;
+					case "alert":
+						echo 'toastr.warning("' . $message . '", "تحذير");';
+						break;
+				}
+	}
+	?>
+
+	<?php 
+	$valid_error = validation_errors();
+	if (!empty($valid_error)) { 
+	$pieces = explode(".", strip_tags(validation_errors()));
+	$count = count($pieces);
+	if(count($pieces) > 0){
+		$error = '';
+		for($i = 0; $i < $count; $i++){
+			$error .= $pieces[$i]."<br>";	
+		}
+	}
+	$error = trim(preg_replace('/\s+/', ' ', $error));
+	?>
+	toastr.error("<?php echo $error ?>", "خطأ");
+	console.log("<?php echo $error ?>");
+	<?php } ?>
+
+</script>
+
 <script type="text/javascript">
-        /* navbar */
-        $(document).ready(function () {
+	/* navbar */
+	$(document).ready(function () {
+		$("#countries").msDropdown();
+		/* navbar */
+		$('#sidebarCollapse').on('click', function () {
+			$('#sidebar').toggleClass('active');
+		});
+      
+		/* fancy */
+		$("#top-login-button").fancybox();
+		/* login */
+		$(".toggle-password, .toggle-password2").click(function () {
+			$(this).toggleClass("fa-eye fa-eye-slash");
+			var input = $($(this).attr("toggle"));
+			if (input.attr("type") == "password") {
+				input.attr("type", "text");
+			} 
+			else 
+			{
+				input.attr("type", "password");
+			}
+		});
 
-            /* navbar */
+		$(function () {
+			$(".switchPanelButton").click(function (event) {
+				event.preventDefault();
+				var panel = $(this).attr('panelclass');
+				$("." + panel).hide();
+				var panelid = $(this).attr('panelid');
+				$("#" + panelid).show();
+			});
+		});
 
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
+		$(".button-mobile-container").click(function () {
+			$('.search-option').toggleClass("show");
+		});
 
-   
-            
-
-        });
-
-  
-     
-    </script> 
+	});
+</script> 
 
 <!-- filter car search --> 
-<script src='<?= base_url()."assets/".$direction; ?>/js/filter/mixitup.min.js'></script> 
-<script src='<?= base_url()."assets/".$direction; ?>/js/filter/mixitup.js'></script> 
-
-<!--Plugin rangeSlider JavaScript file--> 
-<script src="<?= base_url()."assets/".$direction; ?>/js/filter/ion.rangeSlider.min.js"></script> 
 <script>
+	var $range = $(".js-range-slider"),
+	instance;
 
-             var $range = $(".js-range-slider"),
-       instance;
+	$range.ionRangeSlider({
+		skin: "round",
+		type: "double",
+		min: 0,
+		max: 500,
+		from: 0,
+		to: 500,
+		onChange: handleRangeInputChange
+	});
 
-             $range.ionRangeSlider({
-                 skin: "round",
-                 type: "double",
-                 min: 0,
-                 max: 500,
-                 from: 0,
-                 to: 500,
-                 onChange: handleRangeInputChange
-             });
-
-             instance = $range.data("ionRangeSlider");
-
-
-             var container = document.querySelector('[data-ref="product_list"]');
-             var mixer = mixitup(container, {
-                 animation: {
-                     duration: 500,
-                     queueLimit: 1000
-                 }
-             });
-
-             function getRange() {
-                 var min = Number(instance.result.from);
-                 var max = Number(instance.result.to);
-                 return {
-                     min: min,
-                     max: max
-                 };
-             }
-
-             function handleRangeInputChange() {
-                 mixer.filter(mixer.getState().activeFilter);
-             }
-
-             function filterTestResult(testResult, target) {
-                 var size = Number(target.dom.el.getAttribute('data-size'));
-                 var range = getRange();
-                 if (size < range.min || size > range.max) {
-                     testResult = false;
-                 }
-                 return testResult;
-             }
-
-             mixitup.Mixer.registerFilter('testResultEvaluateHideShow', 'range', filterTestResult);
+	instance = $range.data("ionRangeSlider");
 
 
+	var container = document.querySelector('[data-ref="product_list"]');
+	var mixer = mixitup(container, {
+		animation: {
+			duration: 500,
+			queueLimit: 1000
+		}
+	});
 
+	function getRange() {
+		var min = Number(instance.result.from);
+		var max = Number(instance.result.to);
+		return {
+			min: min,
+			max: max
+		};
+	}
 
+	function handleRangeInputChange() {
+		mixer.filter(mixer.getState().activeFilter);
+	}
 
-
-
-
-
-
-
-
-
-
-        </script> 
-
-<!-- end car search --> 
-
-<!--Plugin login popup JavaScript file--> 
-<script>
- 
-        $(document).ready(function () {
-      
-            /* fancy */
-                $("#top-login-button").fancybox();
-            /* login */
-                $(".toggle-password, .toggle-password2").click(function () {
-
-                    $(this).toggleClass("fa-eye fa-eye-slash");
-                    var input = $($(this).attr("toggle"));
-                    if (input.attr("type") == "password") {
-                        input.attr("type", "text");
-                    } else {
-                        input.attr("type", "password");
-                    }
-                });
-               
-
-                $(function () {
-                    $(".switchPanelButton").click(function (event) {
-                        event.preventDefault();
-                        var panel = $(this).attr('panelclass');
-                        $("." + panel).hide();
-                        var panelid = $(this).attr('panelid');
-                        $("#" + panelid).show();
-                    });
-                });
-
-
-                $(".button-mobile-container").click(function () {
-
-                    $('.search-option').toggleClass("show");
-
-                  
-
-                });
-
-
-
-         
-        }); 
-    
+	function filterTestResult(testResult, target) {
+		var size = Number(target.dom.el.getAttribute('data-size'));
+		var range = getRange();
+		if (size < range.min || size > range.max) {
+			testResult = false;
+		}
+		return testResult;
+	}
+	mixitup.Mixer.registerFilter('testResultEvaluateHideShow', 'range', filterTestResult);
 </script> 
-<script src="<?= base_url()."assets/".$direction; ?>/js/efad-scripts.js"></script>
+<!-- end car search --> 
+<?php print_r(validation_errors()); ?>
 </body>
 </html>

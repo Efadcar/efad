@@ -19,6 +19,11 @@
 	<meta property='og:description' content='<?php if(isset($description)){echo $description;}else{echo $this->session->userdata['site_settings']['site_description'];} ?>' />
 	<meta property='og:site_name' content='<?php echo $this->session->userdata['site_settings']['site_name'] ?>' />
 	<link href="<?= base_url()."assets/".$direction; ?>/css/efad.css" rel="stylesheet">
+	<link href="<?= base_url()."assets/".$direction; ?>/js/bootstrap-toastr/toastr-rtl.min.css" rel="stylesheet">
+	<link href="<?= base_url()."assets/".$direction; ?>/js/countries/css/msdropdown/dd.css" rel="stylesheet">
+	<link href="<?= base_url()."assets/".$direction; ?>/js/countries/css/msdropdown/flags.css" rel="stylesheet">
+	
+	<?php echo $pageCssFiles ?>
 </head>
 <body class="top">
 	<!--back-to-top start-->
