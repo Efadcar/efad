@@ -21,12 +21,19 @@ class Home extends CI_Controller {
         $data['direction'] = $this->global_model->getSiteDirection();
         $data['javascripts'] = $this->_javascript('home');
         $data['pageCssFiles'] = $this->_cssFiles('home');
+        $data['javascriptCode'] = $this->_javascriptCode('home');
 
-        $data['main_content'] = 'home';
+		$data['main_content'] = 'home';
         //set page title
         $data['pageTitle'] = $this->lang->line('home');		
 		$this->load->view('includes/template', $data);
     }
+	
+	function get_cities($id){
+        header('Content-Type: application/json; charset=utf-8');
+        echo(json_encode($this->global_model->get_cities_by_state($id)));
+    } 
+	
 	
 	function destroy(){
 		
@@ -60,6 +67,75 @@ class Home extends CI_Controller {
         }
         return $css;
     }
+	
+    function _javascriptCode($view) {
+        switch ($view) {
+            case 'home':
+                $java = "
+				
+					<!-- filter car search --> 
+					<script>
+						var \$range = $('.js-range-slider'),
+						instance;
+
+						\$range.ionRangeSlider({
+							skin: 'round',
+							type: 'double',
+							min: 0,
+							max: 500,
+							from: 0,
+							to: 500,
+							onChange: handleRangeInputChange
+						});
+
+						instance = \$range.data('ionRangeSlider');
+
+
+						var container = document.querySelector(\"[data-ref='product_list']\");
+						var mixer = mixitup(container, {
+							animation: {
+								duration: 500,
+								queueLimit: 1000
+							}
+						});
+
+						function getRange() {
+							var min = Number(instance.result.from);
+							var max = Number(instance.result.to);
+							return {
+								min: min,
+								max: max
+							};
+						}
+
+						function handleRangeInputChange() {
+							mixer.filter(mixer.getState().activeFilter);
+						}
+
+						function filterTestResult(testResult, target) {
+							var size = Number(target.dom.el.getAttribute('data-size'));
+							var range = getRange();
+							if (size < range.min || size > range.max) {
+								testResult = false;
+							}
+							return testResult;
+						}
+						mixitup.Mixer.registerFilter('testResultEvaluateHideShow', 'range', filterTestResult);
+					</script> 				
+				
+				
+				
+				
+				
+				
+				";
+                break;
+        
+        
+		}
+        return $java;
+    }
+	
 }
 
 

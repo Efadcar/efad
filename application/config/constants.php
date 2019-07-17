@@ -87,10 +87,12 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 define('FLAGS_IMAGES', "assets/rtl/js/countries/images/msdropdown/icons/blank.gif");
-define('SERVICES_IMAGES', "assets/files/services/");
 define('PAGES_IMAGES', "assets/files/pages/");
 define('BLOGS_IMAGES', "assets/files/blogs/");
 define('ALBUMS_IMAGES', "assets/files/albums/");
 define('SITE_IMAGES', "assets/files/site/");
-define('MUSIC_FILES', "assets/files/music/");
-
+define('CARS_TYPES_IMAGES', "assets/files/cars_types/");
+define('CARS_BRANDS_IMAGES', "assets/files/cars_brands/");
+define('BOOKED_DELIVERY_AFTER', 16);
+define('EARLY_BOOKING_AFTER', 45);
+define('EARLY_BOOKING_DISCOUNT', 10);

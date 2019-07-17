@@ -107,7 +107,7 @@
 								?>
 								
 								
-								<option value='<?= $r->id ?>' data-image="FLAGS_IMAGES" data-imagecss="flag <?= strtolower($r->iso) ?>" data-title="<?= "(+".$r->phonecode.") ".$r->name ?>"><?= "(+".$r->phonecode.") ".$r->name ?></option>
+								<option value='<?= $r->id ?>' data-image="FLAGS_IMAGES" data-imagecss="flag <?= strtolower($r->iso) ?>" data-title="<?= "(+".$r->phonecode.") ".$r->name ?>"><?= $r->name ?></option>
 								
 								<?php } ?>
 							
@@ -118,12 +118,17 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<select id="inputState" data-placeholder="أختر مدينه" class="form-control " name="city_uid">
-								<option>أختر مدينه </option>
-								<option>الرياض</option>
-								<option>مكة</option>
-								<option>المدينة</option>
-								<option>حائل</option>
-								<option>القطيف</option>
+								<option value="0">أختار مدينة</option>
+								<?php
+								$cities = $this->global_model->getCitiesByCountryID();
+								if($cities != false)
+								foreach($cities as $r){
+								?>
+								
+								
+								<option value='<?= $r->city_uid ?>'><?= $r->city_name_ar ?></option>
+								
+								<?php } ?>
 							</select>
 						</div>
 					</div>
@@ -136,7 +141,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<input type="tel" class="form-control" placeholder="رقم الجوال" name="member_mobile">
+							<input id="phone" type="tel" class="form-control tel " name="member_mobile">
 						</div>
 					</div>
 				</div>

@@ -61,6 +61,8 @@
 <!-- fancybox --> 
 <script type="text/javascript" src="<?= base_url()."assets/".$direction; ?>/js/jquery.fancybox.js"></script> 
 
+<script src="<?= base_url()."assets/".$direction; ?>/js/intlTelInput.min.js"></script> 
+<script  src="<?= base_url()."assets/".$direction; ?>/js/telinput.js"></script>
 
 <?php
 if (isset($javascripts) && $javascripts != null) {
@@ -120,100 +122,96 @@ if (isset($javascripts) && $javascripts != null) {
 	toastr.error("<?php echo $error ?>", "خطأ");
 	console.log("<?php echo $error ?>");
 	<?php } ?>
+	
+	
+
 
 </script>
-
-<script type="text/javascript">
+<script type='text/javascript'>
 	/* navbar */
 	$(document).ready(function () {
-		$("#countries").msDropdown();
+
 		/* navbar */
 		$('#sidebarCollapse').on('click', function () {
 			$('#sidebar').toggleClass('active');
 		});
-      
+
 		/* fancy */
-		$("#top-login-button").fancybox();
+
+		$('#top-login-button').fancybox();
+		$('#countries').msDropdown();
 		/* login */
-		$(".toggle-password, .toggle-password2").click(function () {
-			$(this).toggleClass("fa-eye fa-eye-slash");
-			var input = $($(this).attr("toggle"));
-			if (input.attr("type") == "password") {
-				input.attr("type", "text");
+		$('.toggle-password, .toggle-password2').click(function () {
+			$(this).toggleClass('fa-eye fa-eye-slash');
+			var input = $($(this).attr('toggle'));
+			if (input.attr('type') == 'password') {
+				input.attr('type', 'text');
 			} 
 			else 
 			{
-				input.attr("type", "password");
+				input.attr('type', 'password');
 			}
 		});
-
+		
 		$(function () {
-			$(".switchPanelButton").click(function (event) {
+			$('.switchPanelButton').click(function (event) {
 				event.preventDefault();
 				var panel = $(this).attr('panelclass');
-				$("." + panel).hide();
+				$('.' + panel).hide();
 				var panelid = $(this).attr('panelid');
-				$("#" + panelid).show();
+				$('#' + panelid).show();
 			});
 		});
 
-		$(".button-mobile-container").click(function () {
-			$('.search-option').toggleClass("show");
+		$('.button-mobile-container').click(function () {
+			$('.search-option').toggleClass('show');
 		});
+		
+		
+		$('#countries').change(function() {
+		var country_uid = $('#countries').val();
+		if (country_uid != "") {
+			var post_url = "<?php echo base_url() . 'home/get_cities/' ?>" + country_uid;
+			$.ajax({
+				type: "POST",
+				url: post_url,
+				success: function(cities) //we're calling the response json array 'cities'
+				{
+					$('#inputState').empty();
+					$('#inputState').prop('disabled', false);
+
+					if(cities != false){
+						$.each(cities, function(key, value)
+						{
+							$('#inputState').append(value);
+						});
+					}else{
+						$('#inputState').html('<option value="0">لا توجد مدن</option>');
+					}
+
+
+				}, //end success
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(thrownError);
+					alert('error');
+				}
+			}); //end AJAX
+		} else {
+			$('#inputState').empty();
+		}//end if
+	}); //end change
 
 	});
 </script> 
 
-<!-- filter car search --> 
-<script>
-	var $range = $(".js-range-slider"),
-	instance;
 
-	$range.ionRangeSlider({
-		skin: "round",
-		type: "double",
-		min: 0,
-		max: 500,
-		from: 0,
-		to: 500,
-		onChange: handleRangeInputChange
-	});
+<script type="text/javascript">
+	//$('#inputState').prop('disabled', 'disabled');
+	 
+</script>
 
-	instance = $range.data("ionRangeSlider");
+<?= $javascriptCode ?>
 
-
-	var container = document.querySelector('[data-ref="product_list"]');
-	var mixer = mixitup(container, {
-		animation: {
-			duration: 500,
-			queueLimit: 1000
-		}
-	});
-
-	function getRange() {
-		var min = Number(instance.result.from);
-		var max = Number(instance.result.to);
-		return {
-			min: min,
-			max: max
-		};
-	}
-
-	function handleRangeInputChange() {
-		mixer.filter(mixer.getState().activeFilter);
-	}
-
-	function filterTestResult(testResult, target) {
-		var size = Number(target.dom.el.getAttribute('data-size'));
-		var range = getRange();
-		if (size < range.min || size > range.max) {
-			testResult = false;
-		}
-		return testResult;
-	}
-	mixitup.Mixer.registerFilter('testResultEvaluateHideShow', 'range', filterTestResult);
-</script> 
-<!-- end car search --> 
-<?php print_r(validation_errors()); ?>
 </body>
 </html>

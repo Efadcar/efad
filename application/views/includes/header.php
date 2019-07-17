@@ -22,7 +22,10 @@
 	<link href="<?= base_url()."assets/".$direction; ?>/js/bootstrap-toastr/toastr-rtl.min.css" rel="stylesheet">
 	<link href="<?= base_url()."assets/".$direction; ?>/js/countries/css/msdropdown/dd.css" rel="stylesheet">
 	<link href="<?= base_url()."assets/".$direction; ?>/js/countries/css/msdropdown/flags.css" rel="stylesheet">
-	
+	<style>
+		.intl-tel-input{display: block}
+	</style>
+
 	<?php echo $pageCssFiles ?>
 </head>
 <body class="top">
