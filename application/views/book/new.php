@@ -82,7 +82,7 @@
 						<label>اختر مدينة أستلام السيارة</label>
                         <div class="select-wrapper">
 							
-                            <select id="inputState" data-placeholder="اختر مدينه الاستلام " class="form-control width100p ">
+                            <select id="inputStatebook" class="form-control width100p " name="delivery_city_uid">
                                 <option > اختر مدينه </option>
 								<?php
 								$cities = $this->global_model->getCitiesByCountryID();
@@ -107,47 +107,120 @@
                 <div class="col-sm-12">
                     <h3>أدخل بياناتك الشخصية</h3>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="الأسم الاول">
+                        <input type="text" class="form-control" placeholder="الأسم الاول" name="fname">
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="الأسم الأخير">
-                    </div>
-                </div>
-            </div>
-            <!-- mobile -->
-            <div class="row bg-secondary">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input id="phone" type="tel" class="form-control tel ">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control " id="mail" placeholder="البريد الإلكتروني">
+                        <input type="text" class="form-control" placeholder="الأسم الأخير" name="lname">
                     </div>
                 </div>
             </div>
             
-            <!-- free only -->
-            <div class="freeride" style="display:none">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h3 class="text-center mt-4">* قيمة التجربة 300 ريال و تسترد خلال ثلاثة أيام عمل</h3>
+            <div class="row bg-secondary">
+                <div class="col-sm-4">
+                    <div class="form-group">
+						<select name="country" id="countries2" style="width:100%;">
+							<?php
+							$countries = $this->global_model->getAllCountries();
+							if($countries != false)
+							foreach($countries as $r){
+							?>
+
+
+							<option value='<?= $r->id ?>' data-image="FLAGS_IMAGES" data-imagecss="flag <?= strtolower($r->iso) ?>" data-title="<?= "(+".$r->phonecode.") ".$r->name ?>"><?= $r->name ?></option>
+
+							<?php } ?>
+
+
+						</select>
+					</div>
+					
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+						<select id="inputState2" class="form-control inputState" name="city">
+							<option value="0">أختار مدينة</option>
+							<?php
+							$cities = $this->global_model->getCitiesByCountryID();
+							if($cities != false)
+							foreach($cities as $r){
+							?>
+
+
+							<option value='<?= $r->city_uid ?>'><?= $r->city_name_ar ?></option>
+
+							<?php } ?>
+						</select>
+					</div>
+					
+					
+					
+                </div>
+            </div>
+            <!-- mobile -->
+            <div class="row bg-secondary">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input type="email" class="form-control " id="mail" placeholder="البريد الإلكتروني" name="email">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input id="phone2" type="tel" class="form-control tel " name="mobile">
                     </div>
                 </div>
             </div>
-            <!-- payment -->
+			
+            <!-- password -->
+            <div class="row bg-secondary">
+                <div class="col-sm-4">
+					<div class="input-group">
+						<input type="password" class="form-control password-field" name="pwd" placeholder="كلمة المرور">
+						<div class="input-group-prepend"> <span class=" input-group-text"> <span toggle=".password-field" class=" fa fa-fw fa-eye field-icon toggle-password"></span></span>
+						</div>
+					</div>
+
+                </div>
+                <div class="col-sm-4">
+					<div class="input-group">
+						<input type="password" class="form-control password-field2" name="pwd1" placeholder="تأكيد كلمة المرور">
+						<div class="input-group-prepend"> <span class=" input-group-text"> <span toggle=".password-field2" class=" fa fa-fw fa-eye field-icon toggle-password"></span></span>
+						</div>
+					</div>
+                </div>
+            </div>
+			
+			<!-- Memberships -->
+			<div class="row bg-secondary mt-3">
+                <div class="col-sm-4">
+                    <div class="form-group">
+						<select class="form-control" name="mc" id="mc_uid">
+							<option value="">أختر العضوية</option>
+							<option value="2">العضوية الخضراء</option>
+							<option value="3">العضوية الحمراء</option>
+						</select>
+					</div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+						<select class="form-control" name="mc_price">
+							<option value="mc_12months_price">أشتراك سنوي</option>
+						</select>
+					</div>
+                </div>
+            </div>
+			
+			<!-- payment -->
             <?php } ?>
             <div class="row pt-5">
                 <div class="col-sm-12">
                     <h3>طرق الدفع</h3>
                 </div>
                 <div class="custom-control custom-radio col-sm-12 ml-4">
-                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="visa">
                     <label class="custom-control-label" for="customRadio1">
                     <ul class="payment-img">
                         <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/mada.png" alt="مدى"/ ></span> </li>
@@ -157,10 +230,10 @@
                     </label>
                 </div>
                 <div class="custom-control custom-radio col-sm-12 ml-4">
-                    <input type="radio" id="cash" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
                     <label class="custom-control-label" for="cash">
                     <ul class="payment-img">
-                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash.png"  alt="نقدى" ></span><span class="text-muted">(20 ريال إضافية)</span> </li>
+                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash.png"  alt="نقدى" ></span><span class="text-muted">(<?= CASH_PAYMENT_FEES ?> ريال إضافية)</span> </li>
                     </ul>
                     </label>
                 </div>
@@ -168,7 +241,7 @@
             
             <!-- card -->
             
-            <div class="row">
+            <div class="row" id="paymentCard">
                 <div class="col-sm-5 mx-auto">
                     <h4  class="text-center text-muted"> أدخل بيانات البطاقة</h4>
                     <div class="checkout">
@@ -208,10 +281,6 @@
                                             <span> <img src="<?= base_url()."assets/".$direction; ?>/images/card.png" alt=""> </span> </div>
                                     </div>
                                     
-                                    <!--<div class="custom-control custom-checkbox">
-<input type="checkbox" class="custom-control-input" id="customCheckDisabled" onchange="document.getElementById('paynow').disabled = !this.checked;">
-  <label class="custom-control-label" for="customCheckDisabled"> أوافق على الشروط و الاحكام </label>
-</div>-->
                                     
                                 </form>
                             </div>
@@ -236,9 +305,21 @@
                                     <td class="text-left"><em>خصم الحجز المبكر</em></td>
                                     <td class="text-right">- <span id="early-booking-fees">0</span> ريال</td>
                                 </tr>
+                                <tr id="green-div">
+                                    <td class="text-left"><em>مصاريف أشتراك العضوية الخضراء</em></td>
+                                    <td class="text-right">+ <span><?= GREEN_MEMBERSHIP_YEARLY_FEES ?></span> ريال</td>
+                                </tr>
+                                <tr id="red-div">
+                                    <td class="text-left"><em>مصاريف أشتراك العضوية الحمراء</em></td>
+                                    <td class="text-right">+ <span><?= RED_MEMBERSHIP_YEARLY_FEES ?></span> ريال</td>
+                                </tr>
                                 <tr>
                                     <td class="text-left"><em>ضريبة القيمه المضافة 5%</em></td>
                                     <td class="text-right">+ <span id="tax-total">0</span> ريال</td>
+                                </tr>
+                                <tr id="cash-fees">
+                                    <td class="text-left"><em>مصاريف الدفع النقدي</em></td>
+                                    <td class="text-right">+ <span id="tax-total"><?= CASH_PAYMENT_FEES ?></span> ريال</td>
                                 </tr>
                             </tbody>
                             <tfoot>

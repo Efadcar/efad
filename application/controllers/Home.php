@@ -34,6 +34,11 @@ class Home extends CI_Controller {
         echo(json_encode($this->global_model->get_cities_by_state($id)));
     } 
 	
+	function getCountriesAjax(){
+        header('Content-Type: application/json; charset=utf-8');
+        echo(json_encode($this->global_model->getAllCountriesAjax()));
+    } 
+	
 	
 	function destroy(){
 		

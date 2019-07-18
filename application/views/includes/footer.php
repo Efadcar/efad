@@ -140,6 +140,7 @@ if (isset($javascripts) && $javascripts != null) {
 
 		$('#top-login-button').fancybox();
 		$('#countries').msDropdown();
+		$('#countries2').msDropdown();
 		/* login */
 		$('.toggle-password, .toggle-password2').click(function () {
 			$(this).toggleClass('fa-eye fa-eye-slash');
@@ -199,6 +200,39 @@ if (isset($javascripts) && $javascripts != null) {
 			}); //end AJAX
 		} else {
 			$('#inputState').empty();
+		}//end if
+	}); //end change
+		$('#countries2').change(function() {
+		var country_uid = $('#countries2').val();
+		if (country_uid != "") {
+			var post_url = "<?php echo base_url() . 'home/get_cities/' ?>" + country_uid;
+			$.ajax({
+				type: "POST",
+				url: post_url,
+				success: function(cities) //we're calling the response json array 'cities'
+				{
+					$('#inputState2').empty();
+					$('#inputState2').prop('disabled', false);
+
+					if(cities != false){
+						$.each(cities, function(key, value)
+						{
+							$('#inputState2').append(value);
+						});
+					}else{
+						$('#inputState2').html('<option value="0">لا توجد مدن</option>');
+					}
+
+
+				}, //end success
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(thrownError);
+					alert('error');
+				}
+			}); //end AJAX
+		} else {
+			$('#inputState2').empty();
 		}//end if
 	}); //end change
 

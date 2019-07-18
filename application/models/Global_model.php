@@ -91,6 +91,8 @@ class Global_model extends CI_Model {
 		return array(
 			"status" => 1, 
 			"days" => $days, 
+			"book_start_date" => $book_start_date, 
+			"book_end_date" => $book_end_date, 
 			"days_to_get_car" => $days_to_get_car, 
 			"daily_rate" => $daily_rate, 
 			"total_fees" => $total_fees, 
@@ -198,6 +200,20 @@ class Global_model extends CI_Model {
 		if($q->num_rows() > 0) {
 			foreach($q->result() as $row) {
 				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+	
+	function getAllCountriesAjax() {
+		$this->db->order_by("status", "desc"); 
+		$this->db->order_by("name", "asc"); 
+		$q = $this->db->get('countries');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = [$row->name ,strtolower($row->iso) ,$row->phonecode ];
 			}
 			return $data; 
 		}else{

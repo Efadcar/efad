@@ -96,3 +96,6 @@ define('CARS_BRANDS_IMAGES', "assets/files/cars_brands/");
 define('BOOKED_DELIVERY_AFTER', 16);
 define('EARLY_BOOKING_AFTER', 45);
 define('EARLY_BOOKING_DISCOUNT', 10);
+define('CASH_PAYMENT_FEES', 60);
+define('GREEN_MEMBERSHIP_YEARLY_FEES', 69);
+define('RED_MEMBERSHIP_YEARLY_FEES', 79);

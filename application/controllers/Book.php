@@ -82,6 +82,11 @@ class Book extends CI_Controller {
 
 
 					$(document).ready(function () {
+						var dataSet;
+						$('#green-div').hide();
+						$('#red-div').hide();
+						$('#cash-fees').hide();
+						$('#paymentCard').hide();
 						$('#free-day').hide();
 						$('#early-booking').hide();
 
@@ -109,6 +114,7 @@ class Book extends CI_Controller {
 							disabledDays: [5],
 							minDate : date_end,
 							time: false,
+							switchOnClick: true,
 							lang: 'en'
 
 						});
@@ -121,12 +127,14 @@ class Book extends CI_Controller {
 							disabledDays: [5],
 							minDate : date_start,
 							time: false,
+							switchOnClick: true,
 							lang: 'en'
 						});
 
 					});
 					</script> 
 					<script type='text/javascript'>
+						
 						$(function () {
 							$('[data-toggle=\"tooltip\"]').tooltip()
 						});
@@ -156,7 +164,8 @@ class Book extends CI_Controller {
 								type: 'POST',
 								data: form.serialize(), // serializes the form's elements.
 								success: function(data) {
-									var jqObj = jQuery(data); // You can get data returned from your ajax call here. ex. jqObj.find('.returned-data').html()
+									var jqObj = jQuery(data); // You can get data returned from your ajax call here. ex. jqObj.find('.returned-data').html();
+									dataSet = data;
 									console.log(data);
 									// Now show them we saved and when we did
 									//var d = new Date();
@@ -192,9 +201,61 @@ class Book extends CI_Controller {
 								},
 							});
 						}
-						
-						
 
+						$('#mc_uid').change(function() {
+							var paymentMethod = $('input[type=radio][name=\"customRadio\"]:checked').val();
+							if(paymentMethod == 'cash'){
+								var paymentFees = ".CASH_PAYMENT_FEES.";
+							} else {
+								var paymentFees = 0;
+							}
+							var mc_uid = $('#mc_uid').val();
+							if (mc_uid != 0){
+								if (mc_uid == 2) {
+									$('#red-div').hide();
+									$('#green-div').show();
+									tal_fee = Number(dataSet.total_fees_after_tax) + ".GREEN_MEMBERSHIP_YEARLY_FEES." + paymentFees;
+									$('.total-price').html(tal_fee);
+								} else if (mc_uid == 3) {
+									$('#green-div').hide();
+									$('#red-div').show();
+									tal_fee = Number(dataSet.total_fees_after_tax) + ".RED_MEMBERSHIP_YEARLY_FEES." + paymentFees;
+									$('.total-price').html(tal_fee);
+								}
+							}else{
+								$('#green-div').hide();
+								$('#red-div').hide();
+								tal_fee = Number(dataSet.total_fees_after_tax) + paymentFees;
+								$('.total-price').html(tal_fee);
+							}
+						}); //end change
+						
+						$('input[type=radio][name=\"customRadio\"]').change(function() {
+							var mc_uid = $('#mc_uid').val();
+							if (mc_uid !== 0){
+								if (mc_uid == 2) {
+									var membershipFees = ".GREEN_MEMBERSHIP_YEARLY_FEES.";
+								} else if (mc_uid == 3) {
+									var membershipFees = ".RED_MEMBERSHIP_YEARLY_FEES.";
+								}
+							}else{
+								var membershipFees = 0;
+							}
+							
+							if (this.value == 'visa') {
+								$('#paymentCard').show();
+								$('#cash-fees').hide();
+								tal_feee = Number(dataSet.total_fees_after_tax) + membershipFees;
+								$('.total-price').html(tal_feee);
+								
+							}
+							else if (this.value == 'cash') {
+								$('#paymentCard').hide();
+								$('#cash-fees').show();
+								tal_feee = Number(dataSet.total_fees_after_tax) + ".CASH_PAYMENT_FEES." + membershipFees;
+								$('.total-price').html(tal_feee);
+							}
+						});
 
 					</script> 
 
