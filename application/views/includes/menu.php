@@ -10,7 +10,7 @@
 				<li class="nav-item active"><a class="nav-link" href="<?= site_url() ?>"><?= $this->lang->line('home'); ?> <span class="sr-only">(current)</span></a> </li>
 				<li class="nav-item"><a class="nav-link" href="#"><?= $this->lang->line('how_to_get_car'); ?> </a> </li>
 				<li class="nav-item"><a class="nav-link" href="#"><?= $this->lang->line('quick_payment'); ?></a> </li>
-				<li class="nav-item"><a class="nav-link" href="#"><?= $this->lang->line('faq'); ?></a> </li>
+				<li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>"><?= $this->lang->line('faq'); ?></a> </li>
 				<!--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">للمزيد </a>
                         <div class="dropdown-menu border-0 shadow animate slideIn " aria-labelledby="navbarDropdown">

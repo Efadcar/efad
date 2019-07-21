@@ -297,7 +297,82 @@ class Global_model extends CI_Model {
 		}
 	}
 	
+	function getPageByLink($page_link){
+		$q =  $this->db->get_where('pages', array('page_link' => $page_link));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			$string_key = $row->page_code;
+			$siteLang = $this->session->userdata('site_lang');
+			$m = $this->db->query("SELECT * FROM strings WHERE string_code LIKE '".$string_key."' AND string_lang LIKE '".$siteLang."'");
+			if($m->num_rows() > 0) {
+				foreach($m->result() as $mrow) {
+					$string_data[$mrow->string_key] = $mrow;
+				}
+				$row->page_title = $string_data[$row->page_title]->string_content;
+				$row->page_text = $string_data[$row->page_text]->string_content;
+				$row->page_meta_desc = $string_data[$row->page_meta_desc]->string_content;
+				$row->page_meta_keywords = $string_data[$row->page_meta_keywords]->string_content;
+			}
+			return $row; 
+		}else{
+			return false;	
+		}
+	}
 	
+	function getFaq(){
+		$siteLang = $this->session->userdata('site_lang');
+		//echo $siteLang;exit;
+		$q =  $this->db->get('faq_categories');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$row->faqs = $this->getFaqsByCatID($row->fc_uid);
+				$string_key = $row->fc_code;
+				$m = $this->db->query("SELECT * FROM strings WHERE string_code LIKE '".$string_key."' AND string_lang LIKE '".$siteLang."'");
+				if($m->num_rows() > 0) {
+					foreach($m->result() as $mrow) {
+						$string_data[$mrow->string_key] = $mrow;
+					}
+					$row->fc_name = $string_data[$row->fc_name]->string_content;
+					$row->fc_meta_desc = $string_data[$row->fc_meta_desc]->string_content;
+					$row->fc_meta_keywords = $string_data[$row->fc_meta_keywords]->string_content;
+				}
+				$data[] = $row;
+			}
+			return $data;
+		}else{
+			return false;	
+		}
+	}
+	
+	function getFaqsByCatID($faq_category_uid){
+		$siteLang = $this->session->userdata('site_lang');
+		//echo $siteLang;exit;
+		$q = $this->db->get_where('faq', array("faq_category_uid" => $faq_category_uid));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$string_key = $row->faq_code;
+				$m = $this->db->query("SELECT * FROM strings WHERE string_code LIKE '".$string_key."' AND string_lang LIKE '".$siteLang."'");
+				if($m->num_rows() > 0) {
+					foreach($m->result() as $mrow) {
+						$string_data[$mrow->string_key] = $mrow;
+					}
+					$row->faq_question = $string_data[$row->faq_question]->string_content;
+					$row->faq_answer = $string_data[$row->faq_answer]->string_content;
+					$row->faq_meta_desc = $string_data[$row->faq_meta_desc]->string_content;
+					$row->faq_meta_keywords = $string_data[$row->faq_meta_keywords]->string_content;
+				}
+				$data[] = $row;
+			}
+			return $data;
+		}else{
+			return false;	
+		}
+	}
+	
+
+	
+	
+
 }
 
 ?>

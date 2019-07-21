@@ -4,8 +4,9 @@
             <div class="row align-items-center ">
                 <div class="col-sm-5 col-xs-12">
                     <ul class="footermenu">
-                        <li><a href="contactus.html">تواصل معنا </a></li>
-                        <li><a href="branches.html">الفروع </a></li>
+                        <li><a href="<?= site_url('about') ?>">إفاد </a></li>
+                        <li><a href="<?= site_url('contact') ?>">تواصل معنا </a></li>
+                        <li><a href="<?= site_url('branches') ?>">الفروع </a></li>
                     </ul>
                     <div class="clearfix"></div>
                     <div class="footer-social d-flex  pt-3 pb-3 ">
@@ -36,13 +37,13 @@
             <div class="row">
                 <div class="col-sm-9 col-xs-12">
                     <ul class="footerBottomMenu">
-                        <li><a href="#">الشروط و الأحكام</a></li>
-                        <li><a href="#">سياسة الخصوصية</a></li>
-                        <li><a href="#">خريطة الموقع</a></li>
+                        <li><a href="<?= site_url('terms_and_conditions') ?>">الشروط و الأحكام</a></li>
+                        <li><a href="<?= site_url('privcy_policy') ?>">سياسة الخصوصية</a></li>
+                        <li><a href="<?= site_url('siteMap') ?>">خريطة الموقع</a></li>
                     </ul>
                     <p class="pt-1"> جميع الحقوق محفوظة © 2019 </p>
                 </div>
-                <div class="col-sm-3 col-xs-12 text-center "> <a href="#" class="btn btn-default lang ">English <img src="<?= base_url()."assets/".$direction; ?>/images/en-lang.svg" alt="English" /> </a> </div>
+                
             </div>
         </div>
     </div>
