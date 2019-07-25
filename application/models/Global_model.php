@@ -25,11 +25,15 @@ class Global_model extends CI_Model {
 		// Get car object
 		$car_obj = $this->getCarByID($car_uid);
 		// Get Membership object
+		//return $mc_uid;exit;
 		if($mc_uid != ""){
+			$new_member = 0;
 			$membership_obj = $this->getMembershipByID($mc_uid);
 		}else{
-			$membership_obj = $this->getMembershipByID(1);
+			$new_member = 1;
+			$membership_obj = $this->getMembershipByID(3);
 		}
+		//return $membership_obj;exit;
 		// 1- Get car daily rate depend on booking days
 		switch($days){
 			case ($days < 180):
@@ -84,13 +88,25 @@ class Global_model extends CI_Model {
 			$early_booking_discount_total = 0;
 			$total_fees_after_early_booking = $total_fees_after_free_day; 
 		}
+		
+		
 		// Calculate added value tax
 		$tax_total = ($total_fees_after_early_booking * (5 / 100));
-		$total_fees_after_tax = $total_fees_after_early_booking + $tax_total;
+		
+		// calculate membership fees incase of new member
+		if($new_member == 1){
+			$total_fees_after_early_booking = $total_fees_after_early_booking + $membership_obj->mc_12months_price;
+			$total_fees_after_tax = $total_fees_after_early_booking + $tax_total + (($membership_obj->mc_12months_price / 100) * 5);
+		}else{
+			$total_fees_after_tax = $total_fees_after_early_booking + $tax_total;
+		}
+		
 		//return $total_fees_after_tax;exit;
 		return array(
 			"status" => 1, 
+			"new_member" => $new_member, 
 			"days" => $days, 
+			"mc_uid" => $mc_uid, 
 			"book_start_date" => $book_start_date, 
 			"book_end_date" => $book_end_date, 
 			"days_to_get_car" => $days_to_get_car, 
@@ -105,6 +121,66 @@ class Global_model extends CI_Model {
 			"tax_total" => $tax_total,
 			"total_fees_after_tax" => $total_fees_after_tax
 		);
+	}
+	
+	function confirmBooking(){
+		if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
+			$member_uid = $this->session->userdata('member_uid');
+			
+		}else{
+			if($_POST['login_username'] != "" && $_POST['login_pwd'] != "" )
+			{
+				// try login
+				$member_uid = $this->loginOnBooking($_POST['login_username'], $_POST['login_pwd']);
+				if($member_uid == false){
+					return ["status" => 0, "message" => "أسم المستخدم أو كلمة المرور غير صحيحة", "data"=> $member_uid];
+				}
+			}
+			elseif($_POST['fname'] != "" && $_POST['lname'] != "" && $_POST['country'] != "" && $_POST['city'] != "" && $_POST['email'] != "" && $_POST['mobile'] != "" && $_POST['pwd'] != "" && $_POST['pwd1'] != "" && $_POST['pwd'] == $_POST['pwd1'] )
+			{
+				// try create account
+				$member_uid = $this->registerOnLogin($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['country'], $_POST['city'], $_POST['mobile'], $_POST['pwd'] );
+				if($member_uid == false){
+					return ["status" => 0, "message" => "برجاء إستكمال البيانات لإنشاء حساب جديد"];
+				}
+				$this->loginOnBooking($_POST['email'], $_POST['pwd']);
+			}
+			else
+			{
+				return ["status" => 0, "message" => "لم نتمكن من تسجيل الدخول أو إنشاء حساب جديد، برجاء إستكمال البيانات"];
+			}
+			
+		}
+		
+		$data['member_uid'] = $member_uid;
+		$data['car_uid'] = $this->input->post('car_uid');
+		$data['book_start_date'] = date("Y-m-d", strtotime($this->input->post('con_book_start_date')));
+		$data['book_end_date'] = date("Y-m-d", strtotime($this->input->post('con_book_end_date')));
+		$data['delivery_city_uid'] = $this->input->post('delivery_city_uid');
+		$data['book_total_days'] = $this->input->post('con_days');
+		$data['daily_rate'] = $this->input->post('con_daily_rate');
+		$data['daily_rate_after_discount'] = $this->input->post('con_daily_rate_after_discount');
+		$data['free_days'] = $this->input->post('con_free_day');
+		$data['is_early_booking'] = $this->input->post('con_early_booking');
+		$data['book_total_fees'] = $this->input->post('con_total_fees_after_early_booking');
+		$data['book_tax_total'] = $this->input->post('con_tax_total');
+		$data['book_total_fees_after_tax'] = $this->input->post('con_total_fees_after_early_booking') + $this->input->post('con_tax_total');
+		$data['book_payment_method'] = $this->input->post('customRadio');
+		
+		// make payment if visa selected
+		
+		// add to booking table
+		$this->db->insert('bookings', $data); 
+		
+		if($this->db->affected_rows() > 0){
+			$this->messages->add("لقد تم حجز السيارة بنجاح.", "success");
+			return ["status" => 1];
+		}else{
+			return ["status" => 0, "message" => "لقد حدث خطأ أثناء الحجز"];
+		}
+		// add to invoice table
+		
+		// return true and set message to session msgs
 	}
 	
 	function getMembershipByID($mc_uid){
@@ -221,6 +297,20 @@ class Global_model extends CI_Model {
 		}
 	}
 	
+	function getUserBookings($member_uid) {
+		$this->db->order_by("book_uid", "desc"); 
+		$q = $this->db->get_where('bookings', array("member_uid" => $member_uid));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$row->car_obj = $this->getCarByID($row->car_uid);
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+	
 	function get_cities_by_state ($state, $tree = null){
 		$query = $this->db->query("SELECT city_uid,city_name_ar FROM cities WHERE country_uid = ".$state);
 		$cities = [];
@@ -277,6 +367,33 @@ class Global_model extends CI_Model {
 		if($q->num_rows() > 0) {
 			$row = $q->row();
 			return $row; 
+		}else{
+			return false;	
+		}
+	}
+
+	function getMembershipNameByID($mc_uid){
+		$q =  $this->db->get_where('memberships', array('mc_uid' => $mc_uid));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $row->mc_name; 
+		}else{
+			return false;	
+		}
+	}
+
+	function getCityByUserID($member_uid){
+		$q =  $this->db->get_where('members', array('member_uid' => $member_uid));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			$city_uid = $row->city_uid; 
+			$s =  $this->db->get_where('cities', array('city_uid' => $city_uid));
+			if($s->num_rows() > 0) {
+				$srow = $s->row();
+				return $srow->city_name_ar;
+			}else{
+				return false;	
+			}
 		}else{
 			return false;	
 		}
@@ -369,9 +486,88 @@ class Global_model extends CI_Model {
 		}
 	}
 	
+    function loginOnBooking($username, $password) {		
+		if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
+			$this->db->where('member_email', $username);
+		}else{
+			$username = ltrim($username, '0');
+			$this->db->where('member_mobile', $username);
+		}
+		$password = md5($password);
+        $this->db->where('member_password', $password);
+        $query = $this->db->get('members');
 
+		if ($query->result_id->num_rows == 1) {
+            $row = $query->row();
+			// update ast login ip
+			$user_ip = $_SERVER['REMOTE_ADDR'];
+			$q = $this->db->query("UPDATE `members` SET  
+						`member_last_login` =  CURRENT_TIMESTAMP,
+						`member_last_login_ip` =  '$user_ip'
+						 WHERE `member_uid` = '$row->member_uid'") ;
+
+			if ($row->member_status == 0) {
+                $this->messages->add("لقد تم حظرك", "error");
+                return false;
+            }
+
+            $data = array(
+                'member_full_name' => $row->member_fname." ".$row->member_lname,
+                'member_uid' => $row->member_uid,
+                'member_mobile' => $row->member_mobile,
+                'member_email' => $row->member_email,
+                'mc_uid' => $row->mc_uid,
+                'member_renewal_date' => $row->member_renewal_date,
+                'is_logged_in' => true
+            );
+            $this->session->set_userdata($data);
+            return $row->member_uid;
+        } else {
+            return false;
+        }
+    }
 	
+	function registerOnLogin($member_fname, $member_lname, $member_email, $country_uid, $city_uid, $member_mobile, $member_password ){
+		$country_code = $this->global_model->getCountryCodeByID($country_uid);
+		$member_mobile = preg_replace("/^\+?{$country_code}/", "",$member_mobile);
+		$member_mobile = ltrim($member_mobile, '0');
+		$member_password = md5($member_password);
+		$mc_uid = 3;
+		$member_renewal_date = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 365 day"));
+			
+
+		$data = array(
+		   'member_fname' => $member_fname ,
+		   'member_lname' => $member_lname ,
+		   'member_email' => $member_email ,
+		   'member_mobile' => $member_mobile ,
+		   'member_password' => $member_password ,
+		   'country_uid' => $country_uid ,
+		   'city_uid' => $city_uid ,
+		   'mc_uid' => $mc_uid ,
+		   'member_renewal_date' => $member_renewal_date
+		);
+		
+		$this->db->insert('members', $data); 
+		
+		if($this->db->affected_rows() > 0){
+			return $this->db->insert_id();
+		}else{
+			return false;
+		}
+
+	}
 	
+	function getCountryCodeByID($id) {
+		$q =  $this->db->get_where('countries', array('id' => $id));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $row->phonecode; 
+		}else{
+			return false;	
+		}
+	}
+		
 
 }
 

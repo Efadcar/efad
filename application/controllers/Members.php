@@ -72,6 +72,26 @@ class Members extends CI_Controller {
 		}
     }
 	
+    public function profile() {
+        if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
+			// get site direction return "rtl" or "ltr"
+			$data['direction'] = $this->global_model->getSiteDirection();
+			$data['bookings'] = $this->global_model->getUserBookings( $this->session->userdata('member_uid'));
+			// set main content
+			$data['main_content'] = 'profile';
+			//set page title
+			$data['pageTitle'] = "الملف الشخصي";		
+
+			$data['javascripts'] = $this->_javascript('home');
+			$data['pageCssFiles'] = $this->_cssFiles('home');
+			$data['javascriptCode'] = $this->_javascriptCode('home');
+			$this->load->view('includes/template', $data);
+		}else{
+			redirect('home');
+		}
+    }
+	
+	
 	function logout(){
 		$this->session->sess_destroy();
 		$refer =  $_SERVER['HTTP_REFERER'];
@@ -200,6 +220,99 @@ class Members extends CI_Controller {
 						}
 						mixitup.Mixer.registerFilter('testResultEvaluateHideShow', 'range', filterTestResult);
 					</script> 				
+				
+				
+				
+				
+				
+				
+				";
+                break;
+        
+            case 'profile':
+                $java = "
+				
+					<script type=\"text/javascript\">
+					$(document).ready(function () {
+						$( \"ul\" ).on( \"click\", \"li\", function() {
+							var pos = $(this).index()+2;
+							$(\"tr\").find('td:not(:eq(0))').hide();
+							$('td:nth-child('+pos+')').css('display','table-cell');
+							$(\"tr\").find('th:not(:eq(0))').hide();
+							$('li').removeClass('active');
+							$(this).addClass('active');
+						});
+
+						// Initialize the media query
+						var mediaQuery = window.matchMedia('(min-width: 640px)');
+
+						// Add a listen event
+						mediaQuery.addListener(doSomething);
+
+						// Function to do something with the media query
+						function doSomething(mediaQuery) {    
+							if (mediaQuery.matches) {
+								$('.sep').attr('colspan',5);
+							} else {
+								$('.sep').attr('colspan',2);
+							}
+						}
+
+						doSomething(mediaQuery);
+
+					});
+
+
+
+					</script> 
+					<script type=\"text/javascript\">
+						$(function () {
+
+							/* login */
+							$(\".toggle-password\").click(function () {
+
+								$(this).toggleClass(\"fa-eye fa-eye-slash\");
+								var input = $($(this).attr(\"toggle\"));
+								if (input.attr(\"type\") == \"password\") {
+									input.attr(\"type\", \"text\");
+								} else {
+									input.attr(\"type\", \"password\");
+								}
+							});
+							$('[data-toggle=\"tooltip\"]').tooltip();
+						})
+					</script> 
+					<script>
+						$(document).ready(function () {
+							var readURL = function (input) {
+								if (input.files && input.files[0]) {
+									var reader = new FileReader();
+
+									reader.onload = function (e) {
+										$('.profile-pic').attr('src', e.target.result);
+									}
+
+									reader.readAsDataURL(input.files[0]);
+								}
+							}
+							$(\".file-upload\").on('change', function () {
+								readURL(this);
+							});
+
+							$(\".upload-button\").on('click', function () {
+								$(\".file-upload\").click();
+							});
+						});
+					</script> 
+					<script>
+					jQuery(document).ready(function(){
+					  jQuery('.toast__close').click(function(e){
+						e.preventDefault();
+						var parent = $(this).parent('.toast');
+						parent.fadeOut(\"slow\", function() { $(this).remove(); } );
+					  });
+					});
+					</script>			
 				
 				
 				

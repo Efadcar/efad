@@ -30,7 +30,7 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="top: 75% !important; font-size: 13px">
 					<a class="dropdown-item" href="#">حجوزاتي</a>
-					<a class="dropdown-item" href="#">الملف الشخصي</a>
+					<a class="dropdown-item" href="<?= site_url('members/profile') ?>">الملف الشخصي</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<?= site_url('members/logout') ?>">تسجيل خروج</a>
 				</div>

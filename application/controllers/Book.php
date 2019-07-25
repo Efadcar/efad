@@ -14,7 +14,7 @@ class Book extends CI_Controller {
 	   }
     }
 
-    public function fresh($car_uid) {
+    public function addNew($car_uid) {
 		//$this->global_model->add_log(1);
 		// get site direction return "rtl" or "ltr"
         $data['direction'] = $this->global_model->getSiteDirection();
@@ -28,6 +28,11 @@ class Book extends CI_Controller {
         $data['pageTitle'] = "أحجز الآن";		
 		$this->load->view('includes/template', $data);
     }
+	
+    public function confirm() {
+        header('Content-Type: application/json; charset=utf-8');
+		echo(json_encode($this->global_model->confirmBooking()));
+	}
 	
 	function calculate(){
         header('Content-Type: application/json; charset=utf-8');
@@ -47,6 +52,7 @@ class Book extends CI_Controller {
         switch ($view) {
             case 'book':
                 $java = array(
+                    "'" . base_url() . "assets/rtl/js/jquery.validate.js'",
                     "'" . base_url() . "assets/rtl/js/bootstrap-toastr/toastr.min.js'",
                     "'" . base_url() . "assets/rtl/js/moment-with-locales.js'",
                     "'" . base_url() . "assets/rtl/js/bootstrap-material-datetimepicker.js'",
@@ -80,10 +86,48 @@ class Book extends CI_Controller {
 
 				<script type='text/javascript'>
 
-
 					$(document).ready(function () {
+					
+						$('#confirm-book').submit(function(e){
+							e.preventDefault();
+						});
+					
+						$('#paynow').click( function() {
+							var dateStart = $('#date-start').val();
+							var dateEnd = $('#date-end').val();
+							var inputStatebook = $('#inputStatebook').val();
+						
+							if (dateStart.length < 1 || dateEnd.length < 1 || inputStatebook.length < 1 || dateStart.val == 0) {
+								toastr.error('يجب أختيار تاريخ أستلام و تسليم السيارة و مدينة أستلام السيارة', 'خطأ');
+							}else{
+								confirmBooking();
+							}						
+						});
+					
+						function confirmBooking()
+						{
+							form = $('#confirm-book');
+							$.ajax({
+								url: '".site_url('book/confirm')."',
+								type: 'POST',
+								data: form.serialize(), // serializes the form's elements.
+								success: function(data) {
+									if(data.status == 1)
+									{
+										window.location.replace('".site_url('members/profile')."');
+									}
+									else
+									{
+										console.log(data);
+										toastr.error(data.message, 'خطأ');
+									}
+									
+								},
+							});
+						}						
+					
 						var dataSet;
-						$('#green-div').hide();
+						$('#red-tax-div').hide();
 						$('#red-div').hide();
 						$('#cash-fees').hide();
 						$('#paymentCard').hide();
@@ -170,12 +214,27 @@ class Book extends CI_Controller {
 									// Now show them we saved and when we did
 									//var d = new Date();
 									if(data.status == 1){
-										// set hidden values for invoice
 									
+										// set hidden values for invoice
+										$('#con_book_start_date').val(data.book_start_date);
+										$('#con_book_end_date').val(data.book_end_date);
+										$('#con_days').val(data.days);
+										$('#con_days_to_get_car').val(data.days_to_get_car);
+										$('#con_daily_rate').val(data.daily_rate);
+										$('#con_total_fees').val(data.total_fees);
+										$('#con_daily_rate_after_discount').val(data.daily_rate_after_discount);
+										$('#con_free_day').val(data.free_day);
+										$('#con_total_fees_after_free_day').val(data.total_fees_after_free_day);
+										$('#con_early_booking').val(data.early_booking);
+										$('#con_early_booking_discount_total').val(data.early_booking_discount_total);
+										$('#con_total_fees_after_early_booking').val(data.total_fees_after_early_booking);
+										$('#con_tax_total').val(data.tax_total);
+										$('#con_total_fees_after_tax').val(data.total_fees_after_tax);
 									
 										
 										// set UI values
 										$('.total-price').html(data.total_fees_after_tax);
+										$('.total-days').html(data.days);
 										$('#daily-rate').html(data.daily_rate_after_discount);
 										$('#tax-total').html(data.tax_total);
 										$('#total-fees').html(data.total_fees);
@@ -193,8 +252,13 @@ class Book extends CI_Controller {
 											$('#early-booking-fees').html(0);
 											$('#early-booking').hide();
 										}
-										
-											
+										if(data.new_member == 1){
+											$('#red-tax-div').show();
+											$('#red-div').show();
+										}else{
+											$('#red-tax-div').hide();
+											$('#red-div').hide();
+										}
 										
 									}
 									
@@ -202,57 +266,17 @@ class Book extends CI_Controller {
 							});
 						}
 
-						$('#mc_uid').change(function() {
-							var paymentMethod = $('input[type=radio][name=\"customRadio\"]:checked').val();
-							if(paymentMethod == 'cash'){
-								var paymentFees = ".CASH_PAYMENT_FEES.";
-							} else {
-								var paymentFees = 0;
-							}
-							var mc_uid = $('#mc_uid').val();
-							if (mc_uid != 0){
-								if (mc_uid == 2) {
-									$('#red-div').hide();
-									$('#green-div').show();
-									tal_fee = Number(dataSet.total_fees_after_tax) + ".GREEN_MEMBERSHIP_YEARLY_FEES." + paymentFees;
-									$('.total-price').html(tal_fee);
-								} else if (mc_uid == 3) {
-									$('#green-div').hide();
-									$('#red-div').show();
-									tal_fee = Number(dataSet.total_fees_after_tax) + ".RED_MEMBERSHIP_YEARLY_FEES." + paymentFees;
-									$('.total-price').html(tal_fee);
-								}
-							}else{
-								$('#green-div').hide();
-								$('#red-div').hide();
-								tal_fee = Number(dataSet.total_fees_after_tax) + paymentFees;
-								$('.total-price').html(tal_fee);
-							}
-						}); //end change
-						
-						$('input[type=radio][name=\"customRadio\"]').change(function() {
-							var mc_uid = $('#mc_uid').val();
-							if (mc_uid !== 0){
-								if (mc_uid == 2) {
-									var membershipFees = ".GREEN_MEMBERSHIP_YEARLY_FEES.";
-								} else if (mc_uid == 3) {
-									var membershipFees = ".RED_MEMBERSHIP_YEARLY_FEES.";
-								}
-							}else{
-								var membershipFees = 0;
-							}
-							
+						$('input[type=radio][name=\"customRadio\"]').change(function() {							
 							if (this.value == 'visa') {
 								$('#paymentCard').show();
 								$('#cash-fees').hide();
-								tal_feee = Number(dataSet.total_fees_after_tax) + membershipFees;
-								$('.total-price').html(tal_feee);
+								$('.total-price').html(dataSet.total_fees_after_tax);
 								
 							}
 							else if (this.value == 'cash') {
 								$('#paymentCard').hide();
 								$('#cash-fees').show();
-								tal_feee = Number(dataSet.total_fees_after_tax) + ".CASH_PAYMENT_FEES." + membershipFees;
+								tal_feee = Number(dataSet.total_fees_after_tax) + ".CASH_PAYMENT_FEES.";
 								$('.total-price').html(tal_feee);
 							}
 						});
