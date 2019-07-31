@@ -168,6 +168,16 @@ class Global_model extends CI_Model {
 					$this->db->insert('invoices', $invoice2); 
 					if($this->db->affected_rows() > 0){
 						$this->messages->add("لقد تم حجز السيارة بنجاح.", "success");
+						
+						// update user mc_uid
+						$data = array(
+							'mc_uid' => 3,
+							'member_renewal_date' => $invoice2['invoice_end_date']
+						);
+
+						$this->db->where('member_uid', $invoice2['member_uid']);
+						$this->db->update('members', $data);
+						$_SESSION['mc_uid'] = 3;
 						unset($_SESSION['current_booking']);
 						return ["status" => 1];
 					}else{
