@@ -173,6 +173,10 @@ class Global_model extends CI_Model {
 					}else{
 						return ["status" => 0, "message" => "لقد حدث خطأ أثناء الحجز"];
 					}
+				}else{
+					$this->messages->add("لقد تم حجز السيارة بنجاح.", "success");
+					unset($_SESSION['current_booking']);
+					return ["status" => 1];
 				}
 			}else{
 				return ["status" => 0, "message" => "لقد حدث خطأ أثناء الحجز"];

@@ -248,10 +248,15 @@ class Book extends CI_Controller {
 				<script type='text/javascript'>
 
 					$(document).ready(function () {
+						$('#confirm-book').submit(function(e){
+							e.preventDefault();
+						});
+					
 						//$('#paymentCard').hide();
 						$('.cash-fees-tr').hide();
 					
 						$('#paynow').click( function() {
+							console.log('hi');
 							confirmBooking();
 						});
 					
