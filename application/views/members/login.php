@@ -5,7 +5,7 @@
                 <div class="main-heading ">
                     <h1 ><?= $pageTitle ?></h1>
                 </div>
-				<?php print_r($_SESSION); ?>
+				<?php //print_r($_SESSION); ?>
             </div>
         </div>
     </div>
