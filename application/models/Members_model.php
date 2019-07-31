@@ -91,8 +91,10 @@ class Members_model extends CI_Model {
 		$this->db->insert('members', $data); 
 		
 		if($this->db->affected_rows() > 0){
+			return true;
 			$this->messages->add("لقد تم تسجيل حسابك بنجاح برجاء تسجيل الدخول.", "success");
 		}else{
+			return false;
 			$this->messages->add("لقد حدث خطأ أثناء الأضافة.", "error");
 		}
 

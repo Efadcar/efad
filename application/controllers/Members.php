@@ -76,7 +76,10 @@ class Members extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('includes/template', $data);
 		}else{
-			$this->members_model->register();
+			$status = $this->members_model->register();
+			if($status == true){
+				$this->global_model->loginOnBooking($_POST['member_mobile'], $_POST['member_password']);
+			}
 			$refer =  $_SERVER['HTTP_REFERER'];
 			redirect($refer);
 		}
