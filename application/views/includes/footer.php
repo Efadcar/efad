@@ -1,53 +1,61 @@
 <footer class="footer-end py-4">
     <div class="footerTopWide  pb-2">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row align-items-center ">
-                <div class="col-sm-5 col-xs-12">
-                    <ul class="footermenu">
-                        <li><a href="<?= site_url('about') ?>">إفاد </a></li>
-                        <li><a href="<?= site_url('contact') ?>">تواصل معنا </a></li>
-                        <li><a href="<?= site_url('branches') ?>">الفروع </a></li>
+                <div class="col-lg-4 col-sm-7 col-xs-12">
+                    <ul class="footermenu pb-8">
+                        <li><a href="<?= site_url('about') ?>">إفاد</a></li>
+                        <li><a href="https://www.linkedin.com/company/efadsa/jobs/" target="_blank">الوظائف</a></li>
+                        <li><a href="<?= site_url('branches') ?>">الفروع</a></li>
                     </ul>
                     <div class="clearfix"></div>
+<!--
                     <div class="footer-social d-flex  pt-3 pb-3 ">
                         <h6 class="pr-3 pl-0">تواصل</h6>
                         <p> <a href="#"><i class="fab fa-whatsapp"></i></a> <a href="#"><i class="fab fa-twitter"></i></a> <a href="#"><i class="fab fa-snapchat"></i></a> <a href="#"><i class="fab fa-instagram"></i></a> <a href="#"><i class="fab fa-facebook-messenger"></i></a> </p>
                     </div>
+-->
                     <div class="clearfix"></div>
                     <ul class="payment-img">
-                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/mada.png" class="img-thumbnail" alt="مدى" /></span> </li>
                         <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/visa.png" class="img-thumbnail" alt="فيزا" /></span> </li>
                         <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/master.png" class="img-thumbnail" alt="ماستر كارد" /></span> </li>
-                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash.png" class="img-thumbnail" alt="نقدى" /></span> </li>
+                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/mada.png" class="img-thumbnail" alt="مدى" /></span> </li>
+                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash1.png" class="img-thumbnail" alt="كاش" /></span> </li>
                     </ul>
-                </div>
-                <div class="col-sm-4 col-xs-12 ask">
-                    <h2 class="mt-0 pt-0"> عندك سؤال؟ </h2>
-                    <h6 >تواصل معنا يومياً على الواتس أب
-                        أو الايميل </h6>
-                    <h3 class="mb-1"> <i class="fab fa-whatsapp"></i> 078  208 555 966 + </h3>
-                    <h5 class="pt-0"> <i class="far fa-envelope-open"></i> <a href="mailto:customercare@efadcar.com"> customercare@efadcar.com </a> </h5>
-                </div>
-                <div class="col-sm-3 col-xs-12 text-center logo-footer"> <img src="<?= base_url()."assets/".$direction; ?>/images/footer-logo.svg" alt="Efad" class="footerlogo" /> </div>
-            </div>
-        </div>
-    </div>
-    <div class="footerMidWide  mt-2 mb-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9 col-xs-12">
-                    <ul class="footerBottomMenu">
+                    <ul class="footerBottomMenu pt-8">
                         <li><a href="<?= site_url('terms_and_conditions') ?>">الشروط و الأحكام</a></li>
                         <li><a href="<?= site_url('privcy_policy') ?>">سياسة الخصوصية</a></li>
-                        <li><a href="<?= site_url('siteMap') ?>">خريطة الموقع</a></li>
+                        <li><p class="pr-1"> إفاد © 2019 </p></li>
                     </ul>
-                    <p class="pt-1"> جميع الحقوق محفوظة © 2019 </p>
                 </div>
-                
+                <div class=" col-lg-3 col-sm-5 col-xs-12 ask">
+                    <h6 >تواصل معنا الأن عبر الواتس اب</h6>
+                    <h3 class="mb-1"><a href="http://wa.me/966555208078" target="_blank"> 078  208 555 966 +</a> </h3>
+                    <img src="<?= base_url()."assets/".$direction; ?>/images/Qrcode.png" alt="QR-Code" class="qr-code" width="87px" height="87px">
+                </div>
+                <div class="col-lg-2 col-sm-7 col-xs-12">
+                    <h3 class="mb-1">قريبا</h3>
+                    <a href="#"><img src="<?= base_url()."assets/".$direction; ?>/images/google-play%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
+                    <a href="#"><img src="<?= base_url()."assets/".$direction; ?>/images/app-store%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
+                </div>
+                <div class="col-lg-3 col-sm-5 col-xs-12 text-center logo-footer"> 
+                    <img src="<?= base_url()."assets/".$direction; ?>/images/last-logo.png" alt="Efad" class="footerlogo"/>
+                    <div class="footer-social d-flex  pt-3 pb-3 ">
+                        <p> 
+                            <a href="mailto:wecare@efadcar.com"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.linkedin.com/company/efadsa/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/efadcar" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://twitter.com/efadcar" target="_blank"><i class="fab fa-twitter"></i></a>
+                            
+                        </p>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
-    </div>
 </footer>
+
+
 
 
 
@@ -72,6 +80,7 @@ if (isset($javascripts) && $javascripts != null) {
     }
 }
 ?> 
+<?= $javascriptCode ?>
 <!-- toaster javascript for form validations -->
 <script>
 	toastr.options = {
@@ -241,12 +250,7 @@ if (isset($javascripts) && $javascripts != null) {
 </script> 
 
 
-<script type="text/javascript">
-	//$('#inputState').prop('disabled', 'disabled');
-	 
-</script>
 
-<?= $javascriptCode ?>
 
 </body>
 </html>

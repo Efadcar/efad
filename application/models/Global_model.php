@@ -12,12 +12,7 @@ class Global_model extends CI_Model {
 
     }
 	
-	function calculate(){
-		
-		$book_end_date = $this->input->post('book_end_date');
-		$book_start_date = $this->input->post('book_start_date');
-		$car_uid = $this->input->post('car_uid');
-		$mc_uid = $this->input->post('mc_uid');
+	function calculate($book_start_date, $book_end_date, $car_uid, $mc_uid){
 		
 		// Get booking days
 		$days = $this->dateDifference($book_start_date, $book_end_date);
@@ -56,16 +51,16 @@ class Global_model extends CI_Model {
 		// Get total fees for booking
 		$total_fees = $daily_rate_after_discount * $days;
 		
-		// Check if there is 1 day free depend on membership and days
+		// Check if there is free days depend on membership and days
 		switch($membership_obj->mc_uid){
 			case ($membership_obj->mc_uid == 1 && $days >= 21):
-				$free_day = 1;
+				$free_day = floor($days / 21);
 				break;
 			case ($membership_obj->mc_uid == 2 && $days >= 14):
-				$free_day = 1;
+				$free_day = floor($days / 14);
 				break;
 			case ($membership_obj->mc_uid == 3 && $days >= 7):
-				$free_day = 1;
+				$free_day = floor($days / 7);
 				break;
 			default:
 				$free_day = 0;
@@ -89,24 +84,18 @@ class Global_model extends CI_Model {
 			$total_fees_after_early_booking = $total_fees_after_free_day; 
 		}
 		
-		
 		// Calculate added value tax
 		$tax_total = ($total_fees_after_early_booking * (5 / 100));
 		
-		// calculate membership fees incase of new member
-		if($new_member == 1){
-			$total_fees_after_early_booking = $total_fees_after_early_booking + $membership_obj->mc_12months_price;
-			$total_fees_after_tax = $total_fees_after_early_booking + $tax_total + (($membership_obj->mc_12months_price / 100) * 5);
-		}else{
-			$total_fees_after_tax = $total_fees_after_early_booking + $tax_total;
-		}
+		$total_fees_after_tax = $total_fees_after_early_booking + $tax_total;
 		
 		//return $total_fees_after_tax;exit;
-		return array(
+		$dataArray = array(
 			"status" => 1, 
 			"new_member" => $new_member, 
 			"days" => $days, 
-			"mc_uid" => $mc_uid, 
+			"car_uid" => $car_uid, 
+			"mc_uid" => $membership_obj->mc_uid, 
 			"book_start_date" => $book_start_date, 
 			"book_end_date" => $book_end_date, 
 			"days_to_get_car" => $days_to_get_car, 
@@ -121,60 +110,73 @@ class Global_model extends CI_Model {
 			"tax_total" => $tax_total,
 			"total_fees_after_tax" => $total_fees_after_tax
 		);
+		$session_data = array("current_booking" => $dataArray);
+		$this->session->set_userdata($session_data);
+		//return $total_fees_after_tax;exit;
+		return $dataArray;
 	}
 	
-	function confirmBooking(){
-		if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
-			$member_uid = $this->session->userdata('member_uid');
-			
-		}else{
-			if($_POST['login_username'] != "" && $_POST['login_pwd'] != "" )
-			{
-				// try login
-				$member_uid = $this->loginOnBooking($_POST['login_username'], $_POST['login_pwd']);
-				if($member_uid == false){
-					return ["status" => 0, "message" => "أسم المستخدم أو كلمة المرور غير صحيحة", "data"=> $member_uid];
-				}
-			}
-			elseif($_POST['fname'] != "" && $_POST['lname'] != "" && $_POST['country'] != "" && $_POST['city'] != "" && $_POST['email'] != "" && $_POST['mobile'] != "" && $_POST['pwd'] != "" && $_POST['pwd1'] != "" && $_POST['pwd'] == $_POST['pwd1'] )
-			{
-				// try create account
-				$member_uid = $this->registerOnLogin($_POST['fname'], $_POST['lname'], $_POST['email'], $_POST['country'], $_POST['city'], $_POST['mobile'], $_POST['pwd'] );
-				if($member_uid == false){
-					return ["status" => 0, "message" => "برجاء إستكمال البيانات لإنشاء حساب جديد"];
-				}
-				$this->loginOnBooking($_POST['email'], $_POST['pwd']);
-			}
-			else
-			{
-				return ["status" => 0, "message" => "لم نتمكن من تسجيل الدخول أو إنشاء حساب جديد، برجاء إستكمال البيانات"];
-			}
-			
-		}
-		
-		$data['member_uid'] = $member_uid;
-		$data['car_uid'] = $this->input->post('car_uid');
-		$data['book_start_date'] = date("Y-m-d", strtotime($this->input->post('con_book_start_date')));
-		$data['book_end_date'] = date("Y-m-d", strtotime($this->input->post('con_book_end_date')));
-		$data['delivery_city_uid'] = $this->input->post('delivery_city_uid');
-		$data['book_total_days'] = $this->input->post('con_days');
-		$data['daily_rate'] = $this->input->post('con_daily_rate');
-		$data['daily_rate_after_discount'] = $this->input->post('con_daily_rate_after_discount');
-		$data['free_days'] = $this->input->post('con_free_day');
-		$data['is_early_booking'] = $this->input->post('con_early_booking');
-		$data['book_total_fees'] = $this->input->post('con_total_fees_after_early_booking');
-		$data['book_tax_total'] = $this->input->post('con_tax_total');
-		$data['book_total_fees_after_tax'] = $this->input->post('con_total_fees_after_early_booking') + $this->input->post('con_tax_total');
-		$data['book_payment_method'] = $this->input->post('customRadio');
-		
-		// make payment if visa selected
-		
+	function confirmBooking($payment_method){		
+		$data['member_uid'] = $this->session->userdata('member_uid');
+		$data['car_uid'] = $this->session->userdata('current_booking')['car_uid'];
+		$data['book_start_date'] = date("Y-m-d", strtotime($this->session->userdata('current_booking')['book_start_date']));
+		$data['book_end_date'] = date("Y-m-d", strtotime($this->session->userdata('current_booking')['book_end_date']));
+		$data['delivery_city_uid'] = $this->session->userdata('current_booking')['city_uid'];
+		$data['book_total_days'] = $this->session->userdata('current_booking')['days'];
+		//return $data;exit;
 		// add to booking table
 		$this->db->insert('bookings', $data); 
 		
 		if($this->db->affected_rows() > 0){
-			$this->messages->add("لقد تم حجز السيارة بنجاح.", "success");
-			return ["status" => 1];
+			$book_uid = $this->db->insert_id();
+			$invoice['related_uid'] = $book_uid;
+			$invoice['member_uid'] = $this->session->userdata('member_uid');
+			$invoice['invoice_start_date'] = date("Y-m-d", strtotime($this->session->userdata('current_booking')['book_start_date']));
+			$invoice['invoice_end_date'] = date("Y-m-d", strtotime($this->session->userdata('current_booking')['book_end_date']));
+			$invoice['book_total_days'] = $this->session->userdata('current_booking')['days'];
+			$invoice['daily_rate'] = $this->session->userdata('current_booking')['daily_rate'];
+			$invoice['daily_rate_after_discount'] = $this->session->userdata('current_booking')['daily_rate_after_discount'];
+			$invoice['free_days'] = $this->session->userdata('current_booking')['free_day'];
+			$invoice['is_early_booking'] = $this->session->userdata('current_booking')['early_booking'];
+			$invoice['invoice_total_fees'] = $this->session->userdata('current_booking')['total_fees_after_early_booking'];
+			$invoice['invoice_tax_total'] = $this->session->userdata('current_booking')['tax_total'];
+			$invoice['invoice_total_fees_after_tax'] = $this->session->userdata('current_booking')['total_fees_after_early_booking'] + $this->session->userdata('current_booking')['tax_total'];
+			$invoice['invoice_payment_method'] = $payment_method;
+			if($payment_method == "visa"){
+				$invoice['invoice_status'] = 1;
+			}else{
+				$invoice['invoice_status'] = 0;
+			}
+			$this->db->insert('invoices', $invoice); 
+			if($this->db->affected_rows() > 0){
+				$new_member = $this->session->userdata('current_booking')['new_member'];
+				if($new_member == 1){
+					
+					$invoice2['related_uid'] = 3;
+					$invoice2['member_uid'] = $this->session->userdata('member_uid');
+					$invoice2['invoice_start_date'] = date("Y-m-d", time());
+					$invoice2['invoice_end_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 365 day"));
+					$invoice2['invoice_total_fees'] = RED_MEMBERSHIP_YEARLY_FEES;
+					$invoice2['invoice_tax_total'] = ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 );
+					$invoice2['invoice_total_fees_after_tax'] = RED_MEMBERSHIP_YEARLY_FEES + ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 );
+					$invoice2['invoice_payment_method'] = $payment_method;
+					if($payment_method == "visa"){
+						$invoice2['invoice_status'] = 1;
+					}else{
+						$invoice2['invoice_status'] = 0;
+					}
+					$this->db->insert('invoices', $invoice2); 
+					if($this->db->affected_rows() > 0){
+						$this->messages->add("لقد تم حجز السيارة بنجاح.", "success");
+						unset($_SESSION['current_booking']);
+						return ["status" => 1];
+					}else{
+						return ["status" => 0, "message" => "لقد حدث خطأ أثناء الحجز"];
+					}
+				}
+			}else{
+				return ["status" => 0, "message" => "لقد حدث خطأ أثناء الحجز"];
+			}
 		}else{
 			return ["status" => 0, "message" => "لقد حدث خطأ أثناء الحجز"];
 		}
@@ -340,6 +342,16 @@ class Global_model extends CI_Model {
 		}
 	}
 	
+	function getCityByID($city_uid) {
+		$q = $this->db->get_where('cities', array("city_uid" => $city_uid));
+		if($q->num_rows() > 0) {
+            $row = $q->row();
+            return $row->city_name_ar;
+		}else{
+			return false;	
+		}
+	}
+	
     function getStringByKeyLanguage($key, $lang) {
         $q = $this->db->get_where('strings', array('string_key' => $key, 'string_lang' => $lang));
         if ($q->num_rows() > 0) {
@@ -357,6 +369,18 @@ class Global_model extends CI_Model {
 		if($q->num_rows() > 0) {
 			$row = $q->row();
 			return $row->media_path; 
+		}else{
+			return false;	
+		}
+	}
+
+	function getAlbumByID($album_uid){
+		$q =  $this->db->get_where('media', array('album_uid' => $album_uid));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row->media_path; 
+			}
+			return $data; 
 		}else{
 			return false;	
 		}

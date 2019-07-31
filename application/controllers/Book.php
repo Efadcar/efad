@@ -30,8 +30,39 @@ class Book extends CI_Controller {
     }
 	
     public function confirm() {
-        header('Content-Type: application/json; charset=utf-8');
-		echo(json_encode($this->global_model->confirmBooking()));
+		//print_r($_SESSION);exit;
+		if(isset($_POST['delivery_city_uid'])){
+			$_SESSION['current_booking']['city_uid'] = $_POST['delivery_city_uid'];
+		}
+		
+		
+		if($this->session->userdata('current_booking') == null){
+			redirect('explore');
+		}
+		
+		$data['direction'] = $this->global_model->getSiteDirection();
+		$data['javascripts'] = $this->_javascript('book');
+		$data['pageCssFiles'] = $this->_cssFiles('book');
+		$data['javascriptCode'] = $this->_javascriptCode('pay');
+		
+		if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
+			$current_booking = $this->session->userdata('current_booking');
+			
+			if($current_booking['mc_uid'] == $this->session->userdata('mc_uid') || $this->session->userdata('mc_uid') == null){
+			}else{
+				$result = $this->global_model->calculate($current_booking['book_start_date'], $current_booking['book_end_date'], $current_booking['car_uid'], $this->session->userdata('mc_uid'));
+			}			
+			$data['car'] = $this->global_model->getCarByID($current_booking['car_uid']);
+			//print_r($data['car']);exit;
+			$data['current_booking'] = $current_booking;
+			$data['pageTitle'] = "دفع و تأكيد الحجز";
+			$data['main_content'] = 'book/pay';
+			$this->load->view('includes/template', $data);
+		}else{
+			$data['pageTitle'] = "إستكمال الحجز";
+			$data['main_content'] = 'members/login';
+			$this->load->view('includes/template', $data);
+		}
 	}
 	
 	function calculate(){
@@ -40,13 +71,35 @@ class Book extends CI_Controller {
         $this->form_validation->set_rules('book_end_date', 'book_end_date', 'required');
         $this->form_validation->set_rules('car_uid', 'car_uid', 'required');
 
-		if ($this->form_validation->run() == FALSE) {
+		if ($this->form_validation->run() == FALSE) 
+		{
 			echo(json_encode(array("status" => 0)));
-		}else{
-			echo(json_encode($this->global_model->calculate()));
+		}
+		else
+		{
+			$book_end_date = $this->input->post('book_end_date');
+			$book_start_date = $this->input->post('book_start_date');
+			$car_uid = $this->input->post('car_uid');
+			$mc_uid = $this->input->post('mc_uid');
+			echo(json_encode($this->global_model->calculate($book_start_date, $book_end_date, $car_uid, $mc_uid)));
 		}
 	}
 	
+	function pay(){
+        header('Content-Type: application/json; charset=utf-8');
+		//echo(json_encode($_POST));exit;
+        $this->form_validation->set_rules('customRadio', 'customRadio', 'required');
+
+		if ($this->form_validation->run() == FALSE) 
+		{
+			echo(json_encode(array("status" => 0)));
+		}
+		else
+		{
+			$payment_method = $this->input->post('customRadio');
+			echo(json_encode($this->global_model->confirmBooking($payment_method)));
+		}
+	}
 	
     function _javascript($view) {
         switch ($view) {
@@ -56,7 +109,7 @@ class Book extends CI_Controller {
                     "'" . base_url() . "assets/rtl/js/bootstrap-toastr/toastr.min.js'",
                     "'" . base_url() . "assets/rtl/js/moment-with-locales.js'",
                     "'" . base_url() . "assets/rtl/js/bootstrap-material-datetimepicker.js'",
-                    "'" . base_url() . "assets/rtl/js/card.min.js'",
+                    "'" . base_url() . "assets/rtl/js/jquery.card.js'",
                     "'" . base_url() . "assets/rtl/js/efad-scripts.js'",
                 );
 				
@@ -86,65 +139,28 @@ class Book extends CI_Controller {
 
 				<script type='text/javascript'>
 
+					$('#confirm-booking').submit(function(e){
+						e.preventDefault();
+					});
+
+					$('#paynow').click( function() {
+						var dateStart = $('#date-start').val();
+						var dateEnd = $('#date-end').val();
+						var inputStatebook = $('#inputStatebook').children('option:selected').val();
+
+						if (dateStart.length < 1 || dateEnd.length < 1 || inputStatebook == 0) {
+							toastr.error('يجب أختيار تاريخ أستلام و تسليم السيارة و مدينة أستلام السيارة', 'خطأ');
+						}else{
+							document.getElementById('confirm-booking').submit()
+						}						
+					});
+
 					$(document).ready(function () {
 					
-						$('#confirm-book').submit(function(e){
-							e.preventDefault();
-						});
-					
-						$('#paynow').click( function() {
-							var dateStart = $('#date-start').val();
-							var dateEnd = $('#date-end').val();
-							var inputStatebook = $('#inputStatebook').val();
-						
-							if (dateStart.length < 1 || dateEnd.length < 1 || inputStatebook.length < 1 || dateStart.val == 0) {
-								toastr.error('يجب أختيار تاريخ أستلام و تسليم السيارة و مدينة أستلام السيارة', 'خطأ');
-							}else{
-								confirmBooking();
-							}						
-						});
-					
-						function confirmBooking()
-						{
-							form = $('#confirm-book');
-							$.ajax({
-								url: '".site_url('book/confirm')."',
-								type: 'POST',
-								data: form.serialize(), // serializes the form's elements.
-								success: function(data) {
-									if(data.status == 1)
-									{
-										window.location.replace('".site_url('members/profile')."');
-									}
-									else
-									{
-										console.log(data);
-										toastr.error(data.message, 'خطأ');
-									}
-									
-								},
-							});
-						}						
-					
 						var dataSet;
-						$('#red-tax-div').hide();
-						$('#red-div').hide();
-						$('#cash-fees').hide();
-						$('#paymentCard').hide();
-						$('#free-day').hide();
-						$('#early-booking').hide();
-
 						$('.toggle').click(function () {
 							$('#target').toggle('slow');
-
-
 						});
-						$('.cutom-btn').on('click', function () {
-							$(this).addClass('active').siblings().removeClass('active');
-							$('.freeride').addClass('visiable').siblings().removeClass('visiable');
-							$('.freeend').addClass('hidefree').siblings().removeClass('hidefree');
-						});
-
 
 						var date_start = new Date();
 						date_start.setDate(date_start.getDate()+".BOOKED_DELIVERY_AFTER.");
@@ -160,7 +176,6 @@ class Book extends CI_Controller {
 							time: false,
 							switchOnClick: true,
 							lang: 'en'
-
 						});
 						
 						
@@ -187,21 +202,20 @@ class Book extends CI_Controller {
 						$('#date-start, #date-end').on('input propertychange change', function() {
 							var datee = $('#date-start').bootstrapMaterialDatePicker().val();
 							var newDate = new Date(datee);
-							newDate.setDate(newDate.getDate() + 1);
+							newDate.setDate(newDate.getDate() + 7);
 							//console.log(newDate);
 							$('#date-end').bootstrapMaterialDatePicker('setMinDate', newDate);
 						
 						
 							clearTimeout(timeoutId);
 							timeoutId = setTimeout(function() {
-								// Runs 1 second (1000 ms) after the last change    
+								// Runs 1 second (100 ms) after the last change    
 								saveToDB();
 							}, 500);
 						});
 
 						function saveToDB()
 						{
-							console.log('Saving to the db');
 							form = $('#book-form');
 							$.ajax({
 								url: '".site_url('book/calculate')."',
@@ -212,81 +226,87 @@ class Book extends CI_Controller {
 									dataSet = data;
 									console.log(data);
 									// Now show them we saved and when we did
-									//var d = new Date();
-									if(data.status == 1){
-									
-										// set hidden values for invoice
-										$('#con_book_start_date').val(data.book_start_date);
-										$('#con_book_end_date').val(data.book_end_date);
-										$('#con_days').val(data.days);
-										$('#con_days_to_get_car').val(data.days_to_get_car);
-										$('#con_daily_rate').val(data.daily_rate);
-										$('#con_total_fees').val(data.total_fees);
-										$('#con_daily_rate_after_discount').val(data.daily_rate_after_discount);
-										$('#con_free_day').val(data.free_day);
-										$('#con_total_fees_after_free_day').val(data.total_fees_after_free_day);
-										$('#con_early_booking').val(data.early_booking);
-										$('#con_early_booking_discount_total').val(data.early_booking_discount_total);
-										$('#con_total_fees_after_early_booking').val(data.total_fees_after_early_booking);
-										$('#con_tax_total').val(data.tax_total);
-										$('#con_total_fees_after_tax').val(data.total_fees_after_tax);
-									
-										
+									if(data.status == 1){										
 										// set UI values
 										$('.total-price').html(data.total_fees_after_tax);
 										$('.total-days').html(data.days);
 										$('#daily-rate').html(data.daily_rate_after_discount);
-										$('#tax-total').html(data.tax_total);
-										$('#total-fees').html(data.total_fees);
-										if(data.free_day == 1){
-											$('#free-day-fees').html(data.daily_rate_after_discount);
-											$('#free-day').show();
-										}else{
-											$('#free-day-fees').html(0);
-											$('#free-day').hide();
-										}
-										if(data.early_booking == 1){
-											$('#early-booking-fees').html(data.early_booking_discount_total);
-											$('#early-booking').show();
-										}else{
-											$('#early-booking-fees').html(0);
-											$('#early-booking').hide();
-										}
-										if(data.new_member == 1){
-											$('#red-tax-div').show();
-											$('#red-div').show();
-										}else{
-											$('#red-tax-div').hide();
-											$('#red-div').hide();
-										}
-										
 									}
 									
 								},
 							});
 						}
 
+					</script> 
+
+
+				";
+                break;
+            case 'pay':
+                $java = "
+
+				<script type='text/javascript'>
+
+					$(document).ready(function () {
+						//$('#paymentCard').hide();
+						$('.cash-fees-tr').hide();
+					
+						$('#paynow').click( function() {
+							confirmBooking();
+						});
+					
+						function confirmBooking()
+						{
+							form = $('#confirm-book');
+							$.ajax({
+								url: '".site_url('book/pay')."',
+								type: 'POST',
+								data: form.serialize(), // serializes the form's elements.
+								success: function(data) {
+								console.log(data);
+									if(data.status == 1)
+									{
+										window.location.replace('".site_url('members/profile')."');
+									}
+									else
+									{
+										console.log(data);
+										toastr.error(data.message, 'خطأ');
+									}
+									
+								},
+							});
+						}						
+					
+					});
+					</script> 
+					<script type='text/javascript'>
+						
+						$(function () {
+							$('[data-toggle=\"tooltip\"]').tooltip()
+						});
+						
 						$('input[type=radio][name=\"customRadio\"]').change(function() {							
 							if (this.value == 'visa') {
 								$('#paymentCard').show();
-								$('#cash-fees').hide();
-								$('.total-price').html(dataSet.total_fees_after_tax);
+								$('.cash-fees-tr').hide();
+								$('.total-price').html($('#total_without_cash').val());
+								$('#paynow').html('دفع');
 								
 							}
 							else if (this.value == 'cash') {
 								$('#paymentCard').hide();
-								$('#cash-fees').show();
-								tal_feee = Number(dataSet.total_fees_after_tax) + ".CASH_PAYMENT_FEES.";
-								$('.total-price').html(tal_feee);
+								$('.cash-fees-tr').show();
+								$('.total-price').html($('#total_with_cash').val());
+								$('#paynow').html('تأكيد الحجز');
 							}
 						});
 
 					</script> 
 
 				<script>
-					var card = new Card({
-						form: 'form.card__form',
-						container: 'div.card__wrapper',
+					$('#confirm-book').card({
+						container: '.card__wrapper',
 						formSelectors: {
 							numberInput: 'input[name=\"number\"]',
 							expiryInput: 'input[name=\"expiry\"]',
@@ -294,7 +314,10 @@ class Book extends CI_Controller {
 							nameInput: 'input[name=\"name\"]',
 						},
 						debug: true
+
 					});
+				
+				
 				</script>
 
 				";

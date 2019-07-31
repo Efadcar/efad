@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html;"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="images/favicon.png" sizes="144x144" type="image/png">
+	<link rel="icon" href="<?= base_url()."assets/".$direction; ?>/images/favicon.png" sizes="144x144" type="image/png">
 	<title><?php echo $this->session->userdata['site_settings']['site_name']; ?><?php if(isset($pageTitle)) echo " | ".$pageTitle; ?></title>
 	<meta name="author" content="ASAIT">   
 	<meta name="robots" content="index, follow"/>

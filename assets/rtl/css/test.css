@@ -1,0 +1,468 @@
+body{
+    background-color: #fff;
+}
+
+/* navbar */
+
+.btn-now{
+    padding: 5px 40px;
+}
+.nav-new{
+    background-color: #fff;
+}
+
+/* header */
+
+.first-div{
+    background-image: url('../images/header-pic2.png');
+    background-size: 100% 100%;
+    height: 500px;
+    width: 100%;
+}
+
+/* why efad */
+
+.textbanner {
+    font-weight: 600;
+    font-size: .8em;
+}
+.textbanner span{
+    font-size: .7em;
+}
+.efd-pic{
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+
+fieldset { 
+  border: 2px groove (internal value) !important ;
+}
+header .fieldset {
+	display: block;
+    position: relative;
+    padding-top: 0.35em;
+    padding-bottom: 01.25em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+header .fieldset:hover{
+    border: 1px solid #004F79;
+    
+}
+header .fieldset:hover .textbanner{
+    color: #004F79;
+}
+
+
+/* cars search */
+
+.car_btn label:hover{
+    color: #fff;
+    background-color: #ccc;
+}
+
+.sear-inp{
+    position: relative;
+    z-index: 1;
+    left: 39px;
+    top: 1px;
+    color: #ccc;
+    cursor: pointer;
+    width: 0;
+}
+
+.inp-inp{
+    display: inline;
+    width: 56em;
+    background-color: #fff;
+}
+.inp-inp::placeholder{
+    color: #000;
+}
+.custom-select{
+    position: relative;
+    width: 19%;
+    height: 40px;
+}
+
+.text-muted {
+    color: #004F79 !important;
+}
+.color-dots{
+    
+}
+.color-dots .dot100{
+    position: relative;
+    bottom: 10px;
+    padding-right: 45px;
+}
+.color-dots .dot1 , .color-dots .dot2 , .color-dots .dot3 , .color-dots .dot4{
+    height: 15px;
+  width: 15px;
+  
+  border-radius: 50%;
+  display: inline-block;
+    margin-right: 15px;
+    float: left;
+    position: absolute;
+}
+
+.ch-row-ch{
+    width: 100%;
+}
+.color-dots .dot1 ,
+.dot11{
+    background-color: rgb(61,145,16);
+}
+.color-dots .dot2{
+    background-color: rgb(255,126,0);
+}
+.color-dots .dot3{
+    background-color: rgb(132,132,132);
+}
+.color-dots .dot4{
+    background-color: rgb(230,1,1);
+}
+
+.thumbnail-container{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    padding: 0.8rem;
+    background-color: #eee;
+    border-radius: 5px;
+}
+.price-car .price-was{
+    color: #999;
+    text-decoration: line-through;
+    position: static;
+    top: -30px;
+}
+.dot11{
+    height: 15px;
+  width: 15px;
+  
+  border-radius: 50%;
+  display: inline-block;
+    float: left;
+    position: absolute;
+    margin-top: 5px;
+}
+.car-price .heart{
+        margin-right: 30px;
+    font-size: 25px;
+}
+
+.fa-heart:hover{
+    color: crimson;
+    cursor: pointer;
+}
+.btn-reserve1{
+    float: left;
+}
+/*  car condition  */
+
+.car-con{
+    background-image: url('../images/car-condition.png');
+/*    background-size: 100% 100%;*/
+    height: 500px;
+    width: 100%;
+}
+
+/* how-get */
+.how-get ul{
+    list-style-type: none;
+    padding: 0 64px;
+}
+.how-get ul li{
+    display: inline-block;
+    width: 19%;
+}
+.how-get ul li .getPic1{
+    background-image: url(../images/how-get/confirm-on-mem.png);
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.how-get ul li .getPic2{
+    background-image: url(../images/how-get/choose-car.png);
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.how-get ul li .getPic3{
+    background-image: url(../images/how-get/define-time.png);
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.how-get ul li .getPic4{
+    background-image: url(../images/how-get/pay.png);
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.how-get ul li .getPic5{
+    background-image: url(../images/how-get/get-your-car.png);
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/*
+.how-get .howGetPic{
+    margin: auto 175px;
+    padding: 20px 0;
+}
+*/
+.howGetPic2{
+    background-image: url(../images/how-get.png);
+    height: 200px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/*   plane   */
+
+
+/* start our_prices*/
+.our_prices{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.all-div{
+    padding: 100px 14px 0px;
+    background: #FFF;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+#example-1 .has-angle {
+  position: relative;
+}
+#example-1 .has-angle1::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 50 100' fill='rgb(80,88,99)' fill-opacity='1'%3E%3Cpolygon points='0,0 100,0 0,100'%3E%3C/polygon%3E%3C/svg%3E");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: '';
+  height: 225px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 0;
+    border-top: 1px solid #505863;
+    border-radius: 5px;
+}
+#example-1 .has-angle2::after {
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 50 100' fill='rgb(0,125,188)' fill-opacity='1'%3E%3Cpolygon points='0,0 100,0 0,100'%3E%3C/polygon%3E%3C/svg%3E");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: '';
+  height: 225px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 0;
+    border-top: 1px solid #007DBC;
+    border-radius: 5px;
+}
+#example-1 .has-angle3::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 50 100' fill='rgb(41,162,86)' fill-opacity='1'%3E%3Cpolygon points='0,0 100,0 0,100'%3E%3C/polygon%3E%3C/svg%3E");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: '';
+  height: 225px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 0;
+    border-top: 1px solid #29A256;
+    border-radius: 5px;
+}
+#example-1 .has-angle4::after {
+ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 50 100' fill='rgb(216,23,32)' fill-opacity='1'%3E%3Cpolygon points='0,0 100,0 0,100'%3E%3C/polygon%3E%3C/svg%3E");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: '';
+  height: 225px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 0;
+    border-top: 1px solid #D81720;
+    border-radius: 5px;
+}
+.price-item1{
+        position: absolute;
+    color: #fff;
+    z-index: 10;
+    width: 100%;
+    font-size: 1.2rem;
+    
+}
+.price-itemItem1{
+    position: absolute;
+    color: #fff;
+    z-index: 10;
+    font-size: 3rem;
+    margin-top: 16px;
+    margin-right: -31px;
+}
+.price-itemItem2{
+    position: absolute;
+    color: #fff;
+    z-index: 10;
+    margin-top: 52px;
+    margin-right: 28px;
+}
+.price-itemItem22{
+    position: absolute;
+    color: #fff;
+    z-index: 10;
+    margin-top: 52px;
+    margin-right: 52px;
+}
+.our_prices .price{
+    position: relative;
+    background: #FFF;
+    padding: 15px;
+    border-radius: 5px;
+    height: 400px;
+}
+.our_prices .price h3{
+    margin: 7px 0px 10px 0px; 
+}
+.our_prices .price p{
+    color: #000;
+    display: inline;
+}
+.our_prices .price ul li{
+    font-size: 18px;
+}
+
+.price .select{
+    color: #000;
+    border: 1px solid #505863;
+    padding: 3px 60px;
+    
+}
+.price .select:hover{
+    color: #fff;
+    border: 1px solid #505863;
+    background-color: #505863;
+}
+.price-card1 section ,
+.price-card2 section ,
+.price-card3 section ,
+.price-card4 section{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.price-card1{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.price-card1:hover{
+    border: 1px solid #505863;
+}
+.price-card2{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.price-card2:hover{
+    border: 1px solid #007DBC;
+}
+.price-card3{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.price-card3:hover{
+    border: 1px solid #29A256;
+}
+.price-card4{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.price-card4:hover{
+    border: 1px solid #D81720;
+}
+
+.our_prices .mem-details{
+    background-color: #fff;
+    padding: 5px 50px;
+    border: 1px solid;
+}
+.our_prices .mem-details:hover{
+    color: #fff;
+    background-color: #505863
+}
+.pricing-switcher .car_btn label:hover{
+    background-color: #000;
+}
+    /* end our_prices*/
+
+
+/* gallery */
+
+.galImg .galImg1{
+    background: url(../images/homepage-gallery/1.png);
+    height: 440px;
+    background-size: cover;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+.galImg .galImg2{
+    background: url(../images/homepage-gallery/2.png);
+    height: 215px;
+    background-size: cover;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+.galImg .galImg3{
+    background: url(../images/homepage-gallery/3.png);
+    height: 215px;
+    background-size: cover;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+.galImg .galImg4{
+    background: url(../images/homepage-gallery/4.png);
+    height: 440px;
+    background-size: cover;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+.galImg .galImg5{
+    background: url(../images/homepage-gallery/5.png);
+    height: 328px;
+    background-size: cover;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+.galImg .galImg6{
+    background: url(../images/homepage-gallery/6.png);
+    height: 328px;
+    background-size: cover;
+    margin-top: 20px;
+    border-radius: 15px;
+}

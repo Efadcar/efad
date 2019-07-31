@@ -33,7 +33,7 @@ function perfectScrollbar() {
 --------------------------------------*/
 function fxheader() {
   jQuery(window).on('scroll', function () {
-    if (jQuery(window).scrollTop() >= 100) {
+    if (jQuery(window).scrollTop() >= 10) {
       jQuery('.navbar-expand-lg').addClass('fixed-header');
     } else {
       jQuery('.navbar-expand-lg').removeClass('fixed-header');

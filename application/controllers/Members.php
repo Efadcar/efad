@@ -22,7 +22,12 @@ class Members extends CI_Controller {
 		// get site direction return "rtl" or "ltr"
         $data['direction'] = $this->global_model->getSiteDirection();
 		// set main content
-        $data['main_content'] = 'home';
+		if (strpos($_SERVER['HTTP_REFERER'], 'book/confirm') !== false) {
+			$data['main_content'] = 'members/login';
+		}else{
+			$data['main_content'] = 'home';
+		}
+        
         //set page title
         $data['pageTitle'] = $this->lang->line('home');		
 		
@@ -43,10 +48,15 @@ class Members extends CI_Controller {
     }
 	
     public function register() {
+		
 		// get site direction return "rtl" or "ltr"
         $data['direction'] = $this->global_model->getSiteDirection();
 		// set main content
-        $data['main_content'] = 'home';
+		if (strpos($_SERVER['HTTP_REFERER'], 'book/confirm') !== false) {
+			$data['main_content'] = 'members/login';
+		}else{
+			$data['main_content'] = 'home';
+		}
         //set page title
         $data['pageTitle'] = $this->lang->line('home');		
 		

@@ -129,6 +129,8 @@ input:-internal-autofill-previewed, input:-internal-autofill-selected, textarea:
 .pa-25{padding: 25px}
 .pa-35{padding: 35px}
 
+.padl-25{padding-left: 25px;}
+.padr-25{padding-right: 25px;}
 
 /* ------------------------
     Margin
@@ -253,15 +255,15 @@ select {
 	border-radius: 4px;
 	width: 100%;
 	padding: 20px;
-	font-size: 12px !important;
+	font-size: 16px;
 	color: #3F3F3F;
 
 	/* Here's the code we need */
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	-ms-appearance: none;
-	 -o-appearance: none;
-		appearance: none;
+	-o-appearance: none;
+	appearance: none;
 }
 
 .select-wrapper {
@@ -272,12 +274,14 @@ select {
 	font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f078";
   	font-size: 1em;
   	position: absolute;
-  	top: 0.5em;
-  	left: 20px;
-  	color: #434B67;
+  	top: 0.3em;
+  	left: 26px;
+  	color: #14538b;
   	pointer-events: none;
 }
-
+.select-wrapperNew:after{
+    left: 50px;
+}
 select::-ms-expand {
   display: none;
 }
