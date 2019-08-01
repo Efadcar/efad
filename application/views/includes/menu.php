@@ -24,7 +24,7 @@
 			<?php $is_logged_in = $this->session->userdata('is_logged_in'); 
 			if(isset($is_logged_in) && $is_logged_in == 1){ ?>
 			<div class="navbar-buttons  mbr-section-btn "> 
-
+				 
 				<a class="btn btn-default dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					مرحباُ: <?= $this->session->userdata('member_full_name') ?>
 				</a>
@@ -34,7 +34,12 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<?= site_url('members/logout') ?>">تسجيل خروج</a>
 				</div>
-				
+				<?php
+				$membership = $this->global_model->getMembershipByID($this->session->userdata('mc_uid'));
+				?>										  
+				<a href="<?= site_url('memberships/subscribe') ?>" class="btn" style="background-color: <?= $membership->mc_color_code ?>; color: #fff">
+					<span><span>عضويتك <?= $membership->mc_name; ?></span></span>
+				</a>
 				
 				
 			
