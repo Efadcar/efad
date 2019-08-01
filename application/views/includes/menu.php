@@ -44,7 +44,7 @@
 				<a id="top-login-button" href="#login_form_ajax" class="mr-2 login-link">
 					<?= $this->lang->line('login'); ?> 
 				</a>
-				<a href="member.html" class="btn btn--accent">
+				<a href="<?= site_url('memberships/subscribe') ?>" class="btn btn--accent">
 					<span><span><?= $this->lang->line('membership_adv'); ?></span></span>
 				</a> 
 			</div>			

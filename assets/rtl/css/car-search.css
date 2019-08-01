@@ -414,12 +414,6 @@
 
 
 
-  .car_btn input[type=radio]:checked + label {
-  color: #fff; background:#000; opacity: 1; border:2px solid #000;
-
-}
-
-
 
   .car_btn input[type="radio"] {
 	position: absolute;
@@ -880,13 +874,11 @@ color: #fff;
     color: #fff;
     background: #000;
     opacity: 1;
-    border: 2px solid #000;
 }
 .car_btn input[type=radio]:checked + label{
     color: #fff;
     background: #000;
     opacity: 1;
-    border: 2px solid #000;
 }
 .car_btn.car-y label:hover {
     border: 2px solid #000;

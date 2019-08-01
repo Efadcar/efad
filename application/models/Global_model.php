@@ -199,6 +199,50 @@ class Global_model extends CI_Model {
 		// return true and set message to session msgs
 	}
 	
+	function confirmMembership($payment_method){		
+		$member_uid = $this->session->userdata('member_uid');
+		$data['mc_uid'] = $this->input->post('mc_uid');
+		$total = $this->input->post('total');
+		$period = $this->input->post('period');
+		switch($period){
+			case "mc_6months_price";
+				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 180 day"));
+				break;
+			case "mc_9months_price";
+				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 270 day"));
+				break;
+			case "mc_12months_price";
+				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 360 day"));
+				break;
+		}
+		$invoice2['related_uid'] = $data['mc_uid'];
+		$invoice2['member_uid'] = $member_uid;
+		$invoice2['invoice_start_date'] = date("Y-m-d", time());
+		$invoice2['invoice_end_date'] = $data['member_renewal_date'];
+		$invoice2['invoice_total_fees'] = $total;
+		$invoice2['invoice_tax_total'] = (($total / 100) * 5 );
+		$invoice2['invoice_total_fees_after_tax'] = $total + (($total / 100) * 5 );
+		$invoice2['invoice_payment_method'] = $payment_method;
+		if($payment_method == "visa"){
+			$invoice2['invoice_status'] = 1;
+		}else{
+			$invoice2['invoice_status'] = 0;
+		}
+		$this->db->insert('invoices', $invoice2); 
+		if($this->db->affected_rows() > 0){
+			$this->messages->add("لقد تم الأشتراك بالعضوية بنجاح.", "success");
+			$this->db->where('member_uid', $member_uid);
+			$this->db->update('members', $data);
+			$_SESSION['mc_uid'] = $data['mc_uid'];
+			return ["status" => 1];
+		}else{
+			return ["status" => 0, "message" => "لقد حدث خطأ أثناء الأشتراك"];
+		}
+		// add to invoice table
+		
+		// return true and set message to session msgs
+	}
+	
 	function getMembershipByID($mc_uid){
 		$q =  $this->db->get_where('memberships', array('mc_uid' => $mc_uid));
 		if($q->num_rows() > 0) {
@@ -298,6 +342,20 @@ class Global_model extends CI_Model {
 			return false;	
 		}
 	}
+	
+	function getAllMemberships() {
+		$this->db->order_by("mc_name", "desc"); 
+		$q = $this->db->get('memberships');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+	
 	
 	function getAllCountriesAjax() {
 		$this->db->order_by("status", "desc"); 

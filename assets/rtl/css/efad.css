@@ -442,12 +442,12 @@ opacity:0
 	z-index: 1;
 	display: inline-block;
 	float: right;
-	width: 90px;
-	height: 30px;
-	line-height: 28px;
+	width: 98px;
+	height: 33px;
+	line-height: 31px;
 	cursor: pointer;
 	font-size: 0.875rem;
-	margin: 0 10px; border:0 none
+	margin: 0 10px; border:1px solid #eee;
 
 
   }
@@ -567,6 +567,7 @@ opacity:0
 
 .pricing-header h2 {
 	 margin: 10px;text-align: center;
+    font-size: 1.5rem;
 }
 
 .pricing-header {
@@ -592,12 +593,6 @@ opacity:0
     color: #ce3819;
     background-color: transparent;
 }
-
-.pricing-header h2 {
-    font-size: 1.5rem;
-   
-}
-
 .currency,
 .value {
 	font-size: 1rem;
@@ -1745,19 +1740,6 @@ member
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .price-table{background: rgb(237,237,237)}
 .price-table a.select{width: 70%; font-size: 0.8em}
 .price-table .value { line-height: 1}
@@ -1858,6 +1840,18 @@ tr:nth-child(even) {background: #fff}
   }
 }
 
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { ... }
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) { ... }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 943.98px) {  
+    .price-table h2{
+        font-size: 1em;
+    }
+}
 
 /**************
 contact us
@@ -2714,7 +2708,7 @@ h1.whyefad{font-size: 2rem}
 /* navbar */
 
 .btn-now{
-    padding: 5px 40px;
+    padding: 5px 30px;
 }
 .nav-new{
     background-color: #fff;
@@ -2766,11 +2760,11 @@ header .fieldset {
     border: 1px solid #ccc;
 }
 header .fieldset:hover{
-    border: 1px solid #004F79;
+    border: 1px solid #14538b;
     
 }
 header .fieldset:hover .textbanner{
-    color: #004F79;
+    color: #14538b;
 }
 
 /* how-get */
@@ -3143,33 +3137,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 /* price-table */
 
-
-.price-table .gray .pricing-header ,
-.price-table .gray .pricing-header h2 ,
-.price-table .gray .pricing-header span{
-    color: #505863;
-}
-.price-table .blue .pricing-header ,
-.price-table .blue .pricing-header h2 ,
-.price-table .blue .pricing-header span{
-    color: #1D54D0;
-}
-.price-table .exclusive .pricing-header ,
-.price-table .exclusive .pricing-header h2 ,
-.price-table .exclusive .pricing-header span{
-    color: #0DA557;
-}
-.price-table .red .pricing-header ,
-.price-table .red .pricing-header h2 ,
-.price-table .red .pricing-header span{
-    color: #D00040;
-}
-
-
-
-.price-table .pricing-footer a{
-    color: #000;
-}
 .most-used{
     background-image: url(../images/most-used.png);
     font-size: 0;
@@ -3252,4 +3219,137 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 .qr-code{
     margin: 0 55px;
+}
+
+/* responsive footer */
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+    
+    .footer-end,
+    .footer-end .footerBottomMenu{
+        text-align: center;
+    }
+    .footer-end .footermenu {
+        margin-right: 50px;
+    }
+    .footer-end .payment-img {
+        margin-right: 20px;
+    }
+    .footer-end .footer-social p{
+        margin-right: 65px;
+    }
+    .footer-end .soon{
+        display: block;
+        margin: 10px 0;
+    }
+    .footerTopWide img.footerlogo{
+        margin-top: 40px;
+        margin-left: 0;
+    }
+    .payment-img li{
+        width: 4.6rem;
+    }
+    .footerBottomMenu li a{
+        padding: 0 4px;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) { 
+    .footer-end .soon{
+        display: block;
+        margin: 10px 0;
+    }
+    .footerTopWide img.footerlogo{
+        margin-top: 40px;
+    }
+    .payment-img li{
+        width: 4.6rem;
+    }
+    .footerBottomMenu li a{
+        padding: 0 4px;
+    }
+    .footer-social a{
+        margin-left: 11px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .footer-end .soon{
+        display: block;
+        margin: 10px 0;
+    }
+    .footerTopWide img.footerlogo{
+        margin-left: 120px;
+        margin-top: 40px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and  (max-width: 1246.98px) { 
+    .payment-img li{
+        width: 4.6rem;
+    }
+    .footer-social a{
+        margin-left: 13px;
+    }
+    .footerBottomMenu li a{
+        padding: 0 4px;
+    }
+}
+
+
+
+/* payment */
+
+.tab-content table .renew-service{
+    float: left;
+    padding: 5px 30px;
+    background-color: #EB0028;
+    color: #fff;
+    border-radius: 50em;
+}
+.tab-content .changmem{
+    padding: 6px 40px;
+    background-color: #fff;
+    color: #14538b;
+    border-radius: 50em;
+    border: 1px solid #14538b;
+    margin-left: 25px;
+}
+.tab-content .changmem:hover{
+    background-color: #14538b;
+    color: #fff;
+}
+.show > .btn-secondary.dropdown-toggle{
+    padding: 5px 30px;
+    background-color: #fff;
+    color: #14538b;
+    border-radius: 50em;
+    border: 1px solid #14538b;
+    line-height: 2;
+}
+.show > .btn-secondary.dropdown-toggle:hover{
+    background-color: #14538b;
+    color: #fff;
+}
+.btn-secondary:hover{
+    color: #fff;
+    background-color: #14538b;
+}
+.btn-secondary{
+    color: #14538b;
+    background-color: #fff;
+    border-color: #14538b;
+    line-height: 2;
+    padding: 5px 30px;
+}
+.btn-secondary:focus{
+    box-shadow: none !important;
+}
+.dropdown-menu .chooseItem:hover{
+    color: #fff;
+    background-color: #14538b;
 }
