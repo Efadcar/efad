@@ -1,6 +1,6 @@
 <section>
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row" style=" margin: 0 10px 0 10px; ">
             <div class="col-12 ">
                 <div class="main-heading ">
                     <h1 ><?= $pageTitle ?></h1>
@@ -13,8 +13,8 @@
 <!-- faq start -->
 <?php //print_r($rows) ?>
 <section >
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row" style=" margin: 0 10px 0 10px; ">
             <div class="col">
                 <div class="cd-faq">
                     <ul class="cd-faq-categories">

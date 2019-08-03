@@ -1,8 +1,8 @@
-<footer class="footer-end py-4">
+<footer class="footer-end pt-4">
     <div class="footerTopWide  pb-2">
         <div class="container-fluid">
             <div class="row align-items-center ">
-                <div class="col-lg-4 col-sm-7 col-xs-12">
+                <div class="col-lg-4 col-sm-7 col-xs-12 pr-10">
                     <ul class="footermenu pb-8">
                         <li><a href="<?= site_url('about') ?>">إفاد</a></li>
                         <li><a href="https://www.linkedin.com/company/efadsa/jobs/" target="_blank">الوظائف</a></li>
@@ -28,18 +28,20 @@
                         <li><p class="pr-1"> إفاد © 2019 </p></li>
                     </ul>
                 </div>
-                <div class=" col-lg-3 col-sm-5 col-xs-12 ask">
+                <div class=" col-lg-3 col-sm-5 col-xs-12 ask pr-5">
                     <h6 >تواصل معنا الأن عبر الواتس اب</h6>
-                    <h3 class="mb-1"><a href="http://wa.me/966555208078" target="_blank"> 078  208 555 966 +</a> </h3>
-                    <img src="<?= base_url()."assets/".$direction; ?>/images/Qrcode.png" alt="QR-Code" class="qr-code" width="87px" height="87px">
+					<a href="http://wa.me/966555208078" target="_blank">
+						<h3 class="mb-1"> 078  208 555 966 + </h3>
+						<img src="<?= base_url()."assets/".$direction; ?>/images/Qrcode.png" alt="QR-Code" class="qr-code" width="87px" height="87px">
+					</a>
                 </div>
-                <div class="col-lg-2 col-sm-7 col-xs-12">
+                <div class="col-lg-2 col-sm-7 col-xs-12 ">
                     <h3 class="mb-1">قريبا</h3>
-                    <a href="#"><img src="<?= base_url()."assets/".$direction; ?>/images/google-play%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
-                    <a href="#"><img src="<?= base_url()."assets/".$direction; ?>/images/app-store%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
+                    <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/google-play%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
+                    <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/app-store%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
                 </div>
-                <div class="col-lg-3 col-sm-5 col-xs-12 text-center logo-footer"> 
-                    <img src="<?= base_url()."assets/".$direction; ?>/images/last-logo.png" alt="Efad" class="footerlogo"/>
+                <div class="col-lg-3 col-sm-5 col-xs-12 text-right logo-footer"> 
+                    <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/last-logo.png" alt="Efad" class="footerlogo"/></a>
                     <div class="footer-social d-flex  pt-3 pb-3 ">
                         <p> 
                             <a href="mailto:wecare@efadcar.com"><i class="fas fa-envelope"></i></a>

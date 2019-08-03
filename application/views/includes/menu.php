@@ -5,9 +5,8 @@
 		</a>
 	
 		<div class="collapse navbar-collapse" id="mainMenu">
-			<ul class="navbar-nav ml-auto" dir="rtl">
+			<ul class="navbar-nav ml-auto" dir="rtl" style="    margin-right: auto;">
 				<li class="nav-item"><a class="nav-link" href="#"><?= $this->lang->line('discover'); ?></a></li>
-				<li class="nav-item"><a class="nav-link" href="<?= site_url() ?>"><?= $this->lang->line('home'); ?></a></li>
 				<li class="nav-item"><a class="nav-link" href="#">&nbsp;&nbsp;&nbsp;<?= $this->lang->line('how_to_get_car'); ?>&nbsp;&nbsp;&nbsp;</a></li>
 				<li class="nav-item"><a class="nav-link" href="#"><?= $this->lang->line('quick_payment'); ?></a></li>
 				<li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>">&nbsp;<?= $this->lang->line('faq'); ?>&nbsp;</a> </li>
