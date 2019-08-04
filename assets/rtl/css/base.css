@@ -273,14 +273,30 @@ select {
 	font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f078";
   	font-size: 1em;
   	position: absolute;
-  	top: 0.3em;
-  	left: 26px;
+  	top: 0.2em;
+  	left: 20px;
   	color: #003a5d;
   	pointer-events: none;
+	
 }
 .select-wrapperNew:after{
-    left: 50px;
+    left: 30px;
 }
+.select-wrapperNew:before{
+ content: '';
+display: block;
+position: absolute;
+width: 1px;
+height: 100%;
+margin-right: -20px;
+top: 1px;
+right: 0px;
+border: 0.01rem solid #ccc;
+	
+}
+
+
+
 select::-ms-expand {
   display: none;
 }

@@ -606,9 +606,9 @@ border-radius:0
 .inp-inp{
     display: inline;
     width: 72%;
-    height: 3.5rem !important;
+    height: 3.0rem !important;
     background-color: #fff;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 5px 5px 0;
 }
 .inp-inp::placeholder{
     color: #000;
@@ -620,17 +620,18 @@ border-radius:0
     vertical-align: middle;
     background: #fff;
     position: relative;
-    width: 26%;
-    height: 3.5rem;
+    width: 27%;
+    height: 3.0rem;
     left: 14px;
     bottom: 1px;
     border: 1px solid #ccc;
     border-right: 0;
-    border-radius: 10px 0 0 10px;
+    border-radius: 5px 0 0 5px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
+
 .text-muted {
     color: #003a5d !important;
 }
