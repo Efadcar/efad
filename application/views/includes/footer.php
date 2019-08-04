@@ -69,11 +69,11 @@
 <script src="<?= base_url()."assets/".$direction; ?>/js/popper.min.js"></script> 
 <script src="<?= base_url()."assets/".$direction; ?>/js/bootstrap-4.0.0.js"></script> 
 <script src="<?= base_url()."assets/".$direction; ?>/js/countries/js/msdropdown/jquery.dd.js"></script> 
-<!-- fancybox 
+<!-- fancybox --> 
 <script type="text/javascript" src="<?= base_url()."assets/".$direction; ?>/js/jquery.fancybox.js"></script> 
 
 <script src="<?= base_url()."assets/".$direction; ?>/js/intlTelInput.min.js"></script> 
-<script  src="<?= base_url()."assets/".$direction; ?>/js/telinput.js"></script>--> 
+<script  src="<?= base_url()."assets/".$direction; ?>/js/telinput.js"></script>
 
 <?php
 if (isset($javascripts) && $javascripts != null) {
