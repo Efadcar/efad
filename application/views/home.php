@@ -668,7 +668,7 @@
         <div class="row">
             <div class="container">
                 <div class="col-lg-12 text-center py-4">
-                    <h1 style="font-size: 2.2rem;">كيف أحصل على سيارة ؟</h1>
+                    <h1 style="font-size: 1.5rem;">كيف أحصل على سيارة ؟</h1>
                 </div>
                 <div class="steps">
                     <div class="line"></div>
@@ -741,7 +741,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 text-center pb-2">
-                <h2 class="our_prices_head">اختر خطة وفئة العضوية</h2>
+                <h4 class="our_prices_head">اختر خطة وفئة العضوية</h4>
             </div>
             <div class="pricing-switcher mb-4 col-lg-12">
                 <div class="car_btn">
@@ -907,7 +907,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-sm-12">
-                <h3>هل هناك طلبات إضافة للحصول على سيارة مثل: مبلغ تأمين على سيارة، بطاقة عمل؟</h3>
+                <h4>هل هناك طلبات إضافة للحصول على سيارة مثل: مبلغ تأمين على سيارة، بطاقة عمل؟</h4>
                 <p class="ques-text">لا. لا يتطلب الحصول على سيارة دفع مبلغ تأمين على السيارة أو بطاقة عمل. </p>
             </div>
             <div class="col-lg-6 col-sm-12">
@@ -917,7 +917,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-sm-12">
-                <h3>هل أستطيع الحصول على سيارة بدون الاشتراك في إحدى فئات العضوية؟</h3>
+                <h4>هل أستطيع الحصول على سيارة بدون الاشتراك في إحدى فئات العضوية؟</h4>
                 <p class="ques-text">لا. لا تستطيع/ي الحصول على سيارة إذا لم يكون لديك اشتراك في إحدى فئات العضوية.</p>
             </div>
             <div class="col-lg-6 col-sm-12">
