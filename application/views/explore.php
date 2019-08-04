@@ -1,93 +1,4 @@
-<section class="first-div pb-0">
-    <div class="text-center">
-        <h1 style="font-size: 2rem;font-weight: 600">خدمة الإشتراك للسيارات</h1>
-        <h4> اشترك ٠ تسوق ٠ وأنطلق ..</h4>
-		<p style="text-align: center; width: 45%; margin-top: 170px; font-size: 13px" class="mx-auto">
-		<b>تحتاج سيارة ؟</b>
-			<br>
-طيب، لا تشتري سيارة ولا دفع أقساط على سيارة.
-			<br><br>
-
-جرب إفاد … وأدفع قيمة اشتراك ثابتة على سيارتك لمدة (يوم/أسبوع/ شهر/ سنة) وأستمتع بنظام شامل يلبي إحتياجاتك ولا تشيل هم صيانة السيارة، تغيير السيارة أو تأمين السيارة لأنها شاملة قيمة الاشتراك
-<br><b>
-على فكرة يمديك تلغي اشتراك السيارة في أي وقت … بدون ما تدفع أي مبلغ إضافي.
-</b>
-
-		</p>
-    </div>
-</section>
-
-<header class=" pt-0 mb-5">
-    <div class="container-fluid">
-        <h1 class="whyefad text-center pb-1">ليش أختار إفاد ؟</h1>
-        <div class="row why-choose">
-            <div class="col-lg-4 col-sm-12">
-                <div class="text-center">
-                    <fieldset class="fieldset">
-                        <legend>
-                        <div class="textbanner"> توصيل واستلام السيارة مجاناً </div>
-                        </legend>
-                        <img src="<?= base_url() ?>assets/rtl/images/why_efad/drive-free.png" class="efd-pic">
-                    </fieldset>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="text-center">
-                    <fieldset class="fieldset">
-                        <legend>
-                        <div class="textbanner"> الكيلو متر مفتوح </div>
-                        </legend>
-                        <img src="<?= base_url() ?>assets/rtl/images/why_efad/km.png" class="efd-pic">
-                    </fieldset>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="text-center">
-                    <fieldset class="fieldset">
-                        <legend>
-                        <div class="textbanner"> تأمين شامل 100 ٪ </div>
-                        </legend>
-                        <img src="<?= base_url() ?>assets/rtl/images/why_efad/car-1000.png" class="efd-pic">
-                    </fieldset>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="text-center">
-                    <fieldset class="fieldset">
-                        <legend>
-                        <div class="textbanner"> خدمة المساعدة على الطريق </div>
-                        </legend>
-                        <img src="<?= base_url() ?>assets/rtl/images/why_efad/veciel.png" class="efd-pic">
-                    </fieldset>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class=" text-center">
-                    <fieldset class="fieldset">
-                        <legend>
-                        <div class="textbanner"> سيارة مزودة بالوقود </div>
-                        </legend>
-                        <img src="<?= base_url() ?>assets/rtl/images/why_efad/fuel.png" class="efd-pic">
-                    </fieldset>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class=" text-center">
-                    <fieldset class="fieldset">
-                        <legend>
-                        <div class="textbanner"> غير راضي؟ <span>استرجع كامل المبلغ المدفوع 100%</span></div>
-                        </legend>
-                        <img src="<?= base_url() ?>assets/rtl/images/why_efad/back-money.png" class="efd-pic">
-                    </fieldset>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!--cars search-->
-
-<section  class="p-0 ml-1 mr-3">
+<section  class="p-0 mt-10 ml-1 mr-3">
     <div class="container-fluid ">
         <div class="row">
             <div class="col-sm-3">
@@ -142,26 +53,10 @@
                                         <span class="checkmark"></span> </label>
                                 </div>
                             </div>
-                            <!--
-								<div class="car_btn car-y">
-									<p class="fieldset">
-										<input type="radio" name="year"  value="day" id="day">
-										<label for="day" class="less-month"> أقل من 6 شهور</label>
-										<input type="radio" name="year" value="month"  id="month">
-										<label for="month" class="more-month">أكثر من 6 شهور</label>
-										<input type="radio" name="year" value="year"  id="year">
-										<label for="year" >سنوي</label>
-									</p>
-								</div>
-								--> 
                         </div>
                         <div class="col-md-12 col-sm-12 pt-2"> <span class="labelh py-2">عرض قيمة الإشتراك لمدة</span>
                             <div class="car_btn car-y">
                                 <p class="fieldset"> 
-                                    <!--
-										<input type="radio" name="day1"  value="day1" id="day1"  >
-										<label for="day1" class="day"> يومى</label>
-										-->
                                     <input type="radio" name="year1" value="week1"  id="week1" class="updateSearchContent subscriptionValueDuration" checked>
                                     <label for="week1" class="week">اسبوعى</label>
                                     <input type="radio" name="year1"  value="month1" id="month1" class="updateSearchContent subscriptionValueDuration" >
@@ -196,20 +91,14 @@
                             <div class="select-wrapper">
                                 <select id="select-car" data-placeholder="ماركة السيارة" class="form-control width100p updateSearchContent carBrand">
                                     <option value="all">ماركة السيارة</option>
-                                    <option value="kia">كيا</option>
-                                    <option value="hyundai">هيونداى</option>
-                                    <option value="toyota">تويوتا</option>
-                                    <option value="ford">فورد</option>
-                                    <option value="volkswagen">فولكس فاجن</option>
-                                    <option value="fiat">فيات</option>
-                                    <option value="nissan">نيسان</option>
-                                    <option value="acura">اكورا</option>
-                                    <option value="changan">شانجان</option>
-                                    <option value="volvo">فولفو</option>
-                                    <option value="geely">جيلى</option>
-                                    <option value="renault">رينو</option>
-                                    <option value="GMC">جميس</option>
-                                    <option value="mazda">مازدا</option>
+                                    <?php
+									if($brands != false)
+									foreach($brands as $brand){
+									?>
+									
+									<option value="<?= $brand->cb_uid ?>"><?= $brand->cb_name ?></option>
+									
+									<?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -654,307 +543,45 @@
         </div>
     </div>
 </section>
-<hr>
-<!--  car condition  -->
 
-<section class="car-con">
-    <h1 class="text-center">ماهى شروط الحصول على سيارة؟</h1>
-</section>
-<hr>
-<!-- how get car -->
-<div id="how-get-a-car" class="mb-5"></div>
-<section class="how-get" >
-    <div class="container-fluid">
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-12 text-center py-4">
-                    <h1 style="font-size: 2.2rem;">كيف أحصل على سيارة ؟</h1>
-                </div>
-                <div class="steps">
-                    <div class="line"></div>
-                    <ul>
-                        <li class="item">
-                            <div class="itemNum itemNum1"></div>
-                            <div class="text-center" style="margin: 10px 0;">إشترك فى العضوية</div>
-                            <img src="<?= base_url() ?>assets/rtl/images/how-get/confirm-on-mem.png" class="img-fluid" style="width: 95px"> </li>
-                        <li class="item">
-                            <div class="itemNum itemNum2"></div>
-                            <div class="text-center" style="margin: 10px 0;">إختار سيارتك</div>
-                            <img src="<?= base_url() ?>assets/rtl/images/how-get/choose-car.png" class="img-fluid" style="width: 95px"> </li>
-                        <li class="item">
-                            <div class="itemNum itemNum3"></div>
-                            <div class="text-center" style="margin: 10px 0;">حدد الفترة الزمنية للخدمة</div>
-                            <img src="<?= base_url() ?>assets/rtl/images/how-get/define-time.png" class="img-fluid" style="width: 95px"> </li>
-                        <li class="item">
-                            <div class="itemNum itemNum4"></div>
-                            <div class="text-center" style="margin: 10px 0;">إدفع</div>
-                            <img src="<?= base_url() ?>assets/rtl/images/how-get/pay.png" class="img-fluid" style="width: 95px"> </li>
-                        <li class="item">
-                            <div class="itemNum itemNum5"></div>
-                            <div class="text-center" style="margin: 10px 0;">استلم سيارتك وانطلق</div>
-                            <img src="<?= base_url() ?>assets/rtl/images/how-get/get-your-car.png" class="img-fluid" style="width: 95px"> </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--  faq -->
 
-<!--
-    <section class="how-get pt-10 pb-10">
-        <h1 class="text-center">كيف أحصل على سيارة ؟</h1>
-        <div class="howGetPic2"></div>
-        <img src="<?= base_url() ?>assets/rtl/images/how-get.png" alt="خطوات الحصول على سيارة" class="howGetPic">
-        <ul>
-            <li>
-                <p class="text-center">إشترك فى العضويه</p>
-                <div class="getPic1"></div>
-                <img src="<?= base_url() ?>assets/rtl/images/how-get/confirm-on-mem.png">
-            </li>
-            <li>
-                <p class="text-center">إختار سيارتك</p>
-                <div class="getPic2"></div>
-                <img src="<?= base_url() ?>assets/rtl/images/how-get/choose-car.png">
-            </li>
-            <li>
-                <p class="text-center">حدد الفترة الزمنية للخدمة</p>
-                <div class="getPic3"></div>
-                <img src="<?= base_url() ?>assets/rtl/images/how-get/define-time.png">
-            </li>
-            <li>
-                <p class="text-center">إدفع</p>
-                <div class="getPic4"></div>
-                <img src="<?= base_url() ?>assets/rtl/images/how-get/pay.png">
-            </li>
-            <li>
-                <p class="text-center">إستلم سيارتك</p>
-                <div class="getPic5"></div>
-                <img src="<?= base_url() ?>assets/rtl/images/how-get/get-your-car.png">
-            </li>
-        </ul>
-    </section>
---> 
-
-<!--plane-->
-
-<section class="our_prices text-center" style="background-color: #F8F8F8;">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 text-center pb-2">
-                <h2 class="our_prices_head">اختر خطة وفئة العضوية</h2>
-            </div>
-            <div class="pricing-switcher mb-4 col-lg-12">
-                <div class="car_btn">
-                    <div class="fieldset">
-                        <input type="radio" name="price" value="monthly" id="monthly-1" checked >
-                        <label for="monthly-1" class="active-price all">6 أشهر</label>
-                        <input type="radio" name="price" value="9month" id="9month" >
-                        <label for="9month" class="economic">9 أشهر</label>
-                        <input type="radio" name="price" value="12monthly" id="12monthly">
-                        <label for="12monthly" class="small" >12 شهر</label>
-                        <div class="animation start-home"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="price-card1">
-                    <section class="example-section example-1">
-                        <div class="has-angle has-angle1">
-                            <h1 class="price-item1">الطالبات والطلاب</h1>
-                            <span class="price-itemItem1 value11">69</span> <span class="price-itemItem2">ريال</span> </div>
-                    </section>
-                    <div class="all-div">
-                        <div class="price">
-                            <ul class="list-unstyled text-right">
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>خصم 6% على إجمالي اشتراك الخدمة</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>ساعتين إضافية مجاناً</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>الكيلو متر مفتوح</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>يوم إضافي مجاناً كل ثلاث أسابيع</p>
-                                </li>
-                            </ul>
-                            <footer class="itemSelect"> <a class="select select1" href="#">إشترك الان</a> </footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="price-card2">
-                    <section class="example-section example-1">
-                        <div class="example-container">
-                            <div class="has-angle has-angle2">
-                                <h1 class="price-item1">الزرقاء</h1>
-                                <span class="price-itemItem1 value22">99</span> <span class="price-itemItem2">ريال</span> </div>
-                        </div>
-                    </section>
-                    <div class="all-div">
-                        <div class="price">
-                            <ul class="list-unstyled text-right">
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>خصم 6% على إجمالي اشتراك الخدمة</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>ساعتين إضافية مجاناً</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>الكيلو متر مفتوح</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>يوم إضافي مجاناً كل ثلاث أسابيع</p>
-                                </li>
-                            </ul>
-                            <footer class="itemSelect"> <a class="select select2" href="#">إشترك الان</a> </footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="price-card3">
-                    <section class="example-section example-1">
-                        <div class="example-container">
-                            <div class="has-angle has-angle3">
-                                <h1 class="price-item1">الخضراء</h1>
-                                <span class="price-itemItem1 value33">169</span> <span class="price-itemItem22">ريال</span> </div>
-                        </div>
-                    </section>
-                    <div class="all-div">
-                        <div class="price">
-                            <ul class="list-unstyled text-right">
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>خصم 11% على إجمالي اشتراك الخدمة </p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>4 ساعات إضافية مجاناً</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>الكيلو متر مفتوح</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>يوم إضافي مجاناً كل أسبوعين</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>خدمة غسيل وتنظيف السيارة</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>100 نقطة مجانية سنوياً</p>
-                                </li>
-                            </ul>
-                            <footer class="itemSelect"> <a class="select select3" href="#">إشترك الان</a> </footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="price-card4">
-                    <section class="example-section example-1">
-                        <div class="example-container">
-                            <div class="has-angle has-angle4">
-                                <h1 class="price-item1">الحمراء</h1>
-                                <span class="price-itemItem1 value44">269</span> <span class="price-itemItem22">ريال</span> </div>
-                        </div>
-                    </section>
-                    <div class="all-div">
-                        <div class="price">
-                            <ul class="list-unstyled text-right">
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>خصم 16% على إجمالي اشتراك الخدمة</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>6 ساعات إضافية مجاناً</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>الكيلو متر مفتوح</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>يوم إضافي مجاناً كل أسبوع</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>خدمة غسيل وتنظيف السيارة</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>200 نقطة مجانية سنوياً</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p> ترقية فئة السيارة إلى فئة أعلى</p>
-                                </li>
-                                <li> <i class="fas fa-check" style="color: #003a5d"></i>
-                                    <p>حجز لمدة يومين ودفع الاشتراك لاحقاً</p>
-                                </li>
-                            </ul>
-                            <footer class="itemSelect"> <a class="select select4" href="#">إشترك الان</a> </footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 text-center">
-                <p class="small  mt-2 mb-2">سيتم استرجاع قيمة اشتراك العضوية كاملة ١٠٠٪ عند طلبك لها وفي حال عدم استخدام مميزاتها </p>
-                <a href="member.html" class="btn btn-default mem-details">تفاصيل مميزات العضوية</a> </div>
-        </div>
-    </div>
-</section>
-<section style="padding: 50px 80px;">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>الأسئلة المتكررة</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <h3>هل هناك طلبات إضافة للحصول على سيارة مثل: مبلغ تأمين على سيارة، بطاقة عمل؟</h3>
-                <p class="ques-text">لا. لا يتطلب الحصول على سيارة دفع مبلغ تأمين على السيارة أو بطاقة عمل. </p>
-            </div>
-            <div class="col-lg-6 col-sm-12">
-                <h3>هل أستطيع أن أدفع قيمة الاشتراك أو الخدمة نقداً (كاش)؟</h3>
-                <p class="ques-text">نعم، تستطيع دفع قيمة الاشتراك أو خدمة نقداً(كاش)، ولكن هناك رسوم إضافية على خدمة الدفع النقدي وقدرها 100 ريال لكل منتج أو خدمة.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <h3>هل أستطيع الحصول على سيارة بدون الاشتراك في إحدى فئات العضوية؟</h3>
-                <p class="ques-text">لا. لا تستطيع/ي الحصول على سيارة إذا لم يكون لديك اشتراك في إحدى فئات العضوية.</p>
-            </div>
-            <div class="col-lg-6 col-sm-12">
-                <h3>هل لديكم خدمة حجز وأستلام السيارة بشكل فوري؟</h3>
-                <p class="ques-text">لا. لا توجد لدينا خدمة حجز واستلام السيارة بشكل فوري الآن، ولكن تستطيع/ي القيام بإجراءات حجز السيارة بعد الاشتراك في إحدى فئات العضوية واستلام السيارة بعد ٣٠ يوم عمل على الأقل.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <h3>هل هناك رسوم إضافية على خدمة التأمين الشامل، خدمة الكيلو المفتوح، خدمة المساعدة على الطريق أو الوقود؟</h3>
-                <p class="ques-text">لا. جميع هذه الخدمات تشمل قيمة الاشتراك في الخدمة ولا يوجد رسوم إضافية عليها.</p>
-            </div>
-            <div class="col-lg-6 col-sm-12">
-                <h3>ما هي أفضل فئة من فئات العضوية بالنسبة لي؟</h3>
-                <p class="ques-text">تقدم إفاد فئات مختلفة من العضوية لتلبية احتياجات العملاء المختلفين. لذلك ألقي نظرة على مميزات وأسعار كل فئة من فئات العضوية واختر ما يناسبك.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--  gallary  -->
-
-<section class="galImg">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="galImg5"></div>
-                <div class="galImg6"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="galImg3"></div>
-                <div class="galImg4"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="galImg1"></div>
-                <div class="galImg2"></div>
-            </div>
-        </div>
-    </div>
+<section style="padding: 30px 40px;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>الآسئلة المكررة</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-sm-12 padl-25">
+				<h3>ما هي أفضل فئة من فئات العضوية بالنسبة لي؟</h3>
+				<p class="ques-text">تقدم " إفاد" فئات مختلفة من العضوية لتلبية احتياجات العملاء المختلفين. لذلك ألقي نظرة على مميزات وأسعار كل فئة من فئات العضوية وأختر ما يناسبك.</p>
+			</div>
+			<div class="col-lg-6 col-sm-12 padr-25">
+				<h3>ما هي الطرق المتوفرة لدفع قيمة اشتراك العضوية؟</h3>
+				<p class="ques-text">هناك 4 طرق لدفع قيمة اشتراك العضوية وهي:
+					<br>الدفع الإلكتروني من خلال الموقع.
+					<br> إجراء عملية تحويل إلى الحساب البنكي الخاص بالشركة.<br>
+					التواصل مع فريق العناية بالعملاء ودفع المبلغ نقداً (كاش)، ولكن هناك رسوم إضافية على خدمة الدفع النقدي وقدرها 100 ريال.
+				</p>
+			</div>
+			<div class="col-lg-6 col-sm-12 padl-25">
+				<h3>هل أستطيع ترقية فئة العضوية؟</h3>
+				<p class="ques-text">نعم تستطيع/ي ترقية فئة العضوية في أي وقت ويستغرق تفعيل العضوية الجديدة ثلاثة أيام عمل.</p>
+			</div>
+			<div class="col-lg-6 col-sm-12 padr-25">
+				<h3>هل سيتم إعادة قيمة اشتراك العضوية في حال عدم أستخدمها؟</h3>
+				<p class="ques-text">سيتم إعادة قيمة اشتراك العضوية كاملة ١٠٠٪ عند طلبك لها وفي حال عدم استخدامها مميزاتها</p>
+			</div>
+			<div class="col-lg-6 col-sm-12 padl-25">
+				<h3>كيف أستطيع إلغاء اشتراك العضوية؟ وهل توجد رسوم في حال إلغاء الاشتراك؟</h3>
+				<p class="ques-text">يمكنك القيام بذلك من خلال الدخول إلى حسابك وإلغاء اشتراك العضوية في أي وقت ولا يوجد رسوم على إلغاء الاشتراك.</p>
+			</div>
+			<div class="col-lg-6 col-sm-12 padr-25">
+				<h3>هل يمكنني نقل عضويتي إلى شخص آخر؟</h3>
+				<p class="ques-text">لا. إذا رغبت في عدم تجديد عضويتك الموظف، فلا تستطيع/ي نقل عضويتك لشخص آخر، ويحتاج هذا الشخص إلى بدء عضوية جديدة.</p>
+			</div>
+		</div>
+	</div>
 </section>

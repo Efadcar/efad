@@ -356,6 +356,52 @@ class Global_model extends CI_Model {
 		}
 	}
 	
+	function getAllBrands(){
+		$siteLang = $this->session->userdata('site_lang');
+		//echo $siteLang;exit;
+		$this->db->select('cb_uid,cb_code,cb_name');
+		$q =  $this->db->get('cars_brands');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$string_key = $row->cb_code;
+				$m = $this->db->query("SELECT * FROM strings WHERE string_code LIKE '".$string_key."' AND string_lang LIKE '".$siteLang."'");
+				if($m->num_rows() > 0) {
+					foreach($m->result() as $mrow) {
+						$string_data[$mrow->string_key] = $mrow;
+					}
+					$row->cb_name = $string_data[$row->cb_name]->string_content;
+				}
+				$data[] = $row;
+			}
+			return $data;
+		}else{
+			return false;	
+		}
+	}
+	
+	function getAllTypes(){
+		$siteLang = $this->session->userdata('site_lang');
+		//echo $siteLang;exit;
+		$this->db->select('ct_uid,ct_code,ct_name');
+		$q =  $this->db->get('cars_types');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$string_key = $row->ct_code;
+				$m = $this->db->query("SELECT * FROM strings WHERE string_code LIKE '".$string_key."' AND string_lang LIKE '".$siteLang."'");
+				if($m->num_rows() > 0) {
+					foreach($m->result() as $mrow) {
+						$string_data[$mrow->string_key] = $mrow;
+					}
+					$row->ct_name = $string_data[$row->ct_name]->string_content;
+				}
+				$data[] = $row;
+			}
+			return $data;
+		}else{
+			return false;	
+		}
+	}
+	
 	
 	function getAllCountriesAjax() {
 		$this->db->order_by("status", "desc"); 

@@ -21,8 +21,8 @@
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
     padding: 0 !important;
-    border: 1px solid #fff;
-    border-radius: 5px;
+     border: 1px solid #eee;
+     border-radius:5px ;
 }
 
 .price-car {
@@ -57,9 +57,6 @@
     background-color: #f1f1f2;
 }
  .thumbnail-container:hover {
-     background: #FFFFFF; 
-     border: 1px solid #eee;
-     border-radius:5px ;
 }
 .thumbnail-container .car-price{
     padding: .1rem .8rem;

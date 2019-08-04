@@ -53,7 +53,7 @@ class Home extends CI_Controller {
                     "'" . base_url() . "assets/rtl/js/bootstrap-toastr/toastr.min.js'",
                     "'" . base_url() . "assets/rtl/js/filter/mixitup.min.js'",
                     "'" . base_url() . "assets/rtl/js/filter/mixitup.js'",
-                    "'" . base_url() . "assets/rtl/js/filter/ion.rangeSlider.min.js'",
+                    "'https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.2.1/nouislider.min.js'",
                     "'" . base_url() . "assets/rtl/js/efad-scripts.js'",
                 );
 				
@@ -66,7 +66,7 @@ class Home extends CI_Controller {
     function _cssFiles($view) {
         switch ($view) {
             case 'home': 
-                $css = '';
+                $css = '<link href="' . base_url() . 'assets/rtl/css/nouislider.min.css" rel="stylesheet" type="text/css" />';
                 break;
 
         }
@@ -80,6 +80,33 @@ class Home extends CI_Controller {
 				
 					<!-- filter car search --> 
 					<script>
+					// implementation of nouislider
+					var slider = document.getElementById('nouislider-slider');
+
+					noUiSlider.create(slider, {
+						start: [2015, 2019],
+						connect: true,
+						range: {
+							'min': 2015,
+							'max': 2019
+						},
+
+						step: 1,
+						connect: true,
+						 behaviour: 'tap-drag',
+						tooltips: false,
+
+						// Show a scale with the slider
+						pips: {
+							mode: 'steps',
+							stepped: true,
+							density: 4
+						}
+					});
+
+
+						
+						
 						var \$range = $('.js-range-slider'),
 						instance;
 
