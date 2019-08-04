@@ -654,13 +654,13 @@
         </div>
     </div>
 </section>
-<hr>
+<hr style="width: 90%">
 <!--  car condition  -->
 
 <section class="car-con">
     <h1 class="text-center">ماهى شروط الحصول على سيارة؟</h1>
 </section>
-<hr>
+<hr style="width: 90%">
 <!-- how get car -->
 <div id="how-get-a-car" class="mb-5"></div>
 <section class="how-get" >
