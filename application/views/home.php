@@ -741,7 +741,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 text-center pb-2">
-                <h4 class="our_prices_head">اختر خطة وفئة العضوية</h4>
+                <h4 class="our_prices_head">أختار خطة وفئة العضوية</h4>
             </div>
             <div class="pricing-switcher mb-4 col-lg-12">
                 <div class="car_btn">

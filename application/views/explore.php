@@ -95,9 +95,7 @@
 									if($brands != false)
 									foreach($brands as $brand){
 									?>
-									
 									<option value="<?= $brand->cb_uid ?>"><?= $brand->cb_name ?></option>
-									
 									<?php } ?>
                                 </select>
                             </div>
@@ -106,10 +104,6 @@
                             <div class="select-wrapper">
                                 <select id="select-car" data-placeholder="أختر شكل السيارة" class="form-control width100p updateSearchContent carType">
                                     <option value="all">موديل السيارة</option>
-                                    <option value="1">الرياض</option>
-                                    <option value="2">جدة</option>
-                                    <option value="3">المدينة المنورة</option>
-                                    <option value="4">الدمام</option>
                                 </select>
                             </div>
                         </div>
@@ -117,10 +111,12 @@
                             <div class="select-wrapper">
                                 <select id="select-car" data-placeholder="أختر شكل السيارة" class="form-control width100p updateSearchContent carCategory">
                                     <option value="all">نوع السيارة</option>
-                                    <option value="1">الرياض</option>
-                                    <option value="2">جدة</option>
-                                    <option value="3">المدينة المنورة</option>
-                                    <option value="4">الدمام</option>
+                                    <?php
+									if($types != false)
+									foreach($types as $type){
+									?>
+									<option value="<?= $type->ct_uid ?>"><?= $type->ct_name ?></option>
+									<?php } ?>
                                 </select>
                             </div>
                         </div>

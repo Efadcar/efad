@@ -2884,6 +2884,18 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     border-top: 1px solid #007DBC;
     border-radius: 5px;
 }
+.example-1 .has-angle3::before {
+  background-image: url("../images/more-use.png");
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+  content: '';
+  height: 100px;
+  left: -9px;
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  z-index: 2;
+}
 .example-1 .has-angle3::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 50 100' fill='rgb(41,162,86)' fill-opacity='1'%3E%3Cpolygon points='0,0 100,0 0,100'%3E%3C/polygon%3E%3C/svg%3E");
   background-position: center center;
