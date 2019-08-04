@@ -28,11 +28,11 @@
                         <li><p class="pr-1"> إفاد © 2019 </p></li>
                     </ul>
                 </div>
-                <div class=" col-lg-3 col-sm-5 col-xs-12 ask pr-5">
-                    <h6 >تواصل معنا الأن عبر الواتس اب</h6>
+                <div class=" col-lg-3 col-sm-5 col-xs-12 ask pr-0  text-center">
+                    <h6 class="p-0 m-0" >تواصل معنا الأن عبر الواتس اب</h6>
 					<a href="http://wa.me/966555208078" target="_blank">
-						<h3 class="mb-1"> 078  208 555 966 + </h3>
-						<img src="<?= base_url()."assets/".$direction; ?>/images/Qrcode.png" alt="QR-Code" class="qr-code" width="87px" height="87px">
+						<h3 class="mb-1 p-0"> 078  208 555 966 + </h3>
+						<img src="<?= base_url()."assets/".$direction; ?>/images/Qrcode.png" alt="QR-Code" class="qr-code" width="120px" height="120px">
 					</a>
                 </div>
                 <div class="col-lg-2 col-sm-7 col-xs-12 ">
