@@ -49,8 +49,8 @@ class Media_model extends CI_Model {
 				{
 					$fInfo = $this->upload->data();
 					$media_path = $fInfo['file_name'];
-					$this->_createThumbnail(strtolower($fInfo['file_name']), "m_", 1250);
-					$this->_createThumbnail(strtolower($fInfo['file_name']), "s_", 450);
+					$this->_createThumbnail(strtolower($fInfo['file_name']), "sm_", 625);
+					$this->_createThumbnail(strtolower($fInfo['file_name']), "md_", 1250);
 					$media_thumb_path = "s_".$fInfo['file_name'];
 				}
 				break;	
@@ -115,10 +115,17 @@ class Media_model extends CI_Model {
         $config['new_image'] = $prefix . $fileName;
         $config['maintain_ratio'] = TRUE;
         $config['width'] = $width;
-        $this->load->library('image_lib', $config);
+        $this->load->library('image_lib');
+		$this->image_lib->initialize($config);
         if (!$this->image_lib->resize()) {
-            $this->messages->add($this->image_lib->display_errors(), "error");
+            echo $this->image_lib->display_errors();
+            return false;
         }
+		$this->image_lib->clear();
+		
+		
+		
+		
     }
 
 }
