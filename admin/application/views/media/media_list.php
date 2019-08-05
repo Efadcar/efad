@@ -27,8 +27,8 @@
 								
 								case 1:
 									$media_type_name = "image";
-									$media_link = base_url().ALBUMS_IMAGES.$row->media_path;
-									$media_thumb = base_url().ALBUMS_IMAGES."thumb_".$row->media_path;
+									$media_link = base_url().ALBUMS_IMAGES."md_".$row->media_path;
+									$media_thumb = base_url().ALBUMS_IMAGES."sm_".$row->media_path;
 									break;
 								case 2:
 									$media_type_name = "video";
