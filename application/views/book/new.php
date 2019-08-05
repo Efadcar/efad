@@ -16,28 +16,39 @@
             <div class="col-12"> <a href="#" class="btn btn-default cutom-btn active">أستكمال بيانات الحجز</a> <!--<a href="#" class="btn btn-default cutom-btn">الحجز المجانى</a> --> </div>
         </div>
         <div class="reservation-form  bg-secondary">
-            <div class="row d-flex align-items-center ">
+            <div class="row">
                 <div class="col-sm-4 ">
                     <div class="carname d-flex ">
-                        <h2><span><?= $this->global_model->getStringByKeyLanguage($car->cb_uid->cb_name,"arabic") ?></span> <span><?= $car->car_model_year ?></span></h2>
-                        <h3><?= $car->car_model_name ?></h3>
+                        <h2>
+							<span><?= $this->global_model->getStringByKeyLanguage($car->cb_uid->cb_name,"arabic") ?></span> 
+							<span><?= $car->car_model_name ?></span>
+							<span><?= $car->car_model_year ?></span>
+						</h2>
                     </div>
-                    <ul class="cartype">
-                        <li>
-                            <div class="cartype-logo"> <img alt="gear" src="<?= base_url()."assets/".$direction; ?>/images/gear-icon.png" /> </div>
-                            <span ><?php if($car->car_transmission == "manual"){echo "يدوي";}else{echo "أوتوماتيك";} ?></span> </li>
-                        <li>
-                            <div class="cartype-logo"> <img alt="bag" src="<?= base_url()."assets/".$direction; ?>/images/bag-icon.png" /> </div>
-                            <span ><?= $car->car_bags ?> شنطة</span> </li>
-                        <li>
-                            <div class="cartype-logo"> <img alt="persons" src="<?= base_url()."assets/".$direction; ?>/images/person-icon.png" /> </div>
-                            <span ><?= $car->car_persons ?> أفراد</span> </li>
-                        <li>
-                            <div class="cartype-logo"> <img alt="doors" src="<?= base_url()."assets/".$direction; ?>/images/door-icon.png" /> </div>
-                            <span ><?= $car->car_doors ?> أبواب</span>
-                    </ul>
+					<div class=" align-items-center mt-10">
+						<div class="text-right "> 
+							<span id="daily-rate" class="value"><?= $car->car_daily_price ?></span> 
+							<span class="duration">ريال فى اليوم</span> 
+						</div>
+						<br><br>
+						<ul class="cartype">
+							<li>
+								<div class="cartype-logo"> <img alt="gear" src="<?= base_url()."assets/".$direction; ?>/images/gear-icon.png" /> </div>
+								<span ><?php if($car->car_transmission == "manual"){echo "يدوي";}else{echo "أوتوماتيك";} ?></span> </li>
+							<li>
+								<div class="cartype-logo"> <img alt="bag" src="<?= base_url()."assets/".$direction; ?>/images/bag-icon.png" /> </div>
+								<span ><?= $car->car_bags ?> شنطة</span> </li>
+							<li>
+								<div class="cartype-logo"> <img alt="persons" src="<?= base_url()."assets/".$direction; ?>/images/person-icon.png" /> </div>
+								<span ><?= $car->car_persons ?> أفراد</span> </li>
+							<li>
+								<div class="cartype-logo"> <img alt="doors" src="<?= base_url()."assets/".$direction; ?>/images/door-icon.png" /> </div>
+								<span ><?= $car->car_doors ?> أبواب</span>
+						</ul>
+					</div>
+					
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-8">
                     <div class="price-car text-right"> </div>
                     <div class="car-img">
 						<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -68,7 +79,7 @@
 						
 						<!--<img src="<?= base_url().ALBUMS_IMAGES.$car->main_image; ?>" class="img-fluid" /> --> </div>
                 </div>
-                <div class="col-sm-4 text-center"> <span id="daily-rate" class="value"><?= $car->car_daily_price ?></span> <span class="duration">ريال فى اليوم</span> </div>
+                
             </div>
         </div>
         <!-- reservation form -->
