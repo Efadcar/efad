@@ -48,10 +48,15 @@ class Media_model extends CI_Model {
 				else
 				{
 					$fInfo = $this->upload->data();
+					//print_r($fInfo);exit;
 					$media_path = $fInfo['file_name'];
-					$this->_createThumbnail(strtolower($fInfo['file_name']), "sm_", 625);
-					$this->_createThumbnail(strtolower($fInfo['file_name']), "md_", 1250);
+					$image_width = $fInfo['image_width'];
+					$image_height = $fInfo['image_height'];
+					$this->_createThumbnail(strtolower($fInfo['file_name']), "sm_", 625, $image_width, $image_height);
+					$this->_createThumbnail(strtolower($fInfo['file_name']), "md_", 1250, $image_width, $image_height);
+					
 					$media_thumb_path = "s_".$fInfo['file_name'];
+					
 				}
 				break;	
 			
@@ -108,7 +113,7 @@ class Media_model extends CI_Model {
      * 
      * @return void
      */
-    function _createThumbnail($fileName, $prefix, $width) {
+    function _createThumbnail($fileName, $prefix, $width, $image_width, $image_height) {
         $config['image_library'] = 'gd2';
         $config['source_image'] = ALBUMS_IMAGES . $fileName;
         $config['create_thumb'] = false;
@@ -118,6 +123,28 @@ class Media_model extends CI_Model {
         $this->load->library('image_lib');
 		$this->image_lib->initialize($config);
         if (!$this->image_lib->resize()) {
+            echo $this->image_lib->display_errors();
+            return false;
+        }
+		$this->image_lib->clear();
+		$this->_crop($prefix . $fileName, $prefix, $width, $image_width, $image_height);
+    }
+
+    function _crop($fileName, $prefix, $width, $image_width, $image_height) {
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = ALBUMS_IMAGES . $fileName;
+        $config['maintain_ratio'] = FALSE;
+
+		$new_ratio = 2400 / 1400;
+		$config['width'] = $width;
+		$config['height'] = round($width/$new_ratio);
+		// now we will tell the library to crop from a certain y axis coordinate so that the new image is taken from the vertical center of the source image
+		$config['y_axis'] = round(($config['height'])/5.5);
+		$config['x_axis'] = 0;
+		
+        $this->load->library('image_lib');
+		$this->image_lib->initialize($config);
+        if (!$this->image_lib->crop()) {
             echo $this->image_lib->display_errors();
             return false;
         }

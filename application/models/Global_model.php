@@ -199,6 +199,102 @@ class Global_model extends CI_Model {
 		// return true and set message to session msgs
 	}
 	
+	function search(){		
+		$search_text = $this->input->post('search_text');
+		$book_period = $this->input->post('book_period');
+		$price_from = $this->input->post('price_from');
+		$price_to = $this->input->post('price_to');
+		$cb_uid = $this->input->post('cb_uid');
+		$cm_uid = $this->input->post('cm_uid');
+		$ct_uid = $this->input->post('ct_uid');
+		$year_from = $this->input->post('year_from');
+		$year_to = $this->input->post('year_to');
+		$color = $this->input->post('color');
+		$car_transmission = $this->input->post('transmission');
+		
+		$order_by = $this->input->post('order_by');
+		
+		$offset_before = $this->input->post('offset');
+		$offset = $offset_before * 10;
+		$num_rows = null;
+		
+		if($search_text != null && $search_text != "")
+		{
+
+		}
+		else
+		{
+			if($cb_uid == 0){
+				$where = "";
+			}else{
+				$where = "AND cb_uid = ".$cb_uid;
+			}
+			
+			if($cm_uid == 0){
+				$where = "";
+			}else{
+				$where = "AND cm_uid = ".$cm_uid;
+			}
+			
+			if($ct_uid == 0){
+				$where = "";
+			}else{
+				$where = "AND ct_uid = ".$ct_uid;
+			}
+			
+			if($color == 0){
+				$where = "";
+			}else{
+				$where = "AND car_color = ".$color;
+			}
+			
+			if($car_transmission == 0){
+				$where = "";
+			}else{
+				$where = "AND car_transmission = '".$car_transmission."'";
+			}
+			
+			if($book_period == 0){
+				$where = "AND car_daily_price >= '".$price_from."' AND car_daily_price <= '".$price_to."' ";
+				$field = "car_daily_price";
+			}else{
+				$where = "AND car_monthly_price >= '".$price_from."' AND car_monthly_price <= '".$price_to."' ";
+				$field = "car_monthly_price";
+			}
+			
+			if($offset_before == 0){
+				$n = $this->db->query("
+					SELECT car_uid 
+					  FROM cars
+					WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." "
+				);
+				$num_rows = $n->num_rows();
+			}
+			
+			$q = $this->db->query("
+			SELECT car_uid, cc_uid, ct_uid, cb_uid, cm_uid, car_model_year, car_color, album_uid, car_daily_price, car_monthly_price, car_in_stock, car_status 
+			  FROM cars
+			WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." ORDER BY ".$field." ".$order_by." LIMIT 10 OFFSET ".$offset
+			);
+
+			$data['num_rows'] = $num_rows;
+
+			if($q->num_rows() > 0) {
+				foreach($q->result() as $row) {
+					$data['result'][] = $row;
+				}
+				$data['status'] = true;
+				$data['message'] = "تم العثور علي نتائج";
+				return $data; 
+			}else{
+				$data['status'] = false;
+				$data['message'] = "لا توجد نتائج للبحث";
+				$data['result'] = [];
+				return $data;	
+			}
+		}
+	}
+	
 	function confirmMembership($payment_method){		
 		$member_uid = $this->session->userdata('member_uid');
 		$data['mc_uid'] = $this->input->post('mc_uid');
