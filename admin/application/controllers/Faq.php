@@ -143,6 +143,7 @@ class Faq extends CI_Controller {
                     "'" . base_url() . "../assets/global/plugins/counterup/jquery.counterup.min.js'",
                     "'" . base_url() . "../assets/global/plugins/bootstrap-toastr/toastr.min.js'",
                     "'" . base_url() . "../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js'",
+                    "'" . base_url() . "../assets/global/plugins/ckeditor/ckeditor.js'",
                     "'" . base_url() . "../assets/global/scripts/app.min.js'",
                     "'" . base_url() . "../assets/layouts/layout/scripts/layout.min.js'",
                 );

@@ -78,8 +78,9 @@
                                         </div>
 
                                         <div class="form-group form-md-line-input form-md-floating-label ">
-									<textarea class="form-control" rows="3" name="faq_answer_<?= $language->lang_name ?>"></textarea>
-                                            <label for="form_control_1">اجابة السؤال باللغة <?= $language->lang_title ?></label>
+											 <label for="form_control_1">اجابة السؤال باللغة <?= $language->lang_title ?></label>
+									<textarea class="form-control ckeditor" rows="3" name="faq_answer_<?= $language->lang_name ?>"></textarea>
+                                           
                                             <span class="help-block">برجاء كتابة اجابة السؤال باللغة <?= $language->lang_title ?>.</span>
                                         </div>
                                         

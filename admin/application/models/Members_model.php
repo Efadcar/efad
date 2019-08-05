@@ -10,10 +10,12 @@ class Members_model extends CI_Model {
 			}
 			foreach($data as $r) {
 				$mc_uid = $r->mc_uid;
-				$m = $this->db->query("SELECT mc_name FROM memberships WHERE mc_uid = $mc_uid");
-				if($m->num_rows() > 0) {
-					foreach($m->result() as $mrow) {
-						$r->mc_name = $mrow->mc_name;
+				if($mc_uid != null){
+					$m = $this->db->query("SELECT mc_name FROM memberships WHERE mc_uid = $mc_uid");
+					if($m->num_rows() > 0) {
+						foreach($m->result() as $mrow) {
+							$r->mc_name = $mrow->mc_name;
+						}
 					}
 				}
 			}

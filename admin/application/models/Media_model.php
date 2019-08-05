@@ -49,8 +49,9 @@ class Media_model extends CI_Model {
 				{
 					$fInfo = $this->upload->data();
 					$media_path = $fInfo['file_name'];
-					$this->_createThumbnail(strtolower($fInfo['file_name']));
-					$media_thumb_path = "thumb_".$fInfo['file_name'];
+					$this->_createThumbnail(strtolower($fInfo['file_name']), "m_", 1250);
+					$this->_createThumbnail(strtolower($fInfo['file_name']), "s_", 450);
+					$media_thumb_path = "s_".$fInfo['file_name'];
 				}
 				break;	
 			
@@ -107,13 +108,13 @@ class Media_model extends CI_Model {
      * 
      * @return void
      */
-    function _createThumbnail($fileName) {
+    function _createThumbnail($fileName, $prefix, $width) {
         $config['image_library'] = 'gd2';
         $config['source_image'] = ALBUMS_IMAGES . $fileName;
         $config['create_thumb'] = false;
-        $config['new_image'] = 'thumb_' . $fileName;
+        $config['new_image'] = $prefix . $fileName;
         $config['maintain_ratio'] = TRUE;
-        $config['width'] = 420;
+        $config['width'] = $width;
         $this->load->library('image_lib', $config);
         if (!$this->image_lib->resize()) {
             $this->messages->add($this->image_lib->display_errors(), "error");

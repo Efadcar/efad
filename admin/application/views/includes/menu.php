@@ -138,6 +138,23 @@
             </li>
 			<?php } ?>
 			
+            <?php if ($this->global_model->have_permission_menu('cars_models_menu')) { ?>    
+			<?php
+            $key = 'cars_models';
+            if (strpos($this->uri->uri_string(), $key) !== false) {
+                $active = 'start active open';
+            } else {
+                $active = '';
+            }
+            ?>
+            <li class="nav-item start <?= $active ?>">
+                <a href="<?php echo site_url('cars_models/cars_models_list') ?>" class="nav-link nav-toggle">
+                    <i class="fa fa-car"></i>
+                    <span class="title">موديلات السيارات</span>
+                </a>
+            </li>
+			<?php } ?>
+			
             <?php if ($this->global_model->have_permission_menu('albums_menu')) { ?>    
 			<?php
             $key = 'albums';
@@ -159,7 +176,7 @@
             <?php if ($this->global_model->have_permission_menu('cars_menu')) { ?>    
 			<?php
             $key = 'cars';
-            if (strpos($this->uri->uri_string(), $key) !== false) {
+            if (strpos($this->uri->uri_string(), $key) !== false && $this->uri->uri_string() == "cars/cars_list") {
                 $active = 'start active open';
             } else {
                 $active = '';
@@ -193,7 +210,7 @@
             <?php if ($this->global_model->have_permission_menu('memberships_menu')) { ?>    
 			<?php
             $key = 'members';
-            if (strpos($this->uri->uri_string(), $key) !== false) {
+            if (strpos($this->uri->uri_string(), $key) !== false && $this->uri->uri_string() == "members/members_list") {
                 $active = 'start active open';
             } else {
                 $active = '';
