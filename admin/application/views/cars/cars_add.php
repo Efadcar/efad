@@ -250,24 +250,19 @@
 									
 								</div>
 								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group">
-											<label>السعر اليومي</label>
-											<input type="number" class="form-control" placeholder="برجاء كتابةالسعر اليومي" name="car_daily_price" required> 
+											<label>السعر أقل من 6 شهور</label>
+											<input type="number" class="form-control" placeholder="برجاء كتابةالسعر لأقل من 6 شهور" name="car_daily_price" required> 
 										</div>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group">
-											<label>السعر الشهري</label>
-											<input type="number" class="form-control" placeholder="برجاء كتابة السعر الشهري" name="car_monthly_price" required> 
+											<label>السعر أكثر من 6 شهور</label>
+											<input type="number" class="form-control" placeholder="برجاء كتابة السعر لأكثر من 6 شهور" name="car_monthly_price" required> 
 										</div>
 									</div>
-									<div class="col-md-4">
-										<div class="form-group">
-											<label>السعر السنوي</label>
-											<input type="number" class="form-control" placeholder="برجاء كتابة السعر السنوي" name="car_yearly_price" required> 
-										</div>
-									</div>
+									
 								</div>
 								<div class="row">
 									<div class="col-md-4">
