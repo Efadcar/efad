@@ -28,15 +28,21 @@ class Memberships extends CI_Controller {
 	
 	function confirm(){
 		if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null && isset($_POST['mc_uid']) && isset($_POST['period'])) {
-			$data['direction'] = $this->global_model->getSiteDirection();
-			$data['row'] = $this->global_model->getMembershipByID($_POST['mc_uid']);
-			$data['period'] = $_POST['period'];
-			$data['main_content'] = 'memberships/pay';
-			$data['javascripts'] = $this->_javascript('pay');
-			$data['pageCssFiles'] = $this->_cssFiles('memberships');
-			$data['javascriptCode'] = $this->_javascriptCode('pay', "");
-			$this->load->view('includes/template', $data);
-		}else{
+			if($_SESSION['mc_uid'] < $_POST['mc_uid'] & $_POST['mc_uid'] != 4 || $_SESSION['mc_uid'] == 4 & $_POST['mc_uid'] != 4){
+				$data['direction'] = $this->global_model->getSiteDirection();
+				$data['row'] = $this->global_model->getMembershipByID($_POST['mc_uid']);
+				$data['period'] = $_POST['period'];
+				$data['main_content'] = 'memberships/pay';
+				$data['javascripts'] = $this->_javascript('pay');
+				$data['pageCssFiles'] = $this->_cssFiles('memberships');
+				$data['javascriptCode'] = $this->_javascriptCode('pay', "");
+				$this->load->view('includes/template', $data);
+			}else{
+				$this->messages->add("عفواً، لا يمكنك تقليل فئة العضوية.", "error");
+				redirect('memberships/subscribe');
+			}
+		}elseif(isset($_POST['mc_uid']) && isset($_POST['period'])){
+			$this->messages->add("يجب عليك تسجيل الدخول حتي تتمكن من الأشتراك بعضوية.", "error");
 			redirect('memberships/subscribe');
 		}
 		//print_r($_POST);exit;

@@ -23,6 +23,9 @@ class Book extends CI_Controller {
         $data['javascriptCode'] = $this->_javascriptCode('book');
         $data['main_content'] = 'book/new';
         $data['car'] = $this->global_model->getCarByID($car_uid);
+		if($data['car'] == false){
+			redirect('explore');
+		}
 		//print_r($data['car']);exit;
         //set page title
         $data['pageTitle'] = "أحجز الآن";		
@@ -50,6 +53,7 @@ class Book extends CI_Controller {
 			$city_uid = $current_booking['city_uid'];
 			
 			if($current_booking['mc_uid'] == $this->session->userdata('mc_uid') || $this->session->userdata('mc_uid') == null){
+				$_SESSION['current_booking']['new_member'] = 0;
 			}else{
 				$result = $this->global_model->calculate($current_booking['book_start_date'], $current_booking['book_end_date'], $current_booking['car_uid'], $this->session->userdata('mc_uid'));
 			}		

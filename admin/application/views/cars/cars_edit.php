@@ -78,7 +78,7 @@
 												<option value=""></option>
                                                 <?php if($albums !== false){
 														foreach($albums as $r) : ?>
-                                                        <option value="<?php echo $r->album_uid; ?>" <?php echo set_select('album_uid', $r->album_uid); ?> <?php if($row->album_uid == $r->album_uid){echo "selected";} ?>><?php echo $this->global_model->getStringByKeyLanguage('album_name'.$r->album_code, 'arabic') ?></option>  
+                                                        <option value="<?php echo $r->album_uid; ?>" <?php echo set_select('album_uid', $r->album_uid); ?> <?php if($row->album_uid == $r->album_uid){echo "selected";} ?>><?php echo $album_name ?></option>  
                                                 <?php endforeach;} ?>
 											</select>
 											

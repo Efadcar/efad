@@ -158,7 +158,7 @@
 						</div>
 					</div>
 				</div>
-				
+				<?php //print_r($_SESSION) ?>
 				
 				<div class="col-sm-6">
 					<div class=" col-md-12  col-sm-12 mx-sm-auto ">
