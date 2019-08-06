@@ -78,7 +78,7 @@
 												<option value=""></option>
                                                 <?php if($albums !== false){
 														foreach($albums as $r) : ?>
-                                                        <option value="<?php echo $r->album_uid; ?>" <?php echo set_select('album_uid', $r->album_uid); ?>><?php echo $album_name ?></option>  
+                                                        <option value="<?php echo $r->album_uid; ?>" <?php echo set_select('album_uid', $r->album_uid); ?>><?php echo $r->album_name ?></option>  
                                                 <?php endforeach;} ?>
 											</select>
 											
