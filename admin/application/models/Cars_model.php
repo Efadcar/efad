@@ -9,13 +9,25 @@ class Cars_model extends CI_Model {
 				$data[] = $row;
 			}
 			foreach($data as $r) {
-				$car_color = $r->car_color;
-				$m = $this->db->query("SELECT cco_name FROM cars_colors WHERE cco_uid = $car_color");
+				$m = $this->db->query("SELECT cb_name FROM cars_brands WHERE cb_uid = $r->cb_uid");
 				if($m->num_rows() > 0) {
 					foreach($m->result() as $mrow) {
-						$r->car_color = $mrow->cco_name;
+						$r->cb_uid = $this->global_model->getStringByKeyLanguage($mrow->cb_name, 'arabic');
 					}
 				}
+				$m = $this->db->query("SELECT cm_name FROM cars_models WHERE cm_uid = $r->cm_uid");
+				if($m->num_rows() > 0) {
+					foreach($m->result() as $mrow) {
+						$r->cm_uid = $this->global_model->getStringByKeyLanguage($mrow->cm_name, 'arabic');
+					}
+				}
+				$m = $this->db->query("SELECT cco_name FROM cars_colors WHERE cco_uid = $r->car_color");
+				if($m->num_rows() > 0) {
+					foreach($m->result() as $mrow) {
+						$r->car_color = $this->global_model->getStringByKeyLanguage($mrow->cco_name, 'arabic');
+					}
+				}
+				
 			}
 			return $data; 
 		}else{
@@ -62,6 +74,19 @@ class Cars_model extends CI_Model {
 		}
 	}
 	
+	function getAllModels() {
+		//$this->db->order_by("ct_name", "desc"); 
+		$q = $this->db->get('cars_models');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+	
 	function getAllAlbums() {
 		//$this->db->order_by("ct_name", "desc"); 
 		$q = $this->db->get('albums');
@@ -89,7 +114,10 @@ class Cars_model extends CI_Model {
 	}
 		
 	function add_action() {
-		
+		$car_brand = $this->global_model->getBrandByID($this->input->post('cb_uid'));
+		$car_model = $this->global_model->getModelByID($this->input->post('cm_uid'));
+		$car_color = $this->global_model->getColorByID($this->input->post('car_color'));
+		$car_search_text = $car_brand.", ".$car_model.", ".$this->input->post('car_model_year').", ".$car_color;
 		
 		$data = array(
 		   'car_link' => $this->input->post('car_model_name')."-".rand(1000,20000),
@@ -97,7 +125,7 @@ class Cars_model extends CI_Model {
 		   'ct_uid' => $this->input->post('ct_uid'),
 		   'cb_uid' => $this->input->post('cb_uid'),
 		   'car_model_year' => $this->input->post('car_model_year'),
-		   'car_model_name' => $this->input->post('car_model_name'),
+		   'cm_uid' => $this->input->post('cm_uid'),
 		   'car_color' => $this->input->post('car_color'),
 		   'album_uid' => $this->input->post('album_uid'),
 		   'car_plate_number' => $this->input->post('car_plate_number'),
@@ -113,6 +141,8 @@ class Cars_model extends CI_Model {
 		   'next_maintenance_date' => $this->input->post('next_maintenance_date'),
 		   'car_status' => $this->_if_null_input($this->input->post('car_status')),
 		   'has_offer' => $this->_if_null_input($this->input->post('has_offer')),
+		   'car_in_stock' => $this->_if_null_input($this->input->post('car_in_stock')),
+		   'car_search_text' => $car_search_text,
 		   'new_car' => $this->_if_null_input($this->input->post('new_car'))
 		);
 		
@@ -136,13 +166,17 @@ class Cars_model extends CI_Model {
 	}
 		
 	function edit_action($id){
-		
+		$car_brand = $this->global_model->getBrandByID($this->input->post('cb_uid'));
+		$car_model = $this->global_model->getModelByID($this->input->post('cm_uid'));
+		$car_color = $this->global_model->getColorByID($this->input->post('car_color'));
+		$car_search_text = $car_brand.", ".$car_model.", ".$this->input->post('car_model_year').", ".$car_color;
+
 		$data = array(
 		   'cc_uid' => $this->input->post('cc_uid'),
 		   'ct_uid' => $this->input->post('ct_uid'),
 		   'cb_uid' => $this->input->post('cb_uid'),
 		   'car_model_year' => $this->input->post('car_model_year'),
-		   'car_model_name' => $this->input->post('car_model_name'),
+		   'cm_uid' => $this->input->post('cm_uid'),
 		   'car_color' => $this->input->post('car_color'),
 		   'album_uid' => $this->input->post('album_uid'),
 		   'car_plate_number' => $this->input->post('car_plate_number'),
@@ -158,6 +192,8 @@ class Cars_model extends CI_Model {
 		   'next_maintenance_date' => $this->input->post('next_maintenance_date'),
 		   'car_status' => $this->_if_null_input($this->input->post('car_status')),
 		   'has_offer' => $this->_if_null_input($this->input->post('has_offer')),
+		   'car_in_stock' => $this->_if_null_input($this->input->post('car_in_stock')),
+		   'car_search_text' => $car_search_text,
 		   'new_car' => $this->_if_null_input($this->input->post('new_car'))
 		);
 		

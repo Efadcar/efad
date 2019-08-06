@@ -33,7 +33,10 @@
                             <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
+                                <th>ماركة السيارة</th>
                                 <th>موديل السيارة</th>
+                                <th>سنة الصنع</th>
+                                <th>لون السيارة</th>
                                 <th>خيارات</th>
                             </tr>
                             </thead>
@@ -43,7 +46,10 @@
                                 foreach($rows as $row){
                                 ?>
                                 <tr>
-                                    <td><?= $row->car_model_name ?></td>
+                                    <td><?= $row->cb_uid ?></td>
+                                    <td><?= $row->cm_uid ?></td>
+                                    <td><?= $row->car_model_year ?></td>
+                                    <td><?= $row->car_color ?></td>
                                     <td>
                                         <!--<a href="<?php echo site_url('cars/cars_view/'.$row->car_uid) ?>" class="btn btn-xs blue"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-eye"></i>عرض</a> --> 
                                         <a href="<?php echo site_url('cars/cars_edit/'.$row->car_uid) ?>" class="btn btn-xs yellow"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-pencil"></i>تعديل</a> 

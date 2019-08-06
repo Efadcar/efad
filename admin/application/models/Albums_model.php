@@ -26,39 +26,61 @@ class Albums_model extends CI_Model {
 		}
 	}
 	
+	function getAllBrands() {
+		//$this->db->order_by("ct_name", "desc"); 
+		$q = $this->db->get('cars_brands');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
 	
+	function getAllModels() {
+		//$this->db->order_by("ct_name", "desc"); 
+		$q = $this->db->get('cars_models');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+		
+	function getAllColors() {
+		$this->db->order_by("cco_name", "asc"); 
+		$q = $this->db->get('cars_colors');
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}	
 
 	function add(){
-		$code = '_vertex_'.time();
 		
-		$album_link = url_title($this->input->post('album_name_english'), '-', TRUE);
-		$album_name = "album_name".$code;
+		$car_brand = $this->global_model->getBrandByID($this->input->post('cb_uid'));
+		$car_model = $this->global_model->getModelByID($this->input->post('cm_uid'));
+		$car_color = $this->global_model->getColorByID($this->input->post('car_color'));
+		
+		$album_name = $car_brand." - ".$car_model." - ".$this->input->post('model_year')." - ".$car_color;
+		$album_link = url_title($album_name , '-', TRUE);
 
 		$data = array(
 		   'album_name' => $album_name,
-		   'album_link' => $album_link,
-		   'album_code' => $code
+		   'album_link' => $album_link
 		);
 		
 		$this->db->insert('albums', $data);
 		if($this->db->affected_rows() > 0){
-			
-			$languages = $this->getAllLanguages();
-			if($languages != false)
-			foreach($languages as $language){
-				
-				if(isset($_POST['album_name_'.$language->lang_name])){
-					$data = array(
-					   'string_key' => $album_name,
-					   'string_code' => $code,
-					   'string_lang' => $language->lang_name,
-					   'string_content' => $this->input->post('album_name_'.$language->lang_name)
-					);
-					$this->db->insert('strings', $data);
-				}
-			}
-			
-			
 			$this->messages->add("تم إضافة الألبوم بنجاح", "success");
 		}else{
 			$this->messages->add("حدث خطأ أثناء الإضافة", "error");
@@ -80,32 +102,19 @@ class Albums_model extends CI_Model {
 	function edit($id){
 		
 		$row = $this->getByID($id);
-		$album_link = url_title($this->input->post('album_name_english'), '-', TRUE);
-		$album_name = "album_name".$row->album_code;
+		$car_brand = $this->global_model->getBrandByID($this->input->post('cb_uid'));
+		$car_model = $this->global_model->getModelByID($this->input->post('cm_uid'));
+		$car_color = $this->global_model->getColorByID($this->input->post('car_color'));
 		
+		$album_name = $car_brand." - ".$car_model." - ".$this->input->post('model_year')." - ".$car_color;
+		$album_link = url_title($album_name , '-', TRUE);
+
 		$data = array(
+		   'album_name' => $album_name,
 		   'album_link' => $album_link
 		);
 		$this->db->where('album_uid', $id);
 		$this->db->update('albums', $data);
-			
-		$languages = $this->getAllLanguages();
-		if($languages != false)
-		foreach($languages as $language){
-
-			if(isset($_POST['album_name_'.$language->lang_name])){
-				$data = array(
-				   'string_content' => $this->input->post('album_name_'.$language->lang_name)
-				);
-				$this->db->where('string_key', $album_name);
-				$this->db->where('string_lang', $language->lang_name);
-				$this->db->update('strings', $data);
-			}
-
-
-		}
-
-
 		$this->messages->add("تم تعديل الألبوم بنجاح", "success");
 
 

@@ -30,40 +30,58 @@
                         
                             <div class="form-body">
                             
-                                <ul class="nav nav-tabs">
-                                <?php
-								$i = 0;
-								foreach($languages as $language){
-								?>
-
-                                    <li class="<?php if($i == 0){ echo "active";} ?>">
-                                        <a href="#tab_<?= $language->lang_name ?>" data-toggle="tab"> 
-										<img src="<?= base_url().FLAGS_IMAGES.$language->lang_flag ?>" />
-										<?= $language->lang_title ?> </a>
-                                    </li>
-                                <?php $i++; } ?>
-                                </ul>
-                                <div class="tab-content">
-                                
-                                
-									<?php
-                                    $i = 0;
-                                    foreach($languages as $language){
-                                    ?>
-                                
-                                    <div class="tab-pane fade <?php if($i == 0){ echo "active in";} ?>" id="tab_<?= $language->lang_name ?>">
-
-                                        <div class="form-group form-md-line-input form-md-floating-label ">
-                                            <input type="text" class="form-control" name="album_name_<?= $language->lang_name ?>" value="<?= $this->global_model->getStringByKeyLanguage($row->album_name, $language->lang_name) ?>">
-                                            <label for="form_control_1">أسم الألبوم باللغة <?= $language->lang_title ?></label>
-                                            <span class="help-block">برجاء كتابة أسم الألبوم باللغة <?= $language->lang_title ?></span>
-                                        </div>
-                                    </div>
-                                    
-									<?php $i++; } ?>
-
-
-                                </div>
+                                <div class="row">
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="cb_uid">ماركة السيارة</label>
+											<select class="form-control" id="cb_uid" name="cb_uid" required>
+												<option value=""></option>
+                                                <?php if($brands !== false){
+														foreach($brands as $r) : ?>
+                                                        <option value="<?php echo $r->cb_uid; ?>" <?php echo set_select('cb_uid', $r->cb_uid); ?>><?php echo $this->global_model->getStringByKeyLanguage('cb_name'.$r->cb_code, 'arabic') ?></option>  
+                                                <?php endforeach;} ?>
+											</select>
+											
+										</div>											
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="cb_uid">موديل السيارة</label>
+											<select class="form-control" id="cm_uid" name="cm_uid" required>
+												<option value=""></option>
+                                                <?php if($models !== false){
+														foreach($models as $r) : ?>
+                                                        <option value="<?php echo $r->cm_uid; ?>" <?php echo set_select('cm_uid', $r->cm_uid); ?>><?php echo $this->global_model->getStringByKeyLanguage('cm_name'.$r->cm_code, 'arabic') ?></option>  
+                                                <?php endforeach;} ?>
+											</select>
+										</div>											
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="car_model_year">سنة الصنع</label>
+											<select class="form-control select2" id="car_model_year" name="model_year" required>
+												<option value=""></option>
+												<option value="2016">2016</option>
+												<option value="2017">2017</option>
+												<option value="2018">2018</option>
+												<option value="2019">2019</option>
+												<option value="2020">2020</option>
+											</select>
+										</div>										
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="car_color">لون السيارة</label>
+											<select class="form-control select2" id="car_color" name="car_color" required>
+												<option value=""></option>
+                                                <?php if($colors !== false){
+														foreach($colors as $r) : ?>
+                                                        <option value="<?php echo $r->cco_uid; ?>" <?php echo set_select('car_color', $r->cco_uid); ?>><?php echo $this->global_model->getStringByKeyLanguage('cco_name'.$r->cco_code, 'arabic') ?></option>  
+                                                <?php endforeach;} ?>
+											</select>
+										</div>										
+									</div>
+								</div>	
                             
                             
                             </div>

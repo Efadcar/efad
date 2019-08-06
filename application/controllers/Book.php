@@ -23,7 +23,7 @@ class Book extends CI_Controller {
         $data['javascriptCode'] = $this->_javascriptCode('book');
         $data['main_content'] = 'book/new';
         $data['car'] = $this->global_model->getCarByID($car_uid);
-		
+		//print_r($data['car']);exit;
         //set page title
         $data['pageTitle'] = "أحجز الآن";		
 		$this->load->view('includes/template', $data);
@@ -47,11 +47,13 @@ class Book extends CI_Controller {
 		
 		if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
 			$current_booking = $this->session->userdata('current_booking');
+			$city_uid = $current_booking['city_uid'];
 			
 			if($current_booking['mc_uid'] == $this->session->userdata('mc_uid') || $this->session->userdata('mc_uid') == null){
 			}else{
 				$result = $this->global_model->calculate($current_booking['book_start_date'], $current_booking['book_end_date'], $current_booking['car_uid'], $this->session->userdata('mc_uid'));
-			}			
+			}		
+			$_SESSION['current_booking']['city_uid'] = $city_uid;
 			$data['car'] = $this->global_model->getCarByID($current_booking['car_uid']);
 			//print_r($data['car']);exit;
 			$data['current_booking'] = $current_booking;

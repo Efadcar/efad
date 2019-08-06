@@ -91,7 +91,7 @@
 												<option value=""></option>
                                                 <?php if($colors !== false){
 														foreach($colors as $r) : ?>
-                                                        <option value="<?php echo $r->cco_uid; ?>" <?php echo set_select('car_color', $r->cco_uid); ?> <?php if($row->car_color == $r->cco_uid){echo "selected";} ?>><?php echo $r->cco_name ?></option>  
+                                                        <option value="<?php echo $r->cco_uid; ?>" <?php if($row->car_color == $r->cco_uid){echo "selected";} ?>><?php echo $this->global_model->getStringByKeyLanguage('cco_name'.$r->cco_code, 'arabic') ?></option>  
                                                 <?php endforeach;} ?>
 											</select>
 										</div>										
@@ -105,6 +105,7 @@
 												<option value="2017" <?php if($row->car_model_year == 2017){echo "selected";} ?>>2017</option>
 												<option value="2018" <?php if($row->car_model_year == 2018){echo "selected";} ?>>2018</option>
 												<option value="2019" <?php if($row->car_model_year == 2019){echo "selected";} ?>>2019</option>
+												<option value="2020" <?php if($row->car_model_year == 2020){echo "selected";} ?>>2020</option>
 											</select>
 										</div>										
 									</div>
@@ -112,9 +113,16 @@
                                 <div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label>موديل السيارة</label>
-											<input type="text" class="form-control" placeholder="برجاء كتابة موديل السيارة" name="car_model_name" required value="<?= $row->car_model_name ?>"> 
-										</div>
+											<label for="cb_uid">موديل السيارة</label>
+											<select class="form-control" id="cm_uid" name="cm_uid" required>
+												<option value=""></option>
+                                                <?php if($models !== false){
+														foreach($models as $r) : ?>
+                                                        <option value="<?php echo $r->cm_uid; ?>" <?php if($row->cm_uid == $r->cm_uid){echo "selected";} ?>><?php echo $this->global_model->getStringByKeyLanguage('cm_name'.$r->cm_code, 'arabic') ?></option>  
+                                                <?php endforeach;} ?>
+											</select>
+											
+										</div>										
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
@@ -265,7 +273,7 @@
 									
 								</div>
 								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="form-group">
 											<label class="control-label">السيارة مفعلة</label>
 											<div>
@@ -273,7 +281,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="form-group">
 											<label class="control-label">السيارة لديها عرض</label>
 											<div>
@@ -281,11 +289,19 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="form-group">
 											<label class="control-label">السيارة مضافة حديثا</label>
 											<div>
 												<input type="checkbox" class="make-switch" data-on-text="نعم" data-off-text="لا" data-off-color="danger" data-on-color="success" value="1" name="new_car" <?php if($row->new_car){echo "checked";} ?>>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label class="control-label">السيارة متاحة</label>
+											<div>
+												<input type="checkbox" class="make-switch" data-on-text="نعم" data-off-text="لا" data-off-color="danger" data-on-color="success" value="1" name="car_in_stock" <?php if($row->car_in_stock){echo "checked";} ?>>
 											</div>
 										</div>
 									</div>

@@ -8,6 +8,7 @@ class Albums extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('albums_model');
+        $this->load->model('cars_model');
         $this->load->library('form_validation');
         $this->global_model->config();
     }
@@ -69,8 +70,14 @@ class Albums extends CI_Controller {
 		$data['pageCssFiles'] = $this->_cssFiles('albums_add');
         $data['main_content'] = 'albums/albums_add';
         $data['pageTitle'] = "إضافة ألبوم جديد";
+		$data['brands'] = $this->cars_model->getAllBrands();
+		$data['models'] = $this->cars_model->getAllModels();
+		$data['colors'] = $this->cars_model->getAllColors();
 
-        $this->form_validation->set_rules('album_name_english', "أسم الألبوم", 'required|strip_tags');
+        $this->form_validation->set_rules('cb_uid', "أسم الألبوم", 'required|strip_tags');
+        $this->form_validation->set_rules('cm_uid', "أسم الألبوم", 'required|strip_tags');
+        $this->form_validation->set_rules('car_color', "أسم الألبوم", 'required|strip_tags');
+        $this->form_validation->set_rules('model_year', "أسم الألبوم", 'required|strip_tags');
         if($this->form_validation->run() == FALSE) 
 		{
             $this->load->view('includes/template', $data);
@@ -98,8 +105,13 @@ class Albums extends CI_Controller {
         $data['pageTitle'] = "تعديل ألبوم";
         $data['id'] = $id;
         $data['row'] = $this->albums_model->getByID($id);
-
-        $this->form_validation->set_rules('album_name_english', "أسم الألبوم", 'required|strip_tags');
+		$data['brands'] = $this->cars_model->getAllBrands();
+		$data['models'] = $this->cars_model->getAllModels();
+		$data['colors'] = $this->cars_model->getAllColors();
+        $this->form_validation->set_rules('cb_uid', "أسم الألبوم", 'required|strip_tags');
+        $this->form_validation->set_rules('cm_uid', "أسم الألبوم", 'required|strip_tags');
+        $this->form_validation->set_rules('car_color', "أسم الألبوم", 'required|strip_tags');
+        $this->form_validation->set_rules('model_year', "أسم الألبوم", 'required|strip_tags');
         if($this->form_validation->run() == FALSE) 
 		{
             $this->load->view('includes/template', $data);
@@ -118,7 +130,7 @@ class Albums extends CI_Controller {
      */
     function albums_del($code) {
         $this->global_model->have_permission('albums_del');
-		$result = $this->global_model->delete_selected_items("albums", "album_code", $code, "strings", "string_code");
+		$result = $this->global_model->delete_selected_items("albums", "album_uid", $code, "media", "album_uid");
 		if ($result == true) 
 		{
 			$this->messages->add("Deleted succesfully", "success");
@@ -143,7 +155,9 @@ class Albums extends CI_Controller {
                     "'" . base_url() . "../assets/global/plugins/counterup/jquery.counterup.min.js'",
                     "'" . base_url() . "../assets/global/plugins/bootstrap-toastr/toastr.min.js'",
                     "'" . base_url() . "../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js'",
+                    "'" . base_url() . "../assets/global/plugins/select2/js/select2.full.min.js'",
                     "'" . base_url() . "../assets/global/scripts/app.min.js'",
+                    "'" . base_url() . "../assets/pages/scripts/components-select2.min.js'",
                     "'" . base_url() . "../assets/layouts/layout/scripts/layout.min.js'",
                 );
 				
@@ -156,6 +170,8 @@ class Albums extends CI_Controller {
         switch ($view) {
             case 'albums_add':
                 $css = '<link href="' . base_url() . '../assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />'.
+				'<link href="'.base_url().'../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>'.
+				'<link href="'.base_url().'../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="'.base_url().'../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="' . base_url() . '../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />';
                 break;

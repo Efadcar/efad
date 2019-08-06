@@ -21,8 +21,8 @@
                             <span class="caption-subject bold font-red uppercase"> <?= $pageTitle ?> </span>
                         </div>
                         <div class="actions">
-                            <a href="<?php echo site_url('albums/albums_add') ?>" class="btn blue btn-sm">
-                            <i class="fa fa-plus"></i>إضافة ألبوم جديد</a>
+                            <a href="<?php echo site_url('cars_colors/cars_colors_add') ?>" class="btn blue btn-sm">
+                            <i class="fa fa-plus"></i>إضافة لون جديد</a>
                             <a class="btn btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="">
                             </a>
                         </div>                        
@@ -33,7 +33,7 @@
                             <table class="table table-striped table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>الألبومات</th>
+                                <th>أسم اللون</th>
                                 <th>خيارات</th>
                             </tr>
                             </thead>
@@ -43,13 +43,11 @@
                                 foreach($rows as $row){
                                 ?>
                                 <tr>
-                                    <td><?php echo $row->album_name; ?></td>
+                                    <td><?php echo $this->global_model->getStringByKeyLanguage('cco_name'.$row->cco_code, 'arabic'); ?></td>
                                     <td>
-                                        <a href="<?php echo site_url('media/media_list/'.$row->album_uid) ?>" class="btn btn-xs blue"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-search"></i>عرض</a> 
-                                        <a href="<?php echo site_url('media/media_add/'.$row->album_uid) ?>" class="btn btn-xs purple"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-plus"></i>أضافة صور</a> 
-                                        <a href="<?php echo site_url('albums/albums_edit/'.$row->album_uid) ?>" class="btn btn-xs yellow"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-pencil"></i>تعديل</a> 
-                                        <a data-toggle="modal" href="#static_<?= $row->album_uid ?>" class="btn btn-xs red"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-trash-o"></i>حذف</a>        
-                                        <div id="static_<?= $row->album_uid ?>" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                                        <a href="<?php echo site_url('cars_colors/cars_colors_edit/'.$row->cco_uid) ?>" class="btn btn-xs yellow"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-pencil"></i>تعديل</a> 
+                                        <a data-toggle="modal" href="#static_<?= $row->cco_uid ?>" class="btn btn-xs red"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-trash-o"></i>حذف</a>        
+                                        <div id="static_<?= $row->cco_uid ?>" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -57,11 +55,11 @@
                                                         <h4 class="modal-title">التأكيد</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p> هل أنت متأكد أنك تريد حذف هذا الألبوم؟ </p>
+                                                        <p> هل أنت متأكد أنك تريد حذف هذا اللون ؟ </p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" data-dismiss="modal" class="btn dark btn-outline">إلغاء</button>
-                                                        <a href="<?php echo site_url('albums/albums_del/'.$row->album_uid) ?>" class="btn red"> حذف</a>
+                                                        <a href="<?php echo site_url('cars_colors/cars_colors_del/'.$row->cco_code) ?>" class="btn red">نعم، حذف</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -79,7 +77,7 @@
                 </div>
 
             </div>
-			<div class="col-md-12 text-center"><?= $this->pagination->create_links(); ?></div>
+            
         </div>
 
     </div>

@@ -21,12 +21,12 @@
                     <div class="carname d-flex ">
                         <h2>
 							<span><?= $this->global_model->getStringByKeyLanguage($car->cb_uid->cb_name,"arabic") ?></span> 
-							<span><?= $car->car_model_name ?></span>
+							<span><?= $this->global_model->getStringByKeyLanguage($car->cm_uid->cm_name,"arabic") ?></span>
 							<span><?= $car->car_model_year ?></span>
 						</h2>
                     </div>
 					<div class=" align-items-center mt-10">
-						<div class="text-right "> 
+						<div class="text-left "> 
 							<span id="daily-rate" class="value"><?= $car->car_daily_price ?></span> 
 							<span class="duration">ريال فى اليوم</span> 
 						</div>
@@ -48,7 +48,7 @@
 					</div>
 					
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-7 ml-5">
                     <div class="price-car text-right"> </div>
                     <div class="car-img">
 						<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

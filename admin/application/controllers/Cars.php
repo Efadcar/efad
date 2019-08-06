@@ -55,6 +55,7 @@ class Cars extends CI_Controller {
 		$data['types'] = $this->cars_model->getAllTypes();
 		$data['categories'] = $this->cars_model->getAllCategories();
 		$data['brands'] = $this->cars_model->getAllBrands();
+		$data['models'] = $this->cars_model->getAllModels();
 		$data['albums'] = $this->cars_model->getAllAlbums();
 		$data['colors'] = $this->cars_model->getAllColors();
 		
@@ -64,7 +65,7 @@ class Cars extends CI_Controller {
 		$data['main_content'] = 'cars/cars_add';
 		$data['pageTitle'] = "إضافة سيارة";
 		
-        $this->form_validation->set_rules('car_model_name', 'موديل السيارة', 'required');
+        $this->form_validation->set_rules('cm_uid', 'موديل السيارة', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('includes/template', $data);
@@ -79,6 +80,7 @@ class Cars extends CI_Controller {
 		$data['types'] = $this->cars_model->getAllTypes();
 		$data['categories'] = $this->cars_model->getAllCategories();
 		$data['brands'] = $this->cars_model->getAllBrands();
+		$data['models'] = $this->cars_model->getAllModels();
 		$data['albums'] = $this->cars_model->getAllAlbums();
 		$data['colors'] = $this->cars_model->getAllColors();
 		$data['row'] = $this->cars_model->getByID($id);
@@ -89,7 +91,7 @@ class Cars extends CI_Controller {
 		$data['main_content'] = 'cars/cars_edit';
 		$data['pageTitle'] = "تعديل السيارة ";
 		
-        $this->form_validation->set_rules('car_model_name', 'موديل السيارة', 'required');
+        $this->form_validation->set_rules('cm_uid', 'موديل السيارة', 'required');
 
 		
 		if ($this->form_validation->run() == FALSE) {

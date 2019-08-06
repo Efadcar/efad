@@ -610,6 +610,16 @@ class Global_model extends CI_Model {
 		}
 	}
 
+	function getCarModelByID($cm_uid){
+		$q =  $this->db->get_where('cars_models', array('cm_uid' => $cm_uid));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $row; 
+		}else{
+			return false;	
+		}
+	}
+
 	function getMembershipNameByID($mc_uid){
 		$q =  $this->db->get_where('memberships', array('mc_uid' => $mc_uid));
 		if($q->num_rows() > 0) {
@@ -645,6 +655,7 @@ class Global_model extends CI_Model {
 			$row = $q->row();
 			$row->main_image = $this->getShowMainImageByID($row->album_uid);
 			$row->cb_uid = $this->getCarBrandByID($row->cb_uid);
+			$row->cm_uid = $this->getCarModelByID($row->cm_uid);
 			
 			return $row; 
 		}else{

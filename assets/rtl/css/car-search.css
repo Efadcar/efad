@@ -12,7 +12,7 @@
 }
 .carname h3{
     margin-bottom: 10px;
-	text-align: left
+	text-align: right
 }
 .thumbnail-container {
     position: relative;
@@ -697,9 +697,10 @@ border-radius:0
     top: 15px;
 }
 .car-price .heart{
-    margin-right: 30px;
-    font-size: 25px;
-    padding-top: 12px;
+    margin-right: 38px;
+    font-size: 19px;
+    padding-top: 14px;
+    margin-left: 6px;
 }
 
 .fa-heart:hover{
@@ -723,7 +724,6 @@ border-radius:0
     display: inline;
 }
 .pagin .fa-chevron-right{
-    margin: -25px 0;
     color: #003a5d;
     border: 1px solid #ececec;
     background-color: #ececec;
@@ -732,7 +732,7 @@ border-radius:0
     cursor: pointer;
 }
 .pagin .fa-chevron-left{
-    margin: 8px 0;
+    margin: -31px 0;
     color: #003a5d;
     border: 1px solid #ececec;
     background-color: #ececec;
@@ -956,3 +956,80 @@ color: #fff;
 #select-car:hover{
     border: 1px solid #003a5d;
 }
+
+.sb-container{
+    position: relative;
+    overflow: hidden;
+    padding-right: 10px;
+}
+.sb-content {
+  height:100%;
+  width: 120%;
+  padding-right: 20%;
+  overflow-y: scroll;
+  box-sizing:border-box;
+}
+.sb-scrollbar-container {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    top: 5px;
+    width: 10px;
+}
+.sb-container-noscroll .sb-scrollbar-container {
+    right: -20px;
+}
+
+.sb-scrollbar {
+  position: absolute;
+  right: 0;
+  height: 30px;
+  width: 10px;
+  border-radius: 10px;
+  background: rgba(50, 50, 50, 0.5);
+}
+
+.sb-scrollbar:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+/*.scrollbar
+{
+    margin-left: 30px;
+    height: 560px;
+    width: 65px;
+    overflow-y: scroll;
+}
+
+
+#wrapper
+{
+    text-align: center;
+    width: 500px;
+    margin: auto;
+}
+
+/*
+ *  STYLE 1
+ */
+
+/*#style-1::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}*/

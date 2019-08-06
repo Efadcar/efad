@@ -130,6 +130,36 @@ class Global_model extends CI_Model {
 		}
 	}
 
+	function getModelByID($id) {
+		$q =  $this->db->get_where('cars_models', array('cm_uid' => $id));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $this->global_model->getStringByKeyLanguage($row->cm_name, 'arabic');
+		}else{
+			return false;	
+		}
+	}
+
+	function getBrandByID($id) {
+		$q =  $this->db->get_where('cars_brands', array('cb_uid' => $id));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $this->global_model->getStringByKeyLanguage($row->cb_name, 'arabic'); 
+		}else{
+			return false;	
+		}
+	}
+
+	function getColorByID($id) {
+		$q =  $this->db->get_where('cars_colors', array('cco_uid' => $id));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $this->global_model->getStringByKeyLanguage($row->cco_name, 'arabic'); 
+		}else{
+			return false;	
+		}
+	}
+
 
 }
 
