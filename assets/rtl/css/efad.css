@@ -3332,3 +3332,199 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 	padding-right: 20px;
     padding-left: 20px;
 }
+
+.cd-faq {
+  position:relative
+}
+.cd-faq:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@media only screen and (max-width: 1400px) {
+  .cd-faq {
+   
+  }
+}
+
+
+.cd-faq-items {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  background: #ffffff;
+/*  padding: 0 5% 1em;*/
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0) translateX(100%);
+  -moz-transform: translateZ(0) translateX(100%);
+  -ms-transform: translateZ(0) translateX(100%);
+  -o-transform: translateZ(0) translateX(100%);
+  transform: translateZ(0) translateX(100%);
+  -webkit-transition: -webkit-transform .3s;
+  -moz-transition: -moz-transform .3s;
+  transition: transform .3s;
+}
+.cd-faq-items .cd-faq-question{
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.no-js .cd-faq-items {
+  position: static;
+  height: auto;
+  width: 100%;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+@media only screen and (max-width: 1400px) {
+  .cd-faq-items {
+    position: static;
+    height: auto;
+    width: 100%;
+    float: right;
+    overflow: visible;
+    -webkit-transform: translateZ(0) translateX(0);
+    -moz-transform: translateZ(0) translateX(0);
+    -ms-transform: translateZ(0) translateX(0);
+    -o-transform: translateZ(0) translateX(0);
+    transform: translateZ(0) translateX(0);
+    padding: 0;
+    background: transparent;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .cd-faq-items {
+    float: none;
+    width: 100%;
+/*    padding-left: 220px;*/
+  }
+  .no-js .cd-faq-items {
+    padding-left: 0;
+  }
+}
+
+
+.cd-faq-group {
+  /* hide group not selected */
+  display: none;
+}
+.cd-faq-group.selected {
+  display: block;background: #fff !important
+}
+.cd-faq-group .cd-faq-title {
+  background: transparent;
+  box-shadow: none;
+  margin: 1em 0;
+}
+.no-touch .cd-faq-group .cd-faq-title:hover {
+  box-shadow: none;
+}
+.cd-faq-group .cd-faq-title h2 {
+  margin-bottom:35px
+}
+.no-js .cd-faq-group {
+  display: block;
+}
+@media only screen and (max-width: 1400px) {
+  .cd-faq-group {
+    /* all groups visible */
+    display: block;
+  }
+  .cd-faq-group > li {
+    margin-bottom: 6px;
+    -webkit-transition: box-shadow 0.2s;
+    -moz-transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s;
+  }
+  
+  .cd-faq-group .cd-faq-title {
+    margin: 2em 0 1em;
+  }
+  .cd-faq-group:first-child .cd-faq-title {
+    margin-top: 0;
+  }
+}
+
+.cd-faq-trigger {
+  position: relative;
+  display: block;
+  margin: 1.6em 0 .4em;
+  line-height: 1.2;
+    color: #000;
+}
+.cd-faq-trigger:hover,
+.cd-faq-trigger:focus{
+    color: #003a5d;
+}
+@media only screen and (max-width: 1400px) {
+  .cd-faq-trigger {
+    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 1rem;
+  }
+  .cd-faq-trigger:before, .cd-faq-trigger:after {
+    /* arrow icon on the right */
+    position: absolute;
+    left: 24px;
+    top: 30%;
+   
+  }
+  .cd-faq-trigger:before {
+      font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f067";
+  }
+  .cd-faq-trigger:after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  .content-visible .cd-faq-trigger:before {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  .content-visible .cd-faq-trigger:after {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+
+@media only screen and (max-width: 1400px) {
+  .cd-faq-content {
+    display: none;
+    padding: 0 24px 30px;
+  }
+	
+	.cd-faq-content a{
+		text-decoration: underline;
+		color: blue;
+	}
+
+  .no-js .cd-faq-content {
+    display: block;
+  }
+}
+
+.focused{
+    background-color: #eee;
+}

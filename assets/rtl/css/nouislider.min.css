@@ -22,7 +22,7 @@
 }
 .noUi-origin {
 	position: absolute;
-	right: 0;
+    right: -6px;
 	top: 0;
 	left: 0;
 	bottom: 0
@@ -47,11 +47,11 @@
 }
 .noUi-horizontal {
 	height: 8px;
-	padding-right: 19px;
+	padding-right: 18px;
 }
 .noUi-horizontal .noUi-handle {
 	top: -6px;
-    left: 0;
+    left: -1px;
     background: #003a5d;
     box-shadow: none;
     border: none;
@@ -76,7 +76,8 @@
 .noUi-connect {
 	background: #bfbfbf;
 	-webkit-transition: background 450ms;
-	transition: background 450ms
+	transition: background 450ms;
+	border-radius: 50px;
 }
 .noUi-origin {
 }
@@ -146,8 +147,8 @@
 	padding: 10px 0;
 	height: 50px;
 	top: 100%;
-	left: 0;
-	width: 100%
+	left: 9px;
+	width: 93%
 }
 .noUi-value-horizontal {
 	margin-left: -20px;

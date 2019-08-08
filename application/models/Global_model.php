@@ -199,7 +199,7 @@ class Global_model extends CI_Model {
 		// return true and set message to session msgs
 	}
 	
-	function search(){		
+	function search(){	
 		$search_text = $this->input->post('search_text');
 		$book_period = $this->input->post('book_period');
 		$price_from = $this->input->post('price_from');
@@ -217,6 +217,7 @@ class Global_model extends CI_Model {
 		$offset_before = $this->input->post('offset');
 		$offset = $offset_before * 10;
 		$num_rows = null;
+		$where = "";
 		
 		if($search_text != null && $search_text != "")
 		{
@@ -225,40 +226,40 @@ class Global_model extends CI_Model {
 		else
 		{
 			if($cb_uid == 0){
-				$where = "";
+				$where .= " ";
 			}else{
-				$where = "AND cb_uid = ".$cb_uid;
+				$where .= " AND cb_uid = ".$cb_uid;
 			}
 			
 			if($cm_uid == 0){
-				$where = "";
+				$where .= "";
 			}else{
-				$where = "AND cm_uid = ".$cm_uid;
+				$where .= " AND cm_uid = ".$cm_uid;
 			}
 			
 			if($ct_uid == 0){
-				$where = "";
+				$where .= " ";
 			}else{
-				$where = "AND ct_uid = ".$ct_uid;
+				$where .= " AND ct_uid = ".$ct_uid;
 			}
 			
 			if($color == 0){
-				$where = "";
+				$where .= " ";
 			}else{
-				$where = "AND car_color = ".$color;
+				$where .= " AND car_color = ".$color;
 			}
 			
 			if($car_transmission == 0){
-				$where = "";
+				$where .= " ";
 			}else{
-				$where = "AND car_transmission = '".$car_transmission."'";
+				$where .= " AND car_transmission = '".$car_transmission."'";
 			}
 			
-			if($book_period == 0){
-				$where = "AND car_daily_price >= '".$price_from."' AND car_daily_price <= '".$price_to."' ";
+			if($book_period === "0"){
+				$where .= " AND car_daily_price >= '".$price_from."' AND car_daily_price <= '".$price_to."' ";
 				$field = "car_daily_price";
 			}else{
-				$where = "AND car_monthly_price >= '".$price_from."' AND car_monthly_price <= '".$price_to."' ";
+				$where .= " AND car_monthly_price >= '".$price_from."' AND car_monthly_price <= '".$price_to."' ";
 				$field = "car_monthly_price";
 			}
 			
@@ -270,17 +271,26 @@ class Global_model extends CI_Model {
 				);
 				$num_rows = $n->num_rows();
 			}
-			
-			$q = $this->db->query("
-			SELECT car_uid, cc_uid, ct_uid, cb_uid, cm_uid, car_model_year, car_color, album_uid, car_daily_price, car_monthly_price, car_in_stock, car_status 
+			$query = "
+			SELECT * FROM (
+			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 			  FROM cars
-			WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." ORDER BY ".$field." ".$order_by." LIMIT 10 OFFSET ".$offset
-			);
+			WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `album_uid`, `".$field."`, `car_color` LIMIT 10 OFFSET ".$offset."
+			) AS car ORDER BY ".$field." ".$order_by." 
+			";
+
+			$q = $this->db->query($query);
 
 			$data['num_rows'] = $num_rows;
 
 			if($q->num_rows() > 0) {
 				foreach($q->result() as $row) {
+					$row->image = base_url().ALBUMS_IMAGES."sm_".$this->getShowMainImageByID($row->album_uid);
+					if($row->car_in_stock == 0){
+						$row->car_status = 2;
+					}
+					$row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
+					$row->cm_uid = $this->getCarModelNameByID($row->cm_uid);
 					$data['result'][] = $row;
 				}
 				$data['status'] = true;
@@ -812,6 +822,46 @@ class Global_model extends CI_Model {
 		if($q->num_rows() > 0) {
 			$row = $q->row();
 			return $row->phonecode; 
+		}else{
+			return false;	
+		}
+	}
+	
+	function getTypeByID($ct_uid) {
+		$q =  $this->db->get_where('cars_types', array('ct_uid' => $ct_uid));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $this->getStringByKeyLanguage($row->ct_name, "arabic");
+		}else{
+			return false;	
+		}
+	}
+
+	function getColorByID($cco_uid) {
+		$q =  $this->db->get_where('cars_colors', array('cco_uid' => $cco_uid));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $this->getStringByKeyLanguage($row->cco_name, "arabic");
+		}else{
+			return false;	
+		}
+	}
+		
+	function getCarBrandNameByID($cb_uid) {
+		$q =  $this->db->get_where('cars_brands', array('cb_uid' => $cb_uid));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $this->getStringByKeyLanguage($row->cb_name, "arabic");
+		}else{
+			return false;	
+		}
+	}
+		
+	function getCarModelNameByID($cm_uid) {
+		$q =  $this->db->get_where('cars_models', array('cm_uid' => $cm_uid));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $this->getStringByKeyLanguage($row->cm_name, "arabic");
 		}else{
 			return false;	
 		}
