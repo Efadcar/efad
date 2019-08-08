@@ -13,7 +13,7 @@ class Cars_colors_model extends CI_Model {
 			return false;	
 		}
 	}
-	
+
 	function getAllLanguages() {
 		$q = $this->db->get('languages');
 		if($q->num_rows() > 0) {
@@ -31,14 +31,16 @@ class Cars_colors_model extends CI_Model {
 	function add(){
 		$code = '_vertex_'.time();
 		
+		$cco_parent = $this->input->post('cco_parent_uid');
 		$cco_link = url_title($this->input->post('cco_name_english'), '-', TRUE);
 		$cco_name = "cco_name".$code;
 		$cco_meta_desc = $this->input->post('cco_meta_desc');
 		
 		$data = array(
-		   'cco_code' => $code,
-		   'cco_link' => $cco_link,
-		   'cco_name' => $cco_name,
+		   'cco_code' 	=> $code,
+		   'parent_uid' => $cco_parent,
+		   'cco_link' 	=> $cco_link,
+		   'cco_name' 	=> $cco_name,
 		   'cco_meta_desc' => $cco_meta_desc
 		);
 		
@@ -82,14 +84,15 @@ class Cars_colors_model extends CI_Model {
 
 	function edit($id){
 		$row = $this->getByID($id);
+		$cco_parent = $this->input->post('cco_parent_uid');
 		$cco_link = url_title($this->input->post('cco_name_english'), '-', TRUE);
 		$cco_name = "cco_name".$row->cco_code;
 		$cco_meta_desc = $this->input->post('cco_meta_desc');
 
 		$data = array(
-		   'cco_link' => $cco_link,
-		   'cco_meta_desc' => $cco_meta_desc
-			
+			'parent_uid' => $cco_parent,
+		   	'cco_link' => $cco_link,
+		   	'cco_meta_desc' => $cco_meta_desc
 		);
 		$this->db->where('cco_uid', $id);
 		$this->db->update('cars_colors', $data);

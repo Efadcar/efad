@@ -29,6 +29,26 @@
                         ?> 
                         
                             <div class="form-body">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group form-md-line-input form-md-floating-label ">
+                                            <select class="form-control" name="cco_parent_uid" id="form_control_1" required>
+                                            <option value="0">لون اساسي</option>
+                                                <?php 
+                                                        if(count($colors) > 0){
+                                                            foreach($colors as $index) : ?>
+                                                                <option value="<?php echo $index->cco_uid; ?>" <?php if ($index->cco_uid == $row->parent_uid){ ?>selected <?php } ?>><?php echo $this->global_model->getStringByKeyLanguage($index->cco_name, 'arabic'); ?></option>  
+                                                            <?php 
+                                                            endforeach;
+                                                        } 
+                                                    ?>   
+                                            </select>
+                                            <label for="form_control_1">اللون الاساسي</label>
+                                        </div>
+                                    </div>
+                                </div>
+
 								<div class="row">
 									
 									<div class="col-md-4">

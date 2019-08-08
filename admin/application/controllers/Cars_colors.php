@@ -68,8 +68,10 @@ class Cars_colors extends CI_Controller {
 		$data['pageCssFiles'] = $this->_cssFiles('cars_colors_add');
         $data['main_content'] = 'cars_colors/cars_colors_add';
         $data['pageTitle'] = "إضافة قسم جديد";
+        $data['colors'] = $this->global_model->getParentColors();
 
         $this->form_validation->set_rules('cco_name_english', "أسم اللون باللغة الأنجليزية", 'required|strip_tags');
+        $this->form_validation->set_rules('cco_parent_uid', "اللون الاساسي مطلوب", 'required');
         if($this->form_validation->run() == FALSE) 
 		{
             $this->load->view('includes/template', $data);
@@ -96,8 +98,10 @@ class Cars_colors extends CI_Controller {
         $data['pageTitle'] = "تعديل قسم";
         $data['id'] = $id;
         $data['row'] = $this->cars_colors_model->getByID($id);
+        $data['colors'] = $this->global_model->getParentColors();
 		
         $this->form_validation->set_rules('cco_name_english', "أسم اللون باللغة الأنجليزية", 'required|strip_tags');
+        $this->form_validation->set_rules('cco_parent_uid', "اللون الاساسي مطلوب", 'required');
         if($this->form_validation->run() == FALSE) 
 		{
             $this->load->view('includes/template', $data);
@@ -126,6 +130,22 @@ class Cars_colors extends CI_Controller {
             $this->messages->add("لقد حدث خطأ", "error");
         }
         redirect("cars_colors/cars_colors_list");
+    }
+
+    /**
+     *  Retrieve cars secondary colors based on parent id
+     *  ajax request
+     *
+     *  @param $carColorParentID
+     *
+     *  @return array of car secondary colors
+     */
+    function getCarSecondaryColors($parentID){
+        //echo "hi";
+        if ($parentID > 0 && isset($parentID)){
+            $secondaryColors = $this->global_model->getٍٍSecondaryColors($parentID);
+            echo json_encode($secondaryColors);
+        }
     }
 
     /**
