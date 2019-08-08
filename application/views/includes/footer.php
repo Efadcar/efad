@@ -64,7 +64,7 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="<?= base_url()."assets/".$direction; ?>/js/jquery-3.2.1.min.js"></script> 
+
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="<?= base_url()."assets/".$direction; ?>/js/popper.min.js"></script> 
 <script src="<?= base_url()."assets/".$direction; ?>/js/bootstrap-4.0.0.js"></script> 

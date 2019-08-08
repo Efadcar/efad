@@ -25,8 +25,9 @@
 	<style>
 		.intl-tel-input{display: block}
 	</style>
-
+	
 	<?php echo $pageCssFiles ?>
+	<script src="<?= base_url()."assets/".$direction; ?>/js/jquery-3.2.1.min.js"></script> 
 </head>
 <body class="top">
 	<!--back-to-top start-->

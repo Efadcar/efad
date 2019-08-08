@@ -117,6 +117,7 @@ class Book extends CI_Controller {
                     "'" . base_url() . "assets/rtl/js/bootstrap-material-datetimepicker.js'",
                     "'" . base_url() . "assets/rtl/js/jquery.card.js'",
                     "'" . base_url() . "assets/rtl/js/efad-scripts.js'",
+                    "'" . base_url() . "assets/rtl/js/faq.js'",
                 );
 				
 				
@@ -162,6 +163,19 @@ class Book extends CI_Controller {
 					});
 
 					$(document).ready(function () {
+					
+						$(function () {
+							$('.switchPanelButton').click(function (event) {
+								event.preventDefault();
+								var panel = $(this).attr('panelclass');
+								$('.' + panel).hide();
+								var panelid = $(this).attr('panelid');
+								$('#' + panelid).show();
+							});
+						});
+        
+					
+					
 					
 						var dataSet;
 						$('.toggle').click(function () {

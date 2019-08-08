@@ -82,7 +82,89 @@
                 
             </div>
         </div>
-        <!-- reservation form -->
+		<div class="cd-faq-items mb-4">
+			<ul class="cd-faq-group">
+
+				<li class="cd-faq-question question1" style="border: 1px solid #d1d1d1;"> 
+					<a class="cd-faq-trigger trigger1" href="#0">مميزات السيارة</a>
+					<div class="cd-faq-content">
+						<div class="row">
+							<div class="col-sm-3">
+								<h5>نمط السيارة</h5>
+								<span><?= $this->global_model->getTypeByID($car->ct_uid) ?></span>
+							</div>
+							<div class="col-sm-3">
+								<h5>سعة المحرك</h5>
+								<span><?= $car->car_engine_litre ?> ليتر</span>
+							</div>
+							<div class="col-sm-3">
+								<h5>نظام الدفع</h5>
+								<span>
+								<?php
+								switch($car->car_drivetrain){
+									case "front";
+										echo "دفع أمامي";
+										break;
+									case "rear";
+										echo "دفع خلفي";
+										break;
+									case "4x4";
+										echo "دفع رباعي";
+										break;
+								}
+								?>
+								
+								</span>
+							</div>
+							<div class="col-sm-3">
+								<h5>اللون الخارجي</h5>
+								<span><?= $this->global_model->getColorByID($car->car_color); ?></span>
+							</div>
+						</div>
+						<?php if($car->car_features != ""){ ?>
+						<div class="row mt-4">
+							<div class="col-sm-12">
+								<h5>مميزات أخري</h5>
+								<p><?= $car->car_features ?></p>
+							</div>
+						</div>
+						<?php } ?>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		
+		
+        <!-- reservation form
+
+		<div id="accordion" class="mb-3">
+			<div class="card">
+				<a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				<div class="card-header" id="headingOne">
+					<h5 class="mb-0">
+					
+					مميزات السيارة
+					
+					</h5>
+				</div>
+					</a>
+
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+					<div class="card-body">
+					Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		
+		
+
+
+
+-->
         
         <div class="reservation-form">
             <div class="date-reserve mb-4">

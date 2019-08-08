@@ -1,4 +1,4 @@
-<section>
+<section class="mt-8">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -7,19 +7,20 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-12">
                 <div class="main-heading">
                     <p>استمتع بمكتبة ضخمة من أفلام هوليوود وبوليوود ومسلسلات STARZ الأساسية، مجانًا بالكامل خلال الست أشهر الأولى*. لتفعيل العرض، أرسل. تكلفة الاشتراك في خدمة STARZPLAY بعد انتهاء الفترة المجانية درهمًا/شهريًا، للإلغاء في أي وقت 
                         استمتع‭ ‬باستخدام‭ ‬دقائق‭ ‬مكالماتك‭ ‬وبياناتك‭ ‬المحلية‭ ‬خارج‭ ‬الدولة‭ ‬ابتداءً‭ ‬من‭ ‬100‭ ‬درهم‭ ‬أسبوعياً‭. .‬اختيارك‭..‬بكيفك‭.‬</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 <section role="member">
     <div class="container-fluid">
         <div class="row">
+			
             <div class="col-12">
                 <div class="col-lg-12 text-center pb-2">
                     <h2>اختر خطة وفئة العضوية</h2>
@@ -118,7 +119,7 @@
 						</div>
 					</header>
 					<footer class="pricing-footer"> 
-						<a class="select" data-id="<?= $memberships[2]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
+						<a class="select" data-id="<?= $memberships[2]->mc_uid ?>" href="#" style="color: #fff; background-color: <?= $memberships[2]->mc_color_code ?>" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.backgroundcolor='<?= $memberships[2]->mc_color_code ?>'" onclick="goDoSubscribe(this);">
 							إشترك الان
 						</a> 
 					</footer>
@@ -139,14 +140,6 @@
 			</tr>
         </thead>
         <tbody>
-            <tr class="br-bt">
-                <td>خصم على إجمالي قيمة
-                    الاشتراك في الخدمة </td>
-                <td class="default">%6</td>
-                <td>%6</td>
-                <td >%11</td>
-                <td>%16</td>
-            </tr>
             <tr class="br-bt">
                 <td>تأمين شامل 100 ٪ </td>
                 <td class="default"><span class="tick"><i class="fa fa-check-circle"></i></span></td>
@@ -312,34 +305,28 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1>الآسئلة المكررة</h1>
+                <h1> الأسئلة المتكررة </h1>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 col-sm-12 padl-25">
                 <h3>ما هي أفضل فئة من فئات العضوية بالنسبة لي؟</h3>
                 <p class="ques-text">تقدم " إفاد" فئات مختلفة من العضوية لتلبية احتياجات العملاء المختلفين. لذلك ألقي نظرة على مميزات وأسعار كل فئة من فئات العضوية وأختر ما يناسبك.</p>
+                <h3>هل أستطيع ترقية فئة العضوية؟</h3>
+                <p class="ques-text">نعم تستطيع/ي ترقية فئة العضوية في أي وقت ويستغرق تفعيل العضوية الجديدة ثلاثة أيام عمل.</p>
+                <h3>كيف أستطيع إلغاء اشتراك العضوية؟ وهل توجد رسوم في حال إلغاء الاشتراك؟</h3>
+                <p class="ques-text">يمكنك القيام بذلك من خلال الدخول إلى حسابك وإلغاء اشتراك العضوية في أي وقت ولا يوجد رسوم على إلغاء الاشتراك.</p>
             </div>
+
+			
             <div class="col-lg-6 col-sm-12 padr-25">
                 <h3>ما هي الطرق المتوفرة لدفع قيمة اشتراك العضوية؟</h3>
                 <p class="ques-text">هناك 4 طرق لدفع قيمة اشتراك العضوية وهي: <br>
                     الدفع الإلكتروني من خلال الموقع. <br>
                     إجراء عملية تحويل إلى الحساب البنكي الخاص بالشركة.<br>
                     التواصل مع فريق العناية بالعملاء ودفع المبلغ نقداً (كاش)، ولكن هناك رسوم إضافية على خدمة الدفع النقدي وقدرها 100 ريال.</p>
-            </div>
-            <div class="col-lg-6 col-sm-12 padl-25">
-                <h3>هل أستطيع ترقية فئة العضوية؟</h3>
-                <p class="ques-text">نعم تستطيع/ي ترقية فئة العضوية في أي وقت ويستغرق تفعيل العضوية الجديدة ثلاثة أيام عمل.</p>
-            </div>
-            <div class="col-lg-6 col-sm-12 padr-25">
                 <h3>هل سيتم إعادة قيمة اشتراك العضوية في حال عدم أستخدمها؟</h3>
                 <p class="ques-text">سيتم إعادة قيمة اشتراك العضوية كاملة ١٠٠٪ عند طلبك لها وفي حال عدم استخدامها مميزاتها</p>
-            </div>
-            <div class="col-lg-6 col-sm-12 padl-25">
-                <h3>كيف أستطيع إلغاء اشتراك العضوية؟ وهل توجد رسوم في حال إلغاء الاشتراك؟</h3>
-                <p class="ques-text">يمكنك القيام بذلك من خلال الدخول إلى حسابك وإلغاء اشتراك العضوية في أي وقت ولا يوجد رسوم على إلغاء الاشتراك.</p>
-            </div>
-            <div class="col-lg-6 col-sm-12 padr-25">
                 <h3>هل يمكنني نقل عضويتي إلى شخص آخر؟</h3>
                 <p class="ques-text">لا. إذا رغبت في عدم تجديد عضويتك الموظف، فلا تستطيع/ي نقل عضويتك لشخص آخر، ويحتاج هذا الشخص إلى بدء عضوية جديدة.</p>
             </div>

@@ -53,7 +53,7 @@ class Faq extends CI_Controller {
         switch ($view) {
             case 'faq': 
                 $css = 				
-					'<link href="' . base_url() . 'assets/rtl/css/faq.css" rel="stylesheet" type="text/css" />';
+					'';
                 break;
 
         }
@@ -63,9 +63,22 @@ class Faq extends CI_Controller {
     function _javascriptCode($view) {
         switch ($view) {
             case 'faq':
-                $java = "";
+                $java = "
+				<script>
+					$(document).ready(function () {
+						$(function () {
+							$('.switchPanelButton').click(function (event) {
+								event.preventDefault();
+								var panel = $(this).attr('panelclass');
+								$('.' + panel).hide();
+								var panelid = $(this).attr('panelid');
+								$('#' + panelid).show();
+							});
+						});
+					});
+				</script> 
+				";
                 break;
-        
         
 		}
         return $java;

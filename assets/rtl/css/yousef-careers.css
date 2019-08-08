@@ -1,3 +1,5 @@
+/* career 1 */
+
 /* careers-banner */
 
 .careers-banner h1{
@@ -71,4 +73,32 @@
 }
 .grid-system .career-pagin .pagin .items a{
     color: #003a5d;
+}
+
+/* career 2 */
+.career2 .column {
+  float: left;
+  width: 100%;
+  padding: 10px 20px;
+    background: #eaeaea;
+    margin-left: 14px;
+    margin-top: 2px;
+    margin-right: 14px;
+}
+.career2 .main-banner{
+    font-size: 35px;
+}
+.career2 .banner{
+    font-size: 24px;
+    margin-left: 14px;
+    margin-bottom: 10px;
+}
+
+.career2 .apply-now{
+    font-size: 18px;
+    line-height: 1;
+    color: #333132;
+    border: 1px solid #eee;
+    padding: 0 26px;
+    border-radius: 50rem;
 }

@@ -12,7 +12,7 @@
 }
 .carname h3{
     margin-bottom: 10px;
-	text-align: right
+	text-align: left
 }
 .thumbnail-container {
     position: relative;
@@ -605,10 +605,10 @@ border-radius:0
 
 .inp-inp{
     display: inline;
-    width: 72%;
+    width: 98%;
     height: 3.0rem !important;
     background-color: #fff;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px 5px 5px 5px;
 }
 .inp-inp::placeholder{
     color: #000;
