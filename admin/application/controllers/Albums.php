@@ -72,7 +72,8 @@ class Albums extends CI_Controller {
         $data['pageTitle'] = "إضافة ألبوم جديد";
 		$data['brands'] = $this->cars_model->getAllBrands();
 		$data['models'] = $this->cars_model->getAllModels();
-		$data['colors'] = $this->cars_model->getAllColors();
+		//$data['colors'] = $this->cars_model->getAllColors();
+        $data['colors'] = $this->global_model->getParentColors();
 
         $this->form_validation->set_rules('cb_uid', "أسم الألبوم", 'required|strip_tags');
         $this->form_validation->set_rules('cm_uid', "أسم الألبوم", 'required|strip_tags');
@@ -98,13 +99,14 @@ class Albums extends CI_Controller {
     function albums_edit($id) {
         $this->global_model->have_permission('albums_edit');
 
-        $data['breadcrumbs'] = array("الألبومات" => site_url('albums/albums_list'), "تعديل ألبوم" => site_url('albums/albums_edit/'.$id));
+        $data['row'] = $this->albums_model->getByID($id);
+        $breadcrumb =  "تعديل ألبوم: " . $data['row']->album_name;
+        $data['breadcrumbs'] = array("الألبومات" => site_url('albums/albums_list'), $breadcrumb => site_url('albums/albums_edit/'.$id));
         $data['javascripts'] = $this->_javascript('albums_add');
 		$data['pageCssFiles'] = $this->_cssFiles('albums_add');
         $data['main_content'] = 'albums/albums_edit';
         $data['pageTitle'] = "تعديل ألبوم";
         $data['id'] = $id;
-        $data['row'] = $this->albums_model->getByID($id);
 		$data['brands'] = $this->cars_model->getAllBrands();
 		$data['models'] = $this->cars_model->getAllModels();
 		$data['colors'] = $this->cars_model->getAllColors();

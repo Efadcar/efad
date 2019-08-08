@@ -70,7 +70,12 @@ class Albums_model extends CI_Model {
 		$car_brand = $this->global_model->getBrandByID($this->input->post('cb_uid'));
 		$car_model = $this->global_model->getModelByID($this->input->post('cm_uid'));
 		$car_color = $this->global_model->getColorByID($this->input->post('car_color'));
-		
+		$car_secondary_color = $this->global_model->getColorByID($this->input->post('car_color_secondary'));
+
+		if (!empty($car_secondary_color) && isset($car_secondary_color)){
+			$car_color = $car_secondary_color;
+		}
+
 		$album_name = $car_brand." - ".$car_model." - ".$this->input->post('model_year')." - ".$car_color;
 		$album_link = url_title($album_name , '-', TRUE);
 
@@ -105,6 +110,11 @@ class Albums_model extends CI_Model {
 		$car_brand = $this->global_model->getBrandByID($this->input->post('cb_uid'));
 		$car_model = $this->global_model->getModelByID($this->input->post('cm_uid'));
 		$car_color = $this->global_model->getColorByID($this->input->post('car_color'));
+		$car_secondary_color = $this->global_model->getColorByID($this->input->post('car_color_secondary'));
+
+		if (!empty($car_secondary_color) && isset($car_secondary_color)){
+			$car_color = $car_secondary_color;
+		}
 		
 		$album_name = $car_brand." - ".$car_model." - ".$this->input->post('model_year')." - ".$car_color;
 		$album_link = url_title($album_name , '-', TRUE);

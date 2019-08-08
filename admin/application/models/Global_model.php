@@ -161,6 +161,49 @@ class Global_model extends CI_Model {
 	}
 
 
+
+    /**
+     *  Select parent (basic) colors
+     *
+     *  return array of basic colors
+     *
+     *  @param empty
+     *
+     *  @return array of parent colors
+     */
+    function getParentColors() {
+        $q = $this->db->get_where('cars_colors', array('parent_uid' => 0), NULL, NULL);
+        if($q->num_rows() > 0) {
+            foreach($q->result() as $row) {
+                $data[] = $row;
+            }
+            return $data; 
+        }
+        else{
+            return false;   
+        }
+    }
+    
+    /**
+     *  Select secondary colors based on parent color
+     *
+     *  return array of basic colors
+     *  @param $parentID - basic color
+     *
+     *  @return array of secondary colors
+     */
+    function getٍٍSecondaryColors($parentID) {
+        $q = $this->db->get_where('cars_colors', array('parent_uid' => $parentID));
+        if($q->num_rows() > 0) {
+            foreach($q->result() as $row) {
+                $data[] = $row;
+            }
+            return $data; 
+        }
+        else{
+            return false;   
+        }
+    }
 }
 
 ?>

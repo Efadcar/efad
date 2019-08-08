@@ -178,6 +178,38 @@ if (isset($javascripts) && $javascripts != null) {
 		}//end if
 	});
 
+	///////// ALBUMS PAGE - CHECK BASIC & SECONDARY COLORS //////////
+	$(document).ready(function(){
+		if($("#car_color").length > 0) {
+			$('#car_color').change(function(){
+				$('.CarSecondaryColor').css('display', 'none');
+				$(".CarSecondaryColor option").remove();
+				let parentID = $('#car_color').children('option:selected').val();
+				$.ajax({
+		           	url: '<?= site_url("cars_colors/getCarSecondaryColors/'+parentID+'") ?>',
+		           	type: 'GET',
+		           	error: function() {
+		              	alert('Something is wrong');
+		           	},
+		           	success: function(data) {
+		           		var obj = JSON.parse(data);
+		           		$('#car_color_secondary')
+						        .append($("<option></option>")
+					            .attr("value", '')
+			                    .text('-- select option --')); 
+		           		$.each(obj, function(i, item) {
+						    $('#car_color_secondary')
+						        .append($("<option></option>")
+					            .attr("value", item.cco_uid)
+			                    .text(item.cco_link));
+							$('.CarSecondaryColor').css('display', 'block');
+						});
+		           	}
+		        });
+			});
+		}
+	});
+
 </script>
 
 </body>

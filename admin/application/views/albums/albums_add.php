@@ -32,7 +32,7 @@
                             
                                 
 								<div class="row">
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label for="cb_uid">ماركة السيارة</label>
 											<select class="form-control" id="cb_uid" name="cb_uid" required>
@@ -45,7 +45,7 @@
 											
 										</div>											
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label for="cb_uid">موديل السيارة</label>
 											<select class="form-control" id="cm_uid" name="cm_uid" required>
@@ -57,7 +57,7 @@
 											</select>
 										</div>											
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label for="car_model_year">سنة الصنع</label>
 											<select class="form-control select2" id="car_model_year" name="model_year" required>
@@ -70,19 +70,34 @@
 											</select>
 										</div>										
 									</div>
-									<div class="col-md-3">
+								</div>	
+
+								<div class="row">
+									<div class="col-md-4">
 										<div class="form-group">
-											<label for="car_color">لون السيارة</label>
+											<label for="car_color">لون السيارة الاساسي</label>
 											<select class="form-control select2" id="car_color" name="car_color" required>
 												<option value=""></option>
-                                                <?php if($colors !== false){
-														foreach($colors as $r) : ?>
-                                                        <option value="<?php echo $r->cco_uid; ?>" <?php echo set_select('car_color', $r->cco_uid); ?>><?php echo $this->global_model->getStringByKeyLanguage('cco_name'.$r->cco_code, 'arabic') ?></option>  
-                                                <?php endforeach;} ?>
+                                                <?php 
+                                                    if($colors !== false && count($colors) > 0){
+                                                        foreach($colors as $index) : ?>
+                                                            <option value="<?php echo $index->cco_uid; ?>"><?php echo $this->global_model->getStringByKeyLanguage($index->cco_name, 'arabic'); ?></option>  
+                                                        <?php 
+                                                        endforeach;
+                                                    } 
+                                                ?>
 											</select>
 										</div>										
 									</div>
-								</div>								
+									<div class="col-md-4 CarSecondaryColor" style="display: none;">
+										<div class="form-group">
+											<label for="car_color_secondary">لون السيارة الفرعي</label>
+											<select class="form-control select2" id="car_color_secondary" name="car_color_secondary">
+												<option value="">-- select option --</option>
+											</select>
+										</div>										
+									</div>
+								</div>							
                             
                             
                             </div>
@@ -104,4 +119,3 @@
 </div>
 </div>
 <!-- END CONTAINER -->
-
