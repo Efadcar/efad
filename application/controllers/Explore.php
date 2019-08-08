@@ -53,8 +53,6 @@ class Explore extends CI_Controller {
             case 'home':
                 $java = array(
                     "'" . base_url() . "assets/rtl/js/bootstrap-toastr/toastr.min.js'",
-                    "'" . base_url() . "assets/rtl/js/filter/mixitup.min.js'",
-                    "'" . base_url() . "assets/rtl/js/filter/mixitup.js'",
                     "'" . base_url() . "assets/rtl/js/filter/ion.rangeSlider.min.js'",
                     "'https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.2.1/nouislider.min.js'",
                     "'" . base_url() . "assets/rtl/js/efad-scripts.js'",
@@ -82,94 +80,253 @@ class Explore extends CI_Controller {
                 $java = "
 				
 					<script type='text/javascript'>
-						/* navbar */
 						$(document).ready(function () {
-							$('#countries').msDropdown();
-							/* navbar */
-							$('#sidebarCollapse').on('click', function () {
-								$('#sidebar').toggleClass('active');
-							});
+							// implementation of nouislider
+							var yearSlider = document.getElementById('nouislider-slider');
 
-							/* fancy */
-							$('#top-login-button').fancybox();
-							/* login */
-							$('.toggle-password, .toggle-password2').click(function () {
-								$(this).toggleClass('fa-eye fa-eye-slash');
-								var input = $($(this).attr('toggle'));
-								if (input.attr('type') == 'password') {
-									input.attr('type', 'text');
-								} 
-								else 
-								{
-									input.attr('type', 'password');
+							noUiSlider.create(yearSlider, {
+								start: [2015, 2019],
+								connect: true,
+								range: {
+									'min': 2015,
+									'max': 2019
+								},
+								direction: 'rtl',
+								step: 1,
+								connect: true,
+								 behaviour: 'tap-drag',
+								tooltips: false,
+
+								// Show a scale with the slider
+								pips: {
+									mode: 'steps',
+									stepped: true,
+									density: 4
 								}
 							});
 
-							$(function () {
-								$('.switchPanelButton').click(function (event) {
-									event.preventDefault();
-									var panel = $(this).attr('panelclass');
-									$('.' + panel).hide();
-									var panelid = $(this).attr('panelid');
-									$('#' + panelid).show();
+							yearSlider.noUiSlider.on('update', function( values, handle ) {
+								let silderValue = yearSlider.noUiSlider.get();
+								let value = silderValue.toString().split(\",\");
+								$('#yearFrom').val(Math.trunc( value[1] ));
+								$('#yearTo').val(Math.trunc( value[0] ));
+								let result = collectSearchParams();
+								console.log(result);
+							});
+
+							/////////////////////////////////////////////////////////////////////
+							///////////////////////// PRICE FROM - TO////////////////////////////
+							/////////////////////////////////////////////////////////////////////
+							var priceSlider = document.getElementById('nouislider-slider-cash-range');
+
+							noUiSlider.create(priceSlider, {
+								start: [0, 1000],
+								connect: true,
+								range: {
+									'min': 0,
+									'max': 1000
+								},
+								direction: 'rtl',
+								step: 5,
+								connect: true,
+								behaviour: 'tap-drag',
+								tooltips: false,
+
+								// Show a scale with the slider
+
+							});
+
+							priceSlider.noUiSlider.on('update', function( values, handle ) {
+								let priceSilderValue = priceSlider.noUiSlider.get();
+								let value = priceSilderValue.toString().split(\",\");
+								$('#priceFrom').val(Math.trunc( value[1] ));
+								$('#priceTo').val(Math.trunc( value[0] ));
+								let result = collectSearchParams();
+								console.log(result);
+							});
+
+							//event listner for generic search filter while typing
+							$('.generalSearch').on('keyup', function() {
+								if (this.value.length > 1) {
+									let generalSearch = $('.generalSearch').val();
+									console.log(generalSearch);
+								}
+								let result = collectSearchParams();
+								console.log(result);
+							});
+
+							$('.items').click(function(){
+								$('.paginationValue').val(this.value);
+								$('li.items').removeClass('active');
+								$(this).addClass('active');
+								let result = collectSearchParams();
+								console.log(result);
+							});
+
+							// prepare early booking value
+							function earlyBookingValue(){
+								let earlyBooking = $('.btn-switch__radio:checked').val();
+								if(earlyBooking){
+									if (earlyBooking == 0){
+										earlyBooking = 1;
+									}
+									else if (earlyBooking == 1){
+										earlyBooking = 0;
+									}
+								}
+								return earlyBooking;
+							}
+
+							// prepare subscription Value Duration
+							function subscriptionValueDurationValue(){
+								let subscriptionValueDuration = $('.subscriptionValueDuration:checked').val();            
+								if (subscriptionValueDuration == 'week1'){
+									subscriptionValueDuration = 7;
+								}
+								else if (subscriptionValueDuration == 'month1'){
+									subscriptionValueDuration = 30;
+								}
+								else if (subscriptionValueDuration == 'year1'){
+									subscriptionValueDuration = 30 * 12;
+								}
+								return subscriptionValueDuration;
+							}
+
+							/*
+							 * Collect search params filter
+							 *
+							 * @params
+							 */
+							function collectSearchParams(){
+								let carClassification = $('.carClassification:checked').val();
+								let generalSearch = $('.generalSearch').val();
+								let carSearchCity = $('.carSearchCity').children(\"option:selected\").val();
+								let membershipPlan = $('.membershipPlan:checked').val();
+								let earlyBooking = earlyBookingValue();
+								let durationOfSubscription = $('.durationOfSubscription:checked').val();
+								let subscriptionValueDuration = subscriptionValueDurationValue();
+								let financialValueDaily = $('.financialValueDaily').val();
+								let financialValueWeekly = $('.financialValueWeekly').val();
+								let displayOrdering = $('.displayOrdering:checked').val();
+								let carBrand = $('.carBrand').children('option:selected').val();
+								let carModel = $('.carType').children('option:selected').val();
+								let carType = $('.carCategory').children('option:selected').val();
+								let yearFrom = $('#yearFrom').val();
+								let yearTo = $('#yearTo').val();
+								let offset = $('.paginationValue').val();
+								let carColor = [];
+								$.each($('.carColor:checked'), function(){            
+									carColor.push($(this).val());
 								});
+								let gearBox = $('.gearBox:checked').val();
+								var result = new function(){
+									this.search_text = generalSearch;
+									// this.carSearchCity = carSearchCity;
+									this.carClassification = carClassification;
+									// this.membershipPlan = membershipPlan;
+									// this.earlyBooking = earlyBooking;
+									this.book_period = durationOfSubscription;
+									// this.subscriptionValueDuration = subscriptionValueDuration;
+									this.price_from = financialValueWeekly;
+									this.price_to = financialValueDaily;
+									this.order_by = displayOrdering;
+									this.cb_uid = carBrand;
+									this.cm_uid = carModel;
+									this.ct_uid = carType;
+									this.year_from = yearTo;
+									this.year_to = yearFrom;
+									this.color = carColor;
+									this.transmission = gearBox;
+									this.offset = offset;
+								}
+
+								//////////////// TODO ///////////////////////////////////
+								// let x = 5; // car fixed price
+								// let fixedrateaftermembership = membershipPlan * x / 100;
+								// let xx = fixedrateaftermembership * earlyBookingValue / 100;
+								// let xxx = xx * durationOfSubscription;
+								$.ajax({
+
+									type:'POST',
+
+									url:'http://localhost/efad/explore/search',
+
+									data:{
+										search_text:generalSearch,
+										// car_category:carClassification,
+										book_period:durationOfSubscription,
+										price_from:financialValueWeekly,
+										price_to:financialValueDaily,
+										order_by:displayOrdering,
+										cb_uid:carBrand,
+										cm_uid:carModel,
+										ct_uid:carType,
+										year_from:yearTo,
+										year_to:yearFrom,
+										color:carColor,
+										transmission:gearBox,
+										offset:offset,
+									},
+
+									success:function(data){
+										console.log(data);
+									},
+
+									error: function(data){
+										// var errors = data.responseJSON;
+										// var errorObj = errors.errors;
+										// if ((errorObj)){
+										//     // TODO
+										// }
+										// $('html, body').animate({ scrollTop: 0 }, 'fast');
+									}
+
+								});
+
+								//return result;
+							}
+
+							$( '.updateSearchContent' ).change(function() {
+								let result = collectSearchParams();
+								$('.carPriceAfterCal').html(Math.floor(Math.random()*(999-100+1)+100));
+								let x = $('.subscriptionValueDuration:checked').next().html();
+								$('.carDurationAfterCal').html('ريال ' + x);
+								console.log(result);
 							});
 
-							$('.button-mobile-container').click(function () {
-								$('.search-option').toggleClass('show');
+
+							$('.clearFilters').click(function(){
+								//$(\"#myCheck\").prop(\"checked\", false);
+								// $('.carClassification:checked').val();
+								// $('.generalSearch').val('');
+								// $('.carSearchCity').children(\"option:selected\").val();
+								// let membershipPlan = $('.membershipPlan:checked').val();
+								// let earlyBooking = earlyBookingValue();
+								// let durationOfSubscription = $('.durationOfSubscription:checked').val();
+								// let subscriptionValueDuration = subscriptionValueDurationValue();
+								// let financialValueDaily = $('.financialValueDaily').val();
+								// let financialValueWeekly = $('.financialValueWeekly').val();
+								// let displayOrdering = $('.displayOrdering:checked').val();
+								// let carBrand = $('.carBrand').children('option:selected').val();
+								// let carModel = $('.carType').children('option:selected').val();
+								// let carType = $('.carCategory').children('option:selected').val();
+								// let yearFrom = $('#yearFrom').val();
+								// let yearTo = $('#yearTo').val();
+								// let offset = $('.paginationValue').val();
+								// let carColor = [];
+								// $.each($('.carColor:checked'), function(){            
+								//     carColor.push($(this).val());
+								// });
+								// let gearBox = $('.gearBox:checked').val();
+								alert('TODO - backend json response');
 							});
 
+							/* navbar */
+
+							$('#sidebarCollapse').on('click', function () {
+								$('#sidebar').toggleClass('active');
+							});
 						});
-					</script> 
-
-					<!-- filter car search --> 
-					<script>
-						var \$range = $('.js-range-slider'),
-						instance;
-
-						\$range.ionRangeSlider({
-							skin: 'round',
-							type: 'double',
-							min: 0,
-							max: 500,
-							from: 0,
-							to: 500,
-							onChange: handleRangeInputChange
-						});
-
-						instance = \$range.data('ionRangeSlider');
-
-
-						var container = document.querySelector(\"[data-ref='product_list']\");
-						var mixer = mixitup(container, {
-							animation: {
-								duration: 500,
-								queueLimit: 1000
-							}
-						});
-
-						function getRange() {
-							var min = Number(instance.result.from);
-							var max = Number(instance.result.to);
-							return {
-								min: min,
-								max: max
-							};
-						}
-
-						function handleRangeInputChange() {
-							mixer.filter(mixer.getState().activeFilter);
-						}
-
-						function filterTestResult(testResult, target) {
-							var size = Number(target.dom.el.getAttribute('data-size'));
-							var range = getRange();
-							if (size < range.min || size > range.max) {
-								testResult = false;
-							}
-							return testResult;
-						}
-						mixitup.Mixer.registerFilter('testResultEvaluateHideShow', 'range', filterTestResult);
 					</script> 				
 				
 				
