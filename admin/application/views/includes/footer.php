@@ -189,7 +189,7 @@ if (isset($javascripts) && $javascripts != null) {
 		           	url: '<?= site_url("cars_colors/getCarSecondaryColors/'+parentID+'") ?>',
 		           	type: 'GET',
 		           	error: function() {
-		              	alert('Something is wrong');
+		              	alert('Something went wrong');
 		           	},
 		           	success: function(data) {
 		           		var obj = JSON.parse(data);

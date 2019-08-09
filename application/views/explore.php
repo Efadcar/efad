@@ -33,7 +33,7 @@
 						</div>
 						-->
 
-						<div class="col-md-12 col-sm-12 pt-2">
+						<!-- <div class="col-md-12 col-sm-12 pt-2">
 							<div class=" justify-content-between">
 								<span class="labelh ">الحجز المبكر</span>
 								<div class="btn-switch">
@@ -44,14 +44,14 @@
 								</div>
 							</div>
 							<span class="text-mutedd small pt-2"> أحصل على 5 % كخصم إضافية عند إجراء الحجز المبكر </span> 
-						</div>
+						</div> -->
 						<div class="col-md-12 col-sm-12 pt-2">
 							<span class="labelh py-2">مدة الاشتراك</span>
 							<!--  Custom Radio Buttons  -->
 							<div class="row">
 								<div class="col-lg-12">
 									<label class="customButton">أقل من 6 شهور
-									<input type="radio" checked="checked" name="month" class="updateSearchContent durationOfSubscription" value="0">
+									<input type="radio" id="durationOfSubscription" checked="checked" name="month" class="updateSearchContent durationOfSubscription" value="0">
 									<span class="checkmark"></span>
 									</label>
 								</div>
@@ -83,11 +83,11 @@
 										<input type="radio" name="day1"  value="day1" id="day1"  >
 										<label for="day1" class="day"> يومى</label>
 										-->
-									<input type="radio" name="year1" value="week1"  id="week1" class="updateSearchContent subscriptionValueDuration" checked>
+									<input type="radio" name="year1" data-value="7" value="week1"  id="week1" class=" subscriptionValueDuration" checked>
 									<label for="week1" class="week">اسبوعى</label>
-									<input type="radio" name="year1"  value="month1" id="month1" class="updateSearchContent subscriptionValueDuration" >
+									<input type="radio" name="year1" data-value="30" value="month1" id="month1" class=" subscriptionValueDuration" >
 									<label for="month1" class="month"> شهرى</label>
-									<input type="radio" name="year1" value="year1"  id="year1" class="updateSearchContent subscriptionValueDuration" >
+									<input type="radio" name="year1" data-value="365" value="year1"  id="year1" class=" subscriptionValueDuration" >
 									<label for="year1" class="year">سنوى</label>
 								</p>
 							</div>
@@ -99,7 +99,7 @@
 							<div col-lg-12>
 								من:
 									&nbsp;<input type="text" name="week1" value="" id="priceTo" class="item8000 updateSearchContent financialValueWeekly" disabled>&nbsp;&nbsp;&nbsp;&nbsp;
-								الي:
+								إلى:
 									&nbsp;<input type="text" name="day1"  value="" id="priceFrom" class="item2000 updateSearchContent financialValueDaily" disabled >
 
 							</div>
@@ -111,7 +111,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<label class="customButton">من الأقل قيمة إلى الأعلى
-									<input type="radio" checked="checked" name="highvalue" class="updateSearchContent displayOrdering" value="ASC">
+									<input type="radio" checked="checked" name="highvalue" class="updateSearchContent displayOrdering" id="displayOrdering" value="ASC">
 									<span class="checkmark"></span>
 									</label>
 								</div>
@@ -170,8 +170,8 @@
 							<span class="labelh py-2">سنة الصنع</span>
 							<!-- <input type="text" class="js-range-slider updateSearchContent" value="" /> -->
 							<div id="nouislider-slider"></div>
-							<input id="yearFrom" type="hidden">
-							<input id="yearTo" type="hidden">
+							<input id="yearFrom" type="hidden" class="updateSearchContent">
+							<input id="yearTo" type="hidden" class="updateSearchContent">
 						</div>
 						<div class="col-md-12 col-sm-12 pt-2" >
 							<span class="labelh py-2">لون السيارة</span>
@@ -232,7 +232,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<label class="customButton">أتوماتيك
-									<input type="radio" class="updateSearchContent gearBox" checked="checked" name="automanual" value="auto">
+									<input type="radio" id="gearBox" class="updateSearchContent gearBox" checked="checked" name="automanual" value="auto">
 									<span class="checkmark"></span>
 									</label>
 								</div>
@@ -330,464 +330,12 @@
 				</div>
 				<div class="product_list" data-ref="product_list" style="margin: 0 5px 0 25px;">
 					<div class="row">
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value carPriceAfterCal">69</span> <span class="duration carDurationAfterCal">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>               <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value carPriceAfterCal">69</span> <span class="duration carDurationAfterCal">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>               <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value carPriceAfterCal">69</span> <span class="duration carDurationAfterCal">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>               <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value carPriceAfterCal">69</span> <span class="duration carDurationAfterCal">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>               <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value carPriceAfterCal">69</span> <span class="duration carDurationAfterCal">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>               <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value carPriceAfterCal">69</span> <span class="duration carDurationAfterCal">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>               <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value carPriceAfterCal">69</span> <span class="duration carDurationAfterCal">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>               <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                                                 <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                                                 <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                                                 <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                                                 <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                                                 <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                                                 <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                                                 <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class=" col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018 "  data-size="69">
-							<div class="thumbnail-container">
-								<div class="car-img"> <img src="images/cars/sonata.png" class="img-fluid" /> 
-								</div>
-								<div class="car-price d-flex">
-									<div class="price-car mr-auto">
-										<div class="price-was">80 ريال</div>
-										<span class="value">69</span> <span class="duration">ريال شهريا</span>
-									</div>
-									<div class="carname d-flex">
-										<div class="ml-auto">
-											<h5><span>كيا</span> <span>2018</span></h5>
-											<h3>سوناتا</h3>
-										</div>
-									</div>
-								</div>
-								<div class="car-price d-flex row">
-									<div class="col-lg-12">
-										<span class="dot11"></span>
-										<i class="far fa-heart heart"></i>                                                 <span class="mr-3 position-absolute" style="font-size: 19px;font-weight: 600;margin-top: 4px;">8</span>
-										<div class="btn-reserve btn-reserve1"> <a href="reservation.html" class="btn btn-default">احجز الآن</a> </div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<div class="row carListBE"></div>
 						<div class="col-lg-12">
 							<ul class="pagin">
 								<li><i class="fas fa-chevron-right float-left"><a href="#"></a></i></li>
-								<div class="text-center">
-									<li class="items active" value="0"><a href="#">1</a></li>
-									<li class="items" value="1"><a href="#">2</a></li>
-									<li class="items" value="2"><a href="#">3</a></li>
-									<li class="items" value=""><a href="#">...</a></li>
+								<div class="text-center paginationDrawResponse">
+									
 								</div>
 								<input type="hidden" class="paginationValue" value="0">
 								<li><i class="fas fa-chevron-left float-right"><a href="#"></a></i></li>

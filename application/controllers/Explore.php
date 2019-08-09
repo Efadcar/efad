@@ -80,6 +80,7 @@ class Explore extends CI_Controller {
                 $java = "
 				
 					<script type='text/javascript'>
+
 						$(document).ready(function () {
 							// implementation of nouislider
 							var yearSlider = document.getElementById('nouislider-slider');
@@ -110,8 +111,8 @@ class Explore extends CI_Controller {
 								let value = silderValue.toString().split(\",\");
 								$('#yearFrom').val(Math.trunc( value[1] ));
 								$('#yearTo').val(Math.trunc( value[0] ));
-								let result = collectSearchParams();
-								console.log(result);
+								// collectSearchParams();
+								$('#yearFrom').trigger('change');
 							});
 
 							/////////////////////////////////////////////////////////////////////
@@ -141,27 +142,22 @@ class Explore extends CI_Controller {
 								let value = priceSilderValue.toString().split(\",\");
 								$('#priceFrom').val(Math.trunc( value[1] ));
 								$('#priceTo').val(Math.trunc( value[0] ));
-								let result = collectSearchParams();
-								console.log(result);
+								// collectSearchParams();
+								$('#priceFrom').trigger('change');
+								// console.log(result);
 							});
 
 							//event listner for generic search filter while typing
 							$('.generalSearch').on('keyup', function() {
 								if (this.value.length > 1) {
 									let generalSearch = $('.generalSearch').val();
-									console.log(generalSearch);
+									//console.log(generalSearch);
 								}
-								let result = collectSearchParams();
-								console.log(result);
+								// let result = collectSearchParams();
+								// console.log(result);
 							});
 
-							$('.items').click(function(){
-								$('.paginationValue').val(this.value);
-								$('li.items').removeClass('active');
-								$(this).addClass('active');
-								let result = collectSearchParams();
-								console.log(result);
-							});
+							
 
 							// prepare early booking value
 							function earlyBookingValue(){
@@ -187,10 +183,12 @@ class Explore extends CI_Controller {
 									subscriptionValueDuration = 30;
 								}
 								else if (subscriptionValueDuration == 'year1'){
-									subscriptionValueDuration = 30 * 12;
+									subscriptionValueDuration = 365;
 								}
 								return subscriptionValueDuration;
 							}
+
+							collectSearchParams();
 
 							/*
 							 * Collect search params filter
@@ -205,6 +203,15 @@ class Explore extends CI_Controller {
 								let earlyBooking = earlyBookingValue();
 								let durationOfSubscription = $('.durationOfSubscription:checked').val();
 								let subscriptionValueDuration = subscriptionValueDurationValue();
+								let subscriptionValueDurationInArabic = 'اسبوعي';
+								if (subscriptionValueDuration == 30){
+									subscriptionValueDurationInArabic = 'شهري';
+								}
+								else if (subscriptionValueDuration == 360){
+									subscriptionValueDurationInArabic = 'سنوي';
+								}
+
+
 								let financialValueDaily = $('.financialValueDaily').val();
 								let financialValueWeekly = $('.financialValueWeekly').val();
 								let displayOrdering = $('.displayOrdering:checked').val();
@@ -249,7 +256,7 @@ class Explore extends CI_Controller {
 
 									type:'POST',
 
-									url:'http://localhost/efad/explore/search',
+									url: '".site_url('explore/search')."',
 
 									data:{
 										search_text:generalSearch,
@@ -269,56 +276,188 @@ class Explore extends CI_Controller {
 									},
 
 									success:function(data){
-										console.log(data);
+										//console.log(data['status']);
+										let availability = '';
+										$('.carListItemResponse').remove();
+										if (data['status'] == 1){
+											$.each(data['data']['result'], function(i, item) {
+												if (item['car_in_stock'] == 0){
+													availability = 'style=\"background-color: rgb(132,132,132)\"';
+												}
+												else if (item['car_in_stock'] == 1){
+													if (item['car_status'] == 0){
+														availability = 'style=\"background-color: rgb(230,1,1)\"';
+													}
+													else if (item['car_status'] == 1){
+														availability = 'style=\"background-color: rgb(61,145,16)\"';
+													}
+												}
+
+												let carPriceRes = item['car_daily_price'];
+
+												if (item['car_monthly_price']){
+													carPriceRes = item['car_monthly_price'];
+												}
+
+												// if (subscriptionValueDuration == 7){
+												// 	let carPriceFirstReq = carPriceRes * 7;
+												// }
+												calcaulateCarPriceBasedOnDuration();
+
+												//carPriceRes = carPriceRes * subscriptionValueDuration;
+											    $('.carListBE')
+											        .append(\"<div class='carListItemResponse col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018' data-size='69'>\"+
+														\"<div class='thumbnail-container'>\"+
+															\"<div class='car-img'>\"+
+																\"<img src='\"+item['image']+\"' class='img-fluid' />\"+
+															\"</div>\"+
+															\"<div class='car-price d-flex'>\"+
+																\"<div class='price-car mr-auto' style='margin-top: 10px;'>\"+
+																	
+																	\"<span id='\"+item['cb_uid']+\"' class='value calculateCarPriceBasedOnDuration'>\"+carPriceRes+\"</span>\"+
+																		\"<input type='hidden' class='car_daily_price' value='\"+carPriceRes+\"'>\"+
+																		\"<span class='duration'>ريال \"+subscriptionValueDurationInArabic+\"</span>\"+
+																\"</div>\"+
+																
+																\"<div class='carname d-flex'>\"+
+																	\"<div class='ml-auto'>\"+
+																		\"<h5><span>\"+item['cb_uid']+\"</span>\"+ 
+																		\"<span>\"+item['car_model_year']+\"</span></h5>\"+
+																		\"<h3>\"+item['cm_uid']+\"</h3>\"+
+																	\"</div>\"+
+																\"</div>\"+
+															\"</div>\"+
+															\"<div class='car-price d-flex row'>\"+
+																\"<div class='col-lg-12'>\"+
+																	\"<span class='dot11' \"+availability+\"></span>\"+
+																	\"<i class='far fa-heart heart'></i>\"+                                       \"<span class='mr-3 position-absolute' style='font-size: 19px;font-weight: 600;margin-top: 4px;'>8</span>\"+
+																	\"<div class='btn-reserve btn-reserve1'> <a href='reservation.html' class='btn btn-default'>احجز الآن</a> </div>\"+
+																\"</div>\"+
+															\"</div>\"+
+														\"</div>\"+
+													\"</div>\");
+											});
+
+
+											let paginationCounter = data['data']['num_rows'] / 15;
+											paginationCounter = 4;
+											$('.paginationDrawResponse').empty();
+											// console.log(paginationCounter);
+											let i = 0;
+											let count = 1;
+											for (i; i < paginationCounter; i++) { 
+												if (i == offset){
+													$('.paginationDrawResponse').append('<li class=\"items active\" value='+i+'><a href=\"#\">'+count+'</a></li>');
+												}
+												else{
+												  	$('.paginationDrawResponse').append('<li class=\"items\" value='+i+'><a href=\"#\">'+count+'</a></li>');
+												}
+												count++;
+											}
+											$('.items').click(function(){
+												$('.paginationValue').val(this.value);
+												$('li.items').removeClass('active');
+												$(this).addClass('active');
+												$('#yearFrom').trigger('change');
+											});
+
+											let lastValue = $('.calculateCarPriceBasedOnDuration').last().next().val();
+											let durValue = $('.subscriptionValueDuration').attr('data-value');
+											$('.calculateCarPriceBasedOnDuration').last().html(lastValue * durValue);
+										}
 									},
 
 									error: function(data){
-										// var errors = data.responseJSON;
-										// var errorObj = errors.errors;
-										// if ((errorObj)){
-										//     // TODO
-										// }
-										// $('html, body').animate({ scrollTop: 0 }, 'fast');
+
 									}
 
 								});
-
-								//return result;
 							}
 
+							function calcaulateCarPriceBasedOnDuration(){
+								let valueDataNum = subscriptionValueDurationValue();
+							    let valueData = 'اسبوعي';
+							    let car_daily_price = '';
+
+							    if (valueDataNum == 7){
+							    	valueData = 'اسبوعي';
+							    	car_daily_price = car_daily_price * 7;
+							    }
+							    else if (valueDataNum == 30){
+							    	valueData = 'شهري';
+							    	car_daily_price = car_daily_price * 30;
+							    }
+							    else if (valueDataNum == 365){
+							    	valueData = 'سنوي';
+							    	car_daily_price = car_daily_price * 365;
+							    }
+
+							    $( '.calculateCarPriceBasedOnDuration' ).each(function() {
+							    	car_daily_price = $(this).next().val();
+							    	if (valueDataNum == 7){
+								    	car_daily_price = car_daily_price * 7;
+								    }
+								    else if (valueDataNum == 30){
+								    	car_daily_price = car_daily_price * 30;
+								    }
+								    else if (valueDataNum == 365){
+								    	car_daily_price = car_daily_price * 365;
+								    }
+
+							    	// alert(car_daily_price);
+								  	$(this).html(car_daily_price);
+								});
+							    $('.duration').html(' ريال ' + valueData);
+							}
+
+							// $( '.calculateCarPriceBasedOnDuration' ).each(function() {
+							//   	$(this).html(car_daily_price * 7);
+							// });
+
+							// $('.subscriptionValueDuration').trigger('change');
+
+							$('.subscriptionValueDuration').change(function(){
+							    calcaulateCarPriceBasedOnDuration();
+							});
+
 							$( '.updateSearchContent' ).change(function() {
+								let lastValue = $('.calculateCarPriceBasedOnDuration').last().next().val();
+								let durValue = $('.subscriptionValueDuration').attr('data-value');
+								$('.calculateCarPriceBasedOnDuration').last().html(lastValue * durValue);
 								let result = collectSearchParams();
 								$('.carPriceAfterCal').html(Math.floor(Math.random()*(999-100+1)+100));
 								let x = $('.subscriptionValueDuration:checked').next().html();
 								$('.carDurationAfterCal').html('ريال ' + x);
-								console.log(result);
+								// console.log(result);
 							});
 
 
 							$('.clearFilters').click(function(){
-								//$(\"#myCheck\").prop(\"checked\", false);
-								// $('.carClassification:checked').val();
-								// $('.generalSearch').val('');
-								// $('.carSearchCity').children(\"option:selected\").val();
-								// let membershipPlan = $('.membershipPlan:checked').val();
-								// let earlyBooking = earlyBookingValue();
-								// let durationOfSubscription = $('.durationOfSubscription:checked').val();
-								// let subscriptionValueDuration = subscriptionValueDurationValue();
-								// let financialValueDaily = $('.financialValueDaily').val();
-								// let financialValueWeekly = $('.financialValueWeekly').val();
-								// let displayOrdering = $('.displayOrdering:checked').val();
-								// let carBrand = $('.carBrand').children('option:selected').val();
-								// let carModel = $('.carType').children('option:selected').val();
-								// let carType = $('.carCategory').children('option:selected').val();
-								// let yearFrom = $('#yearFrom').val();
-								// let yearTo = $('#yearTo').val();
-								// let offset = $('.paginationValue').val();
+								$('.generalSearch').val('');
+								$('.carClassification').val(0);
+								// $('.durationOfSubscription).val(0);
+								$('.durationOfSubscription').prop('checked', false);
+								$('#durationOfSubscription').prop('checked', true);
+								$('.financialValueDaily').val(1000);
+								$('.financialValueWeekly').val(0);
+								$('.displayOrdering').prop('checked', false);
+								$('#displayOrdering').prop('checked', true);
+								$('.subscriptionValueDuration').prop('checked', false);
+								$('#week1').prop('checked', true);
+								$('.carBrand').val(0);
+								$('.carType').val(0);
+								$('.carCategory').val(0);
+								$('#yearFrom').val(2019);
+								$('#yearTo').val(2015);
+								$('.paginationValue').val(0);
 								// let carColor = [];
-								// $.each($('.carColor:checked'), function(){            
-								//     carColor.push($(this).val());
-								// });
-								// let gearBox = $('.gearBox:checked').val();
-								alert('TODO - backend json response');
+								$('.carColor').val('');
+								$('.gearBox').prop('checked', false);
+								$('#gearBox').prop('checked', true);
+								yearSlider.noUiSlider.set([2015, 2019]);
+								priceSlider.noUiSlider.set([0, 1000]);
+								collectSearchParams();
+								$('html, body').animate({ scrollTop: 0 }, 'fast');
 							});
 
 							/* navbar */
@@ -326,6 +465,18 @@ class Explore extends CI_Controller {
 							$('#sidebarCollapse').on('click', function () {
 								$('#sidebar').toggleClass('active');
 							});
+
+						});
+						$(window).bind('load', function() {
+					        $('.items').click(function(){
+								$('.paginationValue').val(this.value);
+								$('li.items').removeClass('active');
+								$(this).addClass('active');
+								$('#yearFrom').trigger('change');
+							});
+
+							let lastValue = $('.calculateCarPriceBasedOnDuration').last().next().val();
+							$('.calculateCarPriceBasedOnDuration').last().html(lastValue * 7);
 						});
 					</script> 				
 				
