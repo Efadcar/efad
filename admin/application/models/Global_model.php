@@ -172,14 +172,15 @@ class Global_model extends CI_Model {
      *  @return array of parent colors
      */
     function getParentColors() {
-        $q = $this->db->get_where('cars_colors', array('parent_uid' => 0), NULL, NULL);
+        $q = $this->db->get_where('cars_colors', array('parent_uid' => 0));
         if($q->num_rows() > 0) {
             foreach($q->result() as $row) {
                 $data[] = $row;
             }
             return $data; 
         }
-        else{
+        else
+		{
             return false;   
         }
     }
@@ -196,6 +197,7 @@ class Global_model extends CI_Model {
         $q = $this->db->get_where('cars_colors', array('parent_uid' => $parentID));
         if($q->num_rows() > 0) {
             foreach($q->result() as $row) {
+				$row->cco_name = $this->global_model->getStringByKeyLanguage($row->cco_name, 'arabic');
                 $data[] = $row;
             }
             return $data; 

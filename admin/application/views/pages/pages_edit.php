@@ -80,9 +80,10 @@
                                             <span class="help-block">برجاء كتابة عنوان الصفحة باللغة <?= $language->lang_title ?></span>
                                         </div>
 
-                                        <div class="form-group form-md-line-input form-md-floating-label ">
-									<textarea class="form-control" rows="3" name="page_text_<?= $language->lang_name ?>"><?= $this->global_model->getStringByKeyLanguage($row->page_text, $language->lang_name) ?></textarea>
-                                            <label for="form_control_1">محتوي الصفحة باللغة <?= $language->lang_title ?></label>
+                                        <div class="form-group">
+											<label for="form_control_1">محتوي الصفحة باللغة <?= $language->lang_title ?></label>
+											<textarea class="form-control ckeditor" rows="3" name="page_text_<?= $language->lang_name ?>"><?= $this->global_model->getStringByKeyLanguage($row->page_text, $language->lang_name) ?></textarea>
+                                            
                                             <span class="help-block">برجاء كتابة محتوي الصفحة باللغة <?= $language->lang_title ?>.</span>
                                         </div>
                                         

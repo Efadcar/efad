@@ -34,6 +34,7 @@
                             <thead>
                             <tr>
                                 <th>أسم اللون</th>
+                                <th>أسم اللون الأساسي</th>
                                 <th>خيارات</th>
                             </tr>
                             </thead>
@@ -44,6 +45,16 @@
                                 ?>
                                 <tr>
                                     <td><?php echo $this->global_model->getStringByKeyLanguage('cco_name'.$row->cco_code, 'arabic'); ?></td>
+                                    <td>
+										<?php 
+										$co = $this->global_model->getColorByID($row->parent_uid);
+										if($co == "") {
+											echo "لون أساسي";
+										}else{
+											echo $co;
+										}
+										?>
+									</td>
                                     <td>
                                         <a href="<?php echo site_url('cars_colors/cars_colors_edit/'.$row->cco_uid) ?>" class="btn btn-xs yellow"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-pencil"></i>تعديل</a> 
                                         <a data-toggle="modal" href="#static_<?= $row->cco_uid ?>" class="btn btn-xs red"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-trash-o"></i>حذف</a>        

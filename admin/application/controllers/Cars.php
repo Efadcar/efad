@@ -149,13 +149,11 @@ class Cars extends CI_Controller {
                     "'" . base_url() . "../assets/global/plugins/moment.min.js'",
                     "'" . base_url() . "../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'",
                     "'" . base_url() . "../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js'",
-                    "'" . base_url() . "../assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js'",
-                    "'" . base_url() . "../assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js'",
+                    "'" . base_url() . "../assets/global/plugins/ckeditor/ckeditor.js'",
                     "'" . base_url() . "../assets/global/scripts/app.min.js'",
                     "'" . base_url() . "../assets/pages/scripts/components-select2.min.js'",
                     "'" . base_url() . "../assets/pages/scripts/components-date-time-pickers.min.js'",
                     "'" . base_url() . "../assets/pages/scripts/components-bootstrap-switch.min.js'",
-                    "'" . base_url() . "../assets/pages/scripts/components-editors.min.js'",
                     "'" . base_url() . "../assets/layouts/layout/scripts/layout.min.js'",
                 );
 				
@@ -171,7 +169,6 @@ class Cars extends CI_Controller {
                 $css = '<link href="' . base_url() . '../assets/global/plugins/bootstrap-toastr/toastr-rtl.min.css" rel="stylesheet" type="text/css" />'.
 				'<link href="'.base_url().'../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="'.base_url().'../assets/global/plugins/bootstrap-switch/css/bootstrap-switch-rtl.min.css" rel="stylesheet" type="text/css"/>'.
-				'<link href="'.base_url().'../assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5-rtl.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="'.base_url().'../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="'.base_url().'../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="'.base_url().'../assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css"/>'.
