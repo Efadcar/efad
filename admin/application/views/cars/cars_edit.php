@@ -71,7 +71,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="form-group">
 											<label for="album_uid">ألبوم الصور</label>
 											<select class="form-control select2" id="album_uid" name="album_uid" required>
@@ -84,7 +84,7 @@
 											
 										</div>										
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="form-group">
 											<label for="car_color">لون السيارة</label>
 											<select class="form-control select2" id="car_color" name="car_color" required>
@@ -96,7 +96,15 @@
 											</select>
 										</div>										
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-3 CarSecondaryColor">
+										<div class="form-group">
+											<label for="car_color_secondary">لون السيارة الفرعي</label>
+											<select class="form-control select2" id="car_color_secondary" name="car_color_secondary">
+												<option value="">برجاء أختيار لون فرعي</option>
+											</select>
+										</div>											
+									</div>
+									<div class="col-md-3">
 										<div class="form-group">
 											<label for="car_model_year">سنة الصنع</label>
 											<select class="form-control select2" id="car_model_year" name="car_model_year" required>
@@ -258,13 +266,19 @@
 									
 								</div>
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>سعر الحجز الأساسي</label>
+											<input type="number" class="form-control" placeholder="برجاء كتابة سعر الحجز الأساسي" name="car_yearly_price" required value="<?= $row->car_yearly_price ?>"> 
+										</div>
+									</div>
+									<div class="col-md-4">
 										<div class="form-group">
 											<label>السعر أقل من 6 شهور</label>
 											<input type="number" class="form-control" placeholder="برجاء كتابةالسعر لأقل من 6 شهور" name="car_daily_price" required value="<?= $row->car_daily_price ?>"> 
 										</div>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="form-group">
 											<label>السعر أكثر من 6 شهور</label>
 											<input type="number" class="form-control" placeholder="برجاء كتابة السعر لأكثر من 6 شهور" name="car_monthly_price" required value="<?= $row->car_monthly_price ?>"> 

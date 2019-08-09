@@ -181,8 +181,16 @@ if (isset($javascripts) && $javascripts != null) {
 	///////// ALBUMS PAGE - CHECK BASIC & SECONDARY COLORS //////////
 	$(document).ready(function(){
 		if($("#car_color").length > 0) {
+			let parentID = $('#car_color').children('option:selected').val();
+			if(parentID != 0 || parentID != ""){
+				getSecondColors();
+			}
+			
 			$('#car_color').change(function(){
-				$('.CarSecondaryColor').css('display', 'none');
+				getSecondColors();
+			});
+			
+			function getSecondColors(){
 				$(".CarSecondaryColor option").remove();
 				let parentID = $('#car_color').children('option:selected').val();
 				$.ajax({
@@ -196,17 +204,17 @@ if (isset($javascripts) && $javascripts != null) {
 		           		$('#car_color_secondary')
 						        .append($("<option></option>")
 					            .attr("value", '')
-			                    .text('-- select option --')); 
+			                    .text('برجاء أختيار لون فرعي')); 
 		           		$.each(obj, function(i, item) {
 						    $('#car_color_secondary')
 						        .append($("<option></option>")
 					            .attr("value", item.cco_uid)
-			                    .text(item.cco_link));
+			                    .text(item.cco_name));
 							$('.CarSecondaryColor').css('display', 'block');
 						});
 		           	}
 		        });
-			});
+			}
 		}
 	});
 

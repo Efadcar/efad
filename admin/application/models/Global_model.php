@@ -196,6 +196,7 @@ class Global_model extends CI_Model {
         $q = $this->db->get_where('cars_colors', array('parent_uid' => $parentID));
         if($q->num_rows() > 0) {
             foreach($q->result() as $row) {
+				$row->cco_name = $this->global_model->getStringByKeyLanguage($row->cco_name, 'arabic');
                 $data[] = $row;
             }
             return $data; 
