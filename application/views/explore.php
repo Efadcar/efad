@@ -6,9 +6,13 @@
 					<div class="col-6 col-xs-6 ">
 						<div class="cars-many"> <span>3000</span> <span>سيارة</span> </div>
 					</div>
+					
 					<div class="col-6 col-xs-6 ">
-						<div class="cars-branch"> <span>4</span> <span>مدن</span> </div>
+						<a href="<?= site_url('branches') ?>">
+							<div class="cars-branch"> <span>4</span> <span>مدن</span> </div>
+						</a>
 					</div>
+					
 				</div>
 				<div class="row">
 					<div class="button-mobile-container button-mobile-fixed">
@@ -127,20 +131,12 @@
 							<div class="select-wrapper">
 								<select id="select-car" data-placeholder="ماركة السيارة" class="form-control width100p updateSearchContent carBrand">
 									<option value="0">ماركة السيارة</option>
-									<option value="kia">كيا</option>
-									<option value="hyundai">هيونداى</option>
-									<option value="toyota">تويوتا</option>
-									<option value="ford">فورد</option>
-									<option value="volkswagen">فولكس فاجن</option>
-									<option value="fiat">فيات</option>
-									<option value="nissan">نيسان</option>
-									<option value="acura">اكورا</option>
-									<option value="changan">شانجان</option>
-									<option value="volvo">فولفو</option>
-									<option value="geely">جيلى</option>
-									<option value="renault">رينو</option>
-									<option value="GMC">جميس</option>
-									<option value="mazda">مازدا</option>
+									<?php
+									if($brands != false)
+									foreach($brands as $brand){
+									?>
+									<option value="<?= $brand->cb_uid ?>"><?= $brand->cb_name ?></option>
+									<?php } ?>
 								</select>
 							</div>
 						</div>
@@ -159,10 +155,12 @@
 							<div class="select-wrapper">
 								<select id="select-car" data-placeholder="أختر شكل السيارة" class="form-control width100p updateSearchContent carCategory">
 									<option value="0">نوع السيارة</option>
-									<option value="1">الرياض</option>
-									<option value="2">جدة</option>
-									<option value="3">المدينة المنورة</option>
-									<option value="4">الدمام</option>
+									<?php
+									if($types != false)
+									foreach($types as $type){
+									?>
+									<option value="<?= $type->ct_uid ?>"><?= $type->ct_name ?></option>
+									<?php } ?>
 								</select>
 							</div>
 						</div>
@@ -176,54 +174,19 @@
 						<div class="col-md-12 col-sm-12 pt-2" >
 							<span class="labelh py-2">لون السيارة</span>
 							<div class="custom-radios">
+								
+								<?php
+								if($colors != false)
+								foreach($colors as $color){
+								?>
 								<div>
-									<input type="checkbox" id="white" data-filter=".white" class="updateSearchContent carColor"  value="white" >
-									<label for="white"> <span> <i class="fa fa-check blackCheck"></i> </span> </label>
+									<input type="checkbox" id="color_<?= $color->cco_uid ?>" class="updateSearchContent carColor" value="<?= $color->cco_uid ?>" >
+									<label for="color_<?= $color->cco_uid ?>"> <span style="background-color: <?= $color->cco_meta_desc ?>"> <i class="fa fa-check <?php if($color->cco_meta_desc == "#ffffff"){echo "blackCheck";} ?>"></i> </span> </label>
 								</div>
-								<div>
-									<input type="checkbox" id="gray" data-filter=".gray" class="updateSearchContent carColor"  value="gray" >
-									<label for="gray"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="yellow" class="updateSearchContent carColor"  data-filter=".yellow" value="yellow">
-									<label for="yellow"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="brown"  class="updateSearchContent carColor" value="brown" data-filter=".brown">
-									<label for="brown"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="red" class="updateSearchContent carColor"  value="red" data-filter=".red">
-									<label for="red"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="Aetna"  class="updateSearchContent carColor" value="Aetna" data-filter=".Aetna">
-									<label for="Aetna"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="Algolia"  class="updateSearchContent carColor" value="Algolia" data-filter=".Algolia">
-									<label for="Algolia"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="blue" class="updateSearchContent carColor" data-filter=".blue" value="blue">
-									<label for="blue"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="Lingus"  class="updateSearchContent carColor" data-filter=".Lingus" value="Lingus">
-									<label for="Lingus"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="Adobe"  class="updateSearchContent carColor" value="Adobe" data-filter=".Adobe">
-									<label for="Adobe"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="black" class="updateSearchContent carColor"  value="black" data-filter=".black">
-									<label for="black"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
-								<div>
-									<input type="checkbox" id="Arriva" class="updateSearchContent carColor"  value="Arriva" data-filter=".Arriva">
-									<label for="Arriva"> <span> <i class="fa fa-check"></i> </span> </label>
-								</div>
+
+								<?php } ?>
+								
+								
 							</div>
 						</div>
 						<div class="col-md-12 col-sm-12 pt-2">

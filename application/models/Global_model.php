@@ -246,7 +246,17 @@ class Global_model extends CI_Model {
 			if($color == 0){
 				$where .= " ";
 			}else{
-				$where .= " AND car_color = ".$color;
+				$i = 1;
+				$where .= "AND (";
+				foreach($color as $one){
+					if($i ==1){
+						$where .= "car_color = ".$one;
+					}else{
+						$where .= " OR car_color = ".$one;
+					}
+					$i++;
+				}
+				$where .= ")";
 			}
 			
 			if($car_transmission == 0){
@@ -476,6 +486,29 @@ class Global_model extends CI_Model {
 						$string_data[$mrow->string_key] = $mrow;
 					}
 					$row->cb_name = $string_data[$row->cb_name]->string_content;
+				}
+				$data[] = $row;
+			}
+			return $data;
+		}else{
+			return false;	
+		}
+	}
+	
+	function getAllColors(){
+		$siteLang = $this->session->userdata('site_lang');
+		//echo $siteLang;exit;
+		$this->db->select('cco_uid,cco_code,cco_name,cco_meta_desc');
+		$q =  $this->db->get_where('cars_colors', array("parent_uid" => 0));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$string_key = $row->cco_code;
+				$m = $this->db->query("SELECT * FROM strings WHERE string_code LIKE '".$string_key."' AND string_lang LIKE '".$siteLang."'");
+				if($m->num_rows() > 0) {
+					foreach($m->result() as $mrow) {
+						$string_data[$mrow->string_key] = $mrow;
+					}
+					$row->cco_name = $string_data[$row->cco_name]->string_content;
 				}
 				$data[] = $row;
 			}

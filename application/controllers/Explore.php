@@ -17,6 +17,8 @@ class Explore extends CI_Controller {
     public function index() {
         $data['brands'] = $this->global_model->getAllBrands();
         $data['types'] = $this->global_model->getAllTypes();
+        $data['colors'] = $this->global_model->getAllColors();
+		
         $data['direction'] = $this->global_model->getSiteDirection();
 		$data['main_content'] = 'explore';
         $data['pageTitle'] = "اكتشف";		
@@ -331,7 +333,7 @@ class Explore extends CI_Controller {
 																\"<div class='col-lg-12'>\"+
 																	\"<span class='dot11' \"+availability+\"></span>\"+
 																	\"<i class='far fa-heart heart'></i>\"+                                       \"<span class='mr-3 position-absolute' style='font-size: 19px;font-weight: 600;margin-top: 4px;'>8</span>\"+
-																	\"<div class='btn-reserve btn-reserve1'> <a href='reservation.html' class='btn btn-default'>احجز الآن</a> </div>\"+
+																	\"<div class='btn-reserve btn-reserve1'> <a href='".site_url('book/addnew/')."\"+item['car_uid']+\"'  class='btn btn-default'>احجز الآن</a> </div>\"+
 																\"</div>\"+
 															\"</div>\"+
 														\"</div>\"+
