@@ -205,12 +205,12 @@ class Explore extends CI_Controller {
 								let earlyBooking = earlyBookingValue();
 								let durationOfSubscription = $('.durationOfSubscription:checked').val();
 								let subscriptionValueDuration = subscriptionValueDurationValue();
-								let subscriptionValueDurationInArabic = 'اسبوعي';
+								let subscriptionValueDurationInArabic = 'أسبوعياً';
 								if (subscriptionValueDuration == 30){
-									subscriptionValueDurationInArabic = 'شهري';
+									subscriptionValueDurationInArabic = 'شهرياً';
 								}
-								else if (subscriptionValueDuration == 360){
-									subscriptionValueDurationInArabic = 'سنوي';
+								else if (subscriptionValueDuration == 365){
+									subscriptionValueDurationInArabic = 'سنوياً';
 								}
 
 
@@ -342,7 +342,6 @@ class Explore extends CI_Controller {
 
 
 											let paginationCounter = data['data']['num_rows'] / 15;
-											paginationCounter = 4;
 											$('.paginationDrawResponse').empty();
 											// console.log(paginationCounter);
 											let i = 0;
@@ -378,19 +377,19 @@ class Explore extends CI_Controller {
 
 							function calcaulateCarPriceBasedOnDuration(){
 								let valueDataNum = subscriptionValueDurationValue();
-							    let valueData = 'اسبوعي';
+							    let valueData = 'أسبوعياً';
 							    let car_daily_price = '';
 
 							    if (valueDataNum == 7){
-							    	valueData = 'اسبوعي';
+							    	valueData = 'أسبوعياً';
 							    	car_daily_price = car_daily_price * 7;
 							    }
 							    else if (valueDataNum == 30){
-							    	valueData = 'شهري';
+							    	valueData = 'شهرياً';
 							    	car_daily_price = car_daily_price * 30;
 							    }
 							    else if (valueDataNum == 365){
-							    	valueData = 'سنوي';
+							    	valueData = 'سنوياً';
 							    	car_daily_price = car_daily_price * 365;
 							    }
 

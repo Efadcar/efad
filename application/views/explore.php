@@ -88,11 +88,11 @@
 										<label for="day1" class="day"> يومى</label>
 										-->
 									<input type="radio" name="year1" data-value="7" value="week1"  id="week1" class=" subscriptionValueDuration" checked>
-									<label for="week1" class="week">اسبوعى</label>
+									<label for="week1" class="week">أسبوع</label>
 									<input type="radio" name="year1" data-value="30" value="month1" id="month1" class=" subscriptionValueDuration" >
-									<label for="month1" class="month"> شهرى</label>
+									<label for="month1" class="month"> شهر</label>
 									<input type="radio" name="year1" data-value="365" value="year1"  id="year1" class=" subscriptionValueDuration" >
-									<label for="year1" class="year">سنوى</label>
+									<label for="year1" class="year">سنة</label>
 								</p>
 							</div>
 
@@ -101,9 +101,9 @@
 							<span class="labelh py-2">عرض السعر</span>
 
 							<div col-lg-12>
-								من:
+								من
 									&nbsp;<input type="text" name="week1" value="" id="priceTo" class="item8000 updateSearchContent financialValueWeekly" disabled>&nbsp;&nbsp;&nbsp;&nbsp;
-								إلى:
+								إلى
 									&nbsp;<input type="text" name="day1"  value="" id="priceFrom" class="item2000 updateSearchContent financialValueDaily" disabled >
 
 							</div>
