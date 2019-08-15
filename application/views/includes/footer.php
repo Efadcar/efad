@@ -249,6 +249,7 @@ if (isset($javascripts) && $javascripts != null) {
 	}); //end change
 
 	});
+
 </script> 
 
 

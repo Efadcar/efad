@@ -1,263 +1,261 @@
-<section>
-	<div class="container">
-		<div class="row">
-			<div class="col-12 ">
-				<div class="main-heading  text-center ">
-					<h1 class="no-border">المعلومات الشخصية</h1>
+<style type="text/css">
+	body {
+	    overflow-x: hidden;
+	}
 
-				</div>
-			</div>
-		</div>
-	</div>
+	.desc {
+	    font-size: small;
+	    font-style: normal;
+	    margin-bottom: 10px;
+	    font-weight: 800;
+	    color: #333;
+	    margin-left: 5px;
+	}
+
+	.img-fluid {
+	    margin-top: -23px;
+	}
+
+	.total-amount {
+	    font-size: xx-large;
+	    color: #3baeff;
+	}
+
+	.amount {
+	    margin-right: 66px;
+	}
+
+	.margin-bottom {
+	    margin-bottom: 30px;
+	}
+
+	.custom-img {
+	    width: 50%;
+	    float: left;
+	}
+
+	.border {
+	    border: 1px solid gainsboro;
+	    padding: 22px;
+	}
+
+	.border-invoice {
+	    border-color: #103453;
+	    border-radius: 6px;
+	    border: 1px solid gainsboro;
+	    padding: 22px;
+	}
+
+	.total-all {
+	    color: #1b9fec;
+	    background-color: #e6e6e6;
+	    padding: 10px;
+	    font-size: large;
+	}
+
+	.margin-top {
+	    margin-top: 49px;
+	}
+
+	.margin-top-extra {
+	    margin-top: 124px;
+	}
+
+	.logo-invoice {
+	    float: left;
+	    width: 36%;
+	    margin-left: 50px;
+	    margin-top: 42px;
+	}
+
+	.margin-right-extra {
+	    margin-right: 50px;
+	}
+
+	.margin-right {
+	    margin-right: 30px;
+	}
+
+	.participation-desc {
+	    color: #fff;
+	    background-color: #103453;
+	    border-color: #103453;
+	    padding: 6px;
+	    font-size: medium;
+	    height: auto;
+	    border-radius: 6px;
+	}
+
+	.participation-desc:hover,
+	.participation-cancel:hover {
+	    color: #fff;
+	    background-color: #103453;
+	    border-color: #103453;
+	}
+
+	.participation-cancel {
+	    color: #fff;
+	    background-color: #c5c5c5;
+	    border-color: #c5c5c5;
+	    padding: 6px;
+	    font-size: medium;
+	    height: auto;
+	    border-radius: 6px;
+	    margin-left: 11px;
+	}
+
+	p {
+	    font-size: small;
+	    color: #333;
+	    font-weight: 400;
+	    margin-bottom: 8px !important;
+	}
+
+	.header-img {
+	    width: 100%;
+	    height: 370px;
+	}
+
+	.nav {
+	    margin-bottom: 18px;
+	    margin-left: 0;
+	    list-style: none;
+	    margin-right: 40%;
+	}
+
+	.nav>li>a {
+	    display: block;
+	}
+
+	.nav-tabs {
+	    *zoom: 1;
+	    border-bottom: none !important;
+	}
+
+	.nav-tabs:before,
+	.nav-tabs:after {
+	    display: table;
+	    content: "";
+	}
+
+	.nav-tabs:after {
+	    clear: both;
+	}
+
+	.nav-tabs>li {
+	    float: left;
+	}
+
+	.nav-tabs>li>a {
+	    padding-right: 12px;
+	    padding-left: 12px;
+	    margin-right: 2px;
+	    line-height: 14px;
+	}
+
+	.nav-tabs>li>a {
+	    padding-top: 8px;
+	    padding-bottom: 8px;
+	    line-height: 18px;
+	    -webkit-border-radius: 4px 4px 0 0;
+	    -moz-border-radius: 4px 4px 0 0;
+	    border-radius: 4px 4px 0 0;
+	}
+
+	.nav-tabs>li>a:hover {
+	    border-color: #eeeeee #eeeeee #dddddd;
+	}
+
+	.nav-tabs>.active>a,
+	.nav-tabs>.active>a:hover {
+	    color: #555555;
+	    cursor: default;
+	    background-color: #ffffff;
+	    border: 1px solid #ddd;
+	}
+
+	li {
+	    line-height: 18px;
+	}
+
+	.tab-content.active {
+	    display: block;
+	}
+
+	.tab-content.hide {
+	    display: none;
+	}
+</style>
+
+<section>
+    <div class="row">
+        <div class="col-md-12">
+            <img src="https://image.shutterstock.com/image-photo/woman-traveler-sitting-on-hatchback-600w-517237099.jpg" class="header-img">
+        </div>
+    </div>
 </section>
-<section>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="reservation-form  mb-4 ">
-					<div class="p-3 text-center">
-						<div class="relative mx-auto col-sm-2 mb-2">
-							<img class=" rounded-circle" src="<?= base_url() ?>assets/rtl/images/profile-pic.png" width="128" height="128">
-						</div>
-						<h4><?= $this->session->userdata('member_full_name') ?></h4>
-					</div>
-					<ul id="user-meta" class="c-list c-list--meta">
-						<li class="c-list__item">
-							<i class="fas fa-map-marker-alt"></i>
-							<span>المدينة</span>
 
-							<span class="u-block"><?= $this->global_model->getCityByUserID($this->session->userdata('member_uid')) ?></span>
-						</li>
-						<li class="c-list__item">
-							<i class="fa fa-certificate"></i>
-							<span>العضوية</span>
+<!-- profile start -->
 
-							<span class="u-block"><?= $this->global_model->getMembershipNameByID($this->session->userdata('mc_uid')) ?></span>
-						</li>
-						<li class="c-list__item">
-							<i class="fas fa-coins"></i>
-							<span>عدد النقاط</span>
-
-							<span class="u-block">0</span>
-						</li>
-						<li class="c-list__item">
-							<i class="fas fa-calculator"></i>
-							<span>عدد الحجوزات</span>
-
-							<span class="u-block"><?= count($bookings) ?></span>
-						</li>
-
-						<li class="c-list__item" title="متصل الآن">
-							<i class="far fa-calendar-minus"></i>
-							<span>آخر حجز</span>
-
-							<span class="u-block">10/04/2019</span>
-						</li>
-					</ul>
-				</div>
-
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item">
-						<a class="nav-link " id="notification-tab" data-toggle="tab" href="#notification" role="tab" aria-controls="notification" aria-selected="true">تنبيهات</a>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link active" id="reservation-tab" data-toggle="tab" href="#reservation" role="tab" aria-controls="reservation" aria-selected="true">الحجوزات</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">البيانات الشخصية</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" id="member-tab" data-toggle="tab" href="#member" role="tab" aria-controls="member" aria-selected="false">تغير العضوية</a>
-					</li>
-				</ul>
-				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
-						<div class="row">
-							<div class="col-sm-12" style="color: white !important">
-								<div class="toast__container">
-									<div class="toast__cell">
-										<div class="toast toast-info add-margin">
-											<div class="toast__icon">
-												<i class="fas fa-info-circle"></i>
-											</div>
-											<div class="toast__content">
-												<p class="">معلومات بخصوص العضوية</p>
-												<p class="toast__message">لقد قاربت عضويتك على الانتهاء يرجى تجديد العضوية</p>
-											</div>
-											<div class="toast__close">
-												<i class="far fa-times-circle"></i>
-											</div>
-										</div>
-										<div class="toast toast-warning add-margin">
-											<div class="toast__icon">
-												<i class="fas fa-exclamation-triangle"></i>
-											</div>
-											<div class="toast__content">
-												<p class="">يرجى سداد حجز السيارة فى حساب البنك</p>
-												<p class="toast__message">يرجى سداد حجز السيارة قبل موعد أستلامها بمده أقصاها 3 ايام عمل </p>
-											</div>
-											<div class="toast__close">
-												<i class="far fa-times-circle"></i>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade show active" id="reservation" role="tabpanel" aria-labelledby="reservation-tab">
-						<div class="row">
-							<div class="col-sm-12" style="color: white !important">
-								<div class="toast__container">
-									<?php
-									if($bookings != false)
-									foreach($bookings as $booking){
-									?>
-									<div class="toast__cell">
-										<div class="toast toast-success">
-											<div class="toast__icon">
-												<i class="fas fa-check-circle"></i>
-											</div>
-											<div class="toast__content">
-												<p class="toast__type">تم حجز سيارتك الان</p>
-												<p class="toast__message">
-													لقد قمت بحجز سياره <?= $this->global_model->getStringByKeyLanguage($booking->car_obj->cb_uid->cb_name, "arabic") ?> <?= $booking->car_obj->car_model_name ?> لمده <?= $booking->book_total_days ?> أيام ابتداء من<?= $booking->book_start_date ?> الى <?= $booking->book_end_date ?> 
-												</p>
-											</div>
-											<div class="toast__close">
-												<i class="far fa-times-circle"></i>
-											</div>
-										</div>
-									</div>
-									<?php } ?>
-									
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-						<div class="col-sm-6 mx-auto">
-							<div class="row mt-3   pt-3">
-								<div class="col-sm-12">
-									<h4><i class="fas fa-edit"></i> البياناتك الشخصية</h4>
-								</div>
-							</div>
-							<div class="col-xs-12">
-								<div class="avatar-wrapper">
-									<i class="fas fa-camera"></i>
-									<img class="profile-pic" src="images/profile-pic.png"/>
-									<div class="upload-button">
-
-									</div>
-									<input class="file-upload" type="file" accept="image/*"/>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-
-									<input type="text" class="form-control" placeholder="Mohamed">
-								</div>
-								<div class="form-group col-md-6">
-
-									<input type="text" class="form-control" placeholder="Mosaad">
-								</div>
-								<div class="form-group col-md-6">
-
-									<input type="email" class="form-control" placeholder="mohamed.mosaad@mail.com">
-								</div>
-								<div class="form-group col-md-6">
-
-									<input type="tel" class="form-control" placeholder="010052242050">
-								</div>
-
-							</div>
-							<button type="submit" class="btn btn-default">حفظ التعديلات</button>
-						</div>
-						<!-- personal info -->
-						<!-- password -->
-						<div class="col-sm-12 col-md-6 mx-auto">
-							<div class="row mt-3   pt-3 mt-10">
-								<div class="col-sm-12">
-									<h4><i class="fas fa-edit"></i> كلمة المرور </h4>
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-12">
-									<label for="inputpass">كلمة المرور الحالية</label>
-									<div class="input-group">
-										<input type="password" id="inputpass" class="form-control password-field" name="password" value="كلمة المرور" placeholder="كلمة المرور">
-										<div class="input-group-prepend">
-											<span class=" input-group-text">
-               									<span toggle=".password-field" class=" fa fa-fw fa-eye field-icon toggle-password"></span>
-											</span>
-										</div>
-									</div>
-								</div>
-								<div class="form-group col-md-12">
-									<label for="inputpass">كلمة المرور الجديد</label>
-									<div class="input-group">
-										<input type="password" id="Password1" class="form-control password-field" name="password" value="كلمة المرور" placeholder="كلمة المرور">
-										<div class="input-group-prepend">
-											<span class=" input-group-text">
-               <span toggle=".password-field" class=" fa fa-fw fa-eye field-icon toggle-password"></span>
-											</span>
-										</div>
-									</div>
-								</div>
-								<div class="form-group col-md-12">
-									<label for="inputpass"> تأكيد كلمة المرور الجديدة</label>
-									<div class="input-group">
-										<input type="password" id="Password2" class="form-control password-field" name="password" value="كلمة المرور" placeholder="كلمة المرور">
-										<div class="input-group-prepend">
-											<span class=" input-group-text">
-               <span toggle=".password-field" class=" fa fa-fw fa-eye field-icon toggle-password"></span>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<button type="submit" class="btn btn-default">تعديل كلمة المرور  </button>
-						</div>
-					</div>
-					<div class="tab-pane fade" id="member" role="tabpanel" aria-labelledby="member-tab">
-						<div class="row mt-3   pt-3">
-							<div class="col-sm-12">
-								<h3>العضوية</h3>
-							</div>
-							<div class="col-sm-6">
-								<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-									<div class="col p-4 d-flex flex-column position-static">
-										<strong class="d-inline-block mb-2 text-muted">لون العضوية</strong>
-										<h3 class="mb-4"><?= $this->global_model->getMembershipNameByID($this->session->userdata('mc_uid')) ?></h3>
-										<div>
-											<h5 class="float-sm-right">
-												<span class="text-muted mr-2">تاريخ انتهاء</span>
-												<span><?= $this->session->userdata('member_renewal_date') ?></span>
-											</h5>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-									<div class="col p-4 d-flex flex-column position-static">
-										<strong class="d-inline-block mb-2 text-muted">تغير نوع العضوية</strong>
-										<p>
-											أنت الان مشترك فى العضويه الخضراء أذا كنت ترغب فى تغير أ, ترقيه العضويه يرجى الذهاب الى صفحة الاشتراكات
-										</p>
-										<p>
-											<a href="" class="btn btn-default">مقارنة مميزات العضوية</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
+<section >
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#tab1">بياناتي</a>
+            </li>
+            <li>
+                <a href="#tab2">الاشتراكات</a>
+            </li>
+            <li>
+                <a href="#tab3">العضوية</a>
+            </li>
+        </ul>   
+    </div>
+    <section id="tab1" class="tab-content active">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    Tab 1 - بياناتي
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="tab2" class="tab-content hide">
+        <div class="container">
+        	<?php
+				if($bookings != false)
+					foreach($bookings as $booking){
+			?>
+	            <div class="row margin-bottom border border">
+	                <div class="col-md-4">
+	                	<!-- <img src="<?= base_url().ALBUMS_IMAGES.$booking->car_obj->main_image; ?>" class="img-fluid"> -->
+	                    <img src="<?= base_url() ?>assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid">
+	                </div>
+	                <div class="col-md-4">
+	                        <p><span class="desc">نوع السيارة: </span><?= $this->global_model->getStringByKeyLanguage($booking->car_obj->cb_uid->cb_name, "arabic") ?> <?= $this->global_model->getStringByKeyLanguage($booking->car_obj->cm_uid->cm_name, "arabic") ?> <?= $booking->car_obj->car_model_year ?></p>
+	                        <p><span class="desc">رقم التذكرة: </span><?= $booking->book_uid ?></p>
+	                        <p><span class="desc">تاريخ الحجز: </span><?= date("Y-m-d", strtotime($booking->book_added_date)) ?></p>
+	                        <p><span class="desc">تاريخ الاستلام: </span><?= $booking->book_start_date ?></p>
+	                        <p><span class="desc">مدينة الاستلام: </span>
+	                        <?= $this->global_model->getCityByID($booking->delivery_city_uid) ?></p>
+	                </div>
+	                <div class="col-md-4">
+	                    <div class="amount">
+	                        <h5>المبلغ الاجمالي</h5>
+	                        <p class="total-amount"><?= $booking->car_obj->car_daily_price ?> ريال</p>
+	                    </div>
+	                    <button class="btn-primary participation-cancel">الغاء الاشتراك</button><a target="_blank" href=<?= base_url()."book/detail/" . $booking->book_uid ?>><button class="btn-primary participation-desc">تفاصيل الاشتراك</button></a>
+	                </div>
+	            </div>
+        	<?php } ?>
+        </div>
+    </section>
+    <section id="tab3" class="tab-content hide">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    Tab 3 - العضوية
+                </div>
+            </div>
+    </section>
 </section>

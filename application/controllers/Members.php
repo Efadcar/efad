@@ -90,14 +90,15 @@ class Members extends CI_Controller {
 			// get site direction return "rtl" or "ltr"
 			$data['direction'] = $this->global_model->getSiteDirection();
 			$data['bookings'] = $this->global_model->getUserBookings( $this->session->userdata('member_uid'));
+
 			// set main content
 			$data['main_content'] = 'profile';
 			//set page title
 			$data['pageTitle'] = "الملف الشخصي";		
 
 			$data['javascripts'] = $this->_javascript('home');
-			$data['pageCssFiles'] = $this->_cssFiles('home');
-			$data['javascriptCode'] = $this->_javascriptCode('home');
+			$data['pageCssFiles'] = $this->_cssFiles('profile');
+			$data['javascriptCode'] = $this->_javascriptCode('profile');
 			$this->load->view('includes/template', $data);
 		}else{
 			redirect('home');
@@ -133,6 +134,10 @@ class Members extends CI_Controller {
             case 'home': 
                 $css = '';
                 break;
+
+            case 'profile':
+            	$css = "'" . base_url() . "assets/rtl/css/profile.css'";
+            	break;
 
         }
         return $css;
@@ -325,12 +330,36 @@ class Members extends CI_Controller {
 						parent.fadeOut(\"slow\", function() { $(this).remove(); } );
 					  });
 					});
+				
+				
+					// Profile page
+					$(document).ready(function() {
+						$('.nav-tabs > li > a').click(function(event){
+							event.preventDefault();//stop browser to take action for clicked anchor
+										
+							//get displaying tab content jQuery selector
+							var active_tab_selector = $('.nav-tabs > li.active > a').attr('href');					
+										
+							//find actived navigation and remove 'active' css
+							var actived_nav = $('.nav-tabs > li.active');
+							actived_nav.removeClass('active');
+										
+							//add 'active' css into clicked navigation
+							$(this).parents('li').addClass('active');
+										
+							//hide displaying tab content
+							$(active_tab_selector).removeClass('active');
+							$(active_tab_selector).addClass('hide');
+										
+							//show target tab content
+							var target_tab_selector = $(this).attr('href');
+							$(target_tab_selector).removeClass('hide');
+							$(target_tab_selector).addClass('active');
+					    });
+					});
+				
+				
 					</script>			
-				
-				
-				
-				
-				
 				
 				";
                 break;
