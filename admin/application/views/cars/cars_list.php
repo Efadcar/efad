@@ -66,7 +66,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" data-dismiss="modal" class="btn dark btn-outline">إلغاء</button>
-                                                        <a href="<?php echo site_url('cars/cars_del/'.$row->car_uid) ?>" class="btn red">نعم، حذف</a>
+                                                        <a href="<?php echo site_url('cars/cars_del/'.$row->car_link) ?>" class="btn red">نعم، حذف</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
                 </div>
 
             </div>
-            
+			<div class="col-md-12 text-center"><?= $this->pagination->create_links(); ?></div>
         </div>
 
     </div>

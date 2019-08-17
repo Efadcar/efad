@@ -180,6 +180,24 @@ if (isset($javascripts) && $javascripts != null) {
 
 	///////// ALBUMS PAGE - CHECK BASIC & SECONDARY COLORS //////////
 	$(document).ready(function(){
+		$("#sample_1").on( 'row-reorder.dt', function ( e, diff, edit ) {
+			//console.log(diff);
+			$.ajax({
+				url: '<?= site_url("faq_categories/faq_categories_sort") ?>',
+				type: 'POST',
+				data: {paramter: JSON.stringify(diff)},
+				error: function() {
+					console.log('Something went wrong');
+				},
+				success: function(data) {
+					console.log(data);
+				}
+			});
+
+		} );
+
+		
+		
 		if($("#car_color").length > 0) {
 			let parentID = $('#car_color').children('option:selected').val();
 			if(parentID != 0 || parentID != ""){

@@ -17,24 +17,33 @@ class Cars extends CI_Controller {
 			$this->session->set_userdata('order_by', $this->input->post('order_by'));
 			$this->session->set_userdata('order_type', $this->input->post('order_type'));
 		}
-		
 		//start pagination
 		$this->load->library('pagination');
 		$config['base_url'] = site_url('cars/cars_list');
+		$this->db->group_by("car_link");
 		$config['total_rows'] = $this->db->get('cars')->num_rows();
 		$config['per_page'] = 10;
 		$config['num_links'] = 10;
 		$config['uri_segment'] = 3;
-		$config['use_page_numbers'] = false;
-		$config['full_tag_open'] = '<div class="pagination pagination-centered"><ul>';
-		$config['full_tag_close'] = '</ul></div>';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="active"><a>';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['next_link'] = '>';
-		$config['first_link'] = '<div class="btn">الأول</div>';
-		$config['last_link'] = '<div class="btn">الأخير</div>';
+        $config['use_page_numbers'] = false;
+        $config['full_tag_open'] = '<ul class="pagination margin-none">';
+        $config['full_tag_close'] = '</div>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active"><a>';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['next_link'] = '»';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['prev_link'] = '«';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['first_link'] = 'First';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['last_link'] = 'Last';
 		$this->pagination->initialize($config);
 		//end pagination
 		$data['rows'] = $this->cars_model->getAll( $config['per_page'], $this->uri->segment(3));
@@ -120,10 +129,10 @@ class Cars extends CI_Controller {
 	
 	function cars_del($code){
 		$this->global_model->have_permission('cars_del');
-		$result = $this->global_model->delete_selected_items("cars", "car_uid", $code, FALSE, FALSE);
-		if ($result == true) 
+		$result = $this->cars_model->delete($code);
+		if ($result != false) 
 		{
-			$this->messages->add("تم الحذف بنجاح", "success");
+			$this->messages->add("تم حذف ".$result." سيارات بنجاح", "success");
         } 
 		else 
 		{

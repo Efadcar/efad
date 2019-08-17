@@ -30,7 +30,13 @@
                             <div class="form-body">
 
 								<div class="row">
-									<div class="col-md-4">
+									<div class="col-md-3">
+										<div class="form-group">
+											<label>عدد السيارات</label>
+											<input type="number" class="form-control" placeholder="برجاء كتابة عدد السيارات" name="car_quantity" required value="1"> 
+										</div>									
+									</div>
+									<div class="col-md-3">
 										<div class="form-group">
 											<label for="cc_uid">قسم السيارة</label>
 											<select class="form-control" id="cc_uid" name="cc_uid" required>
@@ -43,7 +49,7 @@
 											
 										</div>										
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="form-group">
 											<label for="ct_uid">نمط السيارة</label>
 											<select class="form-control" id="ct_uid" name="ct_uid" required>
@@ -56,7 +62,7 @@
 											
 										</div>										
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-3">
 										<div class="form-group">
 											<label for="cb_uid">ماركة السيارة</label>
 											<select class="form-control" id="cb_uid" name="cb_uid" required>

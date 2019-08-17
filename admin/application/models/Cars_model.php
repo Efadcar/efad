@@ -3,6 +3,7 @@
 class Cars_model extends CI_Model {
 	
 	function getAll($limit, $offsit) {
+		$this->db->group_by("car_link");
 		$q = $this->db->get('cars',$limit, $offsit);
 		if($q->num_rows() > 0) {
 			foreach($q->result() as $row) {
@@ -118,9 +119,13 @@ class Cars_model extends CI_Model {
 		$car_model = $this->global_model->getModelByID($this->input->post('cm_uid'));
 		$car_color = $this->global_model->getColorByID($this->input->post('car_color'));
 		$car_search_text = $car_brand.", ".$car_model.", ".$this->input->post('car_model_year').", ".$car_color;
+		$car_link = $car_brand."-".$car_model."-".$this->input->post('car_model_year')."-".$car_color."-".$this->input->post('car_daily_price')."-".$this->input->post('car_monthly_price')."-".$this->input->post('car_yearly_price');
+		$car_link = md5($car_link);
+		
+		$car_quantity = $this->input->post('car_quantity');
 		
 		$data = array(
-		   'car_link' => $this->input->post('car_model_name')."-".rand(1000,20000),
+		   'car_link' => $car_link,
 		   'cc_uid' => $this->input->post('cc_uid'),
 		   'ct_uid' => $this->input->post('ct_uid'),
 		   'cb_uid' => $this->input->post('cb_uid'),
@@ -148,10 +153,12 @@ class Cars_model extends CI_Model {
 		   'new_car' => $this->_if_null_input($this->input->post('new_car'))
 		);
 		
-		$this->db->insert('cars', $data); 
+		for($i = 1; $i <= $car_quantity; $i++){
+			$this->db->insert('cars', $data);
+		}
 		
 		if($this->db->affected_rows() > 0){
-			$this->messages->add("لقد تم أضافة السيارة بنجاح.", "success");
+			$this->messages->add("لقد تم أضافة ".$car_quantity." سيارة بنجاح.", "success");
 		}else{
 			$this->messages->add("لقد حدث خطأ أثناء الأضافة.", "error");
 		}
@@ -168,12 +175,17 @@ class Cars_model extends CI_Model {
 	}
 		
 	function edit_action($id){
+		$old_car_link = $this->getByID($id)->car_link;
+		
 		$car_brand = $this->global_model->getBrandByID($this->input->post('cb_uid'));
 		$car_model = $this->global_model->getModelByID($this->input->post('cm_uid'));
 		$car_color = $this->global_model->getColorByID($this->input->post('car_color'));
 		$car_search_text = $car_brand.", ".$car_model.", ".$this->input->post('car_model_year').", ".$car_color;
+		$car_link = $car_brand."-".$car_model."-".$this->input->post('car_model_year')."-".$car_color."-".$this->input->post('car_daily_price')."-".$this->input->post('car_monthly_price')."-".$this->input->post('car_yearly_price');
+		$car_link = md5($car_link);
 
 		$data = array(
+		   'car_link' => $car_link,
 		   'cc_uid' => $this->input->post('cc_uid'),
 		   'ct_uid' => $this->input->post('ct_uid'),
 		   'cb_uid' => $this->input->post('cb_uid'),
@@ -201,14 +213,24 @@ class Cars_model extends CI_Model {
 		   'new_car' => $this->_if_null_input($this->input->post('new_car'))
 		);
 		
-		$this->db->where('car_uid', $id);
+		$this->db->where('car_link', $old_car_link);
 		$this->db->update('cars', $data); 
 		if($this->db->affected_rows() > 0){
-			$this->messages->add("لقد تم تحديث بيانات السيارة بنجاح.", "success");
+			$this->messages->add("لقد تم تحديث عدد ".$this->db->affected_rows()." سيارة بنجاح.", "success");
 		}else{
 			$this->messages->add("لم تقوم بتغيير بيانات السيارة.", "alert");
 		}
 		
+	}
+	
+	function delete($car_link){
+        $this->db->where("car_link", $car_link);
+        $del = $this->db->delete("cars");
+		if($del){
+			return $this->db->affected_rows();
+		}else{
+			return false;
+		}
 	}
 
 	function _if_null_input($input){
@@ -217,22 +239,7 @@ class Cars_model extends CI_Model {
 		}
 		return $input;
 	}
-	
-	
-	function _createThumbnail($fileName) {  
-        $config['image_library'] = 'gd2';  
-        $config['source_image'] = USERS_FILES . $fileName;  
-        $config['create_thumb'] = false;
-		$config['new_image'] = 'thumb_'.$fileName; 
-        $config['maintain_ratio'] = TRUE;  
-        $config['width'] = 100;  
-        $config['height'] = 100;  
-        $this->load->library('image_lib', $config);  
-        if(!$this->image_lib->resize()){
-			$this->messages->add($this->image_lib->display_errors(), "error");  
-		}
-    }  
-	
+		
 
 }
 

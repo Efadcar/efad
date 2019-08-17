@@ -28,21 +28,24 @@
                         </div>                        
                         
                     </div>
+					<div id="result"></div>
                     <div class="portlet-body">
                         <div class="table-responsive" style="min-height:400px">
-                            <table class="table table-striped table-bordered table-hover">
+                            <table class="table table-striped table-bordered table-hover" id="sample_1">
                             <thead>
                             <tr>
+                                <th>الترتيب</th>
                                 <th>أسم القسم</th>
                                 <th>خيارات</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="sort">
                                 <?php
                                 if($rows != false)
                                 foreach($rows as $row){
                                 ?>
                                 <tr>
+                                    <td><?php echo $row->fc_order ?></td>
                                     <td><?php echo $this->global_model->getStringByKeyLanguage('fc_name'.$row->fc_code, 'arabic'); ?></td>
                                     <td>
                                         <a href="<?php echo site_url('faq_categories/faq_categories_edit/'.$row->fc_uid) ?>" class="btn btn-xs yellow"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-pencil"></i>تعديل</a> 

@@ -114,6 +114,14 @@ class Faq_categories extends CI_Controller {
      *
      * @return void
      */
+    function faq_categories_sort() {
+		$data = json_decode($_POST['paramter']);
+		print_r($data);
+		
+		//newData
+		//oldData
+		
+	}
     function faq_categories_del($code) {
         $this->global_model->have_permission('faq_categories_del');
 		$result = $this->global_model->delete_selected_items("faq_categories", "fc_code", $code, "strings", "string_code");
@@ -141,7 +149,11 @@ class Faq_categories extends CI_Controller {
                     "'" . base_url() . "../assets/global/plugins/counterup/jquery.counterup.min.js'",
                     "'" . base_url() . "../assets/global/plugins/bootstrap-toastr/toastr.min.js'",
                     "'" . base_url() . "../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js'",
+                    "'" . base_url() . "../assets/global/scripts/datatable.js'",
+                    "'" . base_url() . "../assets/global/plugins/datatables/datatables.min.js'",
+                    "'" . base_url() . "../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js'",
                     "'" . base_url() . "../assets/global/scripts/app.min.js'",
+                    "'" . base_url() . "../assets/pages/scripts/table-datatables-rowreorder.min.js'",
                     "'" . base_url() . "../assets/layouts/layout/scripts/layout.min.js'",
                 );
 				
@@ -149,12 +161,15 @@ class Faq_categories extends CI_Controller {
         }
         return $java;
     }
+	
 
     function _cssFiles($view) {
         switch ($view) {
             case 'faq_categories_add':
                 $css = '<link href="' . base_url() . '../assets/global/plugins/bootstrap-toastr/toastr-rtl.min.css" rel="stylesheet" type="text/css" />'.
 				'<link href="'.base_url().'../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>'.
+				'<link href="'.base_url().'../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css"/>'.
+				'<link href="'.base_url().'../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap-rtl.css" rel="stylesheet" type="text/css"/>'.
 				'<link href="' . base_url() . '../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />';
                 break;
 

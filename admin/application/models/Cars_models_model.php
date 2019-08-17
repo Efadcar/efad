@@ -50,7 +50,20 @@ class Cars_models_model extends CI_Model {
 	}
 
 	function add(){
-		
+        $config['upload_path'] = CARS_MODELS_IMAGES;
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        if ( !$this->upload->do_upload())
+        {
+            $this->messages->add($this->upload->display_errors(), "error");
+        }
+        else
+		{
+			$fInfo = $this->upload->data();
+			$cm_manual = $fInfo['file_name'];
+		}
+
 		$code = '_vertex_'.time();
 		
 		$cm_link = url_title($this->input->post('cm_name_english'), '-', TRUE);
@@ -63,6 +76,7 @@ class Cars_models_model extends CI_Model {
 		   'cm_code' => $code,
 		   'cm_link' => $cm_link,
 		   'cm_name' => $cm_name,
+		   'cm_manual' => $cm_manual,
 		   'cb_uid' => $cb_uid,
 		   'cm_meta_desc' => $cm_meta_desc,
 		   'cm_meta_keywords' => $cm_meta_keywords
@@ -127,6 +141,20 @@ class Cars_models_model extends CI_Model {
 	}
 
 	function edit($id){
+        $config['upload_path'] = CARS_MODELS_IMAGES;
+        $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        if ( !$this->upload->do_upload())
+        {
+			$this->messages->add($this->upload->display_errors(), "error");
+			$cm_manual = $this->input->post('cm_manual');
+        }
+        else
+		{
+			$fInfo = $this->upload->data();
+			$cm_manual = $fInfo['file_name'];
+		}
 		$row = $this->getByID($id);
 		$cm_link = url_title($this->input->post('cm_name_english'), '-', TRUE);
 		$cm_name = "cm_name".$row->cm_code;
@@ -136,6 +164,7 @@ class Cars_models_model extends CI_Model {
 
 		$data = array(
 		   'cm_link' => $cm_link,
+		   'cm_manual' => $cm_manual,
 		   'cb_uid' => $cb_uid
 		);
 		$this->db->where('cm_uid', $id);

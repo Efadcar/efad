@@ -29,20 +29,41 @@
                         ?> 
                         
                             <div class="form-body">
-								<div class="form-group form-md-line-input form-md-floating-label ">
-                                    <select class="form-control" name="cb_uid" id="form_control_1">
-                                        <option value=""></option>
-                                        <?php 
-                                        if($brands != false){
-                                        foreach ($brands as $brand){	
-                                        ?>
-                                        <option value="<?= $brand->cb_uid ?>" <?php echo  set_select('cb_uid', $brand->cb_uid); ?>>
-											<?= $this->global_model->getStringByKeyLanguage('cb_name'.$brand->cb_code, 'arabic'); ?>
-                                        </option>
-                                        <?php } } ?>	
-                                    </select>
-                                    <label for="form_control_1">برجاء أختيار الماركة</label>
-                                </div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group form-md-line-input form-md-floating-label ">
+											<select class="form-control" name="cb_uid" id="form_control_1">
+												<option value=""></option>
+												<?php 
+												if($brands != false){
+												foreach ($brands as $brand){	
+												?>
+												<option value="<?= $brand->cb_uid ?>" <?php echo  set_select('cb_uid', $brand->cb_uid); ?>>
+													<?= $this->global_model->getStringByKeyLanguage('cb_name'.$brand->cb_code, 'arabic'); ?>
+												</option>
+												<?php } } ?>	
+											</select>
+											<label for="form_control_1">برجاء أختيار الماركة</label>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="fileinput fileinput-new col-md-6 text-left" data-provides="fileinput">
+											<div class="fileinput-new thumbnail">
+												<img src="<?php echo base_url() ;?>../assets/pages/media/gallery/preview_09.png" alt="" style="height:100px"/>
+											</div>
+											<div class="fileinput-preview fileinput-exists thumbnail" style="height:100px">
+											</div>
+											<div>
+												<span class="btn btn-primary btn-file" id="pulsate-once">
+												<span class="fileinput-new"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span>اختيار ملف دليل السيارة </span>
+												<span class="fileinput-exists">تغيير</span>
+												<input type="file" name="userfile">
+												</span>
+												<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput">حذف</a>
+											</div>
+										</div>
+									</div>
+								</div>
                                 
 								
                             
