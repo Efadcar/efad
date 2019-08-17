@@ -31,6 +31,20 @@ class Book extends CI_Controller {
         $data['pageTitle'] = "أحجز الآن";		
 		$this->load->view('includes/template', $data);
     }
+
+    public function detail($book_uid) {
+		//$this->global_model->add_log(1);
+		// get site direction return "rtl" or "ltr"
+        $data['direction'] = $this->global_model->getSiteDirection();
+        $data['javascripts'] = $this->_javascript('book');
+        $data['pageCssFiles'] = $this->_cssFiles('book');
+        $data['javascriptCode'] = $this->_javascriptCode('book');
+        $data['main_content'] = 'book/detail';
+		//print_r($data['car']);exit;
+        //set page title
+        $data['pageTitle'] = "تفاصيل الحجز";		
+		$this->load->view('includes/template', $data);
+    }
 	
     public function confirm() {
 		//print_r($_SESSION);exit;
