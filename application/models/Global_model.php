@@ -215,13 +215,60 @@ class Global_model extends CI_Model {
 		$order_by = $this->input->post('order_by');
 		
 		$offset_before = $this->input->post('offset');
-		$offset = $offset_before * 10;
+		$offset = $offset_before * 15;
 		$num_rows = null;
 		$where = "";
-		
 		if($search_text != null && $search_text != "")
 		{
+			$search_text = str_replace(" ", ", ", $search_text);
+			//return $search_text;
 
+			if($offset_before == 0){
+				$n = $this->db->query("
+			SELECT * FROM (
+			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, car_daily_price, car_in_stock, car_status 
+			  FROM cars
+			WHERE car_search_text LIKE '%".$search_text."%' GROUP BY `car_link`, `car_color`
+			) AS car ORDER BY car_daily_price ".$order_by." 
+				");
+				$num_rows = $n->num_rows();
+			}
+			$query = "
+			SELECT * FROM (
+			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, car_daily_price, car_in_stock, car_status 
+			  FROM cars
+			WHERE car_search_text LIKE '%".$search_text."%' GROUP BY `car_link`, `car_color` LIMIT 15 OFFSET ".$offset."
+			) AS car ORDER BY car_daily_price ".$order_by." 
+			";
+			//return $query;
+			$q = $this->db->query($query);
+
+			$data['num_rows'] = $num_rows;
+
+			if($q->num_rows() > 0) {
+				foreach($q->result() as $row) {
+					$row->image = base_url().ALBUMS_IMAGES."sm_".$this->getShowMainImageByID($row->album_uid);
+					if($row->car_in_stock == 0){
+						$row->car_status = 2;
+					}
+					$row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
+					$row->cm_uid = $this->getCarModelNameByID($row->cm_uid);
+					$data['result'][] = $row;
+				}
+				$data['status'] = true;
+				$data['message'] = "تم العثور علي نتائج";
+				return $data; 
+			}else{
+				$data['status'] = false;
+				$data['message'] = "لا توجد نتائج للبحث";
+				$data['result'] = [];
+				return $data;	
+			}
+			
+			
+			
+			
+			
 		}
 		else
 		{
@@ -258,11 +305,11 @@ class Global_model extends CI_Model {
 				}
 				$where .= ")";
 			}
-			
-			if($car_transmission == 0){
+			//return $car_transmission;
+			if($car_transmission == null){
 				$where .= " ";
 			}else{
-				$where .= " AND car_transmission = '".$car_transmission."'";
+				$where .= " AND car_transmission LIKE '".$car_transmission."'";
 			}
 			
 			if($book_period === "0"){
@@ -275,20 +322,21 @@ class Global_model extends CI_Model {
 			
 			if($offset_before == 0){
 				$n = $this->db->query("
-					SELECT car_uid 
-					  FROM cars
-					WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." "
-				);
+				SELECT * FROM (
+				SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
+				  FROM cars
+				WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color`
+				) AS car ORDER BY ".$field." ".$order_by." 
+				");
 				$num_rows = $n->num_rows();
 			}
 			$query = "
 			SELECT * FROM (
 			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 			  FROM cars
-			WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `album_uid`, `".$field."`, `car_color` LIMIT 10 OFFSET ".$offset."
+			WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color` LIMIT 15 OFFSET ".$offset."
 			) AS car ORDER BY ".$field." ".$order_by." 
 			";
-
 			$q = $this->db->query($query);
 
 			$data['num_rows'] = $num_rows;
@@ -489,6 +537,7 @@ class Global_model extends CI_Model {
 				}
 				$data[] = $row;
 			}
+			//$data = sort($data);
 			return $data;
 		}else{
 			return false;	
@@ -569,6 +618,46 @@ class Global_model extends CI_Model {
 			return false;	
 		}
 	}
+	
+	function getModelsByBrandID ($id){
+		$siteLang = $this->session->userdata('site_lang');
+		//echo $siteLang;exit;
+		$this->db->select('cm_uid,cm_code,cm_name');
+		$q =  $this->db->get_where('cars_models', array("cb_uid" => $id));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$string_key = $row->cm_code;
+				$m = $this->db->query("SELECT * FROM strings WHERE string_code LIKE '".$string_key."' AND string_lang LIKE '".$siteLang."'");
+				if($m->num_rows() > 0) {
+					foreach($m->result() as $mrow) {
+						$string_data[$mrow->string_key] = $mrow;
+					}
+					$row->cm_name = $string_data[$row->cm_name]->string_content;
+				}
+				$data[] = '<option value="'.$row->cm_uid.'">'.$row->cm_name.'</option>';
+			}
+			return $data;
+		}else{
+			return false;	
+		}
+		
+		
+		
+		
+		$query = $this->db->query("SELECT regionID,regionName FROM region WHERE countryID = '$state'");
+		$cities = array();
+
+		if($query->result()){
+			foreach ($query->result() as $city) {
+				$cities[] = '<option value="'.$city->regionID.'">'.$city->regionName.'</option>';
+
+			}
+			return $cities;
+		} else {
+			return FALSE;
+		}
+	} 
+
 	
 	function get_cities_by_state ($state, $tree = null){
 		$query = $this->db->query("SELECT city_uid,city_name_ar FROM cities WHERE country_uid = ".$state);

@@ -31,6 +31,7 @@ class Explore extends CI_Controller {
 
     public function search() {
 		header('Content-Type: application/json; charset=utf-8');
+		//echo(json_encode($_POST));
 		$post_data = $this->input->post();
 		// set form validations
 		if(isset($post_data['search_text']) && $post_data['search_text'] != ""){
@@ -48,6 +49,11 @@ class Explore extends CI_Controller {
 			echo(json_encode(["status" => 1, "data" =>$data]));
 		}
     }
+	
+	function getModels($id){
+        header('Content-Type: application/json; charset=utf-8');
+        echo(json_encode($this->global_model->getModelsByBrandID($id)));
+	}
 	
 	
     function _javascript($view) {
@@ -88,11 +94,11 @@ class Explore extends CI_Controller {
 							var yearSlider = document.getElementById('nouislider-slider');
 
 							noUiSlider.create(yearSlider, {
-								start: [2015, 2019],
+								start: [2015, 2020],
 								connect: true,
 								range: {
 									'min': 2015,
-									'max': 2019
+									'max': 2020
 								},
 								direction: 'rtl',
 								step: 1,
@@ -308,7 +314,7 @@ class Explore extends CI_Controller {
 
 												//carPriceRes = carPriceRes * subscriptionValueDuration;
 											    $('.carListBE')
-											        .append(\"<div class='carListItemResponse col-sm-6 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018' data-size='69'>\"+
+											        .append(\"<div class='carListItemResponse col-sm-12 col-md-6 col-lg-4 col-12 mix  superior blueplan كيا green y2018' data-size='69'>\"+
 														\"<div class='thumbnail-container'>\"+
 															\"<div class='car-img'>\"+
 																\"<img src='\"+item['image']+\"' class='img-fluid' />\"+
@@ -332,7 +338,7 @@ class Explore extends CI_Controller {
 															\"<div class='car-price d-flex row'>\"+
 																\"<div class='col-lg-12'>\"+
 																	\"<span class='dot11' \"+availability+\"></span>\"+
-																	\"<i class='far fa-heart heart'></i>\"+                                       \"<span class='mr-3 position-absolute' style='font-size: 19px;font-weight: 600;margin-top: 4px;'>8</span>\"+
+																	
 																	\"<div class='btn-reserve btn-reserve1'> <a href='".site_url('book/addnew/')."\"+item['car_uid']+\"'  class='btn btn-default'>احجز الآن</a> </div>\"+
 																\"</div>\"+
 															\"</div>\"+
@@ -479,6 +485,44 @@ class Explore extends CI_Controller {
 							let lastValue = $('.calculateCarPriceBasedOnDuration').last().next().val();
 							$('.calculateCarPriceBasedOnDuration').last().html(lastValue * 7);
 						});
+						
+						
+					$('#brands').change(function() {
+						var brands = $('#brands').val();
+						if (brands != '') {
+							var post_url = '".site_url('explore/getModels/')."' + brands;
+							console.log(post_url);
+							$.ajax({
+								type: 'POST',
+								url: post_url,
+								success: function(categories) 
+								{
+									$('#models').empty();
+									$('#models').append('<option value=\"0\">موديل السيارة</option>');
+									if(categories != false){
+										$.each(categories, function(key, value)
+										{
+											$('#models').append(value);
+										});
+									}else{
+										$('#models').append('<option value=\"0\">موديل السيارة</option>');
+									}
+
+
+								}, 
+								error: function(xhr, ajaxOptions, thrownError) {
+									alert(xhr.status);
+									alert(thrownError);
+									alert('error');
+								}
+							}); 
+						} else {
+							$('#models').empty();
+							
+						}
+					}); 
+						
+						
 					</script> 				
 				
 				
@@ -571,14 +615,16 @@ class Explore extends CI_Controller {
 						var parent = $(this).parent('.toast');
 						parent.fadeOut(\"slow\", function() { $(this).remove(); } );
 					  });
+					  
+
+					  
+					  
+					  
 					});
+					
+					
+					
 					</script>			
-				
-				
-				
-				
-				
-				
 				";
                 break;
         

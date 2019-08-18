@@ -129,7 +129,7 @@
 						</div>
 						<div class="col-md-12 col-sm-12 pt-2">
 							<div class="select-wrapper">
-								<select id="select-car" data-placeholder="ماركة السيارة" class="form-control width100p updateSearchContent carBrand">
+								<select id="brands" data-placeholder="ماركة السيارة" class="form-control width100p updateSearchContent carBrand select-car">
 									<option value="0">ماركة السيارة</option>
 									<?php
 									if($brands != false)
@@ -140,20 +140,16 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-md-12 col-sm-12 pt-1">
+						<div class="col-md-12 col-sm-12 pt-2">
 							<div class="select-wrapper">
-								<select id="select-car" data-placeholder="أختر شكل السيارة" class="form-control width100p updateSearchContent carType">
+								<select id="models" data-placeholder="أختر شكل السيارة" class="form-control width100p updateSearchContent carType select-car">
 									<option value="0">موديل السيارة</option>
-									<option value="1">الرياض</option>
-									<option value="2">جدة</option>
-									<option value="3">المدينة المنورة</option>
-									<option value="4">الدمام</option>
 								</select>
 							</div>
 						</div>
-						<div class="col-md-12 col-sm-12 pt-1">
+						<div class="col-md-12 col-sm-12 pt-2">
 							<div class="select-wrapper">
-								<select id="select-car" data-placeholder="أختر شكل السيارة" class="form-control width100p updateSearchContent carCategory">
+								<select data-placeholder="أختر شكل السيارة" class="form-control width100p updateSearchContent carCategory select-car">
 									<option value="0">نوع السيارة</option>
 									<?php
 									if($types != false)
@@ -178,13 +174,18 @@
 								<?php
 								if($colors != false)
 								foreach($colors as $color){
+								if($color->cco_uid == 15){
 								?>
+								<div>
+									<input type="checkbox" id="color_<?= $color->cco_uid ?>" class="updateSearchContent carColor" value="<?= $color->cco_uid ?>" >
+									<label for="color_<?= $color->cco_uid ?>"> <span style="background-image: url('assets/rtl/images/cw.jpg')"> <i class="fa fa-check <?php if($color->cco_meta_desc == "#ffffff"){echo "blackCheck";} ?>"></i> </span> </label>
+								</div>
+								<?php }else{ ?>
 								<div>
 									<input type="checkbox" id="color_<?= $color->cco_uid ?>" class="updateSearchContent carColor" value="<?= $color->cco_uid ?>" >
 									<label for="color_<?= $color->cco_uid ?>"> <span style="background-color: <?= $color->cco_meta_desc ?>"> <i class="fa fa-check <?php if($color->cco_meta_desc == "#ffffff"){echo "blackCheck";} ?>"></i> </span> </label>
 								</div>
-
-								<?php } ?>
+								<?php }} ?>
 								
 								
 							</div>
@@ -195,7 +196,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<label class="customButton">أتوماتيك
-									<input type="radio" id="gearBox" class="updateSearchContent gearBox" checked="checked" name="automanual" value="auto">
+									<input type="radio" id="gearBox" class="updateSearchContent gearBox" name="automanual" value="auto">
 									<span class="checkmark"></span>
 									</label>
 								</div>
@@ -278,7 +279,7 @@
 				</div>
 				<div class="row ch-row-ch">
 					<div class="col-lg-6">
-						<p class="text-muted small pt-2"> * جميع الاسعار تشمل  ضريبة  القيمة المضافة 5% </p>
+						<p class="text-muted small pt-2"> * جميع الاسعار لا تشمل  ضريبة  القيمة المضافة 5% </p>
 					</div>
 					<div class="col-lg-6">
 						<div class="color-dots pt-2" style="float: left;">
@@ -291,8 +292,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="product_list" data-ref="product_list" style="margin: 0 5px 0 25px;">
-					<div class="row">
+				<div class="product_list" data-ref="product_list" style="margin: 0 7px 0 26px;">
 						<div class="row carListBE"></div>
 						<div class="col-lg-12">
 							<ul class="pagin">
@@ -304,13 +304,14 @@
 								<li><i class="fas fa-chevron-left float-right"><a href="#"></a></i></li>
 							</ul>
 						</div>
-					</div>
+						
+						
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
+<!--
 <section style="padding: 30px 40px;">
 	<div class="container-fluid">
 		<div class="row">
@@ -350,3 +351,5 @@
 		</div>
 	</div>
 </section>
+
+-->
