@@ -221,7 +221,8 @@ class Global_model extends CI_Model {
 		if($search_text != null && $search_text != "")
 		{
 			$search_text = str_replace(" ", ", ", $search_text);
-			//return $search_text;
+			$db = get_instance()->db->conn_id;
+			$search_text = mysqli_real_escape_string($db, $search_text);
 
 			if($offset_before == 0){
 				$n = $this->db->query("
