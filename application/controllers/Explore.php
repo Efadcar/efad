@@ -94,17 +94,10 @@ class Explore extends CI_Controller {
 							var yearSlider = document.getElementById('nouislider-slider');
 
 							noUiSlider.create(yearSlider, {
-<<<<<<< HEAD
-								start: [2015, 2020],
-								connect: true,
-								range: {
-									'min': 2015,
-=======
 								start: [2016, 2020],
 								connect: true,
 								range: {
 									'min': 2016,
->>>>>>> f6292d5732810f62759e9adeff9f4f008d0365d0
 									'max': 2020
 								},
 								direction: 'rtl',
@@ -344,14 +337,9 @@ class Explore extends CI_Controller {
 															\"</div>\"+
 															\"<div class='car-price d-flex row'>\"+
 																\"<div class='col-lg-12'>\"+
-<<<<<<< HEAD
 																	\"<span class='dot11' \"+availability+\"></span>\"+
 																	
 																	\"<div class='btn-reserve btn-reserve1'> <a href='".site_url('book/addnew/')."\"+item['car_uid']+\"'  class='btn btn-default'>احجز الآن</a> </div>\"+
-=======
-																	\"<span style='margin-right: 12px;' class='dot11' \"+availability+\"></span>\"+
-																	\"<div class='btn-reserve btn-reserve1' style='padding-bottom: 8px;'> <a href='".site_url('book/addnew/')."\"+item['car_uid']+\"'  class='btn btn-default'>احجز الآن</a> </div>\"+
->>>>>>> f6292d5732810f62759e9adeff9f4f008d0365d0
 																\"</div>\"+
 															\"</div>\"+
 														\"</div>\"+
