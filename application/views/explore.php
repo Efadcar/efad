@@ -288,7 +288,7 @@
 						<p class="text-muted small pt-2"> * جميع الاسعار لا تشمل  ضريبة  القيمة المضافة 5% </p>
 					</div>
 					<div class="col-lg-6">
-						<div class="color-dots pt-2">
+						<div class="color-dots pt-2 text-right">
 							<span class="dot1"></span>
 							<span class="dot100 dot101">متاح</span>
 							<span class="dot3"></span>

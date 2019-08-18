@@ -224,22 +224,28 @@ class Global_model extends CI_Model {
 			$db = get_instance()->db->conn_id;
 			$search_text = mysqli_real_escape_string($db, $search_text);
 
+			if($book_period === "0"){
+				$field = "car_daily_price";
+			}else{
+				$field = "car_monthly_price";
+			}
+			
 			if($offset_before == 0){
 				$n = $this->db->query("
 			SELECT * FROM (
-			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, car_daily_price, car_in_stock, car_status 
+			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 			  FROM cars
 			WHERE car_search_text LIKE '%".$search_text."%' GROUP BY `car_link`, `car_color`
-			) AS car ORDER BY car_daily_price ".$order_by." 
+			) AS car ORDER BY ".$field." ".$order_by." 
 				");
 				$num_rows = $n->num_rows();
 			}
 			$query = "
 			SELECT * FROM (
-			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, car_daily_price, car_in_stock, car_status 
+			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 			  FROM cars
 			WHERE car_search_text LIKE '%".$search_text."%' GROUP BY `car_link`, `car_color` LIMIT 15 OFFSET ".$offset."
-			) AS car ORDER BY car_daily_price ".$order_by." 
+			) AS car ORDER BY ".$field." ".$order_by." 
 			";
 			//return $query;
 			$q = $this->db->query($query);
@@ -265,11 +271,6 @@ class Global_model extends CI_Model {
 				$data['result'] = [];
 				return $data;	
 			}
-			
-			
-			
-			
-			
 		}
 		else
 		{
