@@ -1,3 +1,9 @@
+<style type="text/css">
+	.btn-default:hover {
+		background: #003a5c !important;
+	}
+</style>
+
 <section  class="p-0 border-top pt-10">
 	<div class="container-fluid ">
 		<div class="row ">
@@ -200,7 +206,7 @@
 									</label>
 								</div>
 								<div class="col-lg-12">
-									<label class="customButton">عادى
+									<label class="customButton">عادي
 									<input type="radio" class="updateSearchContent gearBox" name="automanual" value="manual">
 									<span class="checkmark"></span>
 									</label>
@@ -277,15 +283,15 @@
 					</div>
 				</div>
 				<div class="row ch-row-ch">
-					<div class="col-lg-6">
+					<!-- <div class="col-lg-6">
 						<p class="text-muted small pt-2"> * جميع الاسعار تشمل  ضريبة  القيمة المضافة 5% </p>
-					</div>
+					</div> -->
 					<div class="col-lg-6">
-						<div class="color-dots pt-2" style="float: left;">
+						<div class="color-dots pt-2">
 							<span class="dot1"></span>
 							<span class="dot100 dot101">متاح</span>
 							<span class="dot3"></span>
-							<span class="dot100 dot103">قريبا</span>
+							<span class="dot100 dot103">قريباً</span>
 							<span class="dot4"></span>
 							<span class="dot100 dot104">غير متاح</span>
 						</div>

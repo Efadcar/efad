@@ -139,9 +139,44 @@ if (isset($javascripts) && $javascripts != null) {
 
 
 </script>
+
 <script type='text/javascript'>
 	/* navbar */
 	$(document).ready(function () {
+		$('.box1').on('click', function(){
+            $('.pro .main-head .main-head-box .arrow1').addClass('arrow-down')
+            $('.pro .main-head .main-head-box .arrow2').removeClass('arrow-down')
+            $('.pro .main-head .main-head-box .arrow3').removeClass('arrow-down')
+            $('.pro .main-head .box1 a').addClass('efad-color')
+            $('.pro .main-head .box2 a').removeClass('efad-color')
+            $('.pro .main-head .box3 a').removeClass('efad-color ')
+            $('.pro .main-head .box1 ').addClass(' efad-border-color')
+            $('.pro .main-head .box2 ').removeClass(' efad-border-color')
+            $('.pro .main-head .box3 ').removeClass(' efad-border-color')
+	    });
+    	$('.box2').on('click', function(){
+            $('.pro .main-head .main-head-box .arrow2').addClass('arrow-down')
+            $('.pro .main-head .main-head-box .arrow3').removeClass('arrow-down')
+            $('.pro .main-head .main-head-box .arrow1').removeClass('arrow-down')
+            $('.pro .main-head .box2 a').addClass('efad-color')
+            $('.pro .main-head .box1 a').removeClass('efad-color')
+            $('.pro .main-head .box3 a').removeClass('efad-color')
+            $('.pro .main-head .box2 ').addClass(' efad-border-color')
+            $('.pro .main-head .box1 ').removeClass(' efad-border-color')
+            $('.pro .main-head .box3 ').removeClass(' efad-border-color')
+	    });
+	    $('.box3').on('click', function(){
+            $('.pro .main-head .main-head-box .arrow3').addClass('arrow-down')
+            $('.pro .main-head .main-head-box .arrow2').removeClass('arrow-down')
+            $('.pro .main-head .main-head-box .arrow1').removeClass('arrow-down')
+            $('.pro .main-head .box3 a').addClass('efad-color ')
+            $('.pro .main-head .box2 a').removeClass('efad-color ')
+            $('.pro .main-head .box1 a').removeClass('efad-color ')
+            $('.pro .main-head .box3 ').addClass(' efad-border-color')
+            $('.pro .main-head .box2 ').removeClass(' efad-border-color')
+            $('.pro .main-head .box1 ').removeClass(' efad-border-color')
+	    });
+
 
 		/* navbar */
 		$('#sidebarCollapse').on('click', function () {
