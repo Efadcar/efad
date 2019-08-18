@@ -54,10 +54,12 @@
       -o-transition: transform 1s;
       transition: transform 1s;
       backface-visibility: hidden;
+	width: 90%;
 }
 .thumbnail-container .car-img{
     background-color: #f1f1f2;
 	margin-bottom: 15px;
+	text-align: center
 }
  .thumbnail-container:hover {
 }
