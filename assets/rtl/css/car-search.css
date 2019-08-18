@@ -641,7 +641,8 @@ border-radius:0
 .color-dots .dot100{
     position: relative;
     bottom: 10px;
-    padding-right: 45px;
+	padding-right: 20px;
+	padding-left: 20px;
 }
 .color-dots .dot1 , .color-dots .dot2 , .color-dots .dot3 , .color-dots .dot4{
     height: 11px;
@@ -649,7 +650,6 @@ border-radius:0
   
   border-radius: 50%;
   display: inline-block;
-    margin-right: 20px;
     margin-top: 2px;
     float: left;
     position: absolute;
@@ -750,6 +750,7 @@ border-radius:0
     padding: 2px 12px;
     border-radius: 8px;
     cursor: pointer;
+	margin-left: 10px;
 }
 .pagin .items:hover{
     border: 1px solid #eee;

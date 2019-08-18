@@ -284,11 +284,8 @@
 					</div>
 				</div>
 				<div class="row ch-row-ch">
-					<div class="col-lg-6">
-						<p class="text-muted small pt-2"> * جميع الاسعار لا تشمل  ضريبة  القيمة المضافة 5% </p>
-					</div>
-					<div class="col-lg-6">
-						<div class="color-dots pt-2 text-right">
+					<div class="col-lg-12">
+						<div class="color-dots pt-2 text-left">
 							<span class="dot1"></span>
 							<span class="dot100 dot101">متاح</span>
 							<span class="dot3"></span>
