@@ -94,10 +94,17 @@ class Explore extends CI_Controller {
 							var yearSlider = document.getElementById('nouislider-slider');
 
 							noUiSlider.create(yearSlider, {
+<<<<<<< HEAD
 								start: [2015, 2020],
 								connect: true,
 								range: {
 									'min': 2015,
+=======
+								start: [2016, 2020],
+								connect: true,
+								range: {
+									'min': 2016,
+>>>>>>> f6292d5732810f62759e9adeff9f4f008d0365d0
 									'max': 2020
 								},
 								direction: 'rtl',
@@ -329,17 +336,22 @@ class Explore extends CI_Controller {
 																
 																\"<div class='carname d-flex'>\"+
 																	\"<div class='ml-auto'>\"+
-																		\"<h5><span>\"+item['cb_uid']+\"</span>\"+ 
+																		\"<h5><span style='font-weight: 500;'>\"+item['cb_uid']+\"</span>\"+ 
 																		\"<span>\"+item['car_model_year']+\"</span></h5>\"+
-																		\"<h3>\"+item['cm_uid']+\"</h3>\"+
+																		\"<h6 style='float: left;'>\"+item['cm_uid']+\"</h6>\"+
 																	\"</div>\"+
 																\"</div>\"+
 															\"</div>\"+
 															\"<div class='car-price d-flex row'>\"+
 																\"<div class='col-lg-12'>\"+
+<<<<<<< HEAD
 																	\"<span class='dot11' \"+availability+\"></span>\"+
 																	
 																	\"<div class='btn-reserve btn-reserve1'> <a href='".site_url('book/addnew/')."\"+item['car_uid']+\"'  class='btn btn-default'>احجز الآن</a> </div>\"+
+=======
+																	\"<span style='margin-right: 12px;' class='dot11' \"+availability+\"></span>\"+
+																	\"<div class='btn-reserve btn-reserve1' style='padding-bottom: 8px;'> <a href='".site_url('book/addnew/')."\"+item['car_uid']+\"'  class='btn btn-default'>احجز الآن</a> </div>\"+
+>>>>>>> f6292d5732810f62759e9adeff9f4f008d0365d0
 																\"</div>\"+
 															\"</div>\"+
 														\"</div>\"+

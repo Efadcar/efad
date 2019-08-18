@@ -6,7 +6,7 @@ $lang["home"] = "الرئيسية";
 $lang["how_to_get_car"] = "كيف أحصل على سيارة ؟";
 $lang["quick_payment"] = "الدفع السريع";
 $lang["faq"] = "الأسئلة المتكررة";
-$lang["membership_adv"] = "مميزات العضوية";
+$lang["membership_adv"] = "اشترك الآن";
 $lang["login"] = "تسجيل دخول";
 
 
