@@ -46,8 +46,9 @@ class Global_model extends CI_Model {
 		
 
 		// 2- Apply membership discount on daily rate
-		$daily_rate_after_discount = $daily_rate - ($daily_rate * ($membership_discount / 100));
+		//$daily_rate_after_discount = $daily_rate - ($daily_rate * ($membership_discount / 100));
 		
+		$daily_rate_after_discount = $daily_rate;
 		// Get total fees for booking
 		$total_fees = $daily_rate_after_discount * $days;
 		

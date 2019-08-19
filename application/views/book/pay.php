@@ -1,4 +1,4 @@
-<?php print_r($_SESSION); ?>
+<?php //print_r($_SESSION); ?>
 
 <section>
 	<div class="container">
@@ -16,7 +16,7 @@
 <section rol="form-reservation">
 	<div class="container  mb-2 pb-4">
         <div class="row">
-            <div class="col-12"> <a href="#" class="btn btn-default cutom-btn active"> تفاصيل الحجز</a> <!--<a href="#" class="btn btn-default cutom-btn">الحجز المجانى</a> --> </div>
+            <div class="col-12"> <a href="#" class="btn btn-default cutom-btn active"> تفاصيل الاشتراك</a> <!--<a href="#" class="btn btn-default cutom-btn">الحجز المجانى</a> --> </div>
         </div>
         <div class="reservation-form  bg-secondary">
             <div class="row d-flex align-items-center ">
@@ -45,17 +45,17 @@
                     <ul class="cartype">
 							
                         <li style="width: 24%">
-                            <div class="cartype-logo"> مدة الحجز </div>
+                            <div class="cartype-logo"> مدة الاشتراك </div>
                             <span ><?= $current_booking['days'] ?>	<?php if($current_booking['days'] < 11){echo "أيام";}else{echo "يوم";} ?></span> 
 						</li>
                         <li style="width: 24%">
-                            <div class="cartype-logo"> موعد الأستلام  </div>
+                            <div class="cartype-logo"> موعد الاستلام  </div>
                             <span ><?= date(" Y d ,M", strtotime($current_booking['book_start_date'])) ?></span> </li>
                         <li style="width: 24%">
                             <div class="cartype-logo"> موعد التسليم  </div>
                             <span><?= date(" Y d ,M", strtotime($current_booking['book_end_date'])) ?></span> </li>
                         <li style="width: 24%">
-                            <div class="cartype-logo"> مدينة الأستلام </div>
+                            <div class="cartype-logo"> مدينة الاستلام </div>
                             <span ><?= $this->global_model->getCityByID($current_booking['city_uid']) ?></span>
                     </ul>
                 </div>
@@ -166,43 +166,45 @@
 
 							<table class="table mb-5">
 								<tbody>
+									<!-- 
 									<tr>
 										<td class="text-left">  سعر الحجز الاساسي  لليوم
 										</td>
-										<td class="text-right"><span><?= $car->car_yearly_price ?></span> ريال</td>
+										<td class="text-right"><span><?= $car->car_yearly_price ?></span> ر.س.</td>
 									</tr>
+									-->
 									<tr>
-										<td class="text-left">سعر الحجز الإجمالي
+										<td class="text-left">سعر الاشتراك
 										</td>
-										<td class="text-right"><span><?= $current_booking['total_fees'] ?></span> ريال</td>
+										<td class="text-right"><span><?= $current_booking['total_fees'] ?></span> ر.س.</td>
 									</tr>
 									<?php if($current_booking['free_day'] != 0){ ?>
 									<tr>
-										<td class="text-left">خصم الأيام المجانية بسبب مدة الحجز
+										<td class="text-left">خصم الأيام المجانية بسبب مدة الاشتراك
 										</td>
-										<td class="text-right">- <span><?= $current_booking['free_day'] * $current_booking['daily_rate_after_discount'] ?></span> ريال</td>
+										<td class="text-right">- <span><?= $current_booking['free_day'] * $current_booking['daily_rate_after_discount'] ?></span> ر.س.</td>
 									</tr>
 									<?php } ?>
 									<?php if($this->global_model->isFirstBooking($this->session->userdata('member_uid'))){ 
 										$first_booking = 1;
 									?>
 									<tr>
-										<td class="text-left">خصم بسبب الحجز لأول مرة مع إفاد
+										<td class="text-left">خصم بسبب الاشتراك لأول مرة مع إفاد
 										</td>
-										<td class="text-right">- <span><?= $current_booking['daily_rate_after_discount'] ?></span> ريال</td>
+										<td class="text-right">- <span><?= $current_booking['daily_rate_after_discount'] ?></span> ر.س.</td>
 									</tr>
 									<?php }else{ $first_booking = 0;} ?>
 									<?php if($current_booking['early_booking'] != 0){ ?>
 									<tr>
 										<td class="text-left">خصم الحجز المبكر
 										</td>
-										<td class="text-right">- <span><?= $current_booking['early_booking_discount_total'] ?></span> ريال</td>
+										<td class="text-right">- <span><?= $current_booking['early_booking_discount_total'] ?></span> ر.س.</td>
 									</tr>
 									<?php } ?>
 									<tr>
-										<td class="text-left">ضريبة القيمه المضافة 5% للحجز
+										<td class="text-left">ضريبة القيمه المضافة 5% 
 										</td>
-										<td class="text-right">+ <span id="tax-total"><?= $current_booking['tax_total'] ?></span> ريال</td>
+										<td class="text-right">+ <span id="tax-total"><?= $current_booking['tax_total'] ?></span> ر.س.</td>
 									</tr>
 
 
@@ -212,7 +214,7 @@
 										<td class="text-right">+
 											<span id="tax-total">
 												<?= CASH_PAYMENT_FEES ?>
-											</span> ريال</td>
+											</span> ر.س.</td>
 									</tr>
 								</tbody>
 
@@ -227,7 +229,7 @@
 										<td class="text-right">+
 											<span>
 												<?= RED_MEMBERSHIP_YEARLY_FEES ?>
-											</span> ريال</td>
+											</span> ر.س.</td>
 									</tr>
 									<tr>
 										<td class="text-left">ضريبة القيمه المضافة 5% للعضوية
@@ -235,7 +237,7 @@
 										<td class="text-right">+
 											<span id="tax-total">
 												<?php echo (RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 ?>
-											</span> ريال</td>
+											</span> ر.س.</td>
 									</tr>
 									<tr class="cash-fees-tr">
 										<td class="text-left">
@@ -244,7 +246,7 @@
 										<td class="text-right">+
 											<span id="tax-total">
 												<?= CASH_PAYMENT_FEES ?>
-											</span> ريال</td>
+											</span> ر.س.</td>
 									</tr>
 								</tbody>
 								<?php } ?>
@@ -268,10 +270,10 @@
 								<tfoot>
 									<tr>
 										<td class="text-left ">
-											<h3><strong>الاجمالى: </strong></h3>
+											<h3>الاجمالى: </h3>
 										</td>
 										<td class="text-right">
-											<h4><strong class="total-price"><?= $total_without_cash ?> </strong> ريال سعودى</h4>
+											<h4><span class="total-price"><?= $total_without_cash ?> </span> ر.س.</h4>
 										</td>
 									</tr>
 								</tfoot>
