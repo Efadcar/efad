@@ -170,13 +170,13 @@
 									<tr>
 										<td class="text-left">  سعر الحجز الاساسي  لليوم
 										</td>
-										<td class="text-right"><span><?= $car->car_yearly_price ?></span> ريال</td>
+										<td class="text-right"><span><?= $car->car_yearly_price ?></span> ر.س.</td>
 									</tr>
 									-->
 									<tr>
 										<td class="text-left">سعر الاشتراك
 										</td>
-										<td class="text-right"><span><?= $current_booking['total_fees'] ?></span> ريال</td>
+										<td class="text-right"><span><?= $current_booking['total_fees'] ?></span> ر.س.</td>
 									</tr>
 									<?php if($current_booking['free_day'] != 0){ ?>
 									<tr>
