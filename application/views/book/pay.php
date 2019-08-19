@@ -16,7 +16,7 @@
 <section rol="form-reservation">
 	<div class="container  mb-2 pb-4">
         <div class="row">
-            <div class="col-12"> <a href="#" class="btn btn-default cutom-btn active"> تفاصيل الأشتراك</a> <!--<a href="#" class="btn btn-default cutom-btn">الحجز المجانى</a> --> </div>
+            <div class="col-12"> <a href="#" class="btn btn-default cutom-btn active"> تفاصيل الاشتراك</a> <!--<a href="#" class="btn btn-default cutom-btn">الحجز المجانى</a> --> </div>
         </div>
         <div class="reservation-form  bg-secondary">
             <div class="row d-flex align-items-center ">
@@ -45,7 +45,7 @@
                     <ul class="cartype">
 							
                         <li style="width: 24%">
-                            <div class="cartype-logo"> مدة الأشتراك </div>
+                            <div class="cartype-logo"> مدة الاشتراك </div>
                             <span ><?= $current_booking['days'] ?>	<?php if($current_booking['days'] < 11){echo "أيام";}else{echo "يوم";} ?></span> 
 						</li>
                         <li style="width: 24%">
@@ -180,7 +180,7 @@
 									</tr>
 									<?php if($current_booking['free_day'] != 0){ ?>
 									<tr>
-										<td class="text-left">خصم الأيام المجانية بسبب مدة الأشتراك
+										<td class="text-left">خصم الأيام المجانية بسبب مدة الاشتراك
 										</td>
 										<td class="text-right">- <span><?= $current_booking['free_day'] * $current_booking['daily_rate_after_discount'] ?></span> ر.س.</td>
 									</tr>
@@ -189,7 +189,7 @@
 										$first_booking = 1;
 									?>
 									<tr>
-										<td class="text-left">خصم بسبب الأشتراك لأول مرة مع إفاد
+										<td class="text-left">خصم بسبب الاشتراك لأول مرة مع إفاد
 										</td>
 										<td class="text-right">- <span><?= $current_booking['daily_rate_after_discount'] ?></span> ر.س.</td>
 									</tr>
