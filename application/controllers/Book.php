@@ -52,7 +52,6 @@ class Book extends CI_Controller {
 			$_SESSION['current_booking']['city_uid'] = $_POST['delivery_city_uid'];
 		}
 		
-		
 		if($this->session->userdata('current_booking') == null){
 			redirect('explore');
 		}
@@ -197,9 +196,9 @@ class Book extends CI_Controller {
 						});
 
 						var date_start = new Date();
-						date_start.setDate(date_start.getDate()+".BOOKED_DELIVERY_AFTER.");
+						date_start.setDate(date_start.getDate()+".(BOOKED_DELIVERY_AFTER+$this->global_model->countWeekends(date('m'),date('Y'))).");
 						var date_end = new Date();
-						date_end.setDate(date_end.getDate()+".(BOOKED_DELIVERY_AFTER+1).");
+						date_end.setDate(date_end.getDate()+".(BOOKED_DELIVERY_AFTER+$this->global_model->countWeekends(date('m'),date('Y'))+6).");
 						
 						$('#date-end').bootstrapMaterialDatePicker
 						({
@@ -212,12 +211,13 @@ class Book extends CI_Controller {
 							lang: 'en'
 						});
 						
+						$('#date-end').prop( 'disabled', true );
 						
 						$('#date-start').bootstrapMaterialDatePicker
 						({
 							weekStart: 6, 
 							format: 'dddd, DD-MMMM-YYYY',
-							disabledDays: [5],
+							disabledDays: [5,6],
 							minDate : date_start,
 							time: false,
 							switchOnClick: true,
@@ -234,16 +234,14 @@ class Book extends CI_Controller {
 						
 						var timeoutId;
 						$('#date-start, #date-end').on('input propertychange change', function() {
+							$('#date-end').prop( 'disabled', false );
 							var datee = $('#date-start').bootstrapMaterialDatePicker().val();
 							var newDate = new Date(datee);
-							newDate.setDate(newDate.getDate() + 7);
+							newDate.setDate(newDate.getDate() + 6);
 							//console.log(newDate);
 							$('#date-end').bootstrapMaterialDatePicker('setMinDate', newDate);
-						
-						
 							clearTimeout(timeoutId);
 							timeoutId = setTimeout(function() {
-								// Runs 1 second (100 ms) after the last change    
 								saveToDB();
 							}, 500);
 						});

@@ -1,4 +1,4 @@
-<?php //print_r($_SESSION); ?>
+<?php print_r($_SESSION); ?>
 
 <section>
 	<div class="container">
@@ -21,7 +21,7 @@
         <div class="reservation-form  bg-secondary">
             <div class="row d-flex align-items-center ">
                 <div class="col-sm-7">
-                    <div class="carname ml-2 text-left">
+                    <div class="carnamePay ml-2 text-left">
                         <h3>نوع السيارة : <span><?= $this->global_model->getStringByKeyLanguage($car->cb_uid->cb_name,"arabic") ?></span><span><?= $this->global_model->getStringByKeyLanguage($car->cm_uid->cm_name,"arabic") ?></span><span><?= $car->car_model_year ?></span></h3>
                        
                     </div>
@@ -167,7 +167,12 @@
 							<table class="table mb-5">
 								<tbody>
 									<tr>
-										<td class="text-left">سعر الحجز الاساسى
+										<td class="text-left">  سعر الحجز الاساسي  لليوم
+										</td>
+										<td class="text-right"><span><?= $car->car_yearly_price ?></span> ريال</td>
+									</tr>
+									<tr>
+										<td class="text-left">سعر الحجز الإجمالي
 										</td>
 										<td class="text-right"><span><?= $current_booking['total_fees'] ?></span> ريال</td>
 									</tr>
@@ -178,6 +183,15 @@
 										<td class="text-right">- <span><?= $current_booking['free_day'] * $current_booking['daily_rate_after_discount'] ?></span> ريال</td>
 									</tr>
 									<?php } ?>
+									<?php if($this->global_model->isFirstBooking($this->session->userdata('member_uid'))){ 
+										$first_booking = 1;
+									?>
+									<tr>
+										<td class="text-left">خصم بسبب الحجز لأول مرة مع إفاد
+										</td>
+										<td class="text-right">- <span><?= $current_booking['daily_rate_after_discount'] ?></span> ريال</td>
+									</tr>
+									<?php }else{ $first_booking = 0;} ?>
 									<?php if($current_booking['early_booking'] != 0){ ?>
 									<tr>
 										<td class="text-left">خصم الحجز المبكر
@@ -205,7 +219,7 @@
 							</table>
 
 							<table class="table mb-0">
-								<?php if($current_booking['new_member'] != 0){ ?>
+								<?php if($_SESSION['current_booking']['new_member'] != 0){ ?>
 								<tbody>
 									<tr>
 										<td class="text-left">مصاريف أشتراك العضوية الحمراء
@@ -243,7 +257,12 @@
 									$total_with_cash = $current_booking['total_fees_after_tax'] + CASH_PAYMENT_FEES;
 									$total_without_cash = $current_booking['total_fees_after_tax'];
 								}
+								if($first_booking != 0){
+									$total_with_cash = $current_booking['total_fees_after_tax'] + CASH_PAYMENT_FEES  - $current_booking['daily_rate_after_discount'];
+									$total_without_cash = $current_booking['total_fees_after_tax'] - $current_booking['daily_rate_after_discount'];
+								}
 								?>
+								
 								<input type="hidden" id="total_with_cash" name="total_with_cash" value="<?= $total_with_cash ?>" />
 								<input type="hidden" id="total_without_cash" name="total_without_cash" value="<?= $total_without_cash ?>" />
 								<tfoot>

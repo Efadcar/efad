@@ -74,9 +74,9 @@ class Global_model extends CI_Model {
 		$days_to_get_car = $this->dateDifference(date("Y-m-d",time()), $book_start_date);
 		
 		// calculate early booking
-		if($days_to_get_car >= EARLY_BOOKING_AFTER){
+		if($days_to_get_car >= (EARLY_BOOKING_AFTER + $this->global_model->countWeekends(date('m'),date('Y')))){
 			$early_booking = 1;
-			$early_booking_discount_total = $total_fees_after_free_day * (EARLY_BOOKING_DISCOUNT / 100);
+			$early_booking_discount_total = ($daily_rate_after_discount * 7) * (EARLY_BOOKING_DISCOUNT / 100);
 			$total_fees_after_early_booking = $total_fees_after_free_day - $early_booking_discount_total;
 		}else{
 			$early_booking = 0;
@@ -427,7 +427,7 @@ class Global_model extends CI_Model {
 
 		$interval = date_diff($datetime1, $datetime2);
 
-		return $interval->format($differenceFormat);
+		return $interval->format($differenceFormat)+1;
 
 	}
 	
@@ -522,6 +522,16 @@ class Global_model extends CI_Model {
 		}
 	}
 	
+	function isFirstBooking($member_uid){
+		$this->db->select('book_uid');
+		$q =  $this->db->get_where('bookings', array("member_uid" => $member_uid));
+		if($q->num_rows() > 0) {
+			return false;
+		}else{
+			return true;
+		}
+	}
+			
 	function getAllBrands(){
 		$siteLang = $this->session->userdata('site_lang');
 		//echo $siteLang;exit;
@@ -991,6 +1001,24 @@ class Global_model extends CI_Model {
 		}
 	}
 		
+	
+	function countWeekends($month,$year){
+		$ts=strtotime('first friday of '.$year.'-'.$month.'-01');
+		$ls=strtotime('last day of '.$year.'-'.$month.'-01');
+		$fridays=array(date('Y-m-d', $ts));
+		while(($ts=strtotime('+1 week', $ts))<=$ls){
+			$fridays[]=date('Y-m-d', $ts);
+		}
+		$countFridays = count($fridays);
+		$ts=strtotime('first saturday of '.$year.'-'.$month.'-01');
+		$ls=strtotime('last day of '.$year.'-'.$month.'-01');
+		$saturdays=array(date('Y-m-d', $ts));
+		while(($ts=strtotime('+1 week', $ts))<=$ls){
+			$saturdays[]=date('Y-m-d', $ts);
+		}
+		$countSatyrdays = count($saturdays);
+		return $countFridays + $countSatyrdays;
+	}
 
 }
 

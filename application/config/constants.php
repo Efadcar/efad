@@ -93,7 +93,7 @@ define('ALBUMS_IMAGES', "assets/files/albums/");
 define('SITE_IMAGES', "assets/files/site/");
 define('CARS_TYPES_IMAGES', "assets/files/cars_types/");
 define('CARS_BRANDS_IMAGES', "assets/files/cars_brands/");
-define('BOOKED_DELIVERY_AFTER', 16);
+define('BOOKED_DELIVERY_AFTER', 30);
 define('EARLY_BOOKING_AFTER', 45);
 define('EARLY_BOOKING_DISCOUNT', 5);
 define('CASH_PAYMENT_FEES', 100);

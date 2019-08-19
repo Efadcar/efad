@@ -3,7 +3,9 @@
   cars
  ***********************************/
 .carname h5 > span:first-child { font-weight:700}
+.carnamePay h5 > span:first-child { font-weight:700}
 .carname span{padding-right:10px}
+.carnamePay span{padding-right:10px}
  span.question-icon{  display:block; height:20px}
  span.question-icon i{color:rgba(0, 0, 0, 0.3);}
 .carname h5{
@@ -11,9 +13,17 @@
     line-height: 1.5rem;
 	text-align: left;
 }
+.carnamePay h5{
+    margin-bottom: 0;
+    line-height: 1.5rem;
+	text-align: left;
+}
 .carname h3{
     margin-bottom: 10px;
 	text-align: left
+}
+.carnamePay h3{
+    margin-bottom: 10px;
 }
 .thumbnail-container {
     position: relative;

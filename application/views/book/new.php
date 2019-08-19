@@ -118,7 +118,16 @@
 							</div>
 							<div class="col-sm-3">
 								<h5>اللون الخارجي</h5>
-								<span><?= $this->global_model->getColorByID($car->car_color); ?></span>
+								<span>
+									<?php 
+									if($car->car_color_secondary != 0){
+										echo $this->global_model->getColorByID($car->car_color_secondary);
+									}else{
+										echo $this->global_model->getColorByID($car->car_color);
+									}
+									 
+									?>
+								</span>
 							</div>
 						</div>
 						<?php if($car->car_features != ""){ ?>
@@ -165,7 +174,7 @@
 
 
 -->
-        
+        <?php if($car->car_status != 0 && $car->car_in_stock != 0){  ?>
         <div class="reservation-form">
             <div class="date-reserve mb-4">
                 <h3> أدخل بيانات الحجز </h3>
@@ -177,7 +186,7 @@
 									<div class="form-group">
 										<label>اختر تاريخ أستلام السيارة</label>
 										<input type="text" id="date-start" class="form-control floating-label" placeholder="اختر تاريخ أستلام السيارة" name="book_start_date" required>
-										<small class="form-text" style="color: #A62F31">يمكنك الحصول علي خصم 10% إضافي في حالة أختيار تاريخ أستلام السيارة بعد <?= EARLY_BOOKING_AFTER ?>  يوم من تاريخ الحجز</small>
+										<small class="form-text" style="color: #A62F31">يمكنك الحصول علي خصم <?= EARLY_BOOKING_DISCOUNT ?>% إضافي علي اول أسبوع في حالة أختيار تاريخ أستلام السيارة بعد <?= EARLY_BOOKING_AFTER ?>  يوم من تاريخ الحجز</small>
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -244,6 +253,8 @@
 				</div>
 			</form>				
         </div>
+		
+		<?php } ?>
     </div>
 </section>
 
