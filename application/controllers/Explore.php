@@ -75,7 +75,7 @@ class Explore extends CI_Controller {
     function _cssFiles($view) {
         switch ($view) {
             case 'home': 
-                $css = '<link href="' . base_url() . 'assets/rtl/css/nouislider.min.css" rel="stylesheet" type="text/css" />';
+                $css = '<link href="' . base_url() . 'assets/rtl/css/nouislider.min.css" rel="stylesheet" type="text/css" /><link type="text/css" rel="stylesheet" href="' . base_url() . 'assets/global/plugins/waitme/waitMe.css">';
                 break;
 
         }
@@ -86,10 +86,64 @@ class Explore extends CI_Controller {
         switch ($view) {
             case 'home':
                 $java = "
-				
+					<script src='" . base_url() . "assets/global/plugins/waitme/waitMe.js'></script>
 					<script type='text/javascript'>
 
 						$(document).ready(function () {
+							function run_waitMe(el, num, effect){
+								text = '...Please wait';
+								fontSize = '';
+								switch (num) {
+									case 1:
+									maxSize = '';
+									textPos = 'vertical';
+									break;
+									case 2:
+									text = '';
+									maxSize = 30;
+									textPos = 'vertical';
+									break;
+									case 3:
+									maxSize = 30;
+									textPos = 'horizontal';
+									fontSize = '18px';
+									break;
+								}
+								el.waitMe({
+									effect: effect,
+									text: text,
+									bg: 'rgba(255,255,255,0.7)',
+									color: '#000',
+									maxSize: maxSize,
+									waitTime: -1,
+									source: 'img.svg',
+									textPos: textPos,
+									fontSize: fontSize,
+									onClose: function(el) {}
+								});
+							}
+							function run_waitMe_body(effect){
+								$('body').addClass('waitMe_body');
+								var img = '';
+								var text = '';
+								if(effect == 'img'){
+									img = 'background:url(\"" . base_url() . "assets/global/plugins/waitme/img.svg\")';
+								} else if(effect == 'text'){
+									text = 'Loading...'; 
+								}
+								var elem = $('<div class=\"waitMe_container ' + effect + '\"><div style=\"' + img + '\">' + text + '</div></div>');
+								$('body').prepend(elem);
+								
+								setTimeout(function(){
+									$('body.waitMe_body').addClass('hideMe');
+									setTimeout(function(){
+										$('body.waitMe_body').find('.waitMe_container:not([data-waitme_id])').remove();
+										$('body.waitMe_body').removeClass('waitMe_body hideMe');
+									},200);
+								},4000);
+							}
+							
+							
 							// implementation of nouislider
 							var yearSlider = document.getElementById('nouislider-slider');
 
@@ -121,6 +175,8 @@ class Explore extends CI_Controller {
 								$('#yearTo').val(Math.trunc( value[0] ));
 								// collectSearchParams();
 								$('#yearFrom').trigger('change');
+								
+								
 							});
 
 							/////////////////////////////////////////////////////////////////////
@@ -150,22 +206,13 @@ class Explore extends CI_Controller {
 								let value = priceSilderValue.toString().split(\",\");
 								$('#priceFrom').val(Math.trunc( value[1] ));
 								$('#priceTo').val(Math.trunc( value[0] ));
-								// collectSearchParams();
-								$('#priceFrom').trigger('change');
-								// console.log(result);
+								$('#yearFrom').trigger('change');
 							});
 
 							//event listner for generic search filter while typing
 							$('.generalSearch').on('keyup', function() {
-								if (this.value.length > 1) {
-									let generalSearch = $('.generalSearch').val();
-									//console.log(generalSearch);
-								}
-								// let result = collectSearchParams();
-								// console.log(result);
+								collectSearchParams();
 							});
-
-							
 
 							// prepare early booking value
 							function earlyBookingValue(){
@@ -204,6 +251,7 @@ class Explore extends CI_Controller {
 							 * @params
 							 */
 							function collectSearchParams(){
+								run_waitMe($('body'), 1, 'ios');
 								let carClassification = $('.carClassification:checked').val();
 								let generalSearch = $('.generalSearch').val();
 								let carSearchCity = $('.carSearchCity').children(\"option:selected\").val();
@@ -229,6 +277,7 @@ class Explore extends CI_Controller {
 								let yearFrom = $('#yearFrom').val();
 								let yearTo = $('#yearTo').val();
 								let offset = $('.paginationValue').val();
+								let price_period = $('.subscriptionValueDuration:checked').attr('data-period');
 								let carColor = [];
 								$.each($('.carColor:checked'), function(){            
 									carColor.push($(this).val());
@@ -241,7 +290,8 @@ class Explore extends CI_Controller {
 									// this.membershipPlan = membershipPlan;
 									// this.earlyBooking = earlyBooking;
 									this.book_period = durationOfSubscription;
-									// this.subscriptionValueDuration = subscriptionValueDuration;
+									//this.subscriptionValueDuration = subscriptionValueDuration;
+									this.price_period = price_period;
 									this.price_from = financialValueWeekly;
 									this.price_to = financialValueDaily;
 									this.order_by = displayOrdering;
@@ -256,10 +306,6 @@ class Explore extends CI_Controller {
 								}
 
 								//////////////// TODO ///////////////////////////////////
-								// let x = 5; // car fixed price
-								// let fixedrateaftermembership = membershipPlan * x / 100;
-								// let xx = fixedrateaftermembership * earlyBookingValue / 100;
-								// let xxx = xx * durationOfSubscription;
 								$.ajax({
 
 									type:'POST',
@@ -268,8 +314,9 @@ class Explore extends CI_Controller {
 
 									data:{
 										search_text:generalSearch,
-										// car_category:carClassification,
+										car_category:carClassification,
 										book_period:durationOfSubscription,
+										price_period:price_period,
 										price_from:financialValueWeekly,
 										price_to:financialValueDaily,
 										order_by:displayOrdering,
@@ -287,7 +334,7 @@ class Explore extends CI_Controller {
 										//console.log(data['status']);
 										let availability = '';
 										$('.carListItemResponse').remove();
-										if (data['status'] == 1){
+										if (data['data']['num_rows'] > 0){
 											$.each(data['data']['result'], function(i, item) {
 												if (item['car_in_stock'] == 0){
 													availability = 'style=\"background-color: rgb(132,132,132)\"';
@@ -346,8 +393,9 @@ class Explore extends CI_Controller {
 													\"</div>\");
 											});
 
-
+											$('.pagin').show();
 											let paginationCounter = data['data']['num_rows'] / 15;
+											// paginationCounter = 5;
 											$('.paginationDrawResponse').empty();
 											// console.log(paginationCounter);
 											let i = 0;
@@ -369,9 +417,15 @@ class Explore extends CI_Controller {
 											});
 
 											let lastValue = $('.calculateCarPriceBasedOnDuration').last().next().val();
-											let durValue = $('.subscriptionValueDuration').attr('data-value');
+											let durValue = $('.subscriptionValueDuration:checked').attr('data-value');
 											$('.calculateCarPriceBasedOnDuration').last().html(lastValue * durValue);
 										}
+										else if (data['data']['num_rows'] == 0){
+											$('.carListBE')
+											        .append('<div class=\"carListItemResponse row\" style=\"width:100%;\"><div class=\"col-lg-4 col-md-4\"></div><div class=\"col-lg-4 col-md-4\"><h5>'+ data[\"data\"][\"message\"]+'</h5></div></div>');
+											$('.pagin').hide();
+										}
+										$('body').waitMe('hide');
 									},
 
 									error: function(data){
@@ -428,10 +482,7 @@ class Explore extends CI_Controller {
 							});
 
 							$( '.updateSearchContent' ).change(function() {
-								let lastValue = $('.calculateCarPriceBasedOnDuration').last().next().val();
-								let durValue = $('.subscriptionValueDuration').attr('data-value');
-								$('.calculateCarPriceBasedOnDuration').last().html(lastValue * durValue);
-								let result = collectSearchParams();
+								collectSearchParams();
 								$('.carPriceAfterCal').html(Math.floor(Math.random()*(999-100+1)+100));
 								let x = $('.subscriptionValueDuration:checked').next().html();
 								$('.carDurationAfterCal').html('ريال ' + x);
@@ -458,10 +509,10 @@ class Explore extends CI_Controller {
 								$('#yearTo').val(2015);
 								$('.paginationValue').val(0);
 								// let carColor = [];
-								$('.carColor').val('');
+								$('.carColor').prop('checked', false);
 								$('.gearBox').prop('checked', false);
-								$('#gearBox').prop('checked', true);
-								yearSlider.noUiSlider.set([2015, 2019]);
+								// $('#gearBox').prop('checked', true);
+								yearSlider.noUiSlider.set([2016, 2020]);
 								priceSlider.noUiSlider.set([0, 1000]);
 								collectSearchParams();
 								$('html, body').animate({ scrollTop: 0 }, 'fast');
@@ -481,9 +532,6 @@ class Explore extends CI_Controller {
 								$(this).addClass('active');
 								$('#yearFrom').trigger('change');
 							});
-
-							let lastValue = $('.calculateCarPriceBasedOnDuration').last().next().val();
-							$('.calculateCarPriceBasedOnDuration').last().html(lastValue * 7);
 						});
 						
 						

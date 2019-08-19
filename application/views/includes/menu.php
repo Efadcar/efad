@@ -1,7 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top sb-navbar nav-new" dir="ltr">
+
+<style type="text/css">
+	.dropdown-menu-arrow {
+	  top: -25px;
+	  left: 50%;
+	  width: 0;
+	  height: 0;
+	  position: relative;
+	}
+	.dropdown-menu-arrow:before,
+	.dropdown-menu-arrow:after {
+	  content: "";
+	  position: absolute;
+	  display: block;
+	  width: 0;
+	  height: 0;
+	  border-width: 7px 8px;
+	  border-style: solid;
+	  border-color: transparent;
+	  z-index: 1001;
+	}
+	.dropdown-menu-arrow:after {
+	  bottom: -18px;
+	  right: -8px;
+	  border-bottom-color: #fff;
+	}
+	.dropdown-menu-arrow:before {
+	  bottom: -17px;
+	  right: -8px;
+	  border-bottom-color: rgba(0,0,0,.15);
+	}
+	.show>.dropdown-menu {
+	    left: 17%;
+	  	transform: translateX(-50%);
+	}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top sb-navbar nav-new" dir="rtl">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="<?= site_url() ?>">
-			<img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/last-logo.png" alt="Efad Logo" />
+			<img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" />
 		</a>
 	
 		<div class="collapse navbar-collapse" id="mainMenu">
@@ -27,9 +64,32 @@
 				<a class="btn btn-default dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					مرحباُ: <?= $this->session->userdata('member_full_name') ?>
 				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="top: 75% !important; font-size: 13px">
-					<a class="dropdown-item" href="#">حجوزاتي</a>
-					<a class="dropdown-item" href="<?= site_url('members/profile') ?>">الملف الشخصي</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="top: 82% !important; font-size: 13px;max-width: 280px;border: 1px solid #01355d2e;border-radius: 0.9rem;box-shadow: 1px 1px 2px 2px #0000ff26;">
+					<span class="dropdown-menu-arrow"></span>
+					<div class="row ml-0 mr-0">
+						<div class="col-md-7">
+							<h6 class="mb-0"><?= $this->session->userdata('member_full_name') ?></h6>
+							<p class="mb-0 small">رقم عضوية : 4566</p>
+						</div>
+						<div class="col-md-5" align="left">
+							<img src="<?= base_url()."assets/".$direction; ?>/images/favicon.png" style="width: 63%;border: 0px black solid;border-radius: 50%;">
+						</div>
+					</div>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">المعلومات الشخصية</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">اﻹشتراكات</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="<?= site_url('members/profile') ?>">
+						العضوية
+						<span class="badge badge-secondary float-right custom-badge mt-1" style="
+						    width: 30px;
+						    height: 18px;
+						    color: #d8392c;
+    						background-color: #d8392c;
+    						border-radius: 0.48rem;
+						">aaa</span>
+					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<?= site_url('members/logout') ?>">تسجيل خروج</a>
 				</div>

@@ -1,0 +1,84 @@
+.banner-airboard-1{
+	background-image: url('../images/bannerArtboard-1.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 100%;
+    margin-top: 91px;
+}
+
+.main-img-why-efad-sec{
+	width: 100%;
+}
+
+.img-why-efad-sec{
+	width: 20%;
+}
+
+.why-efad-text{
+	line-height: 0.1;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #01355d;
+    margin-top: 11px;
+}
+
+.why-efad-span{
+	line-height: 0.1;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #01355d;
+}
+
+.banner-airboard-2 {
+    background-image: url(../images/car2Artboard1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 500px;
+    background-position: center;
+    margin-top: -40px;
+}
+
+.how-get{
+	padding-top: none; 
+    padding-bottom: none; 
+}
+
+.custom-card {
+	border: none;
+}
+
+.card.custom-card .card-img-top {
+	width: 50%;
+    height: 50%;
+}
+.img1{
+	margin-left: -24%;
+}
+.img3{
+	margin-right: -24%;
+}
+.img4{
+	margin-right: -46%;
+}
+.img5{
+	margin-right: -68%;
+}
+@media screen and (max-width: 760px)  {
+	.img-fluid{
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+	}
+	.img1{
+		margin-left: 0% !important;
+	}
+	.img3{
+		margin-right: 0%;
+	}
+	.img4{
+		margin-right: 0%;
+	}
+	.img5{
+		margin-right: 0%;
+	}
+}
