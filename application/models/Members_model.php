@@ -99,6 +99,42 @@ class Members_model extends CI_Model {
 		}
 
 	}
+
+
+	function updateUser($id){
+		$member_fname = $this->input->post('member_fname');
+		$member_lname = $this->input->post('member_lname');
+		$member_email = $this->input->post('member_email');
+		$country_uid = $this->input->post('country_uid');
+		$country_code = $this->getCountryCodeByID($country_uid);
+		$member_mobile = $this->input->post('member_mobile');
+		$member_mobile = preg_replace("/^\+?{$country_code}/", "",$member_mobile);
+		$member_mobile = ltrim($member_mobile, '0');
+		if (!empty($this->input->post('member_password'))){
+			$member_password = $this->input->post('member_password');
+			$member_password = md5($member_password);
+		}
+		$city_uid = $this->input->post('city_uid');
+		$data = array(
+		   'member_fname' => $member_fname ,
+		   'member_lname' => $member_lname ,
+		   'member_email' => $member_email ,
+		   'member_mobile' => $member_mobile ,
+		   'country_uid' => $country_uid ,
+		   'city_uid' => $city_uid ,
+		);
+		
+		$this->db->update('members', $data, $id); 
+		
+		if($this->db->affected_rows() > 0){
+			return true;
+			$this->messages->add("لقد تم تسجيل حسابك بنجاح برجاء تسجيل الدخول.", "success");
+		}else{
+			return false;
+			$this->messages->add("لقد حدث خطأ أثناء الأضافة.", "error");
+		}
+
+	}
 	
 	function getCountryCodeByID($id) {
 		$q =  $this->db->get_where('countries', array('id' => $id));

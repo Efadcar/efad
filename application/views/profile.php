@@ -1,7 +1,8 @@
+<link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/global/plugins/animated-input/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style type="text/css">
-	body{
-	    overflow-x:hidden;
-	}
+
 
 	.desc{
 		font-size: small;
@@ -190,154 +191,167 @@
 	.tab-content.hide{
 		display: none;
 	}
+
+
+	.section-modify{
+    	padding-top: 10%;
+    }
+
+    .form-control {
+	    background: #fff;
+	}
+
+	.custom-btn{
+		color: #fff;
+	    background-color: #177fb6;
+	    border-color: #177fb6;
+	    border-radius: 21px;
+	    width: 100%;
+	    margin-top: 20px;
+	}
+	.arrow-down {
+	  	width: 0; 
+	  	height: 0; 
+	  	border-left: 20px solid transparent;
+	  	border-right: 20px solid transparent;
+	 	border-top: 20px solid #177fb6;
+	 	margin-right: 26%;
+	}
+	select{
+		-webkit-appearance: menulist !important;
+	}
 </style>
 
-<section>
+<section class="section-modify">
     <div>
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#tab1">بياناتي</a>
+                <a href="#tab1" align="center" class="p-4"><i class="fa fa-user-o" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>بياناتي</a>
+            	<!-- <div class="arrow-down justify-content-between tab1"></div> -->
             </li>
             <li>
-                <a href="#tab2">الاشتراكات</a>
+                <a href="#tab2" align="center" class="p-4"><i class="fas fa-car" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>الاشتراكات</a>
             </li>
             <li>
-                <a href="#tab3">العضوية</a>
+                <a href="#tab3" align="center" class="p-4"><i class="fas fa-clock" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>العضوية</a>
             </li>
         </ul>   
-        </div>
-        <section id="tab1" class="tab-content active">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        Tab 1 - بياناتي
-                    </div>
+    </div>
+    <section id="tab1" class="tab-content active" style="margin: 0px 20%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <div class="wrapper">
+					    <fieldset class="formRow">
+					        <div class="formRow--item">
+					            <label for="firstname" class="formRow--input-wrapper js-inputWrapper">
+					                <input type="text" class="formRow--input js-input" id="firstname" placeholder="First name">
+					            </label>
+					        </div>
+					    </fieldset>
+					    <fieldset class="formRow">
+					        <div class="formRow--item">
+					            <label for="firstname" class="formRow--input-wrapper js-inputWrapper">
+					                <input type="text" class="formRow--input js-input" id="lastname" placeholder="Last name">
+					            </label>
+					        </div>
+					    </fieldset>
+					    <fieldset class="formRow">
+					        <div class="formRow--item">
+					            <label for="firstname" class="formRow--input-wrapper js-inputWrapper">
+					                <input type="text" class="formRow--input js-input" id="email" placeholder="Email Address">
+					            </label>
+					        </div>
+					    </fieldset>
+					</div> -->
+						<?php
+							echo form_open_multipart('members/user_update/'.$user->member_uid);
+						?>
+					  	<div class="form-group">
+						    <label for="firstname" class="font-weight-bold">الاسم الاول</label>
+						    <input type="text" class="form-control" id="firstname" name="member_fname" placeholder="ادخل الاسم الاول" value="<?=$user->member_fname ?>">
+						</div>
+						<div class="form-group">
+						    <label for="lastname" class="font-weight-bold">الاسم الاخير</label>
+						    <input type="text" class="form-control" id="lastname" name="member_lname" placeholder="ادخل الاسم الاخير" value="<?=$user->member_lname ?>">
+						</div>
+
+						<div class="form-group">
+					    	<label for="country" class="font-weight-bold">الدولة</label>
+					    	<select class="form-control" id="country" name="country_uid">
+					    		<option value="187">السعودية</option>
+					    		<!-- <?php if($countries !=false) foreach($countries as $country) {
+                				?>
+						      		<option value="<?=$country->id ?>"><?=$country->name ?></option>
+						      	<?php }
+						      	?> -->
+					    	</select>
+					  	</div>
+
+					  	<div class="form-group">
+					    	<label for="city" class="font-weight-bold">المدينة</label>
+					    	<select class="form-control" id="city" name="city_uid">
+						      	<option value="1">الرياض</option>
+						      	<option value="2">مكة</option>
+						      	<option value="3">المدينة المنورة</option>
+						      	<option value="4">حائل</option>
+						      	<option value="5">القطيف</option>
+					    	</select>
+					  	</div>
+
+						<div class="form-group">
+						    <label for="mobile" class="font-weight-bold">رقم الجوال</label>
+						    <input type="text" class="form-control" id="mobile" name="member_mobile" placeholder="ادخل رقم الجوال" value="<?=$user->member_mobile ?>">
+						</div>
+						<div class="form-group">
+						    <label for="email" class="font-weight-bold">البريد الالكتروني</label>
+						    <input type="text" class="form-control" id="email" name="member_email" placeholder="ادخل البريد الالكتروني" value="<?=$user->member_email ?>">
+						</div>
+						<div class="form-group">
+						    <label for="password" class="font-weight-bold">الرقم السري</label>
+						    <input type="password" class="form-control" name="member_password" id="password" placeholder="ادخل الرقم السري">
+					  	</div>
+					  	<div class="form-group">
+					  		<button type="submit" class="custom-btn btn-primary">حفظ التعديلات</button>
+					  	</div>
+					</form>
                 </div>
             </div>
-        </section>
-        <section id="tab2" class="tab-content hide">
-            <div class="container">
-                <div class="row margin-bottom border border">
-                    <div class="col-md-4">
-                        <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid">
-                    </div>
-                    <div class="col-md-4">
-                            <p><span class="desc">نوع السيارة: </span>شيفروليه كروز 2019</p>
-                            <p><span class="desc">رقم التذكرة: </span>56575</p>
-                            <p><span class="desc">تاريخ الحجز: </span>1/12/2019</p>
-                            <p><span class="desc">تاريخ الاستلام: </span>3/12/2019</p>
-                            <p><span class="desc">مدينة الاستلام: </span>المدينة المنورة</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="amount">
-                            <h5>المبلغ الاجمالي</h5>
-                            <p class="total-amount">400 ريال</p>
-                        </div>
-                        <button class="btn-primary participation-cancel">الغاء الاشتراك</button><button class="btn-primary participation-desc">تفاصيل الاشتراك</button>
-                    </div>
+        </div>
+    </section>
+    <section id="tab2" class="tab-content hide">
+        <div class="container">
+        	<?php if($bookings !=false) foreach($bookings as $booking) {
+                ?>
+	            <div class="row margin-bottom border border">
+	                <div class="col-md-4">
+	                    <img src="<?= base_url().ALBUMS_IMAGES.$booking->car_obj->main_image; ?>" class="img-fluid">
+	                </div>
+	                <div class="col-md-4">
+	                    <p><span class="desc">نوع السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking->car_obj->cb_uid->cb_name, "arabic") ?> <?=$this->global_model->getStringByKeyLanguage($booking->car_obj->cm_uid->cm_name, "arabic") ?> <?=$booking->car_obj->car_model_year ?></p>
+	                    <p><span class="desc">تاريخ الحجز: </span><?=date("Y-m-d", strtotime($booking->book_added_date)) ?></p>
+	                    <p><span class="desc">تاريخ الاستلام: </span><?=$booking->book_start_date ?></p>
+	                    <p><span class="desc">مدينة الاستلام: </span> <?=$this->global_model->getCityByID($booking->delivery_city_uid) ?></p>
+	                </div>
+	                <div class="col-md-4">
+	                    <div class="amount">
+	                        <h5>المبلغ الاجمالي</h5>
+	                        <p class="total-amount"><?=$booking->invoice_total_fees_after_tax ?> ريال</p>
+	                    </div>
+	                    <button class="btn-primary participation-cancel">الغاء الاشتراك</button><a target="_blank" href=<?=base_url()."book/detail/" . $booking->book_uid ?>><button class="btn-primary participation-desc">تفاصيل الاشتراك</button></a> 
+	                </div>
+	            </div>
+            <?php
+            }
+            
+            ?>
+    </section>
+    <section id="tab3" class="tab-content hide">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    Tab 3 - العضوية
                 </div>
-                <div class="row margin-bottom border">
-                    <div class="col-md-4">
-                        <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid">
-                    </div>
-                    <div class="col-md-4">
-                            <p><span class="desc">نوع السيارة: </span>شيفروليه كروز 2019</p>
-                            <p><span class="desc">رقم التذكرة: </span>56575</p>
-                            <p><span class="desc">تاريخ الحجز: </span>1/12/2019</p>
-                            <p><span class="desc">تاريخ الاستلام: </span>3/12/2019</p>
-                            <p><span class="desc">مدينة الاستلام: </span>المدينة المنورة</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="amount">
-                            <h5>المبلغ الاجمالي</h5>
-                            <p class="total-amount">400 ريال</p>
-                        </div>
-                        <button class="btn-primary participation-cancel">الغاء الاشتراك</button><button class="btn-primary participation-desc">تفاصيل الاشتراك</button>
-                    </div>
-                </div>
-                <div class="row margin-bottom border">
-                    <div class="col-md-4">
-                        <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid">
-                    </div>
-                    <div class="col-md-4">
-                            <p><span class="desc">نوع السيارة: </span>شيفروليه كروز 2019</p>
-                            <p><span class="desc">رقم التذكرة: </span>56575</p>
-                            <p><span class="desc">تاريخ الحجز: </span>1/12/2019</p>
-                            <p><span class="desc">تاريخ الاستلام: </span>3/12/2019</p>
-                            <p><span class="desc">مدينة الاستلام: </span>المدينة المنورة</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="amount">
-                            <h5>المبلغ الاجمالي</h5>
-                            <p class="total-amount">400 ريال</p>
-                        </div>
-                        <button class="btn-primary participation-cancel">الغاء الاشتراك</button><button class="btn-primary participation-desc">تفاصيل الاشتراك</button>
-                    </div>
-                </div>
-                <div class="row margin-bottom border">
-                    <div class="col-md-4">
-                        <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid">
-                    </div>
-                    <div class="col-md-4">
-                            <p><span class="desc">نوع السيارة: </span>شيفروليه كروز 2019</p>
-                            <p><span class="desc">رقم التذكرة: </span>56575</p>
-                            <p><span class="desc">تاريخ الحجز: </span>1/12/2019</p>
-                            <p><span class="desc">تاريخ الاستلام: </span>3/12/2019</p>
-                            <p><span class="desc">مدينة الاستلام: </span>المدينة المنورة</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="amount">
-                            <h5>المبلغ الاجمالي</h5>
-                            <p class="total-amount">400 ريال</p>
-                        </div>
-                        <button class="btn-primary participation-cancel">الغاء الاشتراك</button><button class="btn-primary participation-desc">تفاصيل الاشتراك</button>
-                    </div>
-                </div>
-                <div class="row margin-bottom border">
-                    <div class="col-md-4">
-                        <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid">
-                    </div>
-                    <div class="col-md-4">
-                            <p><span class="desc">نوع السيارة: </span>شيفروليه كروز 2019</p>
-                            <p><span class="desc">رقم التذكرة: </span>56575</p>
-                            <p><span class="desc">تاريخ الحجز: </span>1/12/2019</p>
-                            <p><span class="desc">تاريخ الاستلام: </span>3/12/2019</p>
-                            <p><span class="desc">مدينة الاستلام: </span>المدينة المنورة</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="amount">
-                            <h5>المبلغ الاجمالي</h5>
-                            <p class="total-amount">400 ريال</p>
-                        </div>
-                        <button class="btn-primary participation-cancel">الغاء الاشتراك</button><button class="btn-primary participation-desc">تفاصيل الاشتراك</button>
-                    </div>
-                </div>
-                <div class="row border">
-                    <div class="col-md-4">
-                        <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid">
-                    </div>
-                    <div class="col-md-4">
-                            <p><span class="desc">نوع السيارة: </span>شيفروليه كروز 2019</p>
-                            <p><span class="desc">رقم التذكرة: </span>56575</p>
-                            <p><span class="desc">تاريخ الحجز: </span>1/12/2019</p>
-                            <p><span class="desc">تاريخ الاستلام: </span>3/12/2019</p>
-                            <p><span class="desc">مدينة الاستلام: </span>المدينة المنورة</p>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="amount">
-                            <h5>المبلغ الاجمالي</h5>
-                            <p class="total-amount">400 ريال</p>
-                        </div>
-                        <button class="btn-primary participation-cancel">الغاء الاشتراك</button><button class="btn-primary participation-desc">تفاصيل الاشتراك</button>
-                    </div>
-                </div>
-        </section>
-        <section id="tab3" class="tab-content hide">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        Tab 3 - العضوية
-                    </div>
-                </div>
-        </section>
+            </div>
+    </section>
 </section>

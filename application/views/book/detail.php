@@ -198,9 +198,9 @@
                 <div class="col-md-6">
                     <h5>بيانات الفاتورة: </h5>
                     <div class=" margin-right-extra">
-                        <p><span class="desc">تاريخ الحجز: </span>1/12/2019</p>
-                        <p><span class="desc">رقم الفاتورة: </span>35231</p>
-                        <p><span class="desc">المبلغ الاجمالي: </span>400 ريال</p>
+                        <p><span class="desc">تاريخ الحجز: </span><?= $booking[0]->book_start_date ?></p>
+                        <p><span class="desc">رقم الفاتورة: </span><?=$booking[0]->invoice_uid ?></p>
+                        <p><span class="desc">المبلغ الاجمالي: </span><?=$booking[0]->invoice_total_fees_after_tax ?> ريال</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -212,14 +212,13 @@
                 <div class="col-md-6">
                     <h5>بيانات المشترك: </h5>
                     <div class=" margin-right-extra">
-                        <p><span class="desc">الاسم: </span>محمد رزق</p>
-                        <p><span class="desc">العنوان: </span>الرياض</p>
-                        <p><span class="desc">رقم الاشتراك: </span>3479623930</p>
+                        <p><span class="desc">الاسم: </span><?=$booking[0]->member_fname ?> <?=$booking[0]->member_lname ?></p>
+                        <p><span class="desc">رقم الاشتراك: </span><?=$booking[0]->mc_uid ?></p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class=" margin-right-extra margin-top">
-                        <p><span class="desc">فئة العضوية: </span><span style="color: #4c9cff;">الزرقاء</span></p>
+                        <p><span class="desc">فئة العضوية: </span><span style="<?=$booking[0]->mc_color_code ?>"> <?=$booking[0]->mc_name ?></span></p>
                         <p><span class="desc">خطة العضوية: </span>6 اشهر</p>
                     </div>
                 </div>
@@ -229,19 +228,18 @@
                 <div class="col-md-4">
                     <h5>بيانات الخدمة: </h5>
                     <div class=" margin-right-extra">
-                        <p><span class="desc">نوع السيارة: </span>شيفروليه كروز 2019</p>
-                        <p><span class="desc">وصف السيارة: </span>اوتوماتيك - 2 شتطة - 4 افراد - 4 ابواب</p>
-                        <p><span class="desc">تاريخ الاستلام: </span>3/12/2019</p>
-                        <p><span class="desc">تاريخ بداية الاشتراك: </span>3/12/2019</p>
-                        <p><span class="desc">مدينة استلام السيارة: </span>المدينة المنورة</p>
-                        <p><span class="desc">مدة الاشتراك في الخدمة: </span>4 ايام</p>
+                        <p><span class="desc">نوع السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cb_uid->cb_name, "arabic") ?> <?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cm_uid->cm_name, "arabic") ?> <?=$booking[0]->car_obj->car_model_year ?></p>
+                        <p><span class="desc">وصف السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cb_uid->cb_meta_desc, "arabic") ?></p>
+                        <p><span class="desc">تاريخ الاستلام: </span><?= $booking[0]->book_added_date ?></p>
+                        <p><span class="desc">تاريخ بداية الاشتراك: </span><?= $booking[0]->book_start_date ?></p>
+                        <p><span class="desc">مدينة استلام السيارة: </span><?=$this->global_model->getCityByID($booking[0]->delivery_city_uid) ?></p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid custom-img">
                     <div class="margin-top-extra">
-                        <p><span class="desc">تاريخ نهاية الاشتراك: </span>3/12/2019</p>
-                        <p><span class="desc">مدينة تسليم السيارة: </span>المدينة المنورة</p>
+                        <p><span class="desc">تاريخ نهاية الاشتراك: </span><?= $booking[0]->book_end_date ?></p>
+                        <p><span class="desc">مدينة تسليم السيارة: </span><?=$this->global_model->getCityByID($booking[0]->delivery_city_uid) ?></p>
                     </div>
                 </div>
             </div>
@@ -250,12 +248,19 @@
                 <div class="col-md-4">
                     <h5>بيانات الدفع: </h5>
                     <div class=" margin-right-extra">
-                        <p><span class="desc">طريقة الدفع: </span>نقدي</p>
-                        <p><span class="desc">قيمة الاشتراك في الخدمة: </span>140 ريال</p>
-                        <p><span class="desc">قيمة التوصيل: </span>5 ريال</p>
-                        <p><span class="desc">رسوم قيمة الدفع النقدي: </span>40 ريال</p>
-                        <p><span class="desc">رسوم قيمة القيمة المضافة (5%): </span>10 ريال</p>
-                        <p class="total-all">المبلغ الاجمالي: 400 ريال</p>
+                        <p><span class="desc">طريقة الدفع: </span><?= $booking[0]->invoice_payment_method ?></p>
+                        <p><span class="desc">قيمة الاشتراك في الخدمة: </span><?= $booking[0]->invoice_total_fees ?> ريال</p>
+                        <p><span class="desc">رسوم قيمة الدفع النقدي: </span><?= CASH_PAYMENT_FEES ?> ريال</p>
+                        <p><span class="desc">رسوم قيمة القيمة المضافة (5%): </span><?= $booking[0]->invoice_tax_total ?> ريال</p>
+                        <?php 
+                            if ($booking[0]->invoice_payment_method == 'cash'){
+                                $total = $booking[0]->invoice_total_fees_after_tax + CASH_PAYMENT_FEES;
+                            }
+                            else{
+                                $total = $booking[0]->invoice_total_fees_after_tax;   
+                            }
+                        ?>
+                        <p class="total-all">المبلغ الاجمالي: <?= $total ?> ريال</p>
                     </div>
                 </div>
             </div>
