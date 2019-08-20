@@ -13,9 +13,8 @@ class Members extends CI_Controller {
 			$this->global_model->config();
 	   }
         $this->load->model('members_model');
+        $this->load->library('form_validation');		
 
-		
-		
     }
 
     public function login() {
@@ -89,7 +88,10 @@ class Members extends CI_Controller {
         if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
 			// get site direction return "rtl" or "ltr"
 			$data['direction'] = $this->global_model->getSiteDirection();
-			$data['bookings'] = $this->global_model->getUserBookings( $this->session->userdata('member_uid'));
+			$data['bookings'] = $this->global_model->getUserBookingswithInvoices( $this->session->userdata('member_uid'));
+			
+			$data['user'] = $this->global_model->getAuthUser();
+			$data['countries'] = $this->global_model->getAllCountries();
 
 			// set main content
 			$data['main_content'] = 'profile';
@@ -104,7 +106,41 @@ class Members extends CI_Controller {
 			redirect('home');
 		}
     }
+
+    public function user_update($id){	
+    	// get site direction return "rtl" or "ltr"
+        $data['direction'] = $this->global_model->getSiteDirection();
+		
+		$data['main_content'] = 'profile';
+        //set page title
+        $data['pageTitle'] = $this->lang->line('home');		
+		
+        $data['javascripts'] = $this->_javascript('home');
+        $data['pageCssFiles'] = $this->_cssFiles('home');
+        $data['javascriptCode'] = $this->_javascriptCode('home');
+
+        $data['user'] = $this->global_model->getAuthUser();
+		$data['countries'] = $this->global_model->getAllCountries();
+
+		// set form validations
+        $this->form_validation->set_rules('member_fname', 'الأسم الاول', 'required');
+        $this->form_validation->set_rules('member_lname', 'الأسم الاخير', 'required');
+        $this->form_validation->set_rules('member_email', 'البريد الإلكترونى', 'required|valid_email');
+        $this->form_validation->set_rules('country_uid', 'الدولة', 'required|min_length[1]');
+        $this->form_validation->set_rules('member_mobile', 'رقم الجوال', 'required|numeric|min_length[1]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('includes/template', $data);
+		}else{
+			$this->members_model->updateUser($id);
+			redirect('members/profile');
+		}
+    }
 	
+	function getCities($countryID){
+		$cities = $this->global_model->getCitiesByCountryID($countryID);
+		print_r($cities);
+	}
 	
 	function logout(){
 		$this->session->sess_destroy();
@@ -117,10 +153,8 @@ class Members extends CI_Controller {
             case 'home':
                 $java = array(
                     "'" . base_url() . "assets/rtl/js/bootstrap-toastr/toastr.min.js'",
-                    "'" . base_url() . "assets/rtl/js/filter/mixitup.min.js'",
-                    "'" . base_url() . "assets/rtl/js/filter/mixitup.js'",
-                    "'" . base_url() . "assets/rtl/js/filter/ion.rangeSlider.min.js'",
                     "'" . base_url() . "assets/rtl/js/efad-scripts.js'",
+                    "'" . base_url() . "assets/global/plugins/animated-input/js/index.js'",
                 );
 				
                 break;
@@ -147,98 +181,59 @@ class Members extends CI_Controller {
         switch ($view) {
             case 'home':
                 $java = "
-				
-					<script type='text/javascript'>
-						/* navbar */
-						$(document).ready(function () {
-							$('#countries').msDropdown();
-							/* navbar */
-							$('#sidebarCollapse').on('click', function () {
-								$('#sidebar').toggleClass('active');
-							});
+							<script type=\"text/javascript\">
+								// Profile page
+								$(document).ready(function() {
+									$('.nav-tabs > li > a').click(function(event){
+										event.preventDefault();//stop browser to take action for clicked anchor
+													
+										//get displaying tab content jQuery selector
+										var active_tab_selector = $('.nav-tabs > li.active > a').attr('href');					
+													
+										//find actived navigation and remove 'active' css
+										var actived_nav = $('.nav-tabs > li.active');
+										actived_nav.removeClass('active');
+													
+										//add 'active' css into clicked navigation
+										$(this).parents('li').addClass('active');
+													
+										//hide displaying tab content
+										$(active_tab_selector).removeClass('active');
+										$(active_tab_selector).addClass('hide');
+													
+										//show target tab content
+										var target_tab_selector = $(this).attr('href');
+										$(target_tab_selector).removeClass('hide');
+										$(target_tab_selector).addClass('active');
+								    });
 
-							/* fancy */
-							$('#top-login-button').fancybox();
-							/* login */
-							$('.toggle-password, .toggle-password2').click(function () {
-								$(this).toggleClass('fa-eye fa-eye-slash');
-								var input = $($(this).attr('toggle'));
-								if (input.attr('type') == 'password') {
-									input.attr('type', 'text');
-								} 
-								else 
-								{
-									input.attr('type', 'password');
-								}
-							});
+								    $('#country').change(function(){
+								    	ajaxGetCitiesBasedOnCountryID();
+								    });
 
-							$(function () {
-								$('.switchPanelButton').click(function (event) {
-									event.preventDefault();
-									var panel = $(this).attr('panelclass');
-									$('.' + panel).hide();
-									var panelid = $(this).attr('panelid');
-									$('#' + panelid).show();
+								    ajaxGetCitiesBasedOnCountryID();
+
+								    function ajaxGetCitiesBasedOnCountryID(){
+								    	let country = $('#country').children('option:selected').val();
+								    	$.ajax({
+											type: 'POST',
+											url: '".site_url('members/getCities/')."'+country,
+											success: function(response) 
+											{
+												//$('#city').empty();
+												
+
+											}, 
+											error: function(xhr, ajaxOptions, thrownError) {
+												alert(xhr.status);
+												alert(thrownError);
+												alert('error');
+											}
+										}); 
+								    }
 								});
-							});
-
-							$('.button-mobile-container').click(function () {
-								$('.search-option').toggleClass('show');
-							});
-
-						});
-					</script> 
-
-					<!-- filter car search --> 
-					<script>
-						var \$range = $('.js-range-slider'),
-						instance;
-
-						\$range.ionRangeSlider({
-							skin: 'round',
-							type: 'double',
-							min: 0,
-							max: 500,
-							from: 0,
-							to: 500,
-							onChange: handleRangeInputChange
-						});
-
-						instance = \$range.data('ionRangeSlider');
-
-
-						var container = document.querySelector(\"[data-ref='product_list']\");
-						var mixer = mixitup(container, {
-							animation: {
-								duration: 500,
-								queueLimit: 1000
-							}
-						});
-
-						function getRange() {
-							var min = Number(instance.result.from);
-							var max = Number(instance.result.to);
-							return {
-								min: min,
-								max: max
-							};
-						}
-
-						function handleRangeInputChange() {
-							mixer.filter(mixer.getState().activeFilter);
-						}
-
-						function filterTestResult(testResult, target) {
-							var size = Number(target.dom.el.getAttribute('data-size'));
-							var range = getRange();
-							if (size < range.min || size > range.max) {
-								testResult = false;
-							}
-							return testResult;
-						}
-						mixitup.Mixer.registerFilter('testResultEvaluateHideShow', 'range', filterTestResult);
-					</script> 				
-				
+							</script>
+					
 				
 				
 				
