@@ -190,6 +190,17 @@ section, header{padding-top:20px; padding-bottom: 20px}
 	
 	padding: 0.2rem 0.5rem;color:#333; background:#f0f0f0; font-size: 0.875rem
 }
+.btn-login{
+	position: static;
+    display: inline-block;
+    height: auto;
+    border-radius: 50px;
+    text-indent: 0;
+/*    transition: all .6s;*/
+	border: 1px solid #33b0f8; 
+	padding: 0.2rem 0.7rem;color:#183566 !important; font-size: 0.875rem;
+	line-height: 2
+}
 .btn-select{
 background:#333; color:#fff; 
 }

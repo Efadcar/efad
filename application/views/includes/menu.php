@@ -63,15 +63,15 @@
 			if(isset($is_logged_in) && $is_logged_in == 1){ ?>
 			<div class="navbar-buttons  mbr-section-btn ml-auto"> 
 				 
-				<a class="btn btn-default dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					مرحباُ: <?= $this->session->userdata('member_full_name') ?>
+				<a class="btn btn-login" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					 <?= $this->session->userdata('member_full_name') ?> <i class="fa fa-user-circle"></i>
 				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="top: 82% !important; font-size: 13px;max-width: 280px;border: 1px solid #01355d2e;border-radius: 0.9rem;box-shadow: 1px 1px 2px 2px #0000ff26;">
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="top: 82% !important; font-size: 13px;max-width: 280px;border: 1px solid #33b0f870;border-radius: 0.9rem;box-shadow: 1px 1px 2px 2px #00000017;">
 					<span class="dropdown-menu-arrow"></span>
 					<div class="row ml-0 mr-0">
 						<div class="col-md-7">
 							<h6 class="mb-0"><?= $this->session->userdata('member_full_name') ?></h6>
-							<p class="mb-0 small">رقم عضوية : 4566</p>
+							<p class="mb-0 small">رقم عضوية : <?= $this->session->userdata('member_uid') ?></p>
 						</div>
 						<div class="col-md-5" align="left">
 							<img src="<?= base_url()."assets/".$direction; ?>/images/favicon.png" style="width: 63%;border: 0px black solid;border-radius: 50%;">
@@ -99,7 +99,7 @@
 				$membership = $this->global_model->getMembershipByID($this->session->userdata('mc_uid'));
 				?>										  
 				<a href="<?= site_url('memberships/subscribe') ?>" class="btn" style="background-color: <?= $membership->mc_color_code ?>; color: #fff">
-					<span><span>عضويتك <?= $membership->mc_name; ?></span></span>
+					<span><span>ترقية العضوية</span></span>
 				</a>
 				
 				

@@ -1825,7 +1825,7 @@ ul.pricetable li.active button {
 }
 .txt-l { font-size:28px; font-weight:bold; }
 .txt-top { position:relative; top:-9px; left:-2px; }
-.tick { font-size:22px; color:#003a5d; }
+.tick { font-size:22px; color:#01355d; }
 .hide {
   border:0;
   background:none;
@@ -2650,7 +2650,7 @@ color:#FFC007;
   transform: translate(-50%, -50%);
   margin:0;
 }
-.circle:hover{background: #003a5d; color:#fff}
+.circle:hover{background: #01355d; color:#fff}
 
 /*******quick payment***********/
 
@@ -2751,7 +2751,7 @@ h1.whyefad{font-size: 1.5rem}
 }
 
 .efd-pic:hover{
-    border: 1px solid #003a5d;
+    border: 1px solid #01355d;
     border-radius: 50%;
 }
 
@@ -2768,7 +2768,7 @@ header .fieldset {
     border-radius: 5px;
 }
 header .fieldset:hover .textbanner{
-    color: #003a5d;
+    color: #01355d;
 }
 
 /* how-get */
@@ -3462,7 +3462,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 .cd-faq-trigger:hover,
 .cd-faq-trigger:focus{
-    color: #003a5d;
+    color: #01355d;
 }
 @media only screen and (max-width: 1400px) {
   .cd-faq-trigger {
