@@ -30,14 +30,14 @@
                     </ul>
                 </div>
                 <div class=" col-lg-2 col-sm-5 col-xs-12 ask pr-0  text-center">
-                    <h6 class="p-0 m-0" >تواصل معنا الأن عبر الواتس اب</h6>
+                    <h6 class="p-0 m-0" >تواصل معنا الأن عبر الواتس آب</h6>
 					<a href="http://wa.me/966555208078" target="_blank">
 						<h3 class="mb-1 p-0"> 078  208 555 966 + </h3>
 						<img src="<?= base_url()."assets/".$direction; ?>/images/Qrcode.png" alt="QR-Code" class="qr-code" width="120px" height="120px">
 					</a>
                 </div>
                 <div class="col-lg-2 col-sm-7 col-xs-12 text-center">
-                    <h3 class="mb-1">قريبا</h3>
+                    <h3 class="mb-1">قريباً</h3>
                     <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/google-play%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
                     <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/app-store%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
                 </div>
