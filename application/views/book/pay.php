@@ -109,6 +109,7 @@
 					<h3>تفاصيل الفاتورة</h3>
 				</div>
 				<div class="col-sm-6">
+					<!-- 
 					<div class="custom-control custom-radio col-sm-12 ml-4">
 						<input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="visa" checked>
 						<label class="custom-control-label" for="customRadio1">
@@ -119,13 +120,32 @@
 							</ul>
 						</label>
 					</div>
+					-->
+					<div class="custom-control custom-radio col-sm-12 ml-4">
+						<input type="radio" id="transfer" name="customRadio" class="custom-control-input" value="transfer" checked>
+						<label class="custom-control-label" for="transfer">
+							<ul class="payment-img">
+								<li> <b> تحويل بنكي</b> </li>
+							</ul>
+						</label>
+					</div>
 					<div class="custom-control custom-radio col-sm-12 ml-4">
 						<input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
 						<label class="custom-control-label" for="cash">
 							<ul class="payment-img">
-								<li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash.png"  alt="نقدى" ></span><span class="text-muted">(<?= CASH_PAYMENT_FEES ?> ريال إضافية)</span> </li>
+								<li> <b> نقدى</b> <span class="text-muted">(<?= CASH_PAYMENT_FEES ?> ريال إضافية)</span> </li>
 							</ul>
 						</label>
+					</div>
+					
+					<div class="row" id="transferInfo">
+						<div class="col-sm-12 ">
+						<p>
+							البنك الأهلي<br>
+							حساب رقم : XXXXXXXXXXXXXXXXXX
+						</p>
+						</div>
+						
 					</div>
 					<div class="row" id="paymentCard">
 						<div class="col-sm-9 ">
@@ -188,11 +208,11 @@
 									<?php if($this->global_model->isFirstBooking($this->session->userdata('member_uid'))){ 
 										$first_booking = 1;
 									?>
-									<tr>
+									<!--<tr>
 										<td class="text-left">خصم بسبب الاشتراك لأول مرة مع إفاد
 										</td>
 										<td class="text-right">- <span><?= $current_booking['daily_rate_after_discount'] ?></span> ر.س.</td>
-									</tr>
+									</tr> -->
 									<?php }else{ $first_booking = 0;} ?>
 									<?php if($current_booking['early_booking'] != 0){ ?>
 									<tr>
@@ -259,10 +279,12 @@
 									$total_with_cash = $current_booking['total_fees_after_tax'] + CASH_PAYMENT_FEES;
 									$total_without_cash = $current_booking['total_fees_after_tax'];
 								}
+								/*
 								if($first_booking != 0){
 									$total_with_cash = $current_booking['total_fees_after_tax'] + CASH_PAYMENT_FEES  - $current_booking['daily_rate_after_discount'];
 									$total_without_cash = $current_booking['total_fees_after_tax'] - $current_booking['daily_rate_after_discount'];
 								}
+								*/
 								?>
 								
 								<input type="hidden" id="total_with_cash" name="total_with_cash" value="<?= $total_with_cash ?>" />
