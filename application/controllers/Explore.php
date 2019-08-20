@@ -251,7 +251,7 @@ class Explore extends CI_Controller {
 							 * @params
 							 */
 							function collectSearchParams(){
-								run_waitMe($('.container-fluid'), 1, 'ios');
+								run_waitMe($('body'), 1, 'ios');
 								let carClassification = $('.carClassification:checked').val();
 								let generalSearch = $('.generalSearch').val();
 								let carSearchCity = $('.carSearchCity').children(\"option:selected\").val();
@@ -334,7 +334,7 @@ class Explore extends CI_Controller {
 										//console.log(data['status']);
 										let availability = '';
 										$('.carListItemResponse').remove();
-										if (data['data']['num_rows'] > 0){
+										if (data['data']['num_rows'] > 0 || data['data']['num_rows'] != 'null'){
 											$.each(data['data']['result'], function(i, item) {
 												if (item['car_in_stock'] == 0){
 													availability = 'style=\"background-color: rgb(132,132,132)\"';
@@ -427,7 +427,7 @@ class Explore extends CI_Controller {
 											        .append('<div class=\"carListItemResponse row\" style=\"width:100%;\"><div class=\"col-lg-4 col-md-4\"></div><div class=\"col-lg-4 col-md-4\"><h5>'+ data[\"data\"][\"message\"]+'</h5></div></div>');
 											$('.pagin').hide();
 										}
-										$('.container-fluid').waitMe('hide');
+										$('body').waitMe('hide');
 									},
 
 									error: function(data){

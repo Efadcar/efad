@@ -97,8 +97,8 @@ class Members extends CI_Controller {
 			$data['pageTitle'] = "الملف الشخصي";		
 
 			$data['javascripts'] = $this->_javascript('home');
-			$data['pageCssFiles'] = $this->_cssFiles('profile');
-			$data['javascriptCode'] = $this->_javascriptCode('profile');
+			$data['pageCssFiles'] = $this->_cssFiles('home');
+			$data['javascriptCode'] = $this->_javascriptCode('home');
 			$this->load->view('includes/template', $data);
 		}else{
 			redirect('home');
