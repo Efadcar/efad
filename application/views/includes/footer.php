@@ -4,7 +4,7 @@
             <div class="row align-items-center ">
                 <div class="col-lg-5 col-sm-7 col-xs-12 pr-10">
                     <ul class="footermenu pb-8">
-                        <li><a href="<?= site_url('about') ?>">إفاد</a></li>
+                        <li><a href="<?= site_url('about') ?>">عن إفاد</a></li>
                         <li><a href="https://www.linkedin.com/company/efadsa/jobs/" target="_blank">الوظائف</a></li>
                         <li><a href="<?= site_url('branches') ?>">الفروع</a></li>
 						<li><a href="<?= site_url('faq') ?>"><?= $this->lang->line('faq'); ?></a> </li>

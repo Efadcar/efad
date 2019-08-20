@@ -10,7 +10,7 @@
 			<div class="col-sm-3">
 				<div class="row no-gutters">
 					<div class="col-6 col-xs-6 ">
-						<div class="cars-many"> <span>3000</span> <span>سيارة</span> </div>
+						<div class="cars-many"> <span>1000</span> <span>سيارة</span> </div>
 					</div>
 					
 					<div class="col-6 col-xs-6 ">
