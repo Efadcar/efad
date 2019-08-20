@@ -44,7 +44,7 @@
     font-size: 1.8rem;
     font-weight: 600;
     line-height: 1.8rem;
-    color: #003a5d;
+    color: #01355d;
 }
 
 .price-car .price-was {
@@ -276,7 +276,7 @@
 	transition: background .2s ease-in-out;
 }
 .btn-switch__radio_yes:checked ~ .btn-switch__label:before {
-	background: #003a5d;
+	background: #01355d;
 }
 .btn-switch__label_no:after {
 	content: "";
@@ -646,7 +646,7 @@ border-radius:0
 }
 
 .text-muted {
-    color: #003a5d !important;
+    color: #01355d !important;
 }
 .color-dots .dot100{
     position: relative;
@@ -722,6 +722,7 @@ border-radius:0
 .btn-reserve1{
     float: left;
     padding-top: 7px;
+	padding-bottom: 7px;
 }
 .btn-reserve1 a{
     padding: 3px 19px;
@@ -737,7 +738,7 @@ border-radius:0
     display: inline;
 }
 .pagin .fa-chevron-right{
-    color: #003a5d;
+    color: #01355d;
     border: 1px solid #ececec;
     background-color: #ececec;
     padding: 5px 7px;
@@ -746,7 +747,7 @@ border-radius:0
 }
 .pagin .fa-chevron-left{
     margin: -31px 0;
-    color: #003a5d;
+    color: #01355d;
     border: 1px solid #ececec;
     background-color: #ececec;
     padding: 5px 7px;
@@ -766,20 +767,20 @@ border-radius:0
     border: 1px solid #eee;
 }
 .pagin .active:hover{
-    border: 1px solid #003a5d;
+    border: 1px solid #01355d;
 }
 .pagin .active{
     background-color: #fff;
     padding: 2px 12px;
     border-radius: 8px;
-    border: 1px solid #003a5d;
-    color: #003a5d;
+    border: 1px solid #01355d;
+    color: #01355d;
 }
 .pagin .items a{
     color: #000;
 }
 .pagin .active a{
-    color: #003a5d;
+    color: #01355d;
 }
 .no-gutters{
     margin-top: 57px;
@@ -795,7 +796,7 @@ border-radius:0
 }
 /*
 .blueplan1:{
-    background-color: #003a5d;
+    background-color: #01355d;
     color: #fff;
 }
 .greenplan:hover{
@@ -863,7 +864,7 @@ color: #fff;
     width: 24px;
     margin: 4px 0;
     background-color: #fff;
-    border: 1px solid #003a5d;
+    border: 1px solid #01355d;
     border-radius: 50%;
 }
 
@@ -876,7 +877,7 @@ color: #fff;
 
 /* When the radio button is checked, add a blue background */
 .customButton input:checked ~ .checkmark {
-  background-color: #003a5d;
+  background-color: #01355d;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -909,17 +910,17 @@ color: #fff;
 
 .car_btn input[type=radio]:checked + label:hover{
     color: #fff;
-    background: #000;
+    background: #01355d;
     opacity: 1;
 }
 .car_btn input[type=radio]:checked + label{
     color: #fff;
-    background: #000;
+    background: #01355d;
     opacity: 1;
 }
 .car_btn.car-y label:hover {
-    border: 2px solid #000;
-    background: #000;
+    border: 2px solid #01355d;
+    background: #01355d;
     color: #fff;
 }
 /*
@@ -947,8 +948,8 @@ color: #fff;
     top: 26px;
     width: 24px;
     height: 24px;
-    border: 4px solid #003a5d;
-    background-color: #003a5d;
+    border: 4px solid #01355d;
+    background-color: #01355d;
     border-radius: 24px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
@@ -959,7 +960,7 @@ color: #fff;
     text-shadow: none;
     padding: 3px 5px;
     background-color: #fff;
-    color: #003a5d;
+    color: #01355d;
     border-radius: 0;
 }
 #select-country,
@@ -967,7 +968,7 @@ color: #fff;
     border: 1px solid #fff;
 }
 .select-car:hover{
-    border: 1px solid #003a5d;
+    border: 1px solid #01355d;
 }
 
 .sb-container{

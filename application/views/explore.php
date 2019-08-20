@@ -10,7 +10,7 @@
 			<div class="col-sm-3">
 				<div class="row no-gutters">
 					<div class="col-6 col-xs-6 ">
-						<div class="cars-many"> <span>3000</span> <span>سيارة</span> </div>
+						<div class="cars-many"> <span>1000</span> <span>سيارة</span> </div>
 					</div>
 					
 					<div class="col-6 col-xs-6 ">
@@ -250,6 +250,7 @@
 				<!-- btns -->
 				<div class="car_btn scroll">
 					<div class="fieldset">
+						<!-- 
 						<input type="radio" name="cartype" class="updateSearchContent carClassification" value="0" data-filter="all" id="c1" checked  >
 						<label for="c1" class="all" style="display: none;">الكل</label>
 						<input type="radio" name="cartype" class="updateSearchContent carClassification"  data-filter=".economic" value="3" id="c2" >
@@ -263,11 +264,12 @@
 						<input type="radio" class="updateSearchContent carClassification" name="cartype" value="4" data-filter=".superior" id="c6">
 						<label for="c6" class="superior">الفخمة</label>
 						<div class="animation start-home"></div>
+						-->
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-12">
-						<input class="form-control mt-2 inp-inp updateSearchContent generalSearch" data-ref="input-search" type="search" placeholder="ابحث عن مواصفات سيارتك هنا:الماركة ,الموديل ,اللون,ناقل الحركة أو سمة الصنع .." aria-label="Search">
+						<input class="form-control inp-inp updateSearchContent generalSearch" data-ref="input-search" type="search" placeholder="ابحث عن مواصفات سيارتك هنا:الماركة ,الموديل ,اللون,ناقل الحركة أو سمة الصنع .." aria-label="Search" style="    margin-top: .6rem!important;">
 						<i class="fas fa-search sear-inp"></i>
 						<!--
 						<div class="select-wrapper select-wrapperNew" style="display: inline;">

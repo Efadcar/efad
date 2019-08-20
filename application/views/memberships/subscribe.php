@@ -91,7 +91,7 @@
 					</header>
 					<footer class="pricing-footer"> 
 						<a class="select" data-id="<?= $memberships[0]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
-							إشترك الان
+							اشترك الآن
 						</a> 
 					</footer>
 				</th>
@@ -105,7 +105,7 @@
 					</header>
 					<footer class="pricing-footer"> 
 						<a class="select" data-id="<?= $memberships[1]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
-							إشترك الان
+							اشترك الآن
 						</a> 
 					</footer>
 				</th>
@@ -120,7 +120,7 @@
 					</header>
 					<footer class="pricing-footer"> 
 						<a class="select" data-id="<?= $memberships[2]->mc_uid ?>" href="#" style="color: #fff; background-color: <?= $memberships[2]->mc_color_code ?>" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.backgroundcolor='<?= $memberships[2]->mc_color_code ?>'" onclick="goDoSubscribe(this);">
-							إشترك الان
+							اشترك الآن
 						</a> 
 					</footer>
 				</th>
@@ -133,7 +133,7 @@
 					</header>
 					<footer class="pricing-footer"> 
 						<a class="select" data-id="<?= $memberships[3]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
-							إشترك الان
+							اشترك الآن
 						</a> 
 					</footer>
 				</th>
@@ -196,6 +196,7 @@
                 <td ><span class="tick"><i class="fa fa-check-circle"></i></span></td>
                 <td ><span class="tick"><i class="fa fa-check-circle"></i></span></td>
             </tr>
+			<!--
             <tr class="br-bt">
                 <td> خدمة الحجز المبكر مجاناً </td>
                 <td class="default"><span class="tick"><i class="fa fa-check-circle"></i></span></td>
@@ -203,6 +204,8 @@
                 <td ><span class="tick"><i class="fa fa-check-circle"></i></span></td>
                 <td ><span class="tick"><i class="fa fa-check-circle"></i></span></td>
             </tr>
+			-->
+			<!--
             <tr class="br-bt">
                 <td> خدمة اليوم الأول المجاني </td>
                 <td class="default"><span class="tick"><i class="fa fa-check-circle"></i></span></td>
@@ -210,6 +213,7 @@
                 <td ><span class="tick"><i class="fa fa-check-circle"></i></span></td>
                 <td ><span class="tick"><i class="fa fa-check-circle"></i></span></td>
             </tr>
+			-->
             <tr class="br-bt">
                 <td> خدمة فتح الأقفال </td>
                 <td class="default"><span class="tick"><i class="fa fa-check-circle"></i></span></td>
@@ -224,6 +228,7 @@
                 <td >4 ساعات</td>
                 <td >6 ساعات</td>
             </tr>
+			<!--
             <tr class="br-bt">
                 <td> عدد الأيام الإضافية المجانية </td>
                 <td class="default">يوم كل ثلاث أسابيع</td>
@@ -231,6 +236,7 @@
                 <td >يوم كل أسبوعين</td>
                 <td >يوم كل أسبوع</td>
             </tr>
+			
             <tr class="br-bt">
                 <td> عدد النقاط الإضافية السنوية </td>
                 <td class="default"></td>
@@ -238,6 +244,7 @@
                 <td >100 نقطة</td>
                 <td >200 نقطة</td>
             </tr>
+			
             <tr class="br-bt">
                 <td> خدمة غسيل وتنظيف السيارة </td>
                 <td class="default"></td>
@@ -245,6 +252,7 @@
                 <td ><span class="tick"><i class="fa fa-check-circle"></i></span></td>
                 <td ><span class="tick"><i class="fa fa-check-circle"></i></span></td>
             </tr>
+			-->
             <tr class="br-bt">
                 <td> رسوم إيقاف السيارة فى المطار </td>
                 <td class="default">30</td>
@@ -275,17 +283,17 @@
             </tr>
             <tr class="br-bt">
                 <td> عوازل حرارية </td>
-                <td class="default"><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريبا</span></td>
-                <td><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريبا</span></td>
-                <td ><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريبا</span></td>
-                <td ><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريبا</span></td>
+                <td class="default"><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريباً</span></td>
+                <td><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريباً</span></td>
+                <td ><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريباً</span></td>
+                <td ><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريباً</span></td>
             </tr>
             <tr class="br-bt">
                 <td> نظام الملاحة </td>
                 <td class="default"></td>
                 <td></td>
                 <td ></td>
-                <td ><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريبا</span></td>
+                <td ><span class="tick" style="padding-right: 45px;"><i class="fa fa-check-circle"></i></span><span style="margin-right: 15px">قريباً</span></td>
             </tr>
             <tr>
                 <td></td>

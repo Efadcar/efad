@@ -869,6 +869,7 @@ class Global_model extends CI_Model {
 	function getFaq(){
 		$siteLang = $this->session->userdata('site_lang');
 		//echo $siteLang;exit;
+		$this->db->order_by("fc_order", "asc"); 
 		$q =  $this->db->get('faq_categories');
 		if($q->num_rows() > 0) {
 			foreach($q->result() as $row) {
