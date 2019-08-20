@@ -109,7 +109,7 @@
 					<?= $this->lang->line('login'); ?> 
 				</a>
 				<a href="<?= site_url('memberships/subscribe') ?>" class="btn btn--accent">
-					<span><span><?= $this->lang->line('membership_adv'); ?></span></span>
+					<span><span style="padding: 0px 20px;"><?= $this->lang->line('membership_adv'); ?></span></span>
 				</a> 
 			</div>			
 			<?php } ?>

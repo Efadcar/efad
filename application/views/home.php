@@ -4,7 +4,7 @@
 
 <section class="why-choosing-efad" style="margin: 50px 50px 0px 50px;">
     <div class="row">
-        <div class="col-md-4" align="center">
+        <div class="col-md-4" align="left">
             <img class="img-why-efad-sec" src="<?= base_url()."assets/".$direction; ?>/images/1.png">
             <p class="why-efad-text">توصيل و استلام السيارة مجانا</p>
             <br>
@@ -19,7 +19,7 @@
                 <img class="main-img-why-efad-sec" src="<?= base_url()."assets/".$direction; ?>/images/carArtboard-1.png">
             </div>
         </div>
-        <div class="col-md-4" align="center">
+        <div class="col-md-4" align="right">
             <img class="img-why-efad-sec" src="<?= base_url()."assets/".$direction; ?>/images/2.png">
             <p class="why-efad-text">سيارة مزودة بالوقود</p>
             <br>

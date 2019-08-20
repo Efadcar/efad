@@ -103,8 +103,8 @@
 							</div>
 
 						</div>
-						<div class="col-md-12 col-sm-12 pt-2">
-							<span class="labelh py-2">عرض السعر</span>
+						<div class="col-md-12 col-sm-12 pt-2" style="display: none;">
+							<span class="labelh py-2" >عرض السعر</span>
 
 							<div col-lg-12>
 								من

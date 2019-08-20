@@ -91,7 +91,7 @@ class Explore extends CI_Controller {
 
 						$(document).ready(function () {
 							function run_waitMe(el, num, effect){
-								text = '...Please wait';
+								text = 'برجاء الانتظار...';
 								fontSize = '';
 								switch (num) {
 									case 1:
@@ -251,7 +251,7 @@ class Explore extends CI_Controller {
 							 * @params
 							 */
 							function collectSearchParams(){
-								run_waitMe($('body'), 1, 'ios');
+								run_waitMe($('.container-fluid'), 1, 'ios');
 								let carClassification = $('.carClassification:checked').val();
 								let generalSearch = $('.generalSearch').val();
 								let carSearchCity = $('.carSearchCity').children(\"option:selected\").val();
@@ -394,20 +394,22 @@ class Explore extends CI_Controller {
 											});
 
 											$('.pagin').show();
-											let paginationCounter = data['data']['num_rows'] / 15;
-											// paginationCounter = 5;
-											$('.paginationDrawResponse').empty();
-											// console.log(paginationCounter);
-											let i = 0;
-											let count = 1;
-											for (i; i < paginationCounter; i++) { 
-												if (i == offset){
-													$('.paginationDrawResponse').append('<li class=\"items active\" value='+i+'><a href=\"#\">'+count+'</a></li>');
+											if (data['data']['num_rows'] != 'null' && data['data']['num_rows'] > 0){
+												let paginationCounter = data['data']['num_rows'] / 15;
+												// paginationCounter = 5;
+												$('.paginationDrawResponse').empty();
+												// console.log(paginationCounter);
+												let i = 0;
+												let count = 1;
+												for (i; i < paginationCounter; i++) { 
+													if (i == offset){
+														$('.paginationDrawResponse').append('<li class=\"items active\" value='+i+'><a href=\"#\">'+count+'</a></li>');
+													}
+													else{
+													  	$('.paginationDrawResponse').append('<li class=\"items\" value='+i+'><a href=\"#\">'+count+'</a></li>');
+													}
+													count++;
 												}
-												else{
-												  	$('.paginationDrawResponse').append('<li class=\"items\" value='+i+'><a href=\"#\">'+count+'</a></li>');
-												}
-												count++;
 											}
 											$('.items').click(function(){
 												$('.paginationValue').val(this.value);
@@ -425,7 +427,7 @@ class Explore extends CI_Controller {
 											        .append('<div class=\"carListItemResponse row\" style=\"width:100%;\"><div class=\"col-lg-4 col-md-4\"></div><div class=\"col-lg-4 col-md-4\"><h5>'+ data[\"data\"][\"message\"]+'</h5></div></div>');
 											$('.pagin').hide();
 										}
-										$('body').waitMe('hide');
+										$('.container-fluid').waitMe('hide');
 									},
 
 									error: function(data){
