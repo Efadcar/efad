@@ -270,7 +270,7 @@
 								<tfoot>
 									<tr>
 										<td class="text-left ">
-											<h3>الاجمالى: </h3>
+											<h3>المبلغ الإجمالي: </h3>
 										</td>
 										<td class="text-right">
 											<h4><span class="total-price"><?= $total_without_cash ?> </span> ر.س.</h4>
