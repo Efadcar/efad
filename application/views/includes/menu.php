@@ -106,7 +106,7 @@
 			
 			</div>
 			<?php }else{ ?>
-			<div class="navbar-buttons  mbr-section-btn "> 
+			<div class="navbar-buttons  mbr-section-btn  ml-auto"> 
 				<a id="top-login-button" href="#login_form_ajax" class="mr-2 login-link">
 					<?= $this->lang->line('login'); ?> 
 				</a>
