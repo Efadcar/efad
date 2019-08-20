@@ -722,6 +722,7 @@ border-radius:0
 .btn-reserve1{
     float: left;
     padding-top: 7px;
+	padding-bottom: 7px;
 }
 .btn-reserve1 a{
     padding: 3px 19px;
