@@ -42,24 +42,26 @@
 		</a>
 	
 		<div class="collapse navbar-collapse" id="mainMenu">
+			<!-- 
 			<ul class="navbar-nav mx-auto" dir="rtl" style="    margin-right: auto;">
 				<li class="nav-item"><a class="nav-link" href="<?= site_url('explore') ?>"><?= $this->lang->line('discover'); ?></a></li>
 				<li class="nav-item"><a class="nav-link" href="<?= site_url('home/index/#how-get-a-car') ?>"><?= $this->lang->line('how_to_get_car'); ?></a></li>
 				<li class="nav-item"><a class="nav-link" href="#"><?= $this->lang->line('quick_payment'); ?></a></li>
 				<li class="nav-item"><a class="nav-link" href="<?= site_url('faq') ?>">&nbsp;<?= $this->lang->line('faq'); ?>&nbsp;</a> </li>
-				<!--<li class="nav-item dropdown">
+				<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">للمزيد </a>
                         <div class="dropdown-menu border-0 shadow animate slideIn " aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">إتصل بنا</a> <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">الشروط و الأحكام</a>
                         </div>
-                    </li>-->
+                    </li>
 
 			</ul>
+			-->
 			<?php $is_logged_in = $this->session->userdata('is_logged_in'); 
 			if(isset($is_logged_in) && $is_logged_in == 1){ ?>
-			<div class="navbar-buttons  mbr-section-btn "> 
+			<div class="navbar-buttons  mbr-section-btn ml-auto"> 
 				 
 				<a class="btn btn-default dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					مرحباُ: <?= $this->session->userdata('member_full_name') ?>

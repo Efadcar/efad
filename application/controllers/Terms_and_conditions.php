@@ -18,7 +18,7 @@ class Terms_and_conditions extends CI_Controller {
 		// get site direction return "rtl" or "ltr"
 		$data['direction'] = $this->global_model->getSiteDirection();
 		
-        $data['row'] = $this->global_model->getPageByLink("terms-conditions");
+        $data['row'] = $this->global_model->getPageByLink("terms-of-use");
 		//print_r($data['row']);exit;
 
         $data['main_content'] = 'terms';

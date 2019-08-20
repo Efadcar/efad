@@ -2,11 +2,12 @@
     <div class="footerTopWide  pb-2">
         <div class="container-fluid">
             <div class="row align-items-center ">
-                <div class="col-lg-4 col-sm-7 col-xs-12 pr-10">
+                <div class="col-lg-5 col-sm-7 col-xs-12 pr-10">
                     <ul class="footermenu pb-8">
                         <li><a href="<?= site_url('about') ?>">إفاد</a></li>
                         <li><a href="https://www.linkedin.com/company/efadsa/jobs/" target="_blank">الوظائف</a></li>
                         <li><a href="<?= site_url('branches') ?>">الفروع</a></li>
+						<li><a href="<?= site_url('faq') ?>"><?= $this->lang->line('faq'); ?></a> </li>
                     </ul>
                     <div class="clearfix"></div>
 <!--
@@ -17,10 +18,10 @@
 -->
                     <div class="clearfix"></div>
                     <ul class="payment-img">
-                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/visa.png" class="img-thumbnail" alt="فيزا" /></span> </li>
-                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/master.png" class="img-thumbnail" alt="ماستر كارد" /></span> </li>
-                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/mada.png" class="img-thumbnail" alt="مدى" /></span> </li>
-                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash1.png" class="img-thumbnail" alt="كاش" /></span> </li>
+                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/visa.png" class="img-thumbnail" alt="فيزا" style="width: 73px;" /></span> </li>
+                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/master.png" class="img-thumbnail" alt="ماستر كارد" style="width: 73px;" /></span> </li>
+                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/mada.png" class="img-thumbnail" alt="مدى" style="width: 73px;" /></span> </li>
+                        <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash1.png" class="img-thumbnail" alt="كاش" style="width: 73px;" /></span> </li>
                     </ul>
                     <ul class="footerBottomMenu pt-8">
                         <li><a href="<?= site_url('terms_and_conditions') ?>">الشروط و الأحكام</a></li>
@@ -28,14 +29,14 @@
                         <li><p class="pr-1"> إفاد © 2019 </p></li>
                     </ul>
                 </div>
-                <div class=" col-lg-3 col-sm-5 col-xs-12 ask pr-0  text-center">
+                <div class=" col-lg-2 col-sm-5 col-xs-12 ask pr-0  text-center">
                     <h6 class="p-0 m-0" >تواصل معنا الأن عبر الواتس اب</h6>
 					<a href="http://wa.me/966555208078" target="_blank">
 						<h3 class="mb-1 p-0"> 078  208 555 966 + </h3>
 						<img src="<?= base_url()."assets/".$direction; ?>/images/Qrcode.png" alt="QR-Code" class="qr-code" width="120px" height="120px">
 					</a>
                 </div>
-                <div class="col-lg-2 col-sm-7 col-xs-12 ">
+                <div class="col-lg-2 col-sm-7 col-xs-12 text-center">
                     <h3 class="mb-1">قريبا</h3>
                     <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/google-play%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
                     <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/app-store%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
