@@ -210,8 +210,10 @@ class Explore extends CI_Controller {
 							});
 
 							//event listner for generic search filter while typing
-							$('.generalSearch').on('keyup', function() {
-								collectSearchParams();
+							$('.generalSearch').keypress(function(e){
+								if(e.which == 13){
+									$('#yearFrom').trigger('change');
+								}
 							});
 
 							// prepare early booking value
@@ -333,18 +335,22 @@ class Explore extends CI_Controller {
 									success:function(data){
 										//console.log(data['status']);
 										let availability = '';
+										let reserveNow = '';
 										$('.carListItemResponse').remove();
 										if (data['data']['num_rows'] > 0 || data['data']['num_rows'] != 'null'){
 											$.each(data['data']['result'], function(i, item) {
 												if (item['car_in_stock'] == 0){
 													availability = 'style=\"background-color: rgb(132,132,132)\"';
+													reserveNow = '<a href=\"#\"  class=\"btn btn-default\">احجز الآن</a>';
 												}
 												else if (item['car_in_stock'] == 1){
 													if (item['car_status'] == 0){
 														availability = 'style=\"background-color: rgb(230,1,1)\"';
+														reserveNow = '<a href=\"#\"  class=\"btn btn-default\">احجز الآن</a>';
 													}
 													else if (item['car_status'] == 1){
 														availability = 'style=\"background-color: rgb(61,145,16)\"';
+														reserveNow = \"<a href='".site_url('book/addnew/')."\"+item['car_uid']+\"' class='btn btn-default'>احجز الآن</a>\";
 													}
 												}
 
@@ -386,7 +392,7 @@ class Explore extends CI_Controller {
 																\"<div class='col-lg-12'>\"+
 																	\"<span class='dot11' \"+availability+\"></span>\"+
 																	
-																	\"<div class='btn-reserve btn-reserve1'> <a href='".site_url('book/addnew/')."\"+item['car_uid']+\"'  class='btn btn-default'>احجز الآن</a> </div>\"+
+																	\"<div class='btn-reserve btn-reserve1'> \"+reserveNow+\"</div>\"+
 																\"</div>\"+
 															\"</div>\"+
 														\"</div>\"+

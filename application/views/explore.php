@@ -251,9 +251,9 @@
 				<div class="car_btn scroll">
 					<div class="fieldset">
 						<input type="radio" name="cartype" class="updateSearchContent carClassification" value="0" data-filter="all" id="c1" checked  >
-						<label for="c1" class="all" >الكل</label>
+						<label for="c1" class="all" style="display: none;">الكل</label>
 						<input type="radio" name="cartype" class="updateSearchContent carClassification"  data-filter=".economic" value="3" id="c2" >
-						<label for="c2"  class="economic">الاقتصادية</label>
+						<label for="c2"  class="economic" style="display: none;">الاقتصادية</label>
 						<input type="radio" name="cartype" class="updateSearchContent carClassification" value="2" data-filter=".mini" id="c4">
 						<label for="c4" class="mini">الصغيرة</label>
 						<input type="radio" class="updateSearchContent carClassification" name="cartype" value="1"  data-filter=".small" id="c3">
