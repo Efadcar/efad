@@ -297,6 +297,9 @@ class Global_model extends CI_Model {
 						return ["status" => 0, "message" => "لقد حدث خطأ أثناء الحجز"];
 					}
 				}else{
+					
+					$this->sendBookingConfirmMail(CAR_IMAGE, USER_NAME, DATE, BOOK_NUMBER, CAR_BRAND_MODEL_YEAR, BAG, DOOR, TRANSMISSION, BOOK_DAYS, BOOK_START, BOOK_CITY, BOOK_PRICE, BOOK_TAX, BOOK_TOTAL);
+					
 					$this->messages->add("لقد تم حجز السيارة بنجاح.", "success");
 					unset($_SESSION['current_booking']);
 					return ["status" => 1];
@@ -310,6 +313,11 @@ class Global_model extends CI_Model {
 		// add to invoice table
 		
 		// return true and set message to session msgs
+	}
+	
+	function sendBookingConfirmMail($car_image, $user_name, $date, $book_number, $car_brand_model_year, $bag, $door, $transmission, $book_days, $book_start, $book_city, $book_price, $book_tax, $book_total){
+	
+	
 	}
 	
 	function search(){	
@@ -743,48 +751,6 @@ class Global_model extends CI_Model {
 			return false;	
 		}
 	}
-
-	function getUserBookingswithInvoices($member_uid) {
-		$this->db->order_by("B.book_uid", "desc")->join('invoices I', 'I.related_uid = B.book_uid');
-		$q = $this->db->get_where('bookings B', array("B.member_uid" => $member_uid));
-		if($q->num_rows() > 0) {
-			foreach($q->result() as $row) {
-				$row->car_obj = $this->getCarByID($row->car_uid);
-				$data[] = $row;
-			}
-			return $data; 
-		}else{
-			return false;	
-		}
-	}
-
-	function getMembershipBasedOnAuthUser($member_uid) {
-		$this->db->join('memberships MP', 'MP.mc_uid = M.mc_uid');
-		$q = $this->db->get_where('members M', array("M.member_uid" => $member_uid));
-		if($q->num_rows() > 0) {
-			foreach($q->result() as $row) {
-				$data[] = $row;
-			}
-			return $data; 
-		}else{
-			return false;	
-		}
-	}
-
-	
-	function bookingAndInvoiceDetails($book_uid){
-		$this->db->order_by("B.book_uid", "desc")->join('invoices I', 'I.related_uid = B.book_uid')->join('members M', 'M.member_uid = B.member_uid')->join('memberships MP', 'M.mc_uid = MP.mc_uid');
-		$q = $this->db->get_where('bookings B', array("B.book_uid" => $book_uid));
-		if($q->num_rows() > 0) {
-			foreach($q->result() as $row) {
-				$row->car_obj = $this->getCarByID($row->car_uid);
-				$data[] = $row;
-			}
-			return $data; 
-		}else{
-			return false;	
-		}
-	}
 	
 	function getModelsByBrandID ($id){
 		$siteLang = $this->session->userdata('site_lang');
@@ -854,15 +820,6 @@ class Global_model extends CI_Model {
 			return false;	
 		}
 	}
-	function getCitiesByCountryIDObject($country_uid = 187) {
-		$this->db->order_by("city_name_ar", "asc"); 
-		$q = $this->db->get_where('cities', array("country_uid" => $country_uid));
-		if($q->num_rows() > 0) {
-			return json_encode($q->result()); 
-		}else{
-			return false;
-		}
-	}	
 	
 	function getCityByID($city_uid) {
 		$q = $this->db->get_where('cities', array("city_uid" => $city_uid));
@@ -1185,21 +1142,6 @@ class Global_model extends CI_Model {
 		return $countFridays + $countSatyrdays;
 	}
 
-	function getAuthUser(){
-        if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
-        	$this->db->where('member_uid', $this->session->userdata('member_uid'));
-			$q = $this->db->get('members');
-			if($q->num_rows() > 0) {
-				$row = $q->row();
-				return $row; 
-			}else{
-				return false;
-			}
-        }
-        else{
-            return false;
-        }
-    }
 }
 
 ?>

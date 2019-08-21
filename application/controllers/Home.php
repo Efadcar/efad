@@ -15,17 +15,6 @@ class Home extends CI_Controller {
     }
 
 	function testMail(){
-		/*
-		$this->load->library('email');
-		$this->email->from('wecare@efadcar.com', 'Efad');
-		$this->email->to('eng.ebrahimelsawy@gmail.com');
-		//$this->email->cc('another@another-example.com');
-		//$this->email->bcc('them@their-example.com');
-		$this->email->subject('Email Test');
-		$this->email->message('Testing the email class.');
-		$this->email->send();
-		*/
-		
 
 	}
 	
