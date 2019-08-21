@@ -342,7 +342,7 @@ class Global_model extends CI_Model {
 		$mail_body = str_replace("BOOK_TAX", $book_tax, $mail_body);
 		$mail_body = str_replace("BOOK_TOTAL", $book_total, $mail_body);
 		$this->load->library('email');
-		$this->email->from('wecare@efadcar.com');
+		$this->email->from('wecare@efadcar.com', 'Efad Customer Support');
 		$this->email->to($this->session->userdata('member_email'));
 		$this->email->cc('booking@efadcar.com');
 		$this->email->cc('account@efadcar.com');

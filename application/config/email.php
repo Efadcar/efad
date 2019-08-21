@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Mailgun Configuration
  */
-$config['smtp_crypto'] = 'tls'; 
-$config['protocol']         = 'smtp';
+$config['smtp_crypto']		= 'tls'; 
+$config['protocol']         = 'mail';
 $config['smtp_host']        = 'smtp.office365.com';
 $config['smtp_port'] 		= '587';
 $config['smtp_user']        = 'wecare@efadcar.com';
