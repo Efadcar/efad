@@ -286,9 +286,9 @@ class Book extends CI_Controller {
 							e.preventDefault();
 						});
 					
-						//$('#paymentCard').hide();
+						$('#paymentCard').hide();
 						$('.cash-fees-tr').hide();
-					
+						
 						$('#paynow').click( function() {
 							console.log('hi');
 							confirmBooking();
@@ -328,6 +328,7 @@ class Book extends CI_Controller {
 						$('input[type=radio][name=\"customRadio\"]').change(function() {							
 							if (this.value == 'visa') {
 								$('#paymentCard').show();
+								$('#transferInfo').hide();
 								$('.cash-fees-tr').hide();
 								$('.total-price').html($('#total_without_cash').val());
 								$('#paynow').html('دفع');
@@ -335,8 +336,16 @@ class Book extends CI_Controller {
 							}
 							else if (this.value == 'cash') {
 								$('#paymentCard').hide();
+								$('#transferInfo').hide();
 								$('.cash-fees-tr').show();
 								$('.total-price').html($('#total_with_cash').val());
+								$('#paynow').html('تأكيد الحجز');
+							}
+							else if (this.value == 'transfer') {
+								$('#transferInfo').show();
+								$('#paymentCard').hide();
+								$('.cash-fees-tr').hide();
+								$('.total-price').html($('#total_without_cash').val());
 								$('#paynow').html('تأكيد الحجز');
 							}
 						});

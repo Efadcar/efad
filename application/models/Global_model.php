@@ -19,6 +19,117 @@ class Global_model extends CI_Model {
 		
 		// Get car object
 		$car_obj = $this->getCarByID($car_uid);
+		
+		// Get Membership object
+		if($mc_uid != ""){
+			$new_member = 0;
+			$membership_obj = $this->getMembershipByID($mc_uid);
+		}else{
+			$new_member = 1;
+			$membership_obj = $this->getMembershipByID(3);
+		}
+
+		// 1- Get car daily rate depend on booking days
+		switch($days){
+			case ($days < 180):
+				$daily_rate = $car_obj->car_daily_price;
+				break;
+			case ($days >= 180):
+				$daily_rate = $car_obj->car_monthly_price;
+				break;
+		}
+		
+		// Get membership discount
+		$membership_discount = $membership_obj->mc_dicount;
+		
+
+		// 2- Apply membership discount on daily rate
+		//$daily_rate_after_discount = $daily_rate - ($daily_rate * ($membership_discount / 100));
+		$daily_rate_after_discount = $daily_rate;
+		
+		// Get total fees for booking
+		$total_fees = $daily_rate_after_discount * $days;
+		
+		/*
+		// Check if there is free days depend on membership and days
+		switch($membership_obj->mc_uid){
+			case ($membership_obj->mc_uid == 1 && $days >= 21):
+				$free_day = floor($days / 21);
+				break;
+			case ($membership_obj->mc_uid == 2 && $days >= 14):
+				$free_day = floor($days / 14);
+				break;
+			case ($membership_obj->mc_uid == 3 && $days >= 7):
+				$free_day = floor($days / 7);
+				break;
+			default:
+				$free_day = 0;
+				break;
+		} */
+		$free_day = 0;
+		
+		// calculate total fees after 1 day free if exist
+		$total_fees_after_free_day = $total_fees - ($daily_rate_after_discount * $free_day);
+		
+		// get days to get the car from today
+		$days_to_get_car = $this->dateDifference(date("Y-m-d",time()), $book_start_date);
+		
+		/*
+		// calculate early booking
+		if($days_to_get_car >= (EARLY_BOOKING_AFTER + $this->global_model->countWeekends(date('m'),date('Y')))){
+			$early_booking = 1;
+			$early_booking_discount_total = ($daily_rate_after_discount * 7) * (EARLY_BOOKING_DISCOUNT / 100);
+			$total_fees_after_early_booking = $total_fees_after_free_day - $early_booking_discount_total;
+		}else{
+			$early_booking = 0;
+			$early_booking_discount_total = 0;
+			$total_fees_after_early_booking = $total_fees_after_free_day; 
+		} */
+		$early_booking = 0;
+		$early_booking_discount_total = 0;
+		$total_fees_after_early_booking = $total_fees_after_free_day; 
+		
+		
+		// Calculate tax
+		$tax_total = ($total_fees_after_early_booking * (5 / 100));
+		
+		$total_fees_after_tax = $total_fees_after_early_booking + $tax_total;
+		
+		//return $total_fees_after_tax;exit;
+		$dataArray = array(
+			"status" => 1, 
+			"new_member" => $new_member, 
+			"days" => $days, 
+			"car_uid" => $car_uid, 
+			"mc_uid" => $membership_obj->mc_uid, 
+			"book_start_date" => $book_start_date, 
+			"book_end_date" => $book_end_date, 
+			"days_to_get_car" => $days_to_get_car, 
+			"daily_rate" => $daily_rate, 
+			"total_fees" => $total_fees, 
+			"daily_rate_after_discount" => $daily_rate_after_discount, 
+			"free_day" => $free_day,
+			"total_fees_after_free_day" => $total_fees_after_free_day, 
+			"early_booking" => $early_booking, 
+			"early_booking_discount_total" => $early_booking_discount_total, 
+			"total_fees_after_early_booking" => $total_fees_after_early_booking,
+			"tax_total" => $tax_total,
+			"total_fees_after_tax" => $total_fees_after_tax
+		);
+		$session_data = array("current_booking" => $dataArray);
+		$this->session->set_userdata($session_data);
+		//return $total_fees_after_tax;exit;
+		return $dataArray;
+	}
+	
+		
+	function calculate_full($book_start_date, $book_end_date, $car_uid, $mc_uid){
+		
+		// Get booking days
+		$days = $this->dateDifference($book_start_date, $book_end_date);
+		
+		// Get car object
+		$car_obj = $this->getCarByID($car_uid);
 		// Get Membership object
 		//return $mc_uid;exit;
 		if($mc_uid != ""){
@@ -116,6 +227,7 @@ class Global_model extends CI_Model {
 		//return $total_fees_after_tax;exit;
 		return $dataArray;
 	}
+	
 	
 	function confirmBooking($payment_method){		
 		$data['member_uid'] = $this->session->userdata('member_uid');
