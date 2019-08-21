@@ -231,6 +231,11 @@ class Members extends CI_Controller {
 											}
 										}); 
 								    }
+
+								    $('.profileTabs').click(function(){
+								    	$('.profileTabs').next().hide();
+								    	$(this).next().show();
+								    });
 								});
 							</script>
 					

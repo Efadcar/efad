@@ -215,10 +215,13 @@
 	  	border-left: 20px solid transparent;
 	  	border-right: 20px solid transparent;
 	 	border-top: 20px solid #177fb6;
-	 	margin-right: 26%;
+	 	margin-right: 30%;
 	}
 	select{
 		-webkit-appearance: menulist !important;
+	}
+	.tab2, .tab3{
+		display: none;
 	}
 </style>
 
@@ -226,14 +229,16 @@
     <div>
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#tab1" align="center" class="p-4"><i class="fa fa-user-o" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>بياناتي</a>
-            	<!-- <div class="arrow-down justify-content-between tab1"></div> -->
+                <a href="#tab1" align="center" class="profileTabs p-4"><i class="fa fa-user-o" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>بياناتي</a>
+            	<div class="arrow-down justify-content-between tab1"></div>
             </li>
             <li>
-                <a href="#tab2" align="center" class="p-4"><i class="fas fa-car" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>الاشتراكات</a>
+                <a href="#tab2" align="center" class="profileTabs p-4"><i class="fas fa-car" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>الاشتراكات</a>
+                <div class="arrow-down justify-content-between tab2"></div>
             </li>
             <li>
-                <a href="#tab3" align="center" class="p-4"><i class="fas fa-clock" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>العضوية</a>
+                <a href="#tab3" align="center" class="profileTabs p-4"><i class="fas fa-clock" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>العضوية</a>
+                <div class="arrow-down justify-content-between tab3"></div>
             </li>
         </ul>   
     </div>
