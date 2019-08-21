@@ -344,10 +344,7 @@ class Global_model extends CI_Model {
 		$this->load->library('email');
 		$this->email->from('wecare@efadcar.com', 'Efad Customer Support');
 		$this->email->to($this->session->userdata('member_email'));
-		$this->email->cc('booking@efadcar.com');
-		$this->email->cc('account@efadcar.com');
-		$this->email->cc('back_up@efadcar.com');
-		//$this->email->bcc('them@their-example.com');
+		$this->email->bcc('booking@efadcar.com,account@efadcar.com,back_up@efadcar.com');
 		$this->email->subject('تأكيد الحجز');
 		$this->email->message($mail_body);
 		$response = $this->email->send();
