@@ -40,8 +40,6 @@ class Book extends CI_Controller {
         $data['pageCssFiles'] = $this->_cssFiles('book');
         $data['javascriptCode'] = $this->_javascriptCode('book');
         $data['main_content'] = 'book/detail';
-        $data['booking'] = $this->global_model->bookingAndInvoiceDetails($book_uid);
-        // print_r($data['bookings']);exit();
 		//print_r($data['car']);exit;
         //set page title
         $data['pageTitle'] = "تفاصيل الحجز";		
@@ -67,8 +65,8 @@ class Book extends CI_Controller {
 			$current_booking = $this->session->userdata('current_booking');
 			$city_uid = $current_booking['city_uid'];
 			
-			if($current_booking['mc_uid'] == $this->session->userdata('mc_uid') || $this->session->userdata('mc_uid') == null){
-				$_SESSION['current_booking']['new_member'] = 0;
+			if($this->session->userdata('mc_uid') == null){
+				$_SESSION['current_booking']['new_member'] = 1;
 			}else{
 				$result = $this->global_model->calculate($current_booking['book_start_date'], $current_booking['book_end_date'], $current_booking['car_uid'], $this->session->userdata('mc_uid'));
 			}		
@@ -172,7 +170,7 @@ class Book extends CI_Controller {
 						var inputStatebook = $('#inputStatebook').children('option:selected').val();
 
 						if (dateStart.length < 1 || dateEnd.length < 1 || inputStatebook == 0) {
-							toastr.error('يجب أختيار تاريخ أستلام و تسليم السيارة و مدينة أستلام السيارة', 'خطأ');
+							toastr.error('لإكمال الحجز يجب إختيار تاريخ استلام وتسليم السيارة ومدينة استلام السيارة', 'خطأ');
 						}else{
 							document.getElementById('confirm-booking').submit()
 						}						

@@ -49,11 +49,11 @@
                             <span ><?= $current_booking['days'] ?>	<?php if($current_booking['days'] < 11){echo "أيام";}else{echo "يوم";} ?></span> 
 						</li>
                         <li style="width: 24%">
-                            <div class="cartype-logo"> موعد الاستلام  </div>
-                            <span ><?= date(" Y d ,M", strtotime($current_booking['book_start_date'])) ?></span> </li>
+                            <div class="cartype-logo"> تاريخ الاستلام  </div>
+                            <span ><?= date("Y/m/d", strtotime($current_booking['book_start_date'])) ?></span> </li>
                         <li style="width: 24%">
-                            <div class="cartype-logo"> موعد التسليم  </div>
-                            <span><?= date(" Y d ,M", strtotime($current_booking['book_end_date'])) ?></span> </li>
+                            <div class="cartype-logo"> تاريخ التسليم  </div>
+                            <span><?= date("Y/m/d", strtotime($current_booking['book_end_date'])) ?></span> </li>
                         <li style="width: 24%">
                             <div class="cartype-logo"> مدينة الاستلام </div>
                             <span ><?= $this->global_model->getCityByID($current_booking['city_uid']) ?></span>
@@ -103,7 +103,7 @@
 			<!-- personal info -->
 			<div class="row pt-1">
 				<div class="col-sm-6">
-					<h3>أختار طريقة الدفع</h3>
+					<h3>أختر طريقة الدفع</h3>
 				</div>
 				<div class="col-sm-6">
 					<h3>تفاصيل الفاتورة</h3>
@@ -133,7 +133,7 @@
 						<input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
 						<label class="custom-control-label" for="cash">
 							<ul class="payment-img">
-								<li> <b> نقدى</b> <span class="text-muted">(<?= CASH_PAYMENT_FEES ?> ريال إضافية)</span> </li>
+								<li> <b>نقدي (كاش)</b> <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ريال إضافية</span> </li>
 							</ul>
 						</label>
 					</div>
@@ -224,14 +224,14 @@
 									<tr>
 										<td class="text-left">ضريبة القيمه المضافة 5% 
 										</td>
-										<td class="text-right">+ <span id="tax-total"><?= $current_booking['tax_total'] ?></span> ر.س.</td>
+										<td class="text-right"><span id="tax-total"><?= $current_booking['tax_total'] ?></span> ر.س.</td>
 									</tr>
 
 
 									<tr class="cash-fees-tr">
 										<td class="text-left">مصاريف الدفع النقدي
 										</td>
-										<td class="text-right">+
+										<td class="text-right">
 											<span id="tax-total">
 												<?= CASH_PAYMENT_FEES ?>
 											</span> ر.س.</td>
@@ -239,7 +239,7 @@
 								</tbody>
 
 							</table>
-
+							<?php //print_r($_SESSION); ?>
 							<table class="table mb-0">
 								<?php if($_SESSION['current_booking']['new_member'] != 0){ ?>
 								<tbody>
@@ -286,7 +286,6 @@
 								}
 								*/
 								?>
-								
 								<input type="hidden" id="total_with_cash" name="total_with_cash" value="<?= $total_with_cash ?>" />
 								<input type="hidden" id="total_without_cash" name="total_without_cash" value="<?= $total_without_cash ?>" />
 								<tfoot>
@@ -301,6 +300,9 @@
 								</tfoot>
 							</table>						
 						</div>
+					</div>
+					<div class="col-sm-12 text-center mt-4 ">
+						<p class="text-muted ">بالضغط على " تأكيد الحجز " أنت/ي توافق/ي على <a href="<?= site_url('terms_and_conditions') ?>" target="_blank" style="text-decoration: underline">شروط الاستخدام </a> و <a href="<?= site_url('privcy_policy') ?>" target="_blank" style="text-decoration: underline">سياسة الخصوصية </a></p>
 					</div>
 					<div class="col-sm-12 text-center ">
 						<button class="btn btn-default  mb-2" id="paynow">تأكيد الحجز</button>

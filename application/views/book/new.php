@@ -13,7 +13,7 @@
 <section rol="form-reservation">
     <div class="container  mb-2 pb-4">
         <div class="row">
-            <div class="col-12"> <a href="#" class="btn btn-default cutom-btn active">أستكمال بيانات الحجز</a> <!--<a href="#" class="btn btn-default cutom-btn">الحجز المجانى</a> --> </div>
+            <div class="col-12"> <a href="#" class="btn btn-default cutom-btn active">استكمال بيانات الحجز</a> <!--<a href="#" class="btn btn-default cutom-btn">الحجز المجانى</a> --> </div>
         </div>
         <div class="reservation-form  bg-secondary">
             <div class="row">
@@ -28,7 +28,7 @@
 					<div class=" align-items-center mt-10">
 						<div class="text-left "> 
 							<span id="daily-rate" class="value"><?= $car->car_daily_price ?></span> 
-							<span class="duration">ريال فى اليوم</span> 
+							<span class="duration">ريال في اليوم</span> 
 						</div>
 						<br><br>
 						<ul class="cartype">
@@ -184,15 +184,15 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label>اختر تاريخ أستلام السيارة</label>
-										<input type="text" id="date-start" class="form-control floating-label" placeholder="اختر تاريخ أستلام السيارة" name="book_start_date" required>
-										<small class="form-text" style="color: #A62F31">يمكنك الحصول علي خصم <?= EARLY_BOOKING_DISCOUNT ?>% إضافي علي اول أسبوع في حالة أختيار تاريخ أستلام السيارة بعد <?= EARLY_BOOKING_AFTER ?>  يوم من تاريخ الحجز</small>
+										<label>أختر تاريخ أستلام السيارة</label>
+										<input type="text" id="date-start" class="form-control floating-label" placeholder="أختر تاريخ أستلام السيارة" name="book_start_date" required>
+										<!--<small class="form-text" style="color: #A62F31">يمكنك الحصول علي خصم <?= EARLY_BOOKING_DISCOUNT ?>% إضافي علي اول أسبوع في حالة أختيار تاريخ أستلام السيارة بعد <?= EARLY_BOOKING_AFTER ?>  يوم من تاريخ الحجز</small> -->
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label>اختر تاريخ تسليم السيارة</label>
-										<input type="text" id="date-end" class="form-control floating-label freeend" placeholder="اختر تاريخ تسليم السيارة" name="book_end_date" required>
+										<label>أختر تاريخ تسليم السيارة</label>
+										<input type="text" id="date-end" class="form-control floating-label freeend" placeholder="أختر تاريخ تسليم السيارة" name="book_end_date" required>
 									</div>
 								</div>
 							</div>
@@ -203,7 +203,7 @@
                     </div>
 					
 					<div class="col-sm-4 text-center ">
-						<h3 class="mb-0 pr-2">عدد الأيام</h3>
+						<h3 class="mb-0 pr-2">عدد أيام الاشترك</h3>
 						<span class="value total-days">0</span> 
 					</div>
                 </div>
@@ -212,11 +212,11 @@
 				<div class="row">
 					<div class="col-sm-4 ">
 						<div class="form-group">
-							<label>اختر مدينة أستلام السيارة</label>
+							<label>أختر مدينة أستلام السيارة</label>
 							<div class="select-wrapper">
 
 								<select id="inputStatebook" class="form-control width100p " name="delivery_city_uid" required>
-									<option value="0"> اختر مدينه </option>
+									<option value="0"> أختر المدينة </option>
 									<?php
 									$cities = $this->global_model->getCitiesByCountryID();
 									if($cities != false)
@@ -234,7 +234,7 @@
 					<div class="col-sm-4 ">
 					</div>
 					<div class="col-sm-4 text-center ">
-						<h3 class="mb-0 pr-2">السعر الاجمالى</h3>
+						<h3 class="mb-0 pr-2">المبلغ الإجمالي</h3>
 						<span class="value total-price">0</span> <span id="currency">ريال</span> 
 					</div>
 				</div>
@@ -243,12 +243,8 @@
 
 
 				<div class="row">
-
-					<div class="col-sm-12 text-center mt-4 ">
-						<p class="text-muted ">بالضغط على تأكيد الدفع أنت توافق على <a href="<?= site_url('terms_and_conditions') ?>" target="_blank">الشروط و الآحكام </a> و <a href="<?= site_url('privcy_policy') ?>" target="_blank">سياسة الخصوصية </a></p>
-					</div>
 					<div class="col-sm-12 text-center ">
-						<button class="btn btn-default  mb-2" id="paynow" >دفع و تأكيد الحجز</button>
+						<button class="btn btn-default  mb-2" id="paynow" >استمرار</button>
 					</div>
 				</div>
 			</form>				
