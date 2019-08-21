@@ -89,7 +89,7 @@ class Members extends CI_Controller {
 			// get site direction return "rtl" or "ltr"
 			$data['direction'] = $this->global_model->getSiteDirection();
 			$data['bookings'] = $this->global_model->getUserBookingswithInvoices( $this->session->userdata('member_uid'));
-			
+			$data['membership'] = $this->global_model->getMembershipBasedOnAuthUser( $this->session->userdata('member_uid'));
 			$data['user'] = $this->global_model->getAuthUser();
 			$data['countries'] = $this->global_model->getAllCountries();
 

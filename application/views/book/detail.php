@@ -170,7 +170,7 @@
         color: #555555;
         cursor: default;
         background-color: #ffffff;
-        border: 1px solid #ddd;
+        border: 1px solid #147cb126;
     }
 
     li {

@@ -349,8 +349,46 @@
     <section id="tab3" class="tab-content hide">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    Tab 3 - العضوية
+                <div class="col-md-4"  align="center">
+                    <img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" style="height: 50px;" />
+                    <br>
+                    <div style="background-color: <?= $membership[0]->mc_color_code ?>;border-radius: 20px;margin: 0px 10px;">
+                    	<p style="padding: 46px;font-size: x-large;color: white;"><?= $membership[0]->mc_name ?></p>
+                    </div>
+                    <br>
+                    <div>
+                    	<div class="color-dots"><h6><b>حالة العضوية:</b> <span style="margin-top: 9px;margin-right: 7px;" class="dot1"></span></h6></div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-8" style="background-color: #F2F4F5;">
+                	<div class=" margin-right-extra" style="margin: 20px;">
+                        <p><span class="desc">مدة العضوية: </span>6 اشهر</p>
+                        <div class="row">
+                        	<div class="col-md-6"><p><span class="desc">بداية الاشتراك: </span><?= $booking->book_start_date ?></p></div>
+                        	<div class="col-md-6"><p><span class="desc">نهاية الاشتراك: </span> <?= $booking->book_end_date ?></p></div>
+                        </div>
+                        
+                        
+                        <h5 style="margin-top: 10px;font-size: 20px;"><b>مميزات العضوية</b></h5>
+                        <div class="row">
+                        	<div class="col-md-4">
+		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
+		                        <p>يوم اضافي مجانا كل اسبوع</p>
+		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
+                        	</div>
+                        	<div class="col-md-4">
+		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
+		                        <p>يوم اضافي مجانا كل اسبوع</p>
+		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
+                        	</div>
+                        	<div class="col-md-4">
+		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
+		                        <p>يوم اضافي مجانا كل اسبوع</p>
+		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
+                        	</div>
+                        </div>
+                    </div>
                 </div>
             </div>
     </section>

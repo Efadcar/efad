@@ -631,6 +631,7 @@ class Global_model extends CI_Model {
 			return false;	
 		}
 	}
+
 	function getUserBookingswithInvoices($member_uid) {
 		$this->db->order_by("B.book_uid", "desc")->join('invoices I', 'I.related_uid = B.book_uid');
 		$q = $this->db->get_where('bookings B', array("B.member_uid" => $member_uid));
@@ -644,6 +645,20 @@ class Global_model extends CI_Model {
 			return false;	
 		}
 	}
+
+	function getMembershipBasedOnAuthUser($member_uid) {
+		$this->db->join('memberships MP', 'MP.mc_uid = M.mc_uid');
+		$q = $this->db->get_where('members M', array("M.member_uid" => $member_uid));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+
 	
 	function bookingAndInvoiceDetails($book_uid){
 		$this->db->order_by("B.book_uid", "desc")->join('invoices I', 'I.related_uid = B.book_uid')->join('members M', 'M.member_uid = B.member_uid')->join('memberships MP', 'M.mc_uid = MP.mc_uid');
