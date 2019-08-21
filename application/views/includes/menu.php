@@ -96,14 +96,19 @@
 					<a class="dropdown-item" href="<?= site_url('members/logout') ?>">تسجيل خروج</a>
 				</div>
 				<?php
-				$membership = $this->global_model->getMembershipByID($this->session->userdata('mc_uid'));
+				$mc_uid = $this->session->userdata('mc_uid'); 
+				if(isset($mc_uid)){
+					$membership = $this->global_model->getMembershipByID($this->session->userdata('mc_uid'));
 				?>										  
 				<a href="<?= site_url('memberships/subscribe') ?>" class="btn" style="background-color: <?= $membership->mc_color_code ?>; color: #fff">
 					<span><span>ترقية العضوية</span></span>
 				</a>
+				<?php }else{ ?>
+				<a href="<?= site_url('memberships/subscribe') ?>" class="btn btn--accent">
+					<span><span><?= $this->lang->line('membership_adv'); ?></span></span>
+				</a>
 				
-				
-			
+				<?php } ?>
 			</div>
 			<?php }else{ ?>
 			<div class="navbar-buttons  mbr-section-btn  ml-auto"> 
