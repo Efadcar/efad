@@ -2,6 +2,9 @@
 	.btn-default:hover {
 		background: #003a5c !important;
 	}
+	.items{
+		font-weight: unset !important;
+	}
 </style>
 
 <section  class="p-0 border-top pt-10">
@@ -240,7 +243,7 @@
 						<div class="col-lg-12 clearFilters">
 							<div style="float: right;margin: 35px 0;">
 								<i class="fas fa-sync" style="color: #003a5d;padding: 0 15px;cursor: pointer;"></i>
-								<div class="" style="font-size: 18px;color: #2c343e;display: inline;">مسح الكل</div>
+								<div class="" style="cursor: pointer;font-size: 18px;color: #2c343e;display: inline;">مسح الكل</div>
 							</div>
 						</div>
 					</div>
@@ -269,7 +272,7 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-12">
-						<input class="form-control inp-inp updateSearchContent generalSearch" data-ref="input-search" type="search" placeholder="ابحث عن مواصفات سيارتك هنا:الماركة ,الموديل ,اللون,ناقل الحركة أو سمة الصنع .." aria-label="Search" style="    margin-top: .6rem!important;">
+						<input class="form-control inp-inp generalSearch" data-ref="input-search" type="search" placeholder="ابحث عن مواصفات سيارتك هنا: الماركة، الموديل، اللون، ناقل الحركة أو سنة الصنع .." aria-label="Search" style="    margin-top: .6rem!important;">
 						<i class="fas fa-search sear-inp"></i>
 						<!--
 						<div class="select-wrapper select-wrapperNew" style="display: inline;">
