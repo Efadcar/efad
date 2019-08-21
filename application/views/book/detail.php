@@ -1,3 +1,4 @@
+
 <style type="text/css">
 
 
@@ -38,7 +39,6 @@
     }
 
     .border-invoice {
-        margin-top: 40px;
         border-color: #103453;
         border-radius: 6px;
         border: 1px solid gainsboro;
@@ -185,12 +185,14 @@
         display: none;
     }
 </style>
-
-<section >
+<section class="demo" style="margin-top: 9%;">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <h5>تفاصيل الفاتورة: </h5>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="print" style="float: left;color: white;background-color: #01355d;width: 30%;margin-bottom: 10px;border-radius: 10px;font-size: 20px;">print</button>
             </div>
         </div>
         <div class="border-invoice">
@@ -236,7 +238,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid custom-img">
+                    <!-- <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid custom-img"> -->
                     <div class="margin-top-extra">
                         <p><span class="desc">تاريخ نهاية الاشتراك: </span><?= $booking[0]->book_end_date ?></p>
                         <p><span class="desc">مدينة تسليم السيارة: </span><?=$this->global_model->getCityByID($booking[0]->delivery_city_uid) ?></p>

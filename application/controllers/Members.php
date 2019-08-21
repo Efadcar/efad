@@ -232,6 +232,23 @@ class Members extends CI_Controller {
 										}); 
 								    }
 
+								    let hashURL = $(location).attr('hash');
+
+									if (hashURL){
+										$('.nav-tabs a[href=\"'+hashURL+'\"]').trigger('click');
+										$('.arrow-down').hide();
+										$('.'+hashURL.substring(1)).show();
+										$('html, body').animate({ scrollTop: 0 }, 'fast');
+									}
+
+								    $('.customEnable').prop('disabled', true);
+
+								    $('.buttonCustom').click(function(){
+								    	$('.customEnable').prop('disabled', false);
+								    	$(this).hide();
+								    	$('.submitCustom').show();
+								    });
+
 								    $('.profileTabs').click(function(){
 								    	$('.profileTabs').next().hide();
 								    	$(this).next().show();

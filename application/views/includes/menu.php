@@ -71,24 +71,24 @@
 					<div class="row ml-0 mr-0">
 						<div class="col-md-7">
 							<h6 class="mb-0"><?= $this->session->userdata('member_full_name') ?></h6>
-							<p class="mb-0 small">رقم عضوية : <?= $this->session->userdata('member_uid') ?></p>
+							<p class="mb-0" style="font-size: small;">رقم عضوية : <?= $this->session->userdata('member_mobile') ?></p>
 						</div>
 						<div class="col-md-5" align="left">
-							<img src="<?= base_url()."assets/".$direction; ?>/images/favicon.png" style="width: 63%;border: 0px black solid;border-radius: 50%;">
+							<img src="<?= base_url()."assets/".$direction; ?>/images/favicon.png" style="width: 45%;border: 0px black solid;border-radius: 50%;margin-top: 4px;">
 						</div>
 					</div>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">المعلومات الشخصية</a>
+					<a class="dropdown-item" href="<?= site_url('members/profile') ?>#tab1">بياناتي</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">اﻹشتراكات</a>
+					<a class="dropdown-item" href="<?= site_url('members/profile') ?>#tab2">اﻹشتراكات</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="<?= site_url('members/profile') ?>">
+					<a class="dropdown-item" href="<?= site_url('members/profile') ?>#tab3">
 						العضوية
 						<span class="badge badge-secondary float-right custom-badge mt-1" style="
 						    width: 30px;
 						    height: 18px;
-						    color: #d8392c;
-    						background-color: #d8392c;
+						    color: #d81720;
+    						background-color: #d81720;
     						border-radius: 0.48rem;
 						">aaa</span>
 					</a>
@@ -138,7 +138,7 @@
 						</div>
 					</div>
 					<div class="form-group text-right"> 
-						<a class="right_a switchPanelButton  " panelclass="panel" panelid="forgotpassword" href="#">نسيب كلمة المرور؟</a> 
+						<a class="right_a switchPanelButton  " panelclass="panel" panelid="forgotpassword" href="#">نسيت كلمة المرور؟</a> 
 					</div>
 					<input type='submit' name='Submit' class="btn btn-default  btn-block" value='تسجيل الدخول'/>
 				
@@ -232,7 +232,7 @@
 					</div>
 				</div>
 				<input type='submit' name='Submit' class="btn btn-default  btn-block my-4" value='إرسال'/>
-				<div class="bottom"> <a class="switchPanelButton" panelclass="panel" panelid="login" href="#">لديك حساب. سجل دخول الان</a> </div>
+				<div class="bottom"> <a class="switchPanelButton" panelclass="panel" panelid="login" href="#">لديك حساب خاص بك؟ سجل دخول الآن هنا</a> </div>
 			</div>
 			</form>
 			<div class="panel" id='forgotpassword'>

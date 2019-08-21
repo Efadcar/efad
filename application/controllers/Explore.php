@@ -21,8 +21,7 @@ class Explore extends CI_Controller {
 		
         $data['direction'] = $this->global_model->getSiteDirection();
 		$data['main_content'] = 'explore';
-        $data['pageTitle'] = "اكتشف";		
-		
+        $data['pageTitle'] = "اكتشف";
         $data['javascripts'] = $this->_javascript('home');
         $data['pageCssFiles'] = $this->_cssFiles('home');
         $data['javascriptCode'] = $this->_javascriptCode('home');
@@ -91,7 +90,7 @@ class Explore extends CI_Controller {
 
 						$(document).ready(function () {
 							function run_waitMe(el, num, effect){
-								text = 'برجاء الانتظار...';
+								text = 'الرجاء الانتظار...';
 								fontSize = '';
 								switch (num) {
 									case 1:
@@ -206,13 +205,13 @@ class Explore extends CI_Controller {
 								let value = priceSilderValue.toString().split(\",\");
 								$('#priceFrom').val(Math.trunc( value[1] ));
 								$('#priceTo').val(Math.trunc( value[0] ));
-								$('#yearFrom').trigger('change');
+								// $('#yearFrom').trigger('change');
 							});
 
 							//event listner for generic search filter while typing
 							$('.generalSearch').keypress(function(e){
 								if(e.which == 13){
-									$('#yearFrom').trigger('change');
+									collectSearchParams();
 								}
 							});
 
@@ -337,7 +336,8 @@ class Explore extends CI_Controller {
 										let availability = '';
 										let reserveNow = '';
 										$('.carListItemResponse').remove();
-										if (data['data']['num_rows'] > 0 || data['data']['num_rows'] != 'null'){
+
+										if (data['data']['status'] == 1){
 											$.each(data['data']['result'], function(i, item) {
 												if (item['car_in_stock'] == 0){
 													availability = 'style=\"background-color: rgb(132,132,132)\"';
@@ -409,26 +409,27 @@ class Explore extends CI_Controller {
 												let count = 1;
 												for (i; i < paginationCounter; i++) { 
 													if (i == offset){
-														$('.paginationDrawResponse').append('<li class=\"items active\" value='+i+'><a href=\"#\">'+count+'</a></li>');
+														$('.paginationDrawResponse').append('<li class=\"items updateSearchContent active\" value='+i+'><a href=\"#\">'+count+'</a></li>');
 													}
 													else{
-													  	$('.paginationDrawResponse').append('<li class=\"items\" value='+i+'><a href=\"#\">'+count+'</a></li>');
+													  	$('.paginationDrawResponse').append('<li class=\"items updateSearchContent \" value='+i+'><a href=\"#\">'+count+'</a></li>');
 													}
 													count++;
 												}
+												$('.items').click(function(){
+													$('.paginationValue').val(this.value);
+													$('li.items').removeClass('active');
+													$(this).addClass('active');
+													collectSearchParams();
+													$('html, body').animate({ scrollTop: 0 }, 'fast');
+												});
 											}
-											$('.items').click(function(){
-												$('.paginationValue').val(this.value);
-												$('li.items').removeClass('active');
-												$(this).addClass('active');
-												$('#yearFrom').trigger('change');
-											});
 
 											let lastValue = $('.calculateCarPriceBasedOnDuration').last().next().val();
 											let durValue = $('.subscriptionValueDuration:checked').attr('data-value');
 											$('.calculateCarPriceBasedOnDuration').last().html(lastValue * durValue);
 										}
-										else if (data['data']['num_rows'] == 0){
+										else if (data['data']['status'] == 0){
 											$('.carListBE')
 											        .append('<div class=\"carListItemResponse row\" style=\"width:100%;\"><div class=\"col-lg-4 col-md-4\"></div><div class=\"col-lg-4 col-md-4\"><h5>'+ data[\"data\"][\"message\"]+'</h5></div></div>');
 											$('.pagin').hide();
@@ -442,6 +443,38 @@ class Explore extends CI_Controller {
 
 								});
 							}
+
+							$('.fa-chevron-right').click(function(){
+								let offsetValue = $('.paginationValue').val();
+								offsetValue++;
+								$('.paginationValue').val(offsetValue);
+								$('li.items').removeClass('active');
+								$( '.items' ).each(function( index ) {
+									let itemValue = $( this ).val();
+									if (itemValue == offsetValue){
+										$(this).addClass('active');
+									}
+								});
+								collectSearchParams();
+								$('html, body').animate({ scrollTop: 0 }, 'fast');
+							});
+
+							$('.fa-chevron-left').click(function(){
+								let offsetValue = $('.paginationValue').val();
+								if (offsetValue > 0){
+									offsetValue--;
+									$('.paginationValue').val(offsetValue);
+									$('li.items').removeClass('active');
+									$( '.items' ).each(function( index ) {
+										let itemValue = $( this ).val();
+										if (itemValue == offsetValue){
+											$(this).addClass('active');
+										}
+									});
+									collectSearchParams();
+									$('html, body').animate({ scrollTop: 0 }, 'fast');
+								}
+							});
 
 							function calcaulateCarPriceBasedOnDuration(){
 								let valueDataNum = subscriptionValueDurationValue();
@@ -490,6 +523,7 @@ class Explore extends CI_Controller {
 							});
 
 							$( '.updateSearchContent' ).change(function() {
+								$('.paginationValue').val(0);
 								collectSearchParams();
 								$('.carPriceAfterCal').html(Math.floor(Math.random()*(999-100+1)+100));
 								let x = $('.subscriptionValueDuration:checked').next().html();
@@ -521,8 +555,8 @@ class Explore extends CI_Controller {
 								$('.gearBox').prop('checked', false);
 								// $('#gearBox').prop('checked', true);
 								yearSlider.noUiSlider.set([2016, 2020]);
-								priceSlider.noUiSlider.set([0, 1000]);
-								collectSearchParams();
+								// priceSlider.noUiSlider.set([0, 1000]);
+								// collectSearchParams();
 								$('html, body').animate({ scrollTop: 0 }, 'fast');
 							});
 
@@ -533,14 +567,14 @@ class Explore extends CI_Controller {
 							});
 
 						});
-						$(window).bind('load', function() {
-					        $('.items').click(function(){
-								$('.paginationValue').val(this.value);
-								$('li.items').removeClass('active');
-								$(this).addClass('active');
-								$('#yearFrom').trigger('change');
-							});
-						});
+						// $(window).bind('load', function() {
+					 	//      $('.items').click(function(){
+						// 		$('.paginationValue').val(this.value);
+						// 		$('li.items').removeClass('active');
+						// 		$(this).addClass('active');
+						// 		$('#yearFrom').trigger('change');
+						// 	});
+						// });
 						
 						
 					$('#brands').change(function() {

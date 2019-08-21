@@ -133,6 +133,7 @@ class Book extends CI_Controller {
                     "'" . base_url() . "assets/rtl/js/jquery.card.js'",
                     "'" . base_url() . "assets/rtl/js/efad-scripts.js'",
                     "'" . base_url() . "assets/rtl/js/faq.js'",
+  					"'" . base_url() . "assets/global/plugins/printPlugin/js/printThis.js'",
                 );
 				
 				
@@ -189,7 +190,15 @@ class Book extends CI_Controller {
 							});
 						});
         
-					
+						$('.print').click(function(){
+							$('.demo').printThis({
+								importCSS: true,  
+								header: null,               // prefix to html
+    							footer: null,
+    							footer: $('.hidden-print-header-content'),
+    							removeInline: false, 
+								});
+						});
 					
 					
 						var dataSet;

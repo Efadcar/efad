@@ -203,8 +203,8 @@
 
 	.custom-btn{
 		color: #fff;
-	    background-color: #177fb6;
-	    border-color: #177fb6;
+	    background-color: #01355d;
+	    border-color: #01355d;
 	    border-radius: 21px;
 	    width: 100%;
 	    margin-top: 20px;
@@ -214,13 +214,13 @@
 	  	height: 0; 
 	  	border-left: 20px solid transparent;
 	  	border-right: 20px solid transparent;
-	 	border-top: 20px solid #177fb6;
+	 	border-top: 20px solid #01355d;
 	 	margin-right: 30%;
 	}
 	select{
 		-webkit-appearance: menulist !important;
 	}
-	.tab2, .tab3{
+	.tab2, .tab3, .submitCustom{
 		display: none;
 	}
 </style>
@@ -229,15 +229,15 @@
     <div>
         <ul class="nav nav-tabs">
             <li class="active">
-                <a href="#tab1" align="center" class="profileTabs p-4"><i class="fa fa-user-o" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>بياناتي</a>
+                <a href="#tab1" align="center" class="profileTabs p-4"><i class="fa fa-user-o" style="font-size:36px;color:#01355d;padding-bottom: 5px;"></i><br>بياناتي</a>
             	<div class="arrow-down justify-content-between tab1"></div>
             </li>
             <li>
-                <a href="#tab2" align="center" class="profileTabs p-4"><i class="fas fa-car" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>الاشتراكات</a>
+                <a href="#tab2" align="center" class="profileTabs p-4"><i class="fas fa-car" style="font-size:36px;color:#01355d;padding-bottom: 5px;"></i><br>الاشتراكات</a>
                 <div class="arrow-down justify-content-between tab2"></div>
             </li>
             <li>
-                <a href="#tab3" align="center" class="profileTabs p-4"><i class="fas fa-clock" style="font-size:36px;color:#177fb6;padding-bottom: 5px;"></i><br>العضوية</a>
+                <a href="#tab3" align="center" class="profileTabs p-4"><i class="fas fa-clock" style="font-size:36px;color:#01355d;padding-bottom: 5px;"></i><br>العضوية</a>
                 <div class="arrow-down justify-content-between tab3"></div>
             </li>
         </ul>   
@@ -273,17 +273,17 @@
 							echo form_open_multipart('members/user_update/'.$user->member_uid);
 						?>
 					  	<div class="form-group">
-						    <label for="firstname" class="font-weight-bold">الاسم الاول</label>
-						    <input type="text" class="form-control" id="firstname" name="member_fname" placeholder="ادخل الاسم الاول" value="<?=$user->member_fname ?>">
+						    <label for="firstname" class="font-weight-bold">الاسم الأول</label>
+						    <input type="text" class="form-control customEnable" id="firstname" name="member_fname" placeholder="ادخل الاسم الأول" value="<?=$user->member_fname ?>">
 						</div>
 						<div class="form-group">
-						    <label for="lastname" class="font-weight-bold">الاسم الاخير</label>
-						    <input type="text" class="form-control" id="lastname" name="member_lname" placeholder="ادخل الاسم الاخير" value="<?=$user->member_lname ?>">
+						    <label for="lastname" class="font-weight-bold">الاسم الأخير</label>
+						    <input type="text" class="form-control customEnable" id="lastname" name="member_lname" placeholder="ادخل الاسم الأخير" value="<?=$user->member_lname ?>">
 						</div>
 
 						<div class="form-group">
 					    	<label for="country" class="font-weight-bold">الدولة</label>
-					    	<select class="form-control" id="country" name="country_uid">
+					    	<select class="form-control customEnable" id="country" name="country_uid">
 					    		<option value="187">السعودية</option>
 					    		<!-- <?php if($countries !=false) foreach($countries as $country) {
                 				?>
@@ -295,29 +295,33 @@
 
 					  	<div class="form-group">
 					    	<label for="city" class="font-weight-bold">المدينة</label>
-					    	<select class="form-control" id="city" name="city_uid">
-						      	<option value="1">الرياض</option>
-						      	<option value="2">مكة</option>
-						      	<option value="3">المدينة المنورة</option>
-						      	<option value="4">حائل</option>
-						      	<option value="5">القطيف</option>
+					    	<select class="form-control customEnable" id="city" name="city_uid">
+						      	<option value="1">المدينة المنورة</option>
+						      	<option value="2">الرياض</option>
+						      	<option value="3">الدمام</option>
+						      	<option value="4">جدة</option>
 					    	</select>
 					  	</div>
 
 						<div class="form-group">
 						    <label for="mobile" class="font-weight-bold">رقم الجوال</label>
-						    <input type="text" class="form-control" id="mobile" name="member_mobile" placeholder="ادخل رقم الجوال" value="<?=$user->member_mobile ?>">
+						    <input type="text" class="form-control customEnable" id="mobile" name="member_mobile" placeholder="ادخل رقم الجوال" value="<?=$user->member_mobile ?>">
 						</div>
 						<div class="form-group">
-						    <label for="email" class="font-weight-bold">البريد الالكتروني</label>
-						    <input type="text" class="form-control" id="email" name="member_email" placeholder="ادخل البريد الالكتروني" value="<?=$user->member_email ?>">
+						    <label for="email" class="font-weight-bold">البريد الإلكتروني</label>
+						    <input type="text" class="form-control customEnable" id="email" name="member_email" placeholder="ادخل البريد الإلكتروني" value="<?=$user->member_email ?>">
 						</div>
 						<div class="form-group">
 						    <label for="password" class="font-weight-bold">الرقم السري</label>
-						    <input type="password" class="form-control" name="member_password" id="password" placeholder="ادخل الرقم السري">
+						    <input type="password" class="form-control customEnable" name="member_password" id="password" placeholder="********">
 					  	</div>
 					  	<div class="form-group">
-					  		<button type="submit" class="custom-btn btn-primary">حفظ التعديلات</button>
+						    <label for="password_confirmation" class="font-weight-bold">إعادة إدخال الرقم السري</label>
+						    <input type="password_confirmation" class="form-control customEnable" name="password_confirmation" id="password_confirmation" placeholder="********">
+					  	</div>
+					  	<div class="form-group">
+					  		<button type="submit" class="custom-btn btn-primary submitCustom">حفظ التعديلات</button>
+					  		<button type="button" class="custom-btn btn-primary buttonCustom">تعديل</button>
 					  	</div>
 					</form>
                 </div>
@@ -334,16 +338,30 @@
 	                </div>
 	                <div class="col-md-4">
 	                    <p><span class="desc">نوع السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking->car_obj->cb_uid->cb_name, "arabic") ?> <?=$this->global_model->getStringByKeyLanguage($booking->car_obj->cm_uid->cm_name, "arabic") ?> <?=$booking->car_obj->car_model_year ?></p>
-	                    <p><span class="desc">تاريخ الحجز: </span><?=date("Y-m-d", strtotime($booking->book_added_date)) ?></p>
-	                    <p><span class="desc">تاريخ الاستلام: </span><?=$booking->book_start_date ?></p>
+	                    <p><span class="desc">تاريخ الحجز: </span><?=date("d-m-Y", strtotime($booking->book_added_date)) ?></p>
+	                    <p><span class="desc">تاريخ الاستلام: </span><?=date("d-m-Y", strtotime($booking->book_start_date)) ?></p>
 	                    <p><span class="desc">مدينة الاستلام: </span> <?=$this->global_model->getCityByID($booking->delivery_city_uid) ?></p>
+	                    <p class="color-dots"><span class="desc">حالة الاشتراك: </span> 
+	                    	<?php if ($booking->book_status == 1){ ?>
+	                    		<span style="margin-top: 6px;margin-right: 4px;" class="dot1"></span>
+	                    		<span style="margin-right: 19px;">نشط</span>
+	                    	<?php } ?> 
+	                    	<?php if ($booking->book_status == 2){ ?>
+	                    		<span style="margin-top: 6px;margin-right: 4px;" class="dot4"></span>
+	                    		<span style="margin-right: 19px;">ملغي</span>
+	                    	<?php } ?> 
+	                    	<?php if ($booking->book_status == 3){ ?>
+	                    		<span style="margin-top: 6px;margin-right: 4px;" class="dot3"></span>
+	                    		<span style="margin-right: 19px;">منتهي</span>
+	                    	<?php } ?>
+	                    </p>
 	                </div>
 	                <div class="col-md-4">
 	                    <div class="amount">
-	                        <h5>المبلغ الاجمالي</h5>
-	                        <p class="total-amount"><?=$booking->invoice_total_fees_after_tax ?> ريال</p>
+	                        <h5>المبلغ الإجمالي</h5>
+	                        <p class="total-amount" style="color: #01355d;"><?=$booking->invoice_total_fees_after_tax ?> ر.س.</p>
 	                    </div>
-	                    <button class="btn-primary participation-cancel">الغاء الاشتراك</button><a target="_blank" href=<?=base_url()."book/detail/" . $booking->book_uid ?>><button class="btn-primary participation-desc">تفاصيل الاشتراك</button></a> 
+	                    <button class="btn-primary participation-cancel">إلغاء الاشتراك</button><a target="_blank" href=<?=base_url()."book/detail/" . $booking->book_uid ?>><button class="btn-primary participation-desc">تفاصيل الاشتراك</button></a> 
 	                </div>
 	            </div>
             <?php
@@ -355,19 +373,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4"  align="center">
-                    <img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" style="height: 50px;" />
-                    <br>
+                    <!-- <img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" style="height: 50px;" />
+                    <br> -->
                     <div style="background-color: <?= $membership[0]->mc_color_code ?>;border-radius: 20px;margin: 0px 10px;">
                     	<p style="padding: 46px;font-size: x-large;color: white;"><?= $membership[0]->mc_name ?></p>
                     </div>
                     <br>
                     <div>
-                    	<div class="color-dots"><h6><b>حالة العضوية:</b> <span style="margin-top: 9px;margin-right: 7px;" class="dot1"></span></h6></div>
+                    	<div class="color-dots">
+                    		<h6><b>حالة العضوية:</b>
+                    			<?php if ($membership[0]->mc_status == 1){ ?>
+		                    		<span style="margin-top: 9px;margin-right: 3px;" class="dot1"></span>
+		                    		<span style="margin-right: 19px;">نشط</span>
+		                    	<?php } ?> 
+		                    	<?php if ($membership[0]->mc_status == 2){ ?>
+		                    		<span style="margin-top: 9px;margin-right: 3px;" class="dot4"></span>
+		                    		<span style="margin-right: 19px;">ملغي</span>
+		                    	<?php } ?> 
+		                    	<?php if ($membership[0]->mc_status == 3){ ?>
+		                    		<span style="margin-top: 9px;margin-right: 3px;" class="dot3"></span>
+		                    		<span style="margin-right: 19px;">منتهي</span>
+		                    	<?php } ?>
+                    		</h6>
+                    	</div>
                     </div>
                     
                 </div>
                 <div class="col-md-8" style="background-color: #F2F4F5;">
                 	<div class=" margin-right-extra" style="margin: 20px;">
+                		<h5 style="margin-top: 10px;font-size: 20px;"><b>العضوية <?= $membership[0]->mc_name ?></b></h5>
                         <p><span class="desc">مدة العضوية: </span>6 اشهر</p>
                         <div class="row">
                         	<div class="col-md-6"><p><span class="desc">بداية الاشتراك: </span><?= $booking->book_start_date ?></p></div>
