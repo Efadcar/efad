@@ -14,6 +14,30 @@ class Home extends CI_Controller {
 	   }
     }
 
+	function testMail(){
+		$this->load->library('email');
+		$this->email->from('wecare@efadcar.com', 'Efad');
+		$this->email->to('eng.ebrahimelsawy@gmail.com');
+		//$this->email->cc('another@another-example.com');
+		//$this->email->bcc('them@their-example.com');
+		$this->email->subject('Email Test');
+		$this->email->message('Testing the email class.');
+		$this->email->send();
+		
+		/*
+		$this->load->library('mailgun');
+		$this->mailgun->initialize(array(
+		  'apikey' => 'key-xxxxxxxxxxxxxxxx',                             # API key provided by mailgun
+		  'domain' => 'example.com'                                       # Domain
+		));
+		$this->mailgun->from('account@example.com', 'First Last');        # Sender email, and name*
+		$this->mailgun->to('account@example.com', 'First Last');          # Receiver email, and name*
+		$this->mailgun->subject('Subject of the email');                  # Subject of the email
+		$this->mailgun->message('Message body');  						  # Message body in HTML
+		$this->mailgun->send();
+		*/
+	}
+	
     public function index() {
 		//print_r($_SESSION);exit;
 		//$this->global_model->add_log(1);
