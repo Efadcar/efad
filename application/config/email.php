@@ -13,6 +13,6 @@ $config['smtp_pass']        = 'hema==123';
 $config['charset']          = 'utf-8';
 $config['mailtype']         = 'html';
 $config['priority']         = 1;
-$config['smtp_timeout']		= 1;
+$config['smtp_timeout']		= 5;
 $config['newline']="\r\n"; //"\r\n" or "\n" or "\r". DEFAULT should be "\r\n" 
 $config['crlf'] = "\r\n"; //"\r\n" or "\n" or "\r" DEFAULT should be "\r\n" 
