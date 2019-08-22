@@ -103,7 +103,7 @@ class Members extends CI_Controller {
 			$data['javascriptCode'] = $this->_javascriptCode('home');
 			$this->load->view('includes/template', $data);
 		}else{
-			redirect('home');
+			redirect();
 		}
     }
 

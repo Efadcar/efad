@@ -236,7 +236,19 @@ class Global_model extends CI_Model {
 		$data['book_end_date'] = date("Y-m-d", strtotime($this->session->userdata('current_booking')['book_end_date']));
 		$data['delivery_city_uid'] = $this->session->userdata('current_booking')['city_uid'];
 		$data['book_total_days'] = $this->session->userdata('current_booking')['days'];
-		//return $data;exit;
+
+		$car_obj = $this->getCarByID($data['car_uid']);
+		$car_obj->main_image =	base_url().ALBUMS_IMAGES."sm_".$car_obj->main_image;
+		if($car_obj->car_transmission == "manual"){
+			$car_obj->car_transmission = "يدوي";
+		}else{
+			$car_obj->car_transmission = "أوتوماتيك";
+		}
+		
+		$car_full_name = $this->getCarBrandNameByID($car_obj->cb_uid->cb_uid)." ".$this->getCarModelNameByID($car_obj->cm_uid->cm_uid)." ".$car_obj->car_model_year;
+		// $row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
+		// $row->cm_uid = $this->getCarModelNameByID($row->cm_uid);
+		
 		// add to booking table
 		$this->db->insert('bookings', $data); 
 		
@@ -262,6 +274,7 @@ class Global_model extends CI_Model {
 			}
 			$this->db->insert('invoices', $invoice); 
 			if($this->db->affected_rows() > 0){
+				$this->sendBookingConfirmMail($car_obj->main_image, $this->session->userdata('member_full_name'), date("Y-m-d", time()), $book_uid, $car_full_name, $car_obj->car_bags, $car_obj->car_doors, $car_obj->car_transmission, $data['book_total_days'], $data['book_start_date'], $this->getCityByID($data['delivery_city_uid']), $invoice['invoice_total_fees'], $invoice['invoice_tax_total'], $invoice['invoice_total_fees_after_tax']);
 				$new_member = $this->session->userdata('current_booking')['new_member'];
 				if($new_member == 1){
 					
@@ -310,6 +323,31 @@ class Global_model extends CI_Model {
 		// add to invoice table
 		
 		// return true and set message to session msgs
+	}
+	
+	function sendBookingConfirmMail($car_image, $user_name, $date, $book_number, $car_brand_model_year, $bag, $door, $transmission, $book_days, $book_start, $book_city, $book_price, $book_tax, $book_total){
+		$mail_body = file_get_contents(BOOKING_CONFIRM_MAIL);
+		$mail_body = str_replace("CAR_IMAGE", $car_image, $mail_body);
+		$mail_body = str_replace("USER_NAME", $user_name, $mail_body);
+		$mail_body = str_replace("DATE", $date, $mail_body);
+		$mail_body = str_replace("BOOK_NUMBER", $book_number, $mail_body);
+		$mail_body = str_replace("CAR_BRAND_MODEL_YEAR", $car_brand_model_year, $mail_body);
+		$mail_body = str_replace("BAG", $bag, $mail_body);
+		$mail_body = str_replace("DOOR", $door, $mail_body);
+		$mail_body = str_replace("TRANSMISSION", $transmission, $mail_body);
+		$mail_body = str_replace("BOOK_DAYS", $book_days, $mail_body);
+		$mail_body = str_replace("BOOK_START", $book_start, $mail_body);
+		$mail_body = str_replace("BOOK_CITY", $book_city, $mail_body);
+		$mail_body = str_replace("BOOK_PRICE", $book_price, $mail_body);
+		$mail_body = str_replace("BOOK_TAX", $book_tax, $mail_body);
+		$mail_body = str_replace("BOOK_TOTAL", $book_total, $mail_body);
+		$this->load->library('email');
+		$this->email->from('wecare@efadcar.com', 'Efad Customer Support');
+		$this->email->to($this->session->userdata('member_email'));
+		$this->email->bcc('booking@efadcar.com,account@efadcar.com,back_up@efadcar.com');
+		$this->email->subject('تأكيد الحجز');
+		$this->email->message($mail_body);
+		$response = $this->email->send();
 	}
 	
 	function search(){	
@@ -743,48 +781,6 @@ class Global_model extends CI_Model {
 			return false;	
 		}
 	}
-
-	function getUserBookingswithInvoices($member_uid) {
-		$this->db->order_by("B.book_uid", "desc")->join('invoices I', 'I.related_uid = B.book_uid');
-		$q = $this->db->get_where('bookings B', array("B.member_uid" => $member_uid));
-		if($q->num_rows() > 0) {
-			foreach($q->result() as $row) {
-				$row->car_obj = $this->getCarByID($row->car_uid);
-				$data[] = $row;
-			}
-			return $data; 
-		}else{
-			return false;	
-		}
-	}
-
-	function getMembershipBasedOnAuthUser($member_uid) {
-		$this->db->join('memberships MP', 'MP.mc_uid = M.mc_uid');
-		$q = $this->db->get_where('members M', array("M.member_uid" => $member_uid));
-		if($q->num_rows() > 0) {
-			foreach($q->result() as $row) {
-				$data[] = $row;
-			}
-			return $data; 
-		}else{
-			return false;	
-		}
-	}
-
-	
-	function bookingAndInvoiceDetails($book_uid){
-		$this->db->order_by("B.book_uid", "desc")->join('invoices I', 'I.related_uid = B.book_uid')->join('members M', 'M.member_uid = B.member_uid')->join('memberships MP', 'M.mc_uid = MP.mc_uid');
-		$q = $this->db->get_where('bookings B', array("B.book_uid" => $book_uid));
-		if($q->num_rows() > 0) {
-			foreach($q->result() as $row) {
-				$row->car_obj = $this->getCarByID($row->car_uid);
-				$data[] = $row;
-			}
-			return $data; 
-		}else{
-			return false;	
-		}
-	}
 	
 	function getModelsByBrandID ($id){
 		$siteLang = $this->session->userdata('site_lang');
@@ -854,15 +850,6 @@ class Global_model extends CI_Model {
 			return false;	
 		}
 	}
-	function getCitiesByCountryIDObject($country_uid = 187) {
-		$this->db->order_by("city_name_ar", "asc"); 
-		$q = $this->db->get_where('cities', array("country_uid" => $country_uid));
-		if($q->num_rows() > 0) {
-			return json_encode($q->result()); 
-		}else{
-			return false;
-		}
-	}	
 	
 	function getCityByID($city_uid) {
 		$q = $this->db->get_where('cities', array("city_uid" => $city_uid));
@@ -1185,6 +1172,56 @@ class Global_model extends CI_Model {
 		return $countFridays + $countSatyrdays;
 	}
 
+	function getUserBookingswithInvoices($member_uid) {
+		$this->db->order_by("B.book_uid", "desc")->join('invoices I', 'I.related_uid = B.book_uid');
+		$q = $this->db->get_where('bookings B', array("B.member_uid" => $member_uid));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$row->car_obj = $this->getCarByID($row->car_uid);
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+	function getMembershipBasedOnAuthUser($member_uid) {
+		$this->db->join('memberships MP', 'MP.mc_uid = M.mc_uid');
+		$q = $this->db->get_where('members M', array("M.member_uid" => $member_uid));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+	
+	function bookingAndInvoiceDetails($book_uid){
+		$this->db->order_by("B.book_uid", "desc")->join('invoices I', 'I.related_uid = B.book_uid')->join('members M', 'M.member_uid = B.member_uid')->join('memberships MP', 'M.mc_uid = MP.mc_uid');
+		$q = $this->db->get_where('bookings B', array("B.book_uid" => $book_uid));
+		if($q->num_rows() > 0) {
+			foreach($q->result() as $row) {
+				$row->car_obj = $this->getCarByID($row->car_uid);
+				$data[] = $row;
+			}
+			return $data; 
+		}else{
+			return false;	
+		}
+	}
+	
+	function getCitiesByCountryIDObject($country_uid = 187) {
+		$this->db->order_by("city_name_ar", "asc"); 
+		$q = $this->db->get_where('cities', array("country_uid" => $country_uid));
+		if($q->num_rows() > 0) {
+			return json_encode($q->result()); 
+		}else{
+			return false;
+		}
+	}
+	
 	function getAuthUser(){
         if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
         	$this->db->where('member_uid', $this->session->userdata('member_uid'));
@@ -1200,6 +1237,7 @@ class Global_model extends CI_Model {
             return false;
         }
     }
+	
 }
 
 ?>

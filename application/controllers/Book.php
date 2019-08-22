@@ -298,7 +298,8 @@ class Book extends CI_Controller {
 						$('.cash-fees-tr').hide();
 						
 						$('#paynow').click( function() {
-							console.log('hi');
+							//console.log('hi');
+							$('#paynow').prop('disabled', true);
 							confirmBooking();
 						});
 					
