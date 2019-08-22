@@ -18,7 +18,8 @@ class Home extends CI_Controller {
 		
 		$this->load->library('email');
 		$this->email->from('wecare@efadcar.com', 'Efad');
-		$this->email->to('eng.ebrahimelsawy@gmail.com');
+		$this->email->to('mark0065@godaddy.com');
+		$this->email->cc('eng.ebrahimelsawy@gmail.com');
 		//$this->email->cc('another@another-example.com');
 		//$this->email->bcc('them@their-example.com');
 		$this->email->subject('Email Test');
@@ -26,6 +27,8 @@ class Home extends CI_Controller {
 		$response = $this->email->send();
 		var_dump($response);
 		/*
+		
+		
 		$this->load->library('mailgun');
 		$this->mailgun->initialize(array(
 		  'apikey' => 'key-86e7f6c0d62b0b4fb36c33b92f19b483',                             # API key provided by mailgun
