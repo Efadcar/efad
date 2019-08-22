@@ -28,6 +28,9 @@
 	
 	<?php echo $pageCssFiles ?>
 	<script src="<?= base_url()."assets/".$direction; ?>/js/jquery-3.2.1.min.js"></script> 
+	<!-- Start of efad Zendesk Widget script -->
+	<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=6dcec64d-b1f3-4a40-a136-fd279dbe61e9"> </script>
+	<!-- End of efad Zendesk Widget script -->
 </head>
 <body class="top">
 	<!--back-to-top start-->
