@@ -185,87 +185,91 @@
         display: none;
     }
 </style>
-<section class="demo" style="margin-top: 9%;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h5>تفاصيل الفاتورة: </h5>
+<?php if (isset($booking[0]) && !empty($booking[0])){ ?>
+    <section class="demo" style="margin-top: 9%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>تفاصيل الفاتورة: </h5>
+                </div>
+                <div class="col-md-6">
+                    <button type="button" class="print" style="float: left;color: white;background-color: #01355d;width: 30%;margin-bottom: 10px;border-radius: 10px;font-size: 20px;">print</button>
+                </div>
             </div>
-            <div class="col-md-6">
-                <button type="button" class="print" style="float: left;color: white;background-color: #01355d;width: 30%;margin-bottom: 10px;border-radius: 10px;font-size: 20px;">print</button>
+            <div class="border-invoice">
+                <div class="row margin-right">
+                    <div class="col-md-6">
+                        <h5>بيانات الفاتورة: </h5>
+                        <div class=" margin-right-extra">
+                            <p><span class="desc">تاريخ الحجز: </span><?= $booking[0]->book_start_date ?></p>
+                            <p><span class="desc">رقم الفاتورة: </span><?=$booking[0]->invoice_uid ?></p>
+                            <p><span class="desc">المبلغ الاجمالي: </span><?=$booking[0]->invoice_total_fees_after_tax ?> ريال</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="logo-invoice" src="<?= base_url() ?>assets/rtl/images/last-logo.png" alt="Efad" />
+                    </div>
+                </div>
+                <hr>
+                <div class="row margin-right">
+                    <div class="col-md-6">
+                        <h5>بيانات المشترك: </h5>
+                        <div class=" margin-right-extra">
+                            <p><span class="desc">الاسم: </span><?=$booking[0]->member_fname ?> <?=$booking[0]->member_lname ?></p>
+                            <p><span class="desc">رقم الاشتراك: </span><?=$booking[0]->mc_uid ?></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class=" margin-right-extra margin-top">
+                            <p><span class="desc">فئة العضوية: </span><span style="<?=$booking[0]->mc_color_code ?>"> <?=$booking[0]->mc_name ?></span></p>
+                            <p><span class="desc">خطة العضوية: </span>6 اشهر</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row margin-right">
+                    <div class="col-md-4">
+                        <h5>بيانات الخدمة: </h5>
+                        <div class=" margin-right-extra">
+                            <p><span class="desc">نوع السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cb_uid->cb_name, "arabic") ?> <?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cm_uid->cm_name, "arabic") ?> <?=$booking[0]->car_obj->car_model_year ?></p>
+                            <p><span class="desc">وصف السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cb_uid->cb_meta_desc, "arabic") ?></p>
+                            <p><span class="desc">تاريخ الاستلام: </span><?= $booking[0]->book_added_date ?></p>
+                            <p><span class="desc">تاريخ بداية الاشتراك: </span><?= $booking[0]->book_start_date ?></p>
+                            <p><span class="desc">مدينة استلام السيارة: </span><?=$this->global_model->getCityByID($booking[0]->delivery_city_uid) ?></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid custom-img"> -->
+                        <div class="margin-top-extra">
+                            <p><span class="desc">تاريخ نهاية الاشتراك: </span><?= $booking[0]->book_end_date ?></p>
+                            <p><span class="desc">مدينة تسليم السيارة: </span><?=$this->global_model->getCityByID($booking[0]->delivery_city_uid) ?></p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row margin-right">
+                    <div class="col-md-4">
+                        <h5>بيانات الدفع: </h5>
+                        <div class=" margin-right-extra">
+                            <p><span class="desc">طريقة الدفع: </span><?= $booking[0]->invoice_payment_method ?></p>
+                            <p><span class="desc">قيمة الاشتراك في الخدمة: </span><?= $booking[0]->invoice_total_fees ?> ريال</p>
+                            <p><span class="desc">رسوم قيمة الدفع النقدي: </span><?= CASH_PAYMENT_FEES ?> ريال</p>
+                            <p><span class="desc">رسوم قيمة القيمة المضافة (5%): </span><?= $booking[0]->invoice_tax_total ?> ريال</p>
+                            <?php 
+                                if ($booking[0]->invoice_payment_method == 'cash'){
+                                    $total = $booking[0]->invoice_total_fees_after_tax + CASH_PAYMENT_FEES;
+                                }
+                                else{
+                                    $total = $booking[0]->invoice_total_fees_after_tax;   
+                                }
+                            ?>
+                            <p class="total-all">المبلغ الاجمالي: <?= $total ?> ريال</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="border-invoice">
-            <div class="row margin-right">
-                <div class="col-md-6">
-                    <h5>بيانات الفاتورة: </h5>
-                    <div class=" margin-right-extra">
-                        <p><span class="desc">تاريخ الحجز: </span><?= $booking[0]->book_start_date ?></p>
-                        <p><span class="desc">رقم الفاتورة: </span><?=$booking[0]->invoice_uid ?></p>
-                        <p><span class="desc">المبلغ الاجمالي: </span><?=$booking[0]->invoice_total_fees_after_tax ?> ريال</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <img class="logo-invoice" src="<?= base_url() ?>assets/rtl/images/last-logo.png" alt="Efad" />
-                </div>
-            </div>
-            <hr>
-            <div class="row margin-right">
-                <div class="col-md-6">
-                    <h5>بيانات المشترك: </h5>
-                    <div class=" margin-right-extra">
-                        <p><span class="desc">الاسم: </span><?=$booking[0]->member_fname ?> <?=$booking[0]->member_lname ?></p>
-                        <p><span class="desc">رقم الاشتراك: </span><?=$booking[0]->mc_uid ?></p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class=" margin-right-extra margin-top">
-                        <p><span class="desc">فئة العضوية: </span><span style="<?=$booking[0]->mc_color_code ?>"> <?=$booking[0]->mc_name ?></span></p>
-                        <p><span class="desc">خطة العضوية: </span>6 اشهر</p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row margin-right">
-                <div class="col-md-4">
-                    <h5>بيانات الخدمة: </h5>
-                    <div class=" margin-right-extra">
-                        <p><span class="desc">نوع السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cb_uid->cb_name, "arabic") ?> <?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cm_uid->cm_name, "arabic") ?> <?=$booking[0]->car_obj->car_model_year ?></p>
-                        <p><span class="desc">وصف السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking[0]->car_obj->cb_uid->cb_meta_desc, "arabic") ?></p>
-                        <p><span class="desc">تاريخ الاستلام: </span><?= $booking[0]->book_added_date ?></p>
-                        <p><span class="desc">تاريخ بداية الاشتراك: </span><?= $booking[0]->book_start_date ?></p>
-                        <p><span class="desc">مدينة استلام السيارة: </span><?=$this->global_model->getCityByID($booking[0]->delivery_city_uid) ?></p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <!-- <img src="http://localhost/efad/assets/files/albums/sm_928f1942e8199062bab73b8947773b3a.png" class="img-fluid custom-img"> -->
-                    <div class="margin-top-extra">
-                        <p><span class="desc">تاريخ نهاية الاشتراك: </span><?= $booking[0]->book_end_date ?></p>
-                        <p><span class="desc">مدينة تسليم السيارة: </span><?=$this->global_model->getCityByID($booking[0]->delivery_city_uid) ?></p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row margin-right">
-                <div class="col-md-4">
-                    <h5>بيانات الدفع: </h5>
-                    <div class=" margin-right-extra">
-                        <p><span class="desc">طريقة الدفع: </span><?= $booking[0]->invoice_payment_method ?></p>
-                        <p><span class="desc">قيمة الاشتراك في الخدمة: </span><?= $booking[0]->invoice_total_fees ?> ريال</p>
-                        <p><span class="desc">رسوم قيمة الدفع النقدي: </span><?= CASH_PAYMENT_FEES ?> ريال</p>
-                        <p><span class="desc">رسوم قيمة القيمة المضافة (5%): </span><?= $booking[0]->invoice_tax_total ?> ريال</p>
-                        <?php 
-                            if ($booking[0]->invoice_payment_method == 'cash'){
-                                $total = $booking[0]->invoice_total_fees_after_tax + CASH_PAYMENT_FEES;
-                            }
-                            else{
-                                $total = $booking[0]->invoice_total_fees_after_tax;   
-                            }
-                        ?>
-                        <p class="total-all">المبلغ الاجمالي: <?= $total ?> ريال</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+<?php } else{ ?>
+    <h5 style="margin-top: 9%;" align="center">لا توجد تفاصيل سابقة</h5>
+<?php } ?>

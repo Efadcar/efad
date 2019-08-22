@@ -25,7 +25,7 @@
 							<span><?= $car->car_model_year ?></span>
 						</h2>
                     </div>
-					<div class=" align-items-center mt-10">
+					<div class=" align-items-center mt-10 custom-margin-map">
 						<div class="text-left "> 
 							<span id="daily-rate" class="value"><?= $car->car_daily_price ?></span> 
 							<span class="duration">ريال في اليوم</span> 
@@ -48,7 +48,7 @@
 					</div>
 					
                 </div>
-                <div class="col-sm-7 ml-5">
+                <div class="col-sm-7 ml-5 custom-margin-car-slider">
                     <div class="price-car text-right"> </div>
                     <div class="car-img">
 						<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

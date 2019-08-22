@@ -17,7 +17,7 @@
                     </div>
 -->
                     <div class="clearfix"></div>
-                    <ul class="payment-img">
+                    <ul class="payment-img custom-payment-img">
                         <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/visa.png" class="img-thumbnail" alt="فيزا" style="width: 73px;" /></span> </li>
                         <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/master.png" class="img-thumbnail" alt="ماستر كارد" style="width: 73px;" /></span> </li>
                         <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/mada.png" class="img-thumbnail" alt="مدى" style="width: 73px;" /></span> </li>
@@ -41,7 +41,7 @@
                     <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/google-play%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
                     <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/app-store%20(2).png" class="mb-2" style="width: 140px;height: 42px;"></a>
                 </div>
-                <div class="col-lg-3 col-sm-5 col-xs-12 text-right logo-footer"> 
+                <div class="col-lg-3 col-sm-5 col-xs-12 text-right custom-align logo-footer"> 
                     <a href="<?= site_url() ?>"><img src="<?= base_url()."assets/".$direction; ?>/images/last-logo.png" alt="Efad" class="footerlogo"/></a>
                     <div class="footer-social d-flex  pt-3 pb-3 ">
                         <p> 

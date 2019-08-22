@@ -1,0 +1,306 @@
+.dropdown-menu{
+	top: 82% !important; font-size: 13px;max-width: 280px;border: 1px solid #33b0f870;border-radius: 0.9rem;box-shadow: 1px 1px 2px 2px #00000017;
+}
+
+.custom-fav-img{
+	width: 45%;border: 0px black solid;border-radius: 50%;margin-top: 4px;
+}
+
+@media (min-width: 575px) and (max-width: 800px) {
+	.nav {
+	    margin-right: 28% !important;
+	}
+	.custom-row-margin{
+		margin-right: unset !important;
+		margin-left: unset !important;
+	}
+
+	.navbar-toggler{
+		margin-left: 60px !important;
+	}
+
+	.nav {
+    	margin-top: 40px !important;
+    }
+}
+
+@media (min-width: 510px) and (max-width: 575px) {
+	.footerBottomMenu{
+		margin-right: -60px !important; 
+	}
+	.custom-payment-img{
+		margin-right: 49px !important;
+	}
+	.footermenu{
+	    margin-right: 20px !important;
+	}
+	.custom-align{
+		text-align: unset !important;
+	}
+	img.footerlogo{
+		width: 30% !important;
+		margin-left: unset !important;
+	}
+	.footer-social{
+		margin-right: 96px !important;
+	}
+	.mx-auto{
+		padding: 30px !important;
+		margin-top: -96px !important;
+	}
+	.custom-align-branches{
+		text-align: -webkit-center !important;
+	}
+	.circle {
+	    position: relative !important;
+	    width: 26% !important;
+	    padding-bottom: 10% !important;
+	    background: #fff !important;
+	    border-radius: 41% !important;
+	}
+	.custom-margin-map{
+		margin-top: 10px !important;
+	}
+	.circle:hover {
+	    background: #01355d !important;
+	    color: #fff !important;
+	}
+	.cd-faq-trigger:before{
+		position: absolute !important;
+    	left: 8px !important;
+    	top: 30% !important;
+	}
+	.cd-faq-question{
+		width: 103% !important;
+	}
+	.nav-tabs {
+	    margin-top: 50px !important;
+	    margin-right: 23% !important;
+	}
+
+	.custom-row-margin{
+		margin-right: unset !important;
+		margin-left: unset !important;
+	}
+
+	.pricing-switcher .car_btn label {
+		width: 89px !important;
+	}
+
+
+	ul.pricetable li {
+		flex: 0 !important;
+		margin-right: 60px !important;
+	}
+
+	.text-muted{
+		    margin: 0px 29px !important;
+	}
+
+	.cartype li {
+     	width: 24% !important; 
+	}
+
+
+	.custom-margin-car-slider{
+		margin: 10% !important;
+	}
+
+	.cd-faq-items {
+	    width: 97% !important;
+	}
+
+	.custom-pay-img li {
+        width: max-content !important;
+    	margin-right: 10px !important;
+    }
+    .margin-right {
+    	 margin-right: unset !important; 
+	}
+
+	.margin-top {
+	    margin-top: unset !important; 
+	}
+
+	.margin-top-extra {
+		margin-top: unset !important;
+	    margin-right: 50px !important;
+	}
+
+	.logo-invoice {
+		float: none !important;
+		margin-left: unset !important;
+	    width: 36% !important;
+	    margin-right: 50px !important;
+	    margin-top: 42px !important;
+	}
+
+	.navbar-toggler{
+		margin-left: 50px !important;
+	}
+
+	body.menu-opened .navbar.navbar-expand-lg #mainMenu {
+	    width: 100% !important;
+	    padding: 15% !important;
+	}
+
+	.dropdown-menu{
+		top: 24% !important;
+	    font-size: 13px !important;
+	    max-width: 100% !important;
+	    border: 1px solid #33b0f870 !important;
+	    border-radius: 0.9rem !important;
+	    box-shadow: 1px 1px 2px 2px #00000017 !important;
+	}
+
+	.show>.dropdown-menu {
+    	left: 49% !important;
+    }
+
+    .custom-fav-img{
+        width: 15% !important;
+    	margin-top: -68px !important;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 510px) {
+	.footerBottomMenu{
+		margin-right: -60px !important; 
+	}
+	.custom-payment-img{
+		margin-right: -19px !important;
+	}
+	.footermenu{
+	    margin-right: -40px !important;
+	}
+	.custom-align{
+		text-align: unset !important;
+	}
+	img.footerlogo{
+		width: 30% !important;
+		margin-left: unset !important;
+	}
+	.footer-social{
+		margin-right: 28px !important;
+	}
+	.footer-social a {
+	    margin-left: 8px !important;
+	}
+	.mx-auto{
+		padding: 30px !important;
+		margin-top: -96px !important;
+	}
+	.custom-align-branches{
+		text-align: -webkit-center !important;
+	}
+	.circle {
+	    position: relative !important;
+	    width: 26% !important;
+	    padding-bottom: 10% !important;
+	    background: #fff !important;
+	    border-radius: 41% !important;
+	}
+	.custom-margin-map{
+		margin-top: 10px !important;
+	}
+	.circle:hover {
+	    background: #01355d !important;
+	    color: #fff !important;
+	}
+	.cd-faq-trigger:before{
+		position: absolute !important;
+    	left: 8px !important;
+    	top: 30% !important;
+	}
+	.cd-faq-question{
+		width: 103% !important;
+	}
+	.nav-tabs {
+	    margin-top: 50px !important;
+	    margin-right: 10% !important
+	}
+
+	.custom-row-margin{
+		margin-right: unset !important;
+		margin-left: unset !important;
+	}
+
+	.pricing-switcher .car_btn label {
+		width: 89px !important;
+	}
+
+	ul.pricetable li {
+		flex: 0 !important;
+		margin-right: 22px !important;
+	}
+
+	.text-muted{
+		margin: 0px 29px !important;
+	}
+	
+	.cartype li {
+     	width: 24% !important; 
+	}
+
+	.custom-margin-car-slider{
+		margin: 10% !important;
+	}
+
+	.cd-faq-items {
+	    width: 97% !important;
+	}
+
+	.custom-pay-img li {
+     	width: max-content !important;
+    	margin-right: 28px !important;
+    }
+
+    .margin-right {
+    	margin-right: unset !important; 
+	}
+
+	.margin-top {
+	    margin-top: unset !important; 
+	}
+
+	.margin-top-extra {
+		margin-top: unset !important;
+	    margin-right: 50px !important;
+	}
+
+
+	.logo-invoice {
+		float: none !important;
+		margin-left: unset !important;
+	    width: 36% !important;
+	    margin-right: 50px !important;
+	    margin-top: 42px !important;
+	}
+
+	.navbar-toggler{
+		margin-left: 50px !important;
+	}
+
+	body.menu-opened .navbar.navbar-expand-lg #mainMenu {
+	    width: 100% !important;
+	    padding: 15% !important;
+	}
+
+	.dropdown-menu{
+		top: 24% !important;
+	    font-size: 13px !important;
+	    max-width: 100% !important;
+	    border: 1px solid #33b0f870 !important;
+	    border-radius: 0.9rem !important;
+	    box-shadow: 1px 1px 2px 2px #00000017 !important;
+	}
+
+	.show>.dropdown-menu {
+    	left: 49% !important;
+    }
+
+    .custom-fav-img{
+        width: 15% !important;
+    	margin-top: -68px !important;
+    }
+}

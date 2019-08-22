@@ -40,6 +40,7 @@ class Book extends CI_Controller {
         $data['pageCssFiles'] = $this->_cssFiles('book');
         $data['javascriptCode'] = $this->_javascriptCode('book');
         $data['main_content'] = 'book/detail';
+        $data['booking'] = $this->global_model->bookingAndInvoiceDetails($book_uid);
 		//print_r($data['car']);exit;
         //set page title
         $data['pageTitle'] = "تفاصيل الحجز";		

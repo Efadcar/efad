@@ -332,7 +332,7 @@
         <div class="container">
         	<?php if($bookings !=false) foreach($bookings as $booking) {
                 ?>
-	            <div class="row margin-bottom border border">
+	            <div class="row margin-bottom border border custom-row-margin">
 	                <div class="col-md-4">
 	                    <img src="<?= base_url().ALBUMS_IMAGES.$booking->car_obj->main_image; ?>" class="img-fluid">
 	                </div>

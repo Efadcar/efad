@@ -59,7 +59,7 @@
                             <span ><?= $this->global_model->getCityByID($current_booking['city_uid']) ?></span>
                     </ul>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 custom-margin-car-slider">
                     
                     <div class="car-img">
 						<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -124,7 +124,7 @@
 					<div class="custom-control custom-radio col-sm-12 ml-4">
 						<input type="radio" id="transfer" name="customRadio" class="custom-control-input" value="transfer" checked>
 						<label class="custom-control-label" for="transfer">
-							<ul class="payment-img">
+							<ul class="payment-img custom-pay-img">
 								<li> <b> تحويل بنكي</b> </li>
 							</ul>
 						</label>
@@ -132,7 +132,7 @@
 					<div class="custom-control custom-radio col-sm-12 ml-4">
 						<input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
 						<label class="custom-control-label" for="cash">
-							<ul class="payment-img">
+							<ul class="payment-img custom-pay-img">
 								<li> <b>نقدي (كاش)</b> <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ريال إضافية</span> </li>
 							</ul>
 						</label>

@@ -33,6 +33,7 @@
 	    left: 17%;
 	  	transform: translateX(-50%);
 	}
+
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top sb-navbar nav-new" dir="rtl">
@@ -66,7 +67,7 @@
 				<a class="btn btn-login" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					 <?= $this->session->userdata('member_full_name') ?> <i class="fa fa-user-circle"></i>
 				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="top: 82% !important; font-size: 13px;max-width: 280px;border: 1px solid #33b0f870;border-radius: 0.9rem;box-shadow: 1px 1px 2px 2px #00000017;">
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<span class="dropdown-menu-arrow"></span>
 					<div class="row ml-0 mr-0">
 						<div class="col-md-7">
@@ -74,7 +75,7 @@
 							<p class="mb-0" style="font-size: small;">رقم عضوية : <?= $this->session->userdata('member_mobile') ?></p>
 						</div>
 						<div class="col-md-5" align="left">
-							<img src="<?= base_url()."assets/".$direction; ?>/images/favicon.png" style="width: 45%;border: 0px black solid;border-radius: 50%;margin-top: 4px;">
+							<img src="<?= base_url()."assets/".$direction; ?>/images/favicon.png" class="custom-fav-img">
 						</div>
 					</div>
 					<div class="dropdown-divider"></div>
