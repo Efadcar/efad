@@ -273,16 +273,16 @@
 							echo form_open_multipart('members/user_update/'.$user->member_uid);
 						?>
 					  	<div class="form-group">
-						    <label for="firstname" class="font-weight-bold">الاسم الأول</label>
+						    <label for="firstname" class="">الاسم الأول</label>
 						    <input type="text" class="form-control customEnable" id="firstname" name="member_fname" placeholder="ادخل الاسم الأول" value="<?=$user->member_fname ?>">
 						</div>
 						<div class="form-group">
-						    <label for="lastname" class="font-weight-bold">الاسم الأخير</label>
+						    <label for="lastname" class="">الاسم الأخير</label>
 						    <input type="text" class="form-control customEnable" id="lastname" name="member_lname" placeholder="ادخل الاسم الأخير" value="<?=$user->member_lname ?>">
 						</div>
 
 						<div class="form-group">
-					    	<label for="country" class="font-weight-bold">الدولة</label>
+					    	<label for="country" class="">الدولة</label>
 					    	<select class="form-control customEnable" id="country" name="country_uid">
 					    		<option value="187">السعودية</option>
 					    		<!-- <?php if($countries !=false) foreach($countries as $country) {
@@ -294,7 +294,7 @@
 					  	</div>
 
 					  	<div class="form-group">
-					    	<label for="city" class="font-weight-bold">المدينة</label>
+					    	<label for="city" class="">المدينة</label>
 					    	<select class="form-control customEnable" id="city" name="city_uid">
 								<?php
 								$cities = $this->global_model->getCitiesByCountryID();
@@ -307,19 +307,19 @@
 					  	</div>
 
 						<div class="form-group">
-						    <label for="mobile" class="font-weight-bold">رقم الجوال</label>
+						    <label for="mobile" class="">رقم الجوال</label>
 						    <input type="text" class="form-control customEnable" id="mobile" name="member_mobile" placeholder="ادخل رقم الجوال" value="<?=$user->member_mobile ?>">
 						</div>
 						<div class="form-group">
-						    <label for="email" class="font-weight-bold">البريد الإلكتروني</label>
+						    <label for="email" class="">البريد الإلكتروني</label>
 						    <input type="text" class="form-control customEnable" id="email" name="member_email" placeholder="ادخل البريد الإلكتروني" value="<?=$user->member_email ?>">
 						</div>
 						<div class="form-group">
-						    <label for="password" class="font-weight-bold">الرقم السري</label>
+						    <label for="password" class="">الرقم السري</label>
 						    <input type="password" class="form-control customEnable" name="member_password" id="password" placeholder="********">
 					  	</div>
 					  	<div class="form-group">
-						    <label for="password_confirmation" class="font-weight-bold">إعادة إدخال الرقم السري</label>
+						    <label for="password_confirmation" class="">إعادة إدخال الرقم السري</label>
 						    <input type="password" class="form-control customEnable" name="password_confirmation" id="password_confirmation" placeholder="********">
 					  	</div>
 					  	<div class="form-group">
@@ -337,7 +337,7 @@
                 ?>
 	            <div class="row margin-bottom border border custom-row-margin">
 	                <div class="col-md-4">
-	                    <img src="<?= base_url().ALBUMS_IMAGES.$booking->car_obj->main_image; ?>" class="img-fluid">
+	                    <img src="<?= base_url().ALBUMS_IMAGES."sm_".$booking->car_obj->main_image; ?>" class="img-fluid">
 	                </div>
 	                <div class="col-md-4">
 	                    <p><span class="desc">نوع السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking->car_obj->cb_uid->cb_name, "arabic") ?> <?=$this->global_model->getStringByKeyLanguage($booking->car_obj->cm_uid->cm_name, "arabic") ?> <?=$booking->car_obj->car_model_year ?></p>

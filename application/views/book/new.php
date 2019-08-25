@@ -184,15 +184,15 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label>أختر تاريخ أستلام السيارة</label>
-										<input type="text" id="date-start" class="form-control floating-label" placeholder="أختر تاريخ أستلام السيارة" name="book_start_date" required>
+										<label>اختر تاريخ أستلام السيارة</label>
+										<input type="text" id="date-start" class="form-control floating-label" placeholder="اختر تاريخ أستلام السيارة" name="book_start_date" required>
 										<!--<small class="form-text" style="color: #A62F31">يمكنك الحصول علي خصم <?= EARLY_BOOKING_DISCOUNT ?>% إضافي علي اول أسبوع في حالة أختيار تاريخ أستلام السيارة بعد <?= EARLY_BOOKING_AFTER ?>  يوم من تاريخ الحجز</small> -->
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label>أختر تاريخ تسليم السيارة</label>
-										<input type="text" id="date-end" class="form-control floating-label freeend" placeholder="أختر تاريخ تسليم السيارة" name="book_end_date" required>
+										<label>اختر تاريخ تسليم السيارة</label>
+										<input type="text" id="date-end" class="form-control floating-label freeend" placeholder="اختر تاريخ تسليم السيارة" name="book_end_date" required>
 									</div>
 								</div>
 							</div>
@@ -212,11 +212,11 @@
 				<div class="row">
 					<div class="col-sm-4 ">
 						<div class="form-group">
-							<label>أختر مدينة أستلام السيارة</label>
+							<label>اختر مدينة أستلام السيارة</label>
 							<div class="select-wrapper">
 
 								<select id="inputStatebook" class="form-control width100p " name="delivery_city_uid" required>
-									<option value="0"> أختر المدينة </option>
+									<option value="0"> اختر المدينة </option>
 									<?php
 									$cities = $this->global_model->getCitiesByCountryID();
 									if($cities != false)
