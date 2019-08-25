@@ -91,7 +91,6 @@ class Members extends CI_Controller {
 		
         $this->form_validation->set_rules('member_fname', 'الأسم الاول', 'required');
         $this->form_validation->set_rules('member_lname', 'الأسم الاخير', 'required');
-        $this->form_validation->set_rules('member_password1', 'تأكيد كلمة المرور', 'matches[member_password]');
         $this->form_validation->set_rules('member_email', 'البريد الإلكترونى', 'required|valid_email');
         $this->form_validation->set_rules('country_uid', 'الدولة', 'required|min_length[1]');
         $this->form_validation->set_rules('member_mobile', 'رقم الجوال', 'required|numeric|min_length[1]');
@@ -128,11 +127,6 @@ class Members extends CI_Controller {
 	
 	function members_del($code){
 		$this->global_model->have_permission('members_del');
-		$check = $this->members_model->is_last_super_admin();
-		if($check){
-            $this->messages->add("لا يمكن حذف أخر مدير عام بالنظام", "error");
-			redirect("members/members_list");
-		}
 		$result = $this->global_model->delete_selected_items("dx_users", "user_uid", $code, FALSE, FALSE);
 		if ($result == true) 
 		{
