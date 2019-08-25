@@ -89,6 +89,13 @@ class Explore extends CI_Controller {
 					<script type='text/javascript'>
 
 						$(document).ready(function () {
+
+							$('.custom-show-filters').click(function(){
+								$('.search-option').toggleClass('show');
+							});
+
+
+
 							function run_waitMe(el, num, effect){
 								text = 'الرجاء الانتظار...';
 								fontSize = '';
@@ -402,6 +409,7 @@ class Explore extends CI_Controller {
 											$('.pagin').show();
 											if (data['data']['num_rows'] != 'null' && data['data']['num_rows'] > 0){
 												let paginationCounter = data['data']['num_rows'] / 15;
+												$('#pag_end').val(paginationCounter);
 												// paginationCounter = 5;
 												$('.paginationDrawResponse').empty();
 												// console.log(paginationCounter);
@@ -421,7 +429,9 @@ class Explore extends CI_Controller {
 													$('li.items').removeClass('active');
 													$(this).addClass('active');
 													collectSearchParams();
-													$('html, body').animate({ scrollTop: 0 }, 'fast');
+													$([document.documentElement, document.body]).animate({
+        scrollTop: $('.generalSearch').offset().top
+    }, 2000);
 												});
 											}
 
@@ -446,17 +456,24 @@ class Explore extends CI_Controller {
 
 							$('.fa-chevron-right').click(function(){
 								let offsetValue = $('.paginationValue').val();
-								offsetValue++;
-								$('.paginationValue').val(offsetValue);
-								$('li.items').removeClass('active');
-								$( '.items' ).each(function( index ) {
-									let itemValue = $( this ).val();
-									if (itemValue == offsetValue){
-										$(this).addClass('active');
-									}
-								});
-								collectSearchParams();
-								$('html, body').animate({ scrollTop: 0 }, 'fast');
+								let nextValue = parseInt(offsetValue) + 1;
+								let pag_end = $('#pag_end').val();
+								pag_end = Math.floor( pag_end );
+								if (nextValue <= pag_end){
+									offsetValue++;
+									$('.paginationValue').val(offsetValue);
+									$('li.items').removeClass('active');
+									$( '.items' ).each(function( index ) {
+										let itemValue = $( this ).val();
+										if (itemValue == offsetValue){
+											$(this).addClass('active');
+										}
+									});
+									collectSearchParams();
+									$([document.documentElement, document.body]).animate({
+        scrollTop: $('.generalSearch').offset().top
+    }, 2000);
+								}
 							});
 
 							$('.fa-chevron-left').click(function(){
@@ -472,7 +489,9 @@ class Explore extends CI_Controller {
 										}
 									});
 									collectSearchParams();
-									$('html, body').animate({ scrollTop: 0 }, 'fast');
+									$([document.documentElement, document.body]).animate({
+        scrollTop: $('.generalSearch').offset().top
+    }, 2000);
 								}
 							});
 
@@ -557,7 +576,9 @@ class Explore extends CI_Controller {
 								yearSlider.noUiSlider.set([2016, 2020]);
 								// priceSlider.noUiSlider.set([0, 1000]);
 								// collectSearchParams();
-								$('html, body').animate({ scrollTop: 0 }, 'fast');
+								$([document.documentElement, document.body]).animate({
+							        scrollTop: $('.generalSearch').offset().top
+							    }, 2000);
 							});
 
 							/* navbar */

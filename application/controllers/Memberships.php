@@ -140,7 +140,7 @@ class Memberships extends CI_Controller {
 									
 								},
 							});
-						}						
+						}		
 					
 					});
 					</script> 
@@ -225,6 +225,55 @@ class Memberships extends CI_Controller {
 						}
 						// On load
 						doSomething(mediaQuery);
+
+						$('.membership-f').css({
+							backgroundColor: '". $memberships[0]->mc_color_code ."', 
+							color: 'white'
+						});
+
+						$('.membership-f').click(function(){ 
+							$('.membership-setdef').css({
+							    background: '#FFF',
+							    color: '#999',
+							});
+							$('.membership-f').css({
+								backgroundColor: '". $memberships[0]->mc_color_code ."', 
+								color: 'white'
+							});
+						});
+
+						$('.membership-s').click(function(){ 
+							$('.membership-setdef').css({
+							    background: '#FFF',
+							    color: '#999',
+							});
+							$('.membership-s').css({
+								backgroundColor: '". $memberships[1]->mc_color_code ."', 
+								color: 'white'
+							});
+						});
+
+						$('.membership-t').click(function(){ 
+							$('.membership-setdef').css({
+							    background: '#FFF',
+							    color: '#999',
+							});
+							$('.membership-t').css({
+								backgroundColor: '". $memberships[2]->mc_color_code ."', 
+								color: 'white'
+							});
+						});
+
+						$('.membership-fo').click(function(){ 
+							$('.membership-setdef').css({
+							    background: '#FFF',
+							    color: '#999',
+							});
+							$('.membership-fo').css({
+								backgroundColor: '". $memberships[3]->mc_color_code ."', 
+								color: 'white'
+							});
+						});
 					});
 					
 					$(function() {

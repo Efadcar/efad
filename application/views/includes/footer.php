@@ -23,13 +23,9 @@
                         <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/mada.png" class="img-thumbnail" alt="مدى" style="width: 73px;" /></span> </li>
                         <li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash1.png" class="img-thumbnail" alt="كاش" style="width: 73px;" /></span> </li>
                     </ul>
-<<<<<<< HEAD
+
                     <ul class="footerBottomMenu pt-8 policy_web_view">
-                        <li><a href="<?= site_url('terms_and_conditions') ?>">الشروط و الأحكام</a></li>
-=======
-                    <ul class="footerBottomMenu pt-8">
                         <li><a href="<?= site_url('Terms_of_use') ?>">شروط الاستخدام</a></li>
->>>>>>> 819f7f5a5b6ab977517a352b4d08d5ca15f59934
                         <li><a href="<?= site_url('privcy_policy') ?>">سياسة الخصوصية</a></li>
                         <li><p class="pr-1"> إفاد © 2019 </p></li>
                     </ul>
@@ -60,7 +56,7 @@
                 </div>
                 <div class="col-lg-5 col-sm-7 col-xs-12 pr-10 policy_mobile_view">
                     <ul class="footerBottomMenu">
-                        <li><a href="<?= site_url('terms_and_conditions') ?>">الشروط و الأحكام</a></li>
+                        <li><a href="<?= site_url('Terms_of_use') ?>">شروط الاستخدام</a></li>
                         <li><a href="<?= site_url('privcy_policy') ?>">سياسة الخصوصية</a></li>
                         <li><p class="pr-1"> إفاد © 2019 </p></li>
                     </ul>

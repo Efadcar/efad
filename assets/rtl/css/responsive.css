@@ -2,15 +2,23 @@
 	top: 82% !important; font-size: 13px;max-width: 280px;border: 1px solid #33b0f870;border-radius: 0.9rem;box-shadow: 1px 1px 2px 2px #00000017;
 }
 
+.rebeated-q{
+	padding: 30px 40px;
+}
+
 .navbar{
 	direction: rtl;
 }
-.policy_mobile_view{
+.policy_mobile_view, .custom-pricing-section-mobile, .custom-show-filters, .custom-slider-mob, .custom-rec-city-mob{
 	display: none !important;
 }
 
 .custom-fav-img{
 	width: 45%;border: 0px black solid;border-radius: 50%;margin-top: 4px;
+}
+
+.custom_explore_text{
+	margin: 30px 120px 0 120px; 
 }
 
 @media (min-width: 575px) and (max-width: 800px) {
@@ -115,7 +123,8 @@
 	}
 
 	.cd-faq-items {
-	    width: 97% !important;
+		margin: 27px important;
+	    width: 82% !important;
 	}
 
 	.custom-pay-img li {
@@ -263,7 +272,8 @@
 	}
 
 	.cd-faq-items {
-	    width: 97% !important;
+		margin: 27px !important;
+	    width: 82% !important;
 	}
 
 	.custom-pay-img li {
@@ -328,6 +338,22 @@
     	font-size: 8px;
     }
 
+    .generalSearch{
+    	width: 91% !important;
+    	float: right !important;
+    	margin-left: 6px !important;
+    }
+
+    .custom-show-filters{
+    	margin-top: -25px !important;
+    }
+
+
+    .fa-search{
+        margin-top: 28px !important;
+    	margin-right: 13px !important;
+    }
+
     .carListBE{
     	margin-left: -29px !important;
     }
@@ -336,11 +362,11 @@
     	display: none !important;
     }
 
-    .policy_web_view{
+    .policy_web_view, .custom-des-web-slider, .custom-rec-city-web{
     	display: none !important;
     }
 
-    .policy_mobile_view{
+    .policy_mobile_view, .custom-pricing-section-mobile, .custom-show-filters, .custom-slider-mob, .custom-rec-city-mob{
     	display: block !important;
     }
 
@@ -355,4 +381,39 @@
     .branches_section{
     	margin-bottom: 50px !important;
     }
+
+    .custom_explore_text{
+    	margin: 10px !important;
+    }
+
+    .custom_title_text{
+    	display: block !important;
+    }
+
+    .custom-show-prices{
+    	margin-left: unset !important;
+    	margin-right: unset !important;
+    }
+
+    .custom-prices-mobile_view{
+	    border-radius: 0.9rem !important;
+	    box-shadow: 1px 1px 2px 2px #00000017 !important;
+	    margin-bottom: 20px !important;
+   		background-color: #ededed63;
+    }
+
+    .custom-button-prices{
+        border: 1px solid;
+    	font-weight: bolder;
+    }
+
+    .align-table-custom-mob{
+    	margin-right: 27px !important;
+    }
+
+    .rebeated-q{
+		padding: 0px !important;
+		margin-top: -40px !important;
+	}
+
 }
