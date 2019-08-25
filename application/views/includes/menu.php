@@ -72,7 +72,7 @@
 					<div class="row ml-0 mr-0">
 						<div class="col-md-7">
 							<h6 class="mb-0"><?= $this->session->userdata('member_full_name') ?></h6>
-							<p class="mb-0" style="font-size: small;">رقم عضوية : <?= $this->session->userdata('member_mobile') ?></p>
+							<p class="mb-0" style="font-size: small;">رقم عضوية : <?= $this->session->userdata('member_uid') ?></p>
 						</div>
 						<div class="col-md-5" align="left">
 							<img src="<?= base_url()."assets/".$direction; ?>/images/favicon.png" class="custom-fav-img">
@@ -100,9 +100,14 @@
 				$mc_uid = $this->session->userdata('mc_uid'); 
 				if(isset($mc_uid)){
 					$membership = $this->global_model->getMembershipByID($this->session->userdata('mc_uid'));
+					if($this->session->userdata('mc_uid') == 3){
+						$btnText = "مميزات العضوية";
+					}else{
+						$btnText = "ترقية العضوية";
+					}
 				?>										  
 				<a href="<?= site_url('memberships/subscribe') ?>" class="btn" style="background-color: <?= $membership->mc_color_code ?>; color: #fff">
-					<span><span>ترقية العضوية</span></span>
+					<span><span><?= $btnText ?></span></span>
 				</a>
 				<?php }else{ ?>
 				<a href="<?= site_url('memberships/subscribe') ?>" class="btn btn--accent">

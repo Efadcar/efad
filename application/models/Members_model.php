@@ -102,6 +102,7 @@ class Members_model extends CI_Model {
 
 
 	function updateUser($id){
+		//print_r($_POST);exit;
 		$member_fname = $this->input->post('member_fname');
 		$member_lname = $this->input->post('member_lname');
 		$member_email = $this->input->post('member_email');
@@ -109,29 +110,32 @@ class Members_model extends CI_Model {
 		$country_code = $this->getCountryCodeByID($country_uid);
 		$member_mobile = $this->input->post('member_mobile');
 		$member_mobile = preg_replace("/^\+?{$country_code}/", "",$member_mobile);
+		$member_mobile = ltrim($member_mobile, '+');
 		$member_mobile = ltrim($member_mobile, '0');
 		if (!empty($this->input->post('member_password'))){
 			$member_password = $this->input->post('member_password');
 			$member_password = md5($member_password);
 		}
+		//echo $member_mobile;exit;
 		$city_uid = $this->input->post('city_uid');
+		//echo $city_uid;exit;
 		$data = array(
 		   'member_fname' => $member_fname ,
 		   'member_lname' => $member_lname ,
 		   'member_email' => $member_email ,
 		   'member_mobile' => $member_mobile ,
 		   'country_uid' => $country_uid ,
-		   'city_uid' => $city_uid ,
+		   'city_uid' => $city_uid
 		);
-		
-		$this->db->update('members', $data, $id); 
+		$this->db->where('member_uid', $id);
+		$this->db->update('members', $data); 
 		
 		if($this->db->affected_rows() > 0){
+			$this->messages->add("لقد تم تعديل بيانات حسابك بنجاح.", "success");
 			return true;
-			$this->messages->add("لقد تم تسجيل حسابك بنجاح برجاء تسجيل الدخول.", "success");
 		}else{
+			$this->messages->add("لم تقوم بتعديل بيانات", "alert");
 			return false;
-			$this->messages->add("لقد حدث خطأ أثناء الأضافة.", "error");
 		}
 
 	}

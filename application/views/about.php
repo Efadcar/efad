@@ -9,20 +9,11 @@
         </div>
     </div>
 </section>
-<section role="video-rent">
-    <div class="container">
-        <div class="row">
-			
-            <div class="mx-auto">
-                <?= stripslashes( $row->page_text) ?>
-            </div>
-        </div>
-    </div>
-</section>
 <section rol="howrentacar">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12"> <img src="<?= base_url()."assets/rtl/" ?>images/about-bigpic.jpg" class="img-fluid" alt="About Efad"/> </div>
+            <div class="col-sm-6" style="font-size: 18px; padding-right: 6%"> <?= stripslashes( $row->page_text) ?> </div>
+            <div class="col-sm-6"> <img src="<?= base_url()."assets/rtl/" ?>images/about-bigpic.jpg" class="img-fluid" alt="About Efad"/> </div>
         </div>
     </div>
     

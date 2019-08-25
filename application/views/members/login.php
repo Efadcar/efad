@@ -10,6 +10,7 @@
         </div>
     </div>
 </section>
+<?php //print_r($_SESSION) ?>
 <section rol="form-reservation">
     <div class="container mb-2 pb-4">
         
@@ -25,23 +26,23 @@
 			<div class="tab-content" id="nav-tabContent">
 				<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 					<form method="post" action="<?= site_url('members/register') ?>">
-						<div class="row mt-3 bg-secondary pt-3">
+						<div class="row mt-3 pt-3">
 							<div class="col-md-12">
 								<h3>أدخل بياناتك الشخصية</h3>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="الأسم الاول" name="member_fname">
+									<input type="text" class="form-control" placeholder="الاسم الأول" name="member_fname" value="<?php echo set_value('member_fname'); ?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="الأسم الأخير" name="member_lname">
+									<input type="text" class="form-control" placeholder="الاسم الأخير" name="member_lname" value="<?php echo set_value('member_lname'); ?>">
 								</div>
 							</div>
 						</div>
 
-						<div class="row bg-secondary">
+						<div class="row ">
 							<div class="col-md-6">
 								<div class="form-group">
 									<select name="country_uid" id="countries2" style="width:100%;">
@@ -52,7 +53,7 @@
 										?>
 
 
-										<option value='<?= $r->id ?>' data-image="FLAGS_IMAGES" data-imagecss="flag <?= strtolower($r->iso) ?>" data-title="<?= "(+".$r->phonecode.") ".$r->name ?>"><?= $r->name ?></option>
+										<option value='<?= $r->id ?>' data-image="FLAGS_IMAGES" data-imagecss="flag <?= strtolower($r->iso) ?>" data-title="<?= "(+".$r->phonecode.") ".$r->name ?>" <?php echo set_select('country_uid', $r->id); ?>><?= $r->name ?></option>
 
 										<?php } ?>
 
@@ -70,7 +71,7 @@
 										if($cities != false)
 										foreach($cities as $r){
 										?>
-										<option value='<?= $r->city_uid ?>'><?= $r->city_name_ar ?></option>
+										<option value='<?= $r->city_uid ?>' <?php echo set_select('city_uid', $r->city_uid); ?>><?= $r->city_name_ar ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -80,21 +81,21 @@
 							</div>
 						</div>
 						<!-- mobile -->
-						<div class="row bg-secondary">
+						<div class="row ">
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="email" class="form-control " id="mail" placeholder="البريد الإلكتروني" name="member_email">
+									<input type="email" class="form-control " id="mail" placeholder="البريد الإلكتروني" name="member_email" value="<?php echo set_value('member_email'); ?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input id="phone2" type="tel" class="form-control tel " name="member_mobile">
+									<input id="phone2" type="tel" class="form-control tel " name="member_mobile" value="<?php echo set_value('member_mobile'); ?>">
 								</div>
 							</div>
 						</div>
 
 						<!-- password -->
-						<div class="row bg-secondary">
+						<div class="row ">
 							<div class="col-md-6">
 								<div class="form-group input-group">
 									<input type="password" class="form-control password-field" name="member_password" placeholder="كلمة المرور">
@@ -111,7 +112,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row bg-secondary">
+						<div class="row ">
 							<div class="col-md-12 mt-2 ">
 								<button class="btn btn-default " type="submit">تسجيل حساب</button>
 							</div>
@@ -122,7 +123,7 @@
 				
 				<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 					<form method="post" action="<?= site_url('members/login') ?>">
-						<div class="row mt-3 bg-secondary pt-3">
+						<div class="row mt-3  pt-3">
 							<div class="col-md-12">
 								<h3>أدخل بيانات حسابك</h3>
 							</div>
@@ -133,7 +134,7 @@
 							</div>
 
 						</div>
-						<div class="row bg-secondary">
+						<div class="row ">
 
 							<div class="col-md-6">
 								<div class="form-group input-group">
@@ -145,7 +146,7 @@
 							</div>
 
 						</div>
-						<div class="row bg-secondary">
+						<div class="row ">
 							<div class="col-md-12 mt-2">
 								<button class="btn btn-default" type="submit">تسجيل دخول</button>
 							</div>

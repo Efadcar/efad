@@ -273,16 +273,16 @@
 							echo form_open_multipart('members/user_update/'.$user->member_uid);
 						?>
 					  	<div class="form-group">
-						    <label for="firstname" class="font-weight-bold">الاسم الأول</label>
+						    <label for="firstname" class="">الاسم الأول</label>
 						    <input type="text" class="form-control customEnable" id="firstname" name="member_fname" placeholder="ادخل الاسم الأول" value="<?=$user->member_fname ?>">
 						</div>
 						<div class="form-group">
-						    <label for="lastname" class="font-weight-bold">الاسم الأخير</label>
+						    <label for="lastname" class="">الاسم الأخير</label>
 						    <input type="text" class="form-control customEnable" id="lastname" name="member_lname" placeholder="ادخل الاسم الأخير" value="<?=$user->member_lname ?>">
 						</div>
 
 						<div class="form-group">
-					    	<label for="country" class="font-weight-bold">الدولة</label>
+					    	<label for="country" class="">الدولة</label>
 					    	<select class="form-control customEnable" id="country" name="country_uid">
 					    		<option value="187">السعودية</option>
 					    		<!-- <?php if($countries !=false) foreach($countries as $country) {
@@ -294,34 +294,37 @@
 					  	</div>
 
 					  	<div class="form-group">
-					    	<label for="city" class="font-weight-bold">المدينة</label>
+					    	<label for="city" class="">المدينة</label>
 					    	<select class="form-control customEnable" id="city" name="city_uid">
-						      	<option value="1">المدينة المنورة</option>
-						      	<option value="2">الرياض</option>
-						      	<option value="3">الدمام</option>
-						      	<option value="4">جدة</option>
-					    	</select>
+								<?php
+								$cities = $this->global_model->getCitiesByCountryID();
+								if($cities != false)
+								foreach($cities as $r){
+								?>
+								<option value='<?= $r->city_uid ?>' <?php if($r->city_uid == $user->city_uid){echo "selected";} ?>><?= $r->city_name_ar ?></option>
+								<?php } ?>
+							</select>
 					  	</div>
 
 						<div class="form-group">
-						    <label for="mobile" class="font-weight-bold">رقم الجوال</label>
+						    <label for="mobile" class="">رقم الجوال</label>
 						    <input type="text" class="form-control customEnable" id="mobile" name="member_mobile" placeholder="ادخل رقم الجوال" value="<?=$user->member_mobile ?>">
 						</div>
 						<div class="form-group">
-						    <label for="email" class="font-weight-bold">البريد الإلكتروني</label>
+						    <label for="email" class="">البريد الإلكتروني</label>
 						    <input type="text" class="form-control customEnable" id="email" name="member_email" placeholder="ادخل البريد الإلكتروني" value="<?=$user->member_email ?>">
 						</div>
 						<div class="form-group">
-						    <label for="password" class="font-weight-bold">الرقم السري</label>
+						    <label for="password" class="">الرقم السري</label>
 						    <input type="password" class="form-control customEnable" name="member_password" id="password" placeholder="********">
 					  	</div>
 					  	<div class="form-group">
-						    <label for="password_confirmation" class="font-weight-bold">إعادة إدخال الرقم السري</label>
-						    <input type="password_confirmation" class="form-control customEnable" name="password_confirmation" id="password_confirmation" placeholder="********">
+						    <label for="password_confirmation" class="">إعادة إدخال الرقم السري</label>
+						    <input type="password" class="form-control customEnable" name="password_confirmation" id="password_confirmation" placeholder="********">
 					  	</div>
 					  	<div class="form-group">
-					  		<button type="submit" class="custom-btn btn-primary submitCustom">حفظ التعديلات</button>
-					  		<button type="button" class="custom-btn btn-primary buttonCustom">تعديل</button>
+					  		<button type="submit" class="custom-btn btn submitCustom">حفظ التعديلات</button>
+					  		<button type="button" class="custom-btn btn buttonCustom">تعديل</button>
 					  	</div>
 					</form>
                 </div>
@@ -330,11 +333,11 @@
     </section>
     <section id="tab2" class="tab-content hide">
         <div class="container">
-        	<?php if($bookings !=false) foreach($bookings as $booking) {
+        	<?php if($bookings !=false){ foreach($bookings as $booking) {
                 ?>
 	            <div class="row margin-bottom border border custom-row-margin">
 	                <div class="col-md-4">
-	                    <img src="<?= base_url().ALBUMS_IMAGES.$booking->car_obj->main_image; ?>" class="img-fluid">
+	                    <img src="<?= base_url().ALBUMS_IMAGES."sm_".$booking->car_obj->main_image; ?>" class="img-fluid">
 	                </div>
 	                <div class="col-md-4">
 	                    <p><span class="desc">نوع السيارة: </span><?=$this->global_model->getStringByKeyLanguage($booking->car_obj->cb_uid->cb_name, "arabic") ?> <?=$this->global_model->getStringByKeyLanguage($booking->car_obj->cm_uid->cm_name, "arabic") ?> <?=$booking->car_obj->car_model_year ?></p>
@@ -365,15 +368,25 @@
 	                </div>
 	            </div>
             <?php
-            }
-            
+            }}else{
             ?>
+			<div class="row">
+                <div class="col-md-8 mx-auto" style="background-color: #F2F4F5;">
+                	<div class=" margin-right-extra" style="margin: 20px;">
+                        <p><span class="desc">لا توجد لديك أشتراكات حالية، يمكنك الحجز <a href="<?= site_url('explore') ?>" style="text-decoration: underline;color: #01355d">من هنا</a></span></p>
+                    </div>
+                </div>
+			</div>
+			<?php } ?>
     </section>
     <section id="tab3" class="tab-content hide">
         <div class="container">
             <div class="row">
+				<?php
+				if($membership[0] != false){
+				?>
                 <div class="col-md-4"  align="center">
-                    <!-- <img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" style="height: 50px;" />
+				<!-- <img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" style="height: 50px;" />
                     <br> -->
                     <div style="background-color: <?= $membership[0]->mc_color_code ?>;border-radius: 20px;margin: 0px 10px;">
                     	<p style="padding: 46px;font-size: x-large;color: white;"><?= $membership[0]->mc_name ?></p>
@@ -407,28 +420,16 @@
                         	<div class="col-md-6"><p><span class="desc">بداية الاشتراك: </span><?= $booking->book_start_date ?></p></div>
                         	<div class="col-md-6"><p><span class="desc">نهاية الاشتراك: </span> <?= $booking->book_end_date ?></p></div>
                         </div>
-                        
-                        
-                        <h5 style="margin-top: 10px;font-size: 20px;"><b>مميزات العضوية</b></h5>
-                        <div class="row">
-                        	<div class="col-md-4">
-		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
-		                        <p>يوم اضافي مجانا كل اسبوع</p>
-		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
-                        	</div>
-                        	<div class="col-md-4">
-		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
-		                        <p>يوم اضافي مجانا كل اسبوع</p>
-		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
-                        	</div>
-                        	<div class="col-md-4">
-		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
-		                        <p>يوم اضافي مجانا كل اسبوع</p>
-		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
-                        	</div>
-                        </div>
+
                     </div>
                 </div>
+				<?php }else{ ?>
+                <div class="col-md-8 mx-auto" style="background-color: #F2F4F5;">
+                	<div class=" margin-right-extra" style="margin: 20px;">
+                        <p><span class="desc">انت غير مشترك بعضوية، يمكنك الأشتراك <a href="<?= site_url('memberships/subscribe') ?>" style="text-decoration: underline;color: #01355d">من هنا</a> </span></p>
+                    </div>
+                </div>
+				<?php } ?>
             </div>
     </section>
 </section>

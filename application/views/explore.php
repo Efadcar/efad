@@ -6,10 +6,24 @@
 		font-weight: unset !important;
 	}
 </style>
-
 <section  class="p-0 border-top pt-10">
+	
 	<div class="container-fluid ">
+        <div class="row" style=" margin: 30px 120px 0 120px; ">
+            <div class="col-12">
+					<p style="font-size: 20px; text-align: center">
+					
+					<b class="text-muted" style="font-size: 23px;"> تحتاج سيارة ؟</b>
+						طيب، لا تشتري سيارة ولا دفع أقساط على سيارة.
+					جرب إفاد وأدفع قيمة اشتراك ثابتة على سيارتك لمدة (أسبوع/ شهر/ سنة) 
+					واستمتع بنظام شامل يلبي احتياجاتك ولا تشيل هم صيانة السيارة، 
+					أو تأمين السيارة لأنها شاملة قيمة الاشتراك 
+
+					</p>
+            </div>
+        </div>
 		<div class="row ">
+			
 			<div class="col-sm-3">
 				<div class="row no-gutters">
 					<div class="col-6 col-xs-6 ">

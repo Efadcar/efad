@@ -28,7 +28,7 @@
 						
                         <ul id="section_<?= $row->fc_uid ?>" class="cd-faq-group">
                             <li class="cd-faq-title">
-                                <h2 class="font-weight-bold"><span style="border-bottom: 5px solid #000;"><?= $row->fc_name ?></span></h2>
+                                <h2><span style="border-bottom: 3px solid #000;"><?= $row->fc_name ?></span></h2>
                             </li>
 							<?php
 							if($row->faqs != false)

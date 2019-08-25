@@ -1032,12 +1032,8 @@ class Global_model extends CI_Model {
 	}
 	
     function loginOnBooking($username, $password) {		
-		if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
-			$this->db->where('member_email', $username);
-		}else{
-			$username = ltrim($username, '0');
-			$this->db->where('member_mobile', $username);
-		}
+		$username = ltrim($username, '0');
+		$this->db->where('member_mobile', $username);
 		$password = md5($password);
         $this->db->where('member_password', $password);
         $query = $this->db->get('members');

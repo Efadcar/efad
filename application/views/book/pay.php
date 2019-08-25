@@ -104,6 +104,7 @@
 			<div class="row pt-1">
 				<div class="col-sm-6">
 					<h3>أختر طريقة الدفع</h3>
+					<p style="font-size: 12px; color:#01355d;margin-top: -20px;">*جميع العضويات والاشتراكات لا تعتمد إلا بعد دفع المبالغ</p>
 				</div>
 				<div class="col-sm-6">
 					<h3>تفاصيل الفاتورة</h3>
@@ -125,7 +126,7 @@
 						<input type="radio" id="transfer" name="customRadio" class="custom-control-input" value="transfer" checked>
 						<label class="custom-control-label" for="transfer">
 							<ul class="payment-img custom-pay-img">
-								<li> <b> تحويل بنكي</b> </li>
+								<li> تحويل بنكي</li>
 							</ul>
 						</label>
 					</div>
@@ -133,16 +134,22 @@
 						<input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
 						<label class="custom-control-label" for="cash">
 							<ul class="payment-img custom-pay-img">
-								<li> <b>نقدي (كاش)</b> <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ريال إضافية</span> </li>
+								<li> نقدي (كاش) <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ريال إضافية</span> </li>
 							</ul>
 						</label>
 					</div>
 					
 					<div class="row" id="transferInfo">
-						<div class="col-sm-12 ">
+						<div class="col-sm-12 ml-5">
+						<h5>حسابات شركة إفاد البنكية</h5>
 						<p>
-							البنك الأهلي<br>
-							حساب رقم : XXXXXXXXXXXXXXXXXX
+							رقم حساب بنك الإنماء :<br>
+							68202326900000<br><br>
+							
+							رقم حساب البنك الأهلي التجاري :<br>
+							26900000231101
+
+
 						</p>
 						</div>
 						
@@ -229,7 +236,7 @@
 
 
 									<tr class="cash-fees-tr">
-										<td class="text-left">مصاريف الدفع النقدي
+										<td class="text-left">رسوم الدفع النقدي
 										</td>
 										<td class="text-right">
 											<span id="tax-total">
@@ -261,7 +268,7 @@
 									</tr>
 									<tr class="cash-fees-tr">
 										<td class="text-left">
-											 مصاريف الدفع النقدي للعضوية
+											 رسوم الدفع النقدي للعضوية
 										</td>
 										<td class="text-right">+
 											<span id="tax-total">
@@ -291,7 +298,7 @@
 								<tfoot>
 									<tr>
 										<td class="text-left ">
-											<h3>المبلغ الإجمالي: </h3>
+											<h3>المبلغ الإجمالي </h3>
 										</td>
 										<td class="text-right">
 											<h4><span class="total-price"><?= $total_without_cash ?> </span> ر.س.</h4>
@@ -302,10 +309,10 @@
 						</div>
 					</div>
 					<div class="col-sm-12 text-center mt-4 ">
-						<p class="text-muted ">بالضغط على " تأكيد الحجز " أنت/ي توافق/ي على <a href="<?= site_url('terms_and_conditions') ?>" target="_blank" style="text-decoration: underline">شروط الاستخدام </a> و <a href="<?= site_url('privcy_policy') ?>" target="_blank" style="text-decoration: underline">سياسة الخصوصية </a></p>
+						<p class="" style="color: #000">بالضغط على " تأكيد الحجز " أنت توافق على <a href="<?= site_url('terms_and_conditions') ?>" target="_blank" style="text-decoration: underline; color: #01355d">شروط الاستخدام </a> و <a href="<?= site_url('privcy_policy') ?>" target="_blank" style="text-decoration: underline; color: #01355d">سياسة الخصوصية </a></p>
 					</div>
 					<div class="col-sm-12 text-center ">
-						<button class="btn btn-default  mb-2" id="paynow">تأكيد الحجز</button>
+						<button class="btn btn-default pl-4 pr-4 mb-2 mt-4" id="paynow">تأكيد الحجز</button>
 					</div>
 				</div>
 				
