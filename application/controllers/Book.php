@@ -314,7 +314,7 @@ class Book extends CI_Controller {
 								console.log(data);
 									if(data.status == 1)
 									{
-										window.location.replace('".site_url('members/profile')."');
+										window.location.replace('".site_url('members/profile#tab2')."');
 									}
 									else
 									{

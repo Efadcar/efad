@@ -296,11 +296,14 @@
 					  	<div class="form-group">
 					    	<label for="city" class="font-weight-bold">المدينة</label>
 					    	<select class="form-control customEnable" id="city" name="city_uid">
-						      	<option value="1">المدينة المنورة</option>
-						      	<option value="2">الرياض</option>
-						      	<option value="3">الدمام</option>
-						      	<option value="4">جدة</option>
-					    	</select>
+								<?php
+								$cities = $this->global_model->getCitiesByCountryID();
+								if($cities != false)
+								foreach($cities as $r){
+								?>
+								<option value='<?= $r->city_uid ?>' <?php if($r->city_uid == $user->city_uid){echo "selected";} ?>><?= $r->city_name_ar ?></option>
+								<?php } ?>
+							</select>
 					  	</div>
 
 						<div class="form-group">
@@ -317,11 +320,11 @@
 					  	</div>
 					  	<div class="form-group">
 						    <label for="password_confirmation" class="font-weight-bold">إعادة إدخال الرقم السري</label>
-						    <input type="password_confirmation" class="form-control customEnable" name="password_confirmation" id="password_confirmation" placeholder="********">
+						    <input type="password" class="form-control customEnable" name="password_confirmation" id="password_confirmation" placeholder="********">
 					  	</div>
 					  	<div class="form-group">
-					  		<button type="submit" class="custom-btn btn-primary submitCustom">حفظ التعديلات</button>
-					  		<button type="button" class="custom-btn btn-primary buttonCustom">تعديل</button>
+					  		<button type="submit" class="custom-btn btn submitCustom">حفظ التعديلات</button>
+					  		<button type="button" class="custom-btn btn buttonCustom">تعديل</button>
 					  	</div>
 					</form>
                 </div>
@@ -330,7 +333,7 @@
     </section>
     <section id="tab2" class="tab-content hide">
         <div class="container">
-        	<?php if($bookings !=false) foreach($bookings as $booking) {
+        	<?php if($bookings !=false){ foreach($bookings as $booking) {
                 ?>
 	            <div class="row margin-bottom border border custom-row-margin">
 	                <div class="col-md-4">
@@ -365,15 +368,25 @@
 	                </div>
 	            </div>
             <?php
-            }
-            
+            }}else{
             ?>
+			<div class="row">
+                <div class="col-md-8 mx-auto" style="background-color: #F2F4F5;">
+                	<div class=" margin-right-extra" style="margin: 20px;">
+                        <p><span class="desc">لا توجد لديك أشتراكات حالية، يمكنك الحجز <a href="<?= site_url('explore') ?>" style="text-decoration: underline;color: #01355d">من هنا</a></span></p>
+                    </div>
+                </div>
+			</div>
+			<?php } ?>
     </section>
     <section id="tab3" class="tab-content hide">
         <div class="container">
             <div class="row">
+				<?php
+				if($membership[0] != false){
+				?>
                 <div class="col-md-4"  align="center">
-                    <!-- <img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" style="height: 50px;" />
+				<!-- <img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" style="height: 50px;" />
                     <br> -->
                     <div style="background-color: <?= $membership[0]->mc_color_code ?>;border-radius: 20px;margin: 0px 10px;">
                     	<p style="padding: 46px;font-size: x-large;color: white;"><?= $membership[0]->mc_name ?></p>
@@ -407,28 +420,16 @@
                         	<div class="col-md-6"><p><span class="desc">بداية الاشتراك: </span><?= $booking->book_start_date ?></p></div>
                         	<div class="col-md-6"><p><span class="desc">نهاية الاشتراك: </span> <?= $booking->book_end_date ?></p></div>
                         </div>
-                        
-                        
-                        <h5 style="margin-top: 10px;font-size: 20px;"><b>مميزات العضوية</b></h5>
-                        <div class="row">
-                        	<div class="col-md-4">
-		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
-		                        <p>يوم اضافي مجانا كل اسبوع</p>
-		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
-                        	</div>
-                        	<div class="col-md-4">
-		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
-		                        <p>يوم اضافي مجانا كل اسبوع</p>
-		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
-                        	</div>
-                        	<div class="col-md-4">
-		                        <p>خصم 16% على اجمالي اشتراك الخدمة</p>
-		                        <p>يوم اضافي مجانا كل اسبوع</p>
-		                        <p>ترقية فئة السيارة الى فئة اعلى</p>
-                        	</div>
-                        </div>
+
                     </div>
                 </div>
+				<?php }else{ ?>
+                <div class="col-md-8 mx-auto" style="background-color: #F2F4F5;">
+                	<div class=" margin-right-extra" style="margin: 20px;">
+                        <p><span class="desc">انت غير مشترك بعضوية، يمكنك الأشتراك <a href="<?= site_url('memberships/subscribe') ?>" style="text-decoration: underline;color: #01355d">من هنا</a> </span></p>
+                    </div>
+                </div>
+				<?php } ?>
             </div>
     </section>
 </section>

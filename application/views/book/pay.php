@@ -125,7 +125,7 @@
 						<input type="radio" id="transfer" name="customRadio" class="custom-control-input" value="transfer" checked>
 						<label class="custom-control-label" for="transfer">
 							<ul class="payment-img custom-pay-img">
-								<li> <b> تحويل بنكي</b> </li>
+								<li> تحويل بنكي</li>
 							</ul>
 						</label>
 					</div>
@@ -133,7 +133,7 @@
 						<input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
 						<label class="custom-control-label" for="cash">
 							<ul class="payment-img custom-pay-img">
-								<li> <b>نقدي (كاش)</b> <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ريال إضافية</span> </li>
+								<li> نقدي (كاش) <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ريال إضافية</span> </li>
 							</ul>
 						</label>
 					</div>

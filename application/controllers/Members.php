@@ -22,11 +22,11 @@ class Members extends CI_Controller {
         $data['direction'] = $this->global_model->getSiteDirection();
 		// set main content
 		if (strpos($_SERVER['HTTP_REFERER'], 'book/confirm') !== false) {
-			$data['main_content'] = 'members/login';
+			$refer =  "book/confirm";
 		}else{
-			$data['main_content'] = 'home';
+			$refer =  "explore";
 		}
-        
+		$data['main_content'] = 'members/login';
         //set page title
         $data['pageTitle'] = $this->lang->line('home');		
 		
@@ -52,10 +52,11 @@ class Members extends CI_Controller {
         $data['direction'] = $this->global_model->getSiteDirection();
 		// set main content
 		if (strpos($_SERVER['HTTP_REFERER'], 'book/confirm') !== false) {
-			$data['main_content'] = 'members/login';
+			$refer =  "book/confirm";
 		}else{
-			$data['main_content'] = 'home';
+			$refer =  "explore";
 		}
+		$data['main_content'] = 'members/login';
         //set page title
         $data['pageTitle'] = $this->lang->line('home');		
 		
@@ -70,17 +71,17 @@ class Members extends CI_Controller {
         $this->form_validation->set_rules('member_password1', 'تأكيد كلمة المرور', 'required|matches[member_password]');
         $this->form_validation->set_rules('member_email', 'البريد الإلكترونى', 'required|is_unique[members.member_email]|valid_email');
         $this->form_validation->set_rules('country_uid', 'الدولة', 'required|min_length[1]');
-        $this->form_validation->set_rules('member_mobile', 'رقم الجوال', 'required|numeric|min_length[1]');
+        $this->form_validation->set_rules('member_mobile', 'رقم الجوال', 'required|numeric|min_length[10]|max_length[11]');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('includes/template', $data);
 		}else{
 			$status = $this->members_model->register();
 			if($status == true){
-				$this->global_model->loginOnBooking($_POST['member_mobile'], $_POST['member_password']);
+				$result = $this->global_model->loginOnBooking($_POST['member_mobile'], $_POST['member_password']);
 			}
-			$refer =  $_SERVER['HTTP_REFERER'];
-			redirect($refer);
+			//$refer =  $_SERVER['HTTP_REFERER'];
+			redirect("book/confirm");
 		}
     }
 	

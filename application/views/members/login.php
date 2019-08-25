@@ -10,6 +10,7 @@
         </div>
     </div>
 </section>
+<?php //print_r($_SESSION) ?>
 <section rol="form-reservation">
     <div class="container mb-2 pb-4">
         
@@ -31,12 +32,12 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="الأسم الاول" name="member_fname">
+									<input type="text" class="form-control" placeholder="الأسم الاول" name="member_fname" value="<?php echo set_value('member_fname'); ?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="الأسم الأخير" name="member_lname">
+									<input type="text" class="form-control" placeholder="الأسم الأخير" name="member_lname" value="<?php echo set_value('member_lname'); ?>">
 								</div>
 							</div>
 						</div>
@@ -52,7 +53,7 @@
 										?>
 
 
-										<option value='<?= $r->id ?>' data-image="FLAGS_IMAGES" data-imagecss="flag <?= strtolower($r->iso) ?>" data-title="<?= "(+".$r->phonecode.") ".$r->name ?>"><?= $r->name ?></option>
+										<option value='<?= $r->id ?>' data-image="FLAGS_IMAGES" data-imagecss="flag <?= strtolower($r->iso) ?>" data-title="<?= "(+".$r->phonecode.") ".$r->name ?>" <?php echo set_select('country_uid', $r->id); ?>><?= $r->name ?></option>
 
 										<?php } ?>
 
@@ -70,7 +71,7 @@
 										if($cities != false)
 										foreach($cities as $r){
 										?>
-										<option value='<?= $r->city_uid ?>'><?= $r->city_name_ar ?></option>
+										<option value='<?= $r->city_uid ?>' <?php echo set_select('city_uid', $r->city_uid); ?>><?= $r->city_name_ar ?></option>
 										<?php } ?>
 									</select>
 								</div>
@@ -83,12 +84,12 @@
 						<div class="row bg-secondary">
 							<div class="col-md-6">
 								<div class="form-group">
-									<input type="email" class="form-control " id="mail" placeholder="البريد الإلكتروني" name="member_email">
+									<input type="email" class="form-control " id="mail" placeholder="البريد الإلكتروني" name="member_email" value="<?php echo set_value('member_email'); ?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input id="phone2" type="tel" class="form-control tel " name="member_mobile">
+									<input id="phone2" type="tel" class="form-control tel " name="member_mobile" value="<?php echo set_value('member_mobile'); ?>">
 								</div>
 							</div>
 						</div>

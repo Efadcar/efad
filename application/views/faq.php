@@ -4,6 +4,15 @@
             <div class="col-12 ">
                 <div class="main-heading ">
                     <h1 ><?= $pageTitle ?></h1>
+					<p style="font-size: 16px">
+					
+					تحتاج سيارة ؟
+					طيب، لا تشتري سيارة ولا دفع أقساط على سيارة.
+					جرب إفاد … وأدفع قيمة اشتراك ثابتة على سيارتك لمدة (يوم/أسبوع/ شهر/ سنة) 
+					وأستمتع بنظام شامل يلبي احتياجاتك ولا تشيل هم صيانة السيارة، 
+					تغيير السيارة أو تأمين السيارة لأنها شاملة قيمة الاشتراك 
+
+					</p>
                 </div>
             </div>
         </div>
@@ -28,7 +37,7 @@
 						
                         <ul id="section_<?= $row->fc_uid ?>" class="cd-faq-group">
                             <li class="cd-faq-title">
-                                <h2 class="font-weight-bold"><span style="border-bottom: 5px solid #000;"><?= $row->fc_name ?></span></h2>
+                                <h2><span style="border-bottom: 3px solid #000;"><?= $row->fc_name ?></span></h2>
                             </li>
 							<?php
 							if($row->faqs != false)
