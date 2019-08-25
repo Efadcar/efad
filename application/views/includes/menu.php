@@ -36,7 +36,7 @@
 
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top sb-navbar nav-new" dir="rtl">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top sb-navbar nav-new">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="<?= site_url() ?>">
 			<img class="logo" src="<?= base_url()."assets/".$direction; ?>/images/latest-logo.png" alt="Efad Logo" />

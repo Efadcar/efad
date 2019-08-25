@@ -251,7 +251,7 @@
 			</div>
 			<div class="col-sm-9">
 				<!-- btns -->
-				<div class="car_btn scroll">
+				<div class="car_btn scroll car_btn_custom">
 					<div class="fieldset">
 						<!-- 
 						<input type="radio" name="cartype" class="updateSearchContent carClassification" value="0" data-filter="all" id="c1" checked  >
