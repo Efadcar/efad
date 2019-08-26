@@ -541,12 +541,15 @@ class Global_model extends CI_Model {
 		switch($period){
 			case "mc_6months_price";
 				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 180 day"));
+				$membership_duration = 6;
 				break;
 			case "mc_9months_price";
 				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 270 day"));
+				$membership_duration = 9;
 				break;
 			case "mc_12months_price";
 				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 360 day"));
+				$membership_duration = 12;
 				break;
 		}
 		$invoice2['related_uid'] = $data['mc_uid'];
@@ -557,6 +560,8 @@ class Global_model extends CI_Model {
 		$invoice2['invoice_tax_total'] = (($total / 100) * 5 );
 		$invoice2['invoice_total_fees_after_tax'] = $total + (($total / 100) * 5 );
 		$invoice2['invoice_payment_method'] = $payment_method;
+		$invoice2['is_membership'] = 1;
+		$invoice2['membership_duration'] = $membership_duration;
 		if($payment_method == "visa"){
 			$invoice2['invoice_status'] = 1;
 		}else{
@@ -1235,6 +1240,17 @@ class Global_model extends CI_Model {
 		}
 	}
 	
+	function getMembershipInvoice() {
+		$this->db->order_by("invoice_uid", "desc"); 
+		$q = $this->db->get_where('invoices', array("is_membership" => 1, "member_uid" => $this->session->userdata('member_uid') ),1);
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $row; 
+		}else{
+			return false;
+		}
+	}
+	
 	function getAuthUser(){
         if ($this->session->userdata('is_logged_in') == true && $this->session->userdata('member_uid') != null) {
         	$this->db->where('member_uid', $this->session->userdata('member_uid'));
@@ -1250,7 +1266,6 @@ class Global_model extends CI_Model {
             return false;
         }
     }
-	
 }
 
 ?>

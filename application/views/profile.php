@@ -415,10 +415,10 @@
                 <div class="col-md-8" style="background-color: #F2F4F5;">
                 	<div class=" margin-right-extra" style="margin: 20px;">
                 		<h5 style="margin-top: 10px;font-size: 20px;"><b>العضوية <?= $membership[0]->mc_name ?></b></h5>
-                        <p><span class="desc">مدة العضوية: </span>6 اشهر</p>
+                        <p><span class="desc">مدة العضوية: </span><?= $membership_obj->membership_duration ?> اشهر</p>
                         <div class="row">
-                        	<div class="col-md-6"><p><span class="desc">بداية الاشتراك: </span><?= $booking->book_start_date ?></p></div>
-                        	<div class="col-md-6"><p><span class="desc">نهاية الاشتراك: </span> <?= $booking->book_end_date ?></p></div>
+                        	<div class="col-md-6"><p><span class="desc">بداية الاشتراك: </span><?= $membership_obj->invoice_start_date ?></p></div>
+                        	<div class="col-md-6"><p><span class="desc">نهاية الاشتراك: </span> <?= $membership_obj->invoice_end_date ?></p></div>
                         </div>
 
                     </div>
