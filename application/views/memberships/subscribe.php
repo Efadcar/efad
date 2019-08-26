@@ -56,7 +56,7 @@
 		
 	</style>
 	
-    <section class="custom-pricing-section-mobile">
+    <!-- <section class="custom-pricing-section-mobile">
         <div class="row custom-show-prices">
             <div class="col-sm-12 col-md-12">
                 <div class="custom-prices-mobile_view" style="border: 1px solid <?= $memberships[0]->mc_color_code ?>;">
@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 	
     <ul class="pricetable">
         <li class="bg-gray active">
@@ -135,7 +135,7 @@
             <button class="membership-setdef membership-fo">الحمراء</button>
         </li>
     </ul>
-    <p class="text-muted d-block d-sm-none  mb-2">سيتم استرجاع قيمة اشتراك العضوية كاملة 100% عند طلبك لها وفي حال عدم استخدام مميزاتها</p>
+    
     <div class="align-table-custom-mob">
         <table class="table-price">
             <thead>
@@ -204,6 +204,38 @@
     			</tr>
             </thead>
             <tbody>
+                <tr class="br-bt">
+                    <td style="border-style: hidden;">
+                        <div class="price show-prices" id="mem-f"> 
+                            <span class="value1" style="color: <?= $memberships[0]->mc_color_code ?>;"><?= $memberships[0]->mc_6months_price ?></span> 
+                            <span class="duration" style="color: <?= $memberships[0]->mc_color_code ?>;">ريال</span> 
+                            <a class="select custom-button-prices" data-id="<?= $memberships[0]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
+                            اشترك الآن
+                            </a> 
+                        </div>
+                        <div class="price show-prices" id="mem-s"> 
+                            <span class="value2" style="color: <?= $memberships[1]->mc_color_code ?>;"><?= $memberships[1]->mc_6months_price ?></span> 
+                            <span class="duration" style="color: <?= $memberships[1]->mc_color_code ?>;">ريال</span> 
+                            <a class="select custom-button-prices" data-id="<?= $memberships[1]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">اشترك الآن
+                            </a>
+                        </div>
+                        <div class="price show-prices" id="mem-t"> 
+                            <span class="value3 " style="color: <?= $memberships[2]->mc_color_code ?>;"><?= $memberships[2]->mc_6months_price ?></span> 
+                            <span class="duration" style="color: <?= $memberships[2]->mc_color_code ?>;">ريال</span> 
+                            <a class="select custom-button-prices" data-id="<?= $memberships[2]->mc_uid ?>" href="#" style="color: #fff; background-color: <?= $memberships[2]->mc_color_code ?>" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.backgroundcolor='<?= $memberships[2]->mc_color_code ?>'" onclick="goDoSubscribe(this);">
+                                اشترك الآن
+                            </a> 
+                        </div>
+                        <div class="price show-prices" id="mem-fo"> 
+                            <span class="value4" style="color: <?= $memberships[3]->mc_color_code ?>;"><?= $memberships[3]->mc_6months_price ?></span> 
+                            <span class="duration" style="color: <?= $memberships[3]->mc_color_code ?>;">ريال</span> 
+                            <a class="select custom-button-prices" data-id="<?= $memberships[3]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
+                            اشترك الآن
+                            </a>
+                        </div>
+                    </td>
+
+                </tr>   
                 <tr class="br-bt">
                     <td>تأمين شامل 100 ٪ </td>
                     <td class="default"><span class="tick"><i class="fa fa-check-circle"></i></span></td>
@@ -365,6 +397,7 @@
                 </tr>
             </tbody>
         </table>
+        <p class="text-muted d-block d-sm-none  mb-2">سيتم استرجاع قيمة اشتراك العضوية كاملة 100% عند طلبك لها وفي حال عدم استخدام مميزاتها</p>
     </div>
 </section>
 

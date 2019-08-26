@@ -11,9 +11,9 @@
 	<div class="container-fluid ">
         <div class="row custom_explore_text">
             <div class="col-12">
-					<p style="font-size: 20px; text-align: center">
+					<p class="custom-title-head" style="">
 					
-					<b class="text-muted custom_title_text" style="font-size: 23px;"> تحتاج سيارة ؟</b>
+					<b class="text-muted custom_title_text"><span class="head-txt-resp"> تحتاج سيارة ؟</span></b>
 						طيب، لا تشتري سيارة ولا دفع أقساط على سيارة.
 					جرب إفاد وأدفع قيمة اشتراك ثابتة على سيارتك لمدة (أسبوع/ شهر/ سنة) 
 					واستمتع بنظام شامل يلبي احتياجاتك ولا تشيل هم صيانة السيارة، 
@@ -23,7 +23,7 @@
 
             </div>
         </div>
-		<div class="row ">
+		<div class="row custom-move-up-res">
 			
 			<div class="col-sm-3">
 				<div class="row no-gutters">
@@ -39,9 +39,9 @@
 					
 				</div>
 				<div class="row">
-					<div class="button-mobile-container button-mobile-fixed">
+					<!-- <div class="button-mobile-container button-mobile-fixed">
 						<div class="button-mobile">بحث تفصيلى</div>
-					</div>
+					</div> -->
 					<div class="col-12 search-option mt-2 scrollbar" id="style-1">
 						<div class="button-mobile-container button-mobile-close">
 							<div class="button-mobile">مشاهدة</div>
@@ -286,10 +286,10 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-12">
-						<input class="form-control inp-inp generalSearch" data-ref="input-search" type="search" placeholder="ابحث عن مواصفات سيارتك هنا: الماركة، الموديل، اللون، ناقل الحركة أو سنة الصنع .." aria-label="Search" style="margin-top: .6rem!important;">
+					<div class="col-lg-12 col-xs-12">
+						<i class="fa fa-filter custom-show-filters"></i>
+						<input class="form-control inp-inp generalSearch" data-ref="input-search" type="search" placeholder="ابحث عن مواصفات سيارتك هنا: الماركة، الموديل، اللون، ناقل الحركة أو سنة الصنع .." aria-label="Search" style="">
 						<i class="fas fa-search sear-inp"></i>
-						<i class="fas fa-sync custom-show-filters"></i>
 						<!--
 						<div class="select-wrapper select-wrapperNew" style="display: inline;">
 							<select class="custom-select1 updateSearchContent carSearchCity" 

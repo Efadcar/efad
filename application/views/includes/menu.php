@@ -148,7 +148,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group text-right"> 
+					<div class="form-group"> 
 						<a class="right_a switchPanelButton  " panelclass="panel" panelid="forgotpassword" href="#">نسيت كلمة المرور؟</a> 
 					</div>
 					<input type='submit' name='Submit' class="btn btn-default  btn-block" value='تسجيل الدخول'/>
@@ -242,7 +242,7 @@
 						</div>
 					</div>
 				</div>
-				<input type='submit' name='Submit' class="btn btn-default  btn-block my-4" value='إرسال'/>
+				<input type='submit' name='Submit' class="btn btn-default  btn-block my-4" value='تسجيل حساب'/>
 				<div class="bottom"> <a class="switchPanelButton" panelclass="panel" panelid="login" href="#">لديك حساب خاص بك؟ سجل دخول الآن هنا</a> </div>
 			</div>
 			</form>
@@ -250,7 +250,7 @@
 				<h3>إعاده تعين كلمة مرور جديدة</h3>
 				<input type='tel' name='mobile' id='Tel1' value='أدخل رقم الجوال' class="form-control" placeholder="mobile ID"/>
 				<input type='submit' name='Submit' class="btn btn-default  btn-block my-4" value='أستعادة كلمة المرور'/>
-				<div class="bottom"> يرجى مراجعه الهاتف و كتابة كود التفعيل </div>
+				<div class="bottom"> <a class="switchPanelButton" panelclass="panel" panelid="login" href="#">لديك حساب خاص بك؟ سجل دخول الآن هنا</a> </div>
 			</div>
 		</div>
 	</div>

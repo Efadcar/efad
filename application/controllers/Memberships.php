@@ -202,9 +202,27 @@ class Memberships extends CI_Controller {
 					$(document).ready(function () {
 						
 					
-					
+						$('.show-prices').hide();
+						$('#mem-f').show();
 						$( 'ul' ).on( 'click', 'li', function() {
 							var pos = $(this).index()+2;
+							if (pos == 2){
+								pos = 3;
+							}
+							let indexVal = $(this).index();
+							$('.show-prices').hide();
+							if (indexVal == 0){
+								$('#mem-f').show();
+							}
+							else if (indexVal == 1){
+								$('#mem-s').show();	
+							}
+							else if (indexVal == 2){
+								$('#mem-t').show();	
+							}
+							else if (indexVal == 3){
+								$('#mem-fo').show();	
+							}
 							$('tr').find('td:not(:eq(0))').hide();
 							$('td:nth-child('+pos+')').css('display','table-cell');
 							$('tr').find('th:not(:eq(0))').hide();

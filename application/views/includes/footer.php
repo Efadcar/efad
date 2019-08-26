@@ -30,7 +30,7 @@
                         <li><p class="pr-1"> إفاد © 2019 </p></li>
                     </ul>
                 </div>
-                <div class=" col-lg-2 col-sm-5 col-xs-12 ask pr-0  text-center">
+                <div class=" col-lg-2 col-sm-5 col-xs-12 ask pr-0  text-center custom-fixed-area-res">
                     <h6 class="p-0 m-0" >تواصل معنا الأن عبر الواتس آب</h6>
 					<a href="http://wa.me/966555208078" target="_blank">
 						<h3 class="mb-1 p-0"> 078  208 555 966 + </h3>
@@ -54,7 +54,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-5 col-sm-7 col-xs-12 pr-10 policy_mobile_view">
+                <div class="col-lg-5 col-sm-7 col-xs-12 pr-10 mb-5 policy_mobile_view">
                     <ul class="footerBottomMenu">
                         <li><a href="<?= site_url('Terms_of_use') ?>">شروط الاستخدام</a></li>
                         <li><a href="<?= site_url('privcy_policy') ?>">سياسة الخصوصية</a></li>
