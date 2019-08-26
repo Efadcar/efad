@@ -9,7 +9,7 @@
         </div>
     </div>
 </section>
-<section>
+<section class="branches_section">
     <div class="container">
         <div class="row">
 			<div class="col-sm-2">

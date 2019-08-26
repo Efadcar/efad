@@ -2,8 +2,35 @@
 	top: 82% !important; font-size: 13px;max-width: 280px;border: 1px solid #33b0f870;border-radius: 0.9rem;box-shadow: 1px 1px 2px 2px #00000017;
 }
 
+.rebeated-q{
+	padding: 30px 40px;
+}
+
+.navbar{
+	direction: rtl;
+}
+.policy_mobile_view, .custom-pricing-section-mobile, .custom-show-filters, .custom-slider-mob, .custom-rec-city-mob{
+	display: none !important;
+}
+
 .custom-fav-img{
 	width: 45%;border: 0px black solid;border-radius: 50%;margin-top: 4px;
+}
+
+.custom_explore_text{
+	margin: 30px 120px 0 120px; 
+}
+
+.custom-title-head{
+	font-size: 20px;
+}
+
+.custom-faq-res{
+	margin: 0 10px 0 10px;
+}
+
+.generalSearch{
+	margin-top: .6rem;
 }
 
 @media (min-width: 575px) and (max-width: 800px) {
@@ -71,7 +98,8 @@
     	top: 30% !important;
 	}
 	.cd-faq-question{
-		width: 103% !important;
+		width: 121% !important;
+    	margin-right: -25px !important;
 	}
 	.nav-tabs {
 	    margin-top: 50px !important;
@@ -107,7 +135,8 @@
 	}
 
 	.cd-faq-items {
-	    width: 97% !important;
+		margin: 27px !important;
+	    width: 82% !important;
 	}
 
 	.custom-pay-img li {
@@ -168,10 +197,17 @@
 		margin-right: -60px !important; 
 	}
 	.custom-payment-img{
-		margin-right: -19px !important;
+	    margin-right: -36px !important;
+	    margin-top: -29px !important;
+	    text-align: end !important;
+	}
+
+	.payment-img li{
+		width: 60px !important;
 	}
 	.footermenu{
-	    margin-right: -40px !important;
+	    margin-right: -63px !important;
+	    font-size: 11px !important;
 	}
 	.custom-align{
 		text-align: unset !important;
@@ -181,7 +217,7 @@
 		margin-left: unset !important;
 	}
 	.footer-social{
-		margin-right: 28px !important;
+		margin-right: 7px !important;
 	}
 	.footer-social a {
 	    margin-left: 8px !important;
@@ -213,7 +249,8 @@
     	top: 30% !important;
 	}
 	.cd-faq-question{
-		width: 103% !important;
+		width: 121% !important;
+    	margin-right: -25px !important;
 	}
 	.nav-tabs {
 	    margin-top: 50px !important;
@@ -247,7 +284,9 @@
 	}
 
 	.cd-faq-items {
-	    width: 97% !important;
+		margin: 27px !important;
+	    width: 82% !important;
+	    float: none !important;
 	}
 
 	.custom-pay-img li {
@@ -303,4 +342,126 @@
         width: 15% !important;
     	margin-top: -68px !important;
     }
+
+    .navbar{
+    	direction: ltr !important;
+    }
+
+    .generalSearch::-webkit-input-placeholder{
+    	font-size: 7.5px;
+    }
+
+    .generalSearch{
+    	width: 91% !important;
+    	float: right !important;
+    	margin-left: 6px !important;
+    	margin-top: -28px !important;
+    	margin-right: 22px;
+    }
+
+    .custom-show-filters{
+    	margin-top: 5px !important;
+    }
+
+
+    .fa-search{
+        margin-top: -9px !important;
+        float: left !important;
+    	margin-left: 1px !important;
+    }
+
+    .carListBE{
+    	margin-left: -29px !important;
+    }
+
+    .car_btn_custom{
+    	display: none !important;
+    }
+
+    .policy_web_view, .custom-des-web-slider, .custom-rec-city-web{
+    	display: none !important;
+    }
+
+    .policy_mobile_view, .custom-pricing-section-mobile, .custom-show-filters, .custom-slider-mob, .custom-rec-city-mob{
+    	display: block !important;
+    }
+
+    #paynow{
+    	margin-top: 25px !important;
+    }
+
+    #nav-tabContent{
+    	margin: 0px 20px !important;
+    }
+
+    .branches_section{
+    	margin-bottom: 50px !important;
+    }
+
+    .custom_explore_text{
+    	margin: 10px !important;
+    }
+
+    .custom_title_text{
+    	display: block !important;
+    }
+
+    .custom-show-prices{
+    	margin-left: unset !important;
+    	margin-right: unset !important;
+    }
+
+    .custom-prices-mobile_view{
+	    border-radius: 0.9rem !important;
+	    box-shadow: 1px 1px 2px 2px #00000017 !important;
+	    margin-bottom: 20px !important;
+   		background-color: #ededed63;
+    }
+
+    .custom-button-prices{
+        border: 1px solid;
+    	font-weight: bolder;
+    }
+
+    .align-table-custom-mob{
+    	margin-right: 27px !important;
+    }
+
+    .rebeated-q{
+		padding: 0px !important;
+		margin-top: -40px !important;
+	}
+
+	.button-mobile {
+	    background: #ffffff !important;
+	    color: #01355d !important;
+	    border: 1px solid #01355d !important;
+	}
+
+	.head-txt-resp{
+		text-align: center !important;
+	}
+
+	.custom-move-up-res{
+		margin-top: -60px !important;
+	}
+
+	.custom-title-head{
+		font-size: 13px !important;
+	}
+
+	.custom-fixed-area-res{
+		margin-top: 12px !important;
+	}
+
+	.custom-faq-res{
+		margin: 0px !important;
+	}
+
+	.custom-cd-faq-items{
+		margin: 0px !important;
+	    width: 99% !important;
+	    float: none !important;
+	}
+
 }

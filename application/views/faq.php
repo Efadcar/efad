@@ -14,10 +14,10 @@
 <?php //print_r($rows) ?>
 <section >
     <div class="container">
-        <div class="row" style=" margin: 0 10px 0 10px; ">
+        <div class="row custom-faq-res">
             <div class="col">
                 <div class="cd-faq">
-                    <div class="cd-faq-items">
+                    <div class="cd-faq-items custom-cd-faq-items">
 						
 						<?php
 						$i = 1;

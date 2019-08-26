@@ -31,6 +31,37 @@
 							<span class="duration">ريال في اليوم</span> 
 						</div>
 						<br><br>
+						<div class="custom-slider-mob custom-margin-car-slider">
+		                    <div class="price-car text-right"> </div>
+		                    <div class="car-img">
+								<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+								  <div class="carousel-inner">
+									  <?php
+										$albums = $this->global_model->getAlbumByID($car->album_uid);
+										$i = 1;
+										if($albums != false)
+										foreach($albums as $album){
+										?>
+									<div class="carousel-item <?php if($i == 1){echo "active";} ?>">
+									  <img class="d-block w-100" src="<?= base_url().ALBUMS_IMAGES.$album; ?>" alt="First slide">
+									</div>
+									  <?php $i++; } ?>
+									
+								  </div>
+								  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" >
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								  </a>
+								  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								  </a>
+								</div>
+								
+								
+								
+								<!--<img src="<?= base_url().ALBUMS_IMAGES.$car->main_image; ?>" class="img-fluid" /> --> </div>
+		                </div>
 						<ul class="cartype">
 							<li>
 								<div class="cartype-logo"> <img alt="gear" src="<?= base_url()."assets/".$direction; ?>/images/gear-icon.png" /> </div>
@@ -48,7 +79,7 @@
 					</div>
 					
                 </div>
-                <div class="col-sm-7 ml-5 custom-margin-car-slider">
+                <div class="col-sm-7 ml-5 custom-des-web-slider custom-margin-car-slider">
                     <div class="price-car text-right"> </div>
                     <div class="car-img">
 						<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -82,7 +113,7 @@
                 
             </div>
         </div>
-		<div class="cd-faq-items mb-4">
+		<div class="cd-faq-items">
 			<ul class="cd-faq-group">
 
 				<li class="cd-faq-question question1" style="border: 1px solid #d1d1d1;"> 
@@ -194,6 +225,7 @@
 										<label>اختر تاريخ تسليم السيارة</label>
 										<input type="text" id="date-end" class="form-control floating-label freeend" placeholder="اختر تاريخ تسليم السيارة" name="book_end_date" required>
 									</div>
+
 								</div>
 							</div>
 							<input type="hidden" name="mc_uid" value="<?= $this->session->userdata('mc_uid') ?>" />
@@ -203,6 +235,25 @@
                     </div>
 					
 					<div class="col-sm-4 text-center ">
+						<div class="form-group custom-rec-city-mob">
+							<label style="float: right;">اختر مدينة أستلام السيارة</label>
+							<div class="select-wrapper" style="clear: both;">
+
+								<select id="inputStatebook" class="form-control width100p " name="delivery_city_uid" required>
+									<option value="0"> اختر المدينة </option>
+									<?php
+									$cities = $this->global_model->getCitiesByCountryID();
+									if($cities != false)
+									foreach($cities as $r){
+									?>
+
+
+									<option value='<?= $r->city_uid ?>'><?= $r->city_name_ar ?></option>
+
+									<?php } ?>
+								</select>
+							</div>
+						</div>
 						<h3 class="mb-0 pr-2">عدد أيام الاشترك</h3>
 						<span class="value total-days">0</span> 
 					</div>
@@ -211,7 +262,7 @@
 			<form method="post" action="<?= site_url('book/confirm') ?>" id="confirm-booking">
 				<div class="row">
 					<div class="col-sm-4 ">
-						<div class="form-group">
+						<div class="form-group custom-rec-city-web">
 							<label>اختر مدينة أستلام السيارة</label>
 							<div class="select-wrapper">
 

@@ -140,7 +140,7 @@ class Memberships extends CI_Controller {
 									
 								},
 							});
-						}						
+						}		
 					
 					});
 					</script> 
@@ -202,9 +202,27 @@ class Memberships extends CI_Controller {
 					$(document).ready(function () {
 						
 					
-					
+						$('.show-prices').hide();
+						$('#mem-f').show();
 						$( 'ul' ).on( 'click', 'li', function() {
 							var pos = $(this).index()+2;
+							if (pos == 2){
+								pos = 3;
+							}
+							let indexVal = $(this).index();
+							$('.show-prices').hide();
+							if (indexVal == 0){
+								$('#mem-f').show();
+							}
+							else if (indexVal == 1){
+								$('#mem-s').show();	
+							}
+							else if (indexVal == 2){
+								$('#mem-t').show();	
+							}
+							else if (indexVal == 3){
+								$('#mem-fo').show();	
+							}
 							$('tr').find('td:not(:eq(0))').hide();
 							$('td:nth-child('+pos+')').css('display','table-cell');
 							$('tr').find('th:not(:eq(0))').hide();
@@ -225,6 +243,55 @@ class Memberships extends CI_Controller {
 						}
 						// On load
 						doSomething(mediaQuery);
+
+						$('.membership-f').css({
+							backgroundColor: '". $memberships[0]->mc_color_code ."', 
+							color: 'white'
+						});
+
+						$('.membership-f').click(function(){ 
+							$('.membership-setdef').css({
+							    background: '#FFF',
+							    color: '#999',
+							});
+							$('.membership-f').css({
+								backgroundColor: '". $memberships[0]->mc_color_code ."', 
+								color: 'white'
+							});
+						});
+
+						$('.membership-s').click(function(){ 
+							$('.membership-setdef').css({
+							    background: '#FFF',
+							    color: '#999',
+							});
+							$('.membership-s').css({
+								backgroundColor: '". $memberships[1]->mc_color_code ."', 
+								color: 'white'
+							});
+						});
+
+						$('.membership-t').click(function(){ 
+							$('.membership-setdef').css({
+							    background: '#FFF',
+							    color: '#999',
+							});
+							$('.membership-t').css({
+								backgroundColor: '". $memberships[2]->mc_color_code ."', 
+								color: 'white'
+							});
+						});
+
+						$('.membership-fo').click(function(){ 
+							$('.membership-setdef').css({
+							    background: '#FFF',
+							    color: '#999',
+							});
+							$('.membership-fo').css({
+								backgroundColor: '". $memberships[3]->mc_color_code ."', 
+								color: 'white'
+							});
+						});
 					});
 					
 					$(function() {
