@@ -923,7 +923,7 @@
     // LOCALES
 
     var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/;
-    var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
+    var defaultLocaleMonths = 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_');
     function localeMonths (m, format) {
         if (!m) {
             return isArray(this._months) ? this._months :
@@ -933,7 +933,7 @@
             this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'standalone'][m.month()];
     }
 
-    var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
+    var defaultLocaleMonthsShort = 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_');
     function localeMonthsShort (m, format) {
         if (!m) {
             return isArray(this._monthsShort) ? this._monthsShort :
@@ -1384,7 +1384,7 @@
         return ws.slice(n, 7).concat(ws.slice(0, n));
     }
 
-    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
+    var defaultLocaleWeekdays = 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_');
     function localeWeekdays (m, format) {
         var weekdays = isArray(this._weekdays) ? this._weekdays :
             this._weekdays[(m && m !== true && this._weekdays.isFormat.test(format)) ? 'format' : 'standalone'];
@@ -1392,13 +1392,13 @@
             : (m) ? weekdays[m.day()] : weekdays;
     }
 
-    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
+    var defaultLocaleWeekdaysShort = 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_');
     function localeWeekdaysShort (m) {
         return (m === true) ? shiftWeekdays(this._weekdaysShort, this._week.dow)
             : (m) ? this._weekdaysShort[m.day()] : this._weekdaysShort;
     }
 
-    var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
+    var defaultLocaleWeekdaysMin = 'ح_ن_ث_ع_خ_ج_س'.split('_');
     function localeWeekdaysMin (m) {
         return (m === true) ? shiftWeekdays(this._weekdaysMin, this._week.dow)
             : (m) ? this._weekdaysMin[m.day()] : this._weekdaysMin;
@@ -6725,11 +6725,11 @@
     //! moment.js locale configuration
 
     hooks.defineLocale('en-SG', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+        months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysShort : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysMin : 'ح_ن_ث_ع_خ_ج_س'.split('_'),
         longDateFormat : {
             LT : 'HH:mm',
             LTS : 'HH:mm:ss',
@@ -6780,11 +6780,11 @@
     //! moment.js locale configuration
 
     hooks.defineLocale('en-au', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+        months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysShort : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysMin : 'ح_ن_ث_ع_خ_ج_س'.split('_'),
         longDateFormat : {
             LT : 'h:mm A',
             LTS : 'h:mm:ss A',
@@ -6835,11 +6835,11 @@
     //! moment.js locale configuration
 
     hooks.defineLocale('en-ca', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+        months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysShort : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysMin : 'ح_ن_ث_ع_خ_ج_س'.split('_'),
         longDateFormat : {
             LT : 'h:mm A',
             LTS : 'h:mm:ss A',
@@ -6886,11 +6886,11 @@
     //! moment.js locale configuration
 
     hooks.defineLocale('en-gb', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+        months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysShort : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysMin : 'ح_ن_ث_ع_خ_ج_س'.split('_'),
         longDateFormat : {
             LT : 'HH:mm',
             LTS : 'HH:mm:ss',
@@ -6941,11 +6941,11 @@
     //! moment.js locale configuration
 
     hooks.defineLocale('en-ie', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+        months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysShort : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysMin : 'ح_ن_ث_ع_خ_ج_س'.split('_'),
         longDateFormat : {
             LT : 'HH:mm',
             LTS : 'HH:mm:ss',
@@ -6996,11 +6996,11 @@
     //! moment.js locale configuration
 
     hooks.defineLocale('en-il', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+        months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysShort : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysMin : 'ح_ن_ث_ع_خ_ج_س'.split('_'),
         longDateFormat : {
             LT : 'HH:mm',
             LTS : 'HH:mm:ss',
@@ -7046,11 +7046,11 @@
     //! moment.js locale configuration
 
     hooks.defineLocale('en-nz', {
-        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
-        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
-        weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-        weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
-        weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+        months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+        weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysShort : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+        weekdaysMin : 'ح_ن_ث_ع_خ_ج_س'.split('_'),
         longDateFormat : {
             LT : 'h:mm A',
             LTS : 'h:mm:ss A',

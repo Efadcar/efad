@@ -13,7 +13,7 @@
             <div class="col-12">
 					<p class="custom-title-head" style="">
 					
-					<b class="text-muted custom_title_text"><span class="head-txt-resp"> تحتاج سيارة ؟</span></b>
+					<b class="custom_title_text"><span class="head-txt-resp"> تحتاج سيارة ؟</span></b>
 						طيب، لا تشتري سيارة ولا دفع أقساط على سيارة.
 					جرب إفاد وأدفع قيمة اشتراك ثابتة على سيارتك لمدة (أسبوع/ شهر/ سنة) 
 					واستمتع بنظام شامل يلبي احتياجاتك ولا تشيل هم صيانة السيارة، 
