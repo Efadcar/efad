@@ -225,7 +225,7 @@ class Book extends CI_Controller {
 						$('#date-end').bootstrapMaterialDatePicker
 						({
 							weekStart: 6,
-							format: 'DD-M-YYYY',
+							format: 'dddd, DD-MMMM-YYYY',
 							disabledDays: [5],
 							minDate : date_end,
 							time: false,
@@ -238,7 +238,7 @@ class Book extends CI_Controller {
 						$('#date-start').bootstrapMaterialDatePicker
 						({
 							weekStart: 6, 
-							format: 'DD-M-YYYY',
+							format: 'dddd, DD-MMMM-YYYY',
 							disabledDays: [5,6],
 							minDate : date_start,
 							time: false,
@@ -260,26 +260,6 @@ class Book extends CI_Controller {
 							$('#date-end').prop( 'disabled', false );
 							var datee = $('#date-start').bootstrapMaterialDatePicker().val();
 
-							datee = datee.replace('الأحد', 'Sunday');
-							datee = datee.replace('الإثنين', 'Monday');
-							datee = datee.replace('الثلاثاء', 'Tuesday');
-							datee = datee.replace('الأربعاء', 'Wednesday');
-							datee = datee.replace('الخميس', 'Thursday');
-							datee = datee.replace('الجمعة', 'Friday');
-							datee = datee.replace('السبت', 'Saturday');
-
-							datee = datee.replace('يناير', 'January');
-							datee = datee.replace('فبراير', 'February');
-							datee = datee.replace('مارس', 'March');
-							datee = datee.replace('أبريل', 'April');
-							datee = datee.replace('ماي', 'May');
-							datee = datee.replace('يونيو', 'June');
-							datee = datee.replace('يوليوز', 'July');
-							datee = datee.replace('غشت', 'August');
-							datee = datee.replace('شتنبر', 'September');
-							datee = datee.replace('أكتوبر', 'October');
-							datee = datee.replace('نونبر', 'November');
-							datee = datee.replace('دجنبر', 'December');
 
 							var newDate = new Date(datee);
 							newDate.setDate(newDate.getDate() + 6);
