@@ -1242,7 +1242,7 @@ class Global_model extends CI_Model {
 	
 	function getMembershipInvoice() {
 		$this->db->order_by("invoice_uid", "desc"); 
-		$q = $this->db->get_where('cities', array("is_membership" => 1, "member_uid" => $this->session->userdata('member_uid') ),1);
+		$q = $this->db->get_where('invoices', array("is_membership" => 1, "member_uid" => $this->session->userdata('member_uid') ),1);
 		if($q->num_rows() > 0) {
 			$row = $q->row();
 			return $row; 
