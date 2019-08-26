@@ -225,7 +225,7 @@ class Book extends CI_Controller {
 						$('#date-end').bootstrapMaterialDatePicker
 						({
 							weekStart: 6,
-							format: 'dddd, DD-MMMM-YYYY',
+							format: 'DD-MMMM-YYYY',
 							disabledDays: [5],
 							minDate : date_end,
 							time: false,
@@ -238,7 +238,7 @@ class Book extends CI_Controller {
 						$('#date-start').bootstrapMaterialDatePicker
 						({
 							weekStart: 6, 
-							format: 'dddd, DD-MMMM-YYYY',
+							format: 'DD-MMMM-YYYY',
 							disabledDays: [5,6],
 							minDate : date_start,
 							time: false,
