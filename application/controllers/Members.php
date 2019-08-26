@@ -92,7 +92,7 @@ class Members extends CI_Controller {
 			$data['bookings'] = $this->global_model->getUserBookingswithInvoices( $this->session->userdata('member_uid'));
 			$data['membership'] = $this->global_model->getMembershipBasedOnAuthUser( $this->session->userdata('member_uid'));
 			$data['user'] = $this->global_model->getAuthUser();
-			$data['membership'] = $this->global_model->getMembershipInvoice();
+			$data['membership_obj'] = $this->global_model->getMembershipInvoice();
 			$data['countries'] = $this->global_model->getAllCountries();
 
 			// set main content
