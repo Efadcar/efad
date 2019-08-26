@@ -201,9 +201,6 @@ class Memberships extends CI_Controller {
 
 					$(document).ready(function () {
 						
-					
-						$('.show-prices').hide();
-						$('#mem-f').show();
 						$( 'ul' ).on( 'click', 'li', function() {
 							var pos = $(this).index()+2;
 							if (pos == 2){

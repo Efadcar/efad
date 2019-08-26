@@ -122,16 +122,16 @@
     </section> -->
 	
     <ul class="pricetable">
-        <li class="bg-gray active">
+        <li class="bg-gray active" style="border-top: 3px solid <?= $memberships[0]->mc_color_code ?>;">
             <button class="membership-setdef membership-f" style="font-size: 11px;">الطالبات والطلاب</button>
         </li>
-        <li class="bg-blue">
+        <li class="bg-blue" style="border-top: 3px solid <?= $memberships[1]->mc_color_code ?>;">
             <button class="membership-setdef membership-s">الزرقاء</button>
         </li>
-        <li class="bg-green">
+        <li class="bg-green" style="border-top: 3px solid <?= $memberships[2]->mc_color_code ?>;">
             <button class="membership-setdef membership-t">الخضراء</button>
         </li>
-        <li class="bg-red ">
+        <li class="bg-red " style="border-top: 3px solid <?= $memberships[3]->mc_color_code ?>;">
             <button class="membership-setdef membership-fo">الحمراء</button>
         </li>
     </ul>
@@ -204,38 +204,33 @@
     			</tr>
             </thead>
             <tbody>
-                <tr class="br-bt">
-                    <td style="border-style: hidden;">
-                        <div class="price show-prices" id="mem-f"> 
-                            <span class="value1" style="color: <?= $memberships[0]->mc_color_code ?>;"><?= $memberships[0]->mc_6months_price ?></span> 
-                            <span class="duration" style="color: <?= $memberships[0]->mc_color_code ?>;">ريال</span> 
-                            <a class="select custom-button-prices" data-id="<?= $memberships[0]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
-                            اشترك الآن
-                            </a> 
-                        </div>
-                        <div class="price show-prices" id="mem-s"> 
-                            <span class="value2" style="color: <?= $memberships[1]->mc_color_code ?>;"><?= $memberships[1]->mc_6months_price ?></span> 
-                            <span class="duration" style="color: <?= $memberships[1]->mc_color_code ?>;">ريال</span> 
-                            <a class="select custom-button-prices" data-id="<?= $memberships[1]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">اشترك الآن
-                            </a>
-                        </div>
-                        <div class="price show-prices" id="mem-t"> 
-                            <span class="value3 " style="color: <?= $memberships[2]->mc_color_code ?>;"><?= $memberships[2]->mc_6months_price ?></span> 
-                            <span class="duration" style="color: <?= $memberships[2]->mc_color_code ?>;">ريال</span> 
-                            <a class="select custom-button-prices" data-id="<?= $memberships[2]->mc_uid ?>" href="#" style="color: #fff; background-color: <?= $memberships[2]->mc_color_code ?>" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.backgroundcolor='<?= $memberships[2]->mc_color_code ?>'" onclick="goDoSubscribe(this);">
-                                اشترك الآن
-                            </a> 
-                        </div>
-                        <div class="price show-prices" id="mem-fo"> 
-                            <span class="value4" style="color: <?= $memberships[3]->mc_color_code ?>;"><?= $memberships[3]->mc_6months_price ?></span> 
-                            <span class="duration" style="color: <?= $memberships[3]->mc_color_code ?>;">ريال</span> 
-                            <a class="select custom-button-prices" data-id="<?= $memberships[3]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
-                            اشترك الآن
-                            </a>
-                        </div>
-                    </td>
-
-                </tr>   
+                <div class="price show-prices" id="mem-f"> 
+                    <span class="value1" style="color: <?= $memberships[0]->mc_color_code ?>;"><?= $memberships[0]->mc_6months_price ?></span> 
+                    <span class="duration" style="color: <?= $memberships[0]->mc_color_code ?>;">ريال</span> <br>
+                    <a class="select custom-button-prices" data-id="<?= $memberships[0]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
+                    اشترك الآن
+                    </a> 
+                </div>
+                <div class="price show-prices" id="mem-s"> 
+                    <span class="value2" style="color: <?= $memberships[1]->mc_color_code ?>;"><?= $memberships[1]->mc_6months_price ?></span> 
+                    <span class="duration" style="color: <?= $memberships[1]->mc_color_code ?>;">ريال</span> <br>
+                    <a class="select custom-button-prices" data-id="<?= $memberships[1]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">اشترك الآن
+                    </a>
+                </div>
+                <div class="price show-prices" id="mem-t"> 
+                    <span class="value3 " style="color: <?= $memberships[2]->mc_color_code ?>;"><?= $memberships[2]->mc_6months_price ?></span> 
+                    <span class="duration" style="color: <?= $memberships[2]->mc_color_code ?>;">ريال</span> <br>
+                    <a class="select custom-button-prices" data-id="<?= $memberships[2]->mc_uid ?>" href="#" style="color: #fff; background-color: <?= $memberships[2]->mc_color_code ?>" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.backgroundcolor='<?= $memberships[2]->mc_color_code ?>'" onclick="goDoSubscribe(this);">
+                        اشترك الآن
+                    </a> 
+                </div>
+                <div class="price show-prices" id="mem-fo"> 
+                    <span class="value4" style="color: <?= $memberships[3]->mc_color_code ?>;"><?= $memberships[3]->mc_6months_price ?></span> 
+                    <span class="duration" style="color: <?= $memberships[3]->mc_color_code ?>;">ريال</span> <br>
+                    <a class="select custom-button-prices" data-id="<?= $memberships[3]->mc_uid ?>" href="#" style="color: #000;" onMouseOver="this.style.color='#fff'" onMouseOut="this.style.color='#000'" onclick="goDoSubscribe(this);">
+                    اشترك الآن
+                    </a>
+                </div>
                 <tr class="br-bt">
                     <td>تأمين شامل 100 ٪ </td>
                     <td class="default"><span class="tick"><i class="fa fa-check-circle"></i></span></td>

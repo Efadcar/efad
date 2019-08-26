@@ -239,7 +239,7 @@
 							<label style="float: right;">اختر مدينة أستلام السيارة</label>
 							<div class="select-wrapper" style="clear: both;">
 
-								<select id="inputStatebook" class="form-control width100p " name="delivery_city_uid" required>
+								<select id="inputStatebook" class="form-control width100p inputStatebookMob" name="delivery_city_uid" required>
 									<option value="0"> اختر المدينة </option>
 									<?php
 									$cities = $this->global_model->getCitiesByCountryID();
@@ -266,7 +266,7 @@
 							<label>اختر مدينة أستلام السيارة</label>
 							<div class="select-wrapper">
 
-								<select id="inputStatebook" class="form-control width100p " name="delivery_city_uid" required>
+								<select id="inputStatebook" class="form-control width100p inputStatebookWeb" name="delivery_city_uid" required>
 									<option value="0"> اختر المدينة </option>
 									<?php
 									$cities = $this->global_model->getCitiesByCountryID();

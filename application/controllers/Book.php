@@ -168,6 +168,18 @@ class Book extends CI_Controller {
 					$('#paynow').click( function() {
 						var dateStart = $('#date-start').val();
 						var dateEnd = $('#date-end').val();
+
+						let inputStatebookWeb = $('.inputStatebookWeb').children('option:selected').val();
+						let inputStatebookMob = $('.inputStatebookMob').children('option:selected').val();
+
+						if (inputStatebookWeb > 0){
+							$('.inputStatebookMob').val(inputStatebookWeb);
+						}
+
+						if (inputStatebookMob > 0){
+							$('.inputStatebookWeb').val(inputStatebookMob);
+						}
+
 						var inputStatebook = $('#inputStatebook').children('option:selected').val();
 
 						if (dateStart.length < 1 || dateEnd.length < 1 || inputStatebook == 0) {
@@ -244,11 +256,34 @@ class Book extends CI_Controller {
 						
 						var timeoutId;
 						$('#date-start, #date-end').on('input propertychange change', function() {
+
 							$('#date-end').prop( 'disabled', false );
 							var datee = $('#date-start').bootstrapMaterialDatePicker().val();
+
+							datee = datee.replace('الأحد', 'Sunday');
+							datee = datee.replace('الإثنين', 'Monday');
+							datee = datee.replace('الثلاثاء', 'Tuesday');
+							datee = datee.replace('الأربعاء', 'Wednesday');
+							datee = datee.replace('الخميس', 'Thursday');
+							datee = datee.replace('الجمعة', 'Friday');
+							datee = datee.replace('السبت', 'Saturday');
+
+							datee = datee.replace('يناير', 'January');
+							datee = datee.replace('فبراير', 'February');
+							datee = datee.replace('مارس', 'March');
+							datee = datee.replace('أبريل', 'April');
+							datee = datee.replace('ماي', 'May');
+							datee = datee.replace('يونيو', 'June');
+							datee = datee.replace('يوليوز', 'July');
+							datee = datee.replace('غشت', 'August');
+							datee = datee.replace('شتنبر', 'September');
+							datee = datee.replace('أكتوبر', 'October');
+							datee = datee.replace('نونبر', 'November');
+							datee = datee.replace('دجنبر', 'December');
+
 							var newDate = new Date(datee);
 							newDate.setDate(newDate.getDate() + 6);
-							//console.log(newDate);
+							// console.log(datee);
 							$('#date-end').bootstrapMaterialDatePicker('setMinDate', newDate);
 							clearTimeout(timeoutId);
 							timeoutId = setTimeout(function() {
