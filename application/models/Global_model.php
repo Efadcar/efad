@@ -341,6 +341,22 @@ class Global_model extends CI_Model {
 		$mail_body = str_replace("BOOK_PRICE", $book_price, $mail_body);
 		$mail_body = str_replace("BOOK_TAX", $book_tax, $mail_body);
 		$mail_body = str_replace("BOOK_TOTAL", $book_total, $mail_body);
+		
+		$url = 'http://vertex.com.co/send_api/v1/send';
+		$data = array('to' => $this->session->userdata('member_email'), 'subject' => 'تأكيد الحجز', 'body' => $mail_body);
+
+		// use key 'http' even if you send the request to https://...
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => http_build_query($data)
+			)
+		);
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);	
+		
+		/*
 		$this->load->library('email');
 		$this->email->from('wecare@efadcar.com', 'Efad Customer Support');
 		$this->email->to($this->session->userdata('member_email'));
@@ -348,6 +364,7 @@ class Global_model extends CI_Model {
 		$this->email->subject('تأكيد الحجز');
 		$this->email->message($mail_body);
 		$response = $this->email->send();
+		*/
 	}
 	
 	function search(){	
