@@ -6,5 +6,5 @@ application/config/config.php
 application/config/database.php
 assets/files/*
 system/*
-.htaccess
+/.htaccess
 admin/.htaccess
