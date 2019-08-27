@@ -98,6 +98,6 @@ define('EARLY_BOOKING_AFTER', 45);
 define('EARLY_BOOKING_DISCOUNT', 5);
 define('CASH_PAYMENT_FEES', 150);
 define('GREEN_MEMBERSHIP_YEARLY_FEES', 69);
-define('RED_MEMBERSHIP_YEARLY_FEES', 79);
+define('RED_MEMBERSHIP_YEARLY_FEES', 349);
 define('BOOKING_CONFIRM_MAIL', "assets/files/emails/car-mail.html");
 define('MEMBERSHIP_CONFIRM_MAIL', "assets/files/emails/membership-mail.html");

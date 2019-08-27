@@ -130,6 +130,17 @@
 							</ul>
 						</label>
 					</div>
+					<div class="row" id="transferInfo">
+						<div class="col-sm-12 ml-5">
+						<h5>حسابات شركة إفاد البنكية</h5>
+						<p>
+							رقم حساب بنك الإنماء :<br>
+							68202326900000<br><br>
+							رقم حساب البنك الأهلي التجاري :<br>
+							26900000231101
+						</p>
+						</div>
+					</div>
 					<div class="custom-control custom-radio col-sm-12 ml-4">
 						<input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
 						<label class="custom-control-label" for="cash">
@@ -139,21 +150,6 @@
 						</label>
 					</div>
 					
-					<div class="row" id="transferInfo">
-						<div class="col-sm-12 ml-5">
-						<h5>حسابات شركة إفاد البنكية</h5>
-						<p>
-							رقم حساب بنك الإنماء :<br>
-							68202326900000<br><br>
-							
-							رقم حساب البنك الأهلي التجاري :<br>
-							26900000231101
-
-
-						</p>
-						</div>
-						
-					</div>
 					<div class="row" id="paymentCard">
 						<div class="col-sm-9 ">
 							<h4 class="text-left text-muted"> أدخل بيانات البطاقة</h4>
@@ -185,7 +181,6 @@
 						</div>
 					</div>
 				</div>
-				<?php //print_r($_SESSION) ?>
 				
 				<div class="col-sm-6">
 					<div class=" col-md-12  col-sm-12 mx-sm-auto ">
@@ -229,14 +224,14 @@
 									</tr>
 									<?php } ?>
 									<tr>
-										<td class="text-left">ضريبة القيمه المضافة 5% 
+										<td class="text-left">ضريبة القيمه المضافة 5% للخدمة
 										</td>
 										<td class="text-right"><span id="tax-total"><?= $current_booking['tax_total'] ?></span> ر.س.</td>
 									</tr>
 
 
 									<tr class="cash-fees-tr">
-										<td class="text-left">رسوم الدفع النقدي
+										<td class="text-left"> رسوم الدفع النقدي للخدمة
 										</td>
 										<td class="text-right">
 											<span id="tax-total">
@@ -251,9 +246,9 @@
 								<?php if($_SESSION['current_booking']['new_member'] != 0){ ?>
 								<tbody>
 									<tr>
-										<td class="text-left">مصاريف أشتراك العضوية الحمراء
+										<td class="text-left">رسوم اشتراك العضوية الحمراء
 										</td>
-										<td class="text-right">+
+										<td class="text-right">
 											<span>
 												<?= RED_MEMBERSHIP_YEARLY_FEES ?>
 											</span> ر.س.</td>
@@ -261,7 +256,7 @@
 									<tr>
 										<td class="text-left">ضريبة القيمه المضافة 5% للعضوية
 										</td>
-										<td class="text-right">+
+										<td class="text-right">
 											<span id="tax-total">
 												<?php echo (RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 ?>
 											</span> ر.س.</td>
@@ -270,7 +265,7 @@
 										<td class="text-left">
 											 رسوم الدفع النقدي للعضوية
 										</td>
-										<td class="text-right">+
+										<td class="text-right">
 											<span id="tax-total">
 												<?= CASH_PAYMENT_FEES ?>
 											</span> ر.س.</td>
