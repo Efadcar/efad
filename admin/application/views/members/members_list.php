@@ -64,7 +64,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" data-dismiss="modal" class="btn dark btn-outline">إلغاء</button>
-                                                        <a href="<?php echo site_url('members/members_del/'.$row->user_uid) ?>" class="btn red">نعم، حذف</a>
+                                                        <a href="<?php echo site_url('members/members_del/'.$row->member_uid) ?>" class="btn red">نعم، حذف</a>
                                                     </div>
                                                 </div>
                                             </div>

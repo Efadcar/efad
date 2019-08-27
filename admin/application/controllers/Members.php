@@ -127,7 +127,7 @@ class Members extends CI_Controller {
 	
 	function members_del($code){
 		$this->global_model->have_permission('members_del');
-		$result = $this->global_model->delete_selected_items("dx_users", "user_uid", $code, FALSE, FALSE);
+		$result = $this->global_model->delete_selected_items("members", "member_uid", $code, FALSE, FALSE);
 		if ($result == true) 
 		{
 			$this->messages->add("تم الحذف بنجاح", "success");
