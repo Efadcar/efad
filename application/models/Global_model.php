@@ -274,14 +274,25 @@ class Global_model extends CI_Model {
 			}
 			$this->db->insert('invoices', $invoice); 
 			if($this->db->affected_rows() > 0){
-				$this->sendBookingConfirmMail($car_obj->main_image, $this->session->userdata('member_full_name'), date("Y-m-d", time()), $book_uid, $car_full_name, $car_obj->car_bags, $car_obj->car_doors, $car_obj->car_transmission, $data['book_total_days'], $data['book_start_date'], $this->getCityByID($data['delivery_city_uid']), $invoice['invoice_total_fees'], $invoice['invoice_tax_total'], $invoice['invoice_total_fees_after_tax']);
+				$mail_result = $this->sendBookingConfirmMail($car_obj->main_image, $this->session->userdata('member_full_name'), date("Y-m-d", time()), $book_uid, $car_full_name, $car_obj->car_bags, $car_obj->car_doors, $car_obj->car_transmission, $data['book_total_days'], $data['book_start_date'], $this->getCityByID($data['delivery_city_uid']), $invoice['invoice_total_fees'], $invoice['invoice_tax_total'], $invoice['invoice_total_fees_after_tax']);
+				
+				$data = array(
+					'car_status' => 0
+				);
+
+				$this->db->where('car_uid', $car_obj->car_uid);
+				$this->db->update('cars', $data);
+				
+				
 				$new_member = $this->session->userdata('current_booking')['new_member'];
 				if($new_member == 1){
-					
+					$membership_obj = $this->getMembershipByID(3);
+					$invoice_start_date = date("Y-m-d", time());
+					$invoice_end_date = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 365 day"));
 					$invoice2['related_uid'] = 3;
 					$invoice2['member_uid'] = $this->session->userdata('member_uid');
-					$invoice2['invoice_start_date'] = date("Y-m-d", time());
-					$invoice2['invoice_end_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 365 day"));
+					$invoice2['invoice_start_date'] = $invoice_start_date;
+					$invoice2['invoice_end_date'] = $invoice_end_date;
 					$invoice2['invoice_total_fees'] = RED_MEMBERSHIP_YEARLY_FEES;
 					$invoice2['invoice_tax_total'] = ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 );
 					$invoice2['invoice_total_fees_after_tax'] = RED_MEMBERSHIP_YEARLY_FEES + ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 );
@@ -296,7 +307,7 @@ class Global_model extends CI_Model {
 					$this->db->insert('invoices', $invoice2); 
 					if($this->db->affected_rows() > 0){
 						$this->messages->add("لقد تم حجز السيارة بنجاح.", "success");
-						
+						$this->sendMembershipConfirmMail($membership_obj->mc_name, $invoice_start_date, $invoice_end_date, RED_MEMBERSHIP_YEARLY_FEES, ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 ), RED_MEMBERSHIP_YEARLY_FEES + ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 ));
 						// update user mc_uid
 						$data = array(
 							'mc_uid' => 3,
@@ -344,7 +355,7 @@ class Global_model extends CI_Model {
 		$mail_body = str_replace("BOOK_TAX", $book_tax, $mail_body);
 		$mail_body = str_replace("BOOK_TOTAL", $book_total, $mail_body);
 		
-		$url = 'http://vertex.com.co/send_api/v1/send';
+		$url = 'http://18.220.20.34/mail_api/v1/send';
 		$data = array('to' => $this->session->userdata('member_email'), 'subject' => 'تأكيد الحجز', 'body' => $mail_body);
 
 		// use key 'http' even if you send the request to https://...
@@ -357,16 +368,33 @@ class Global_model extends CI_Model {
 		);
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);	
+		return $result;
 		
-		/*
-		$this->load->library('email');
-		$this->email->from('wecare@efadcar.com', 'Efad Customer Support');
-		$this->email->to($this->session->userdata('member_email'));
-		$this->email->bcc('booking@efadcar.com,account@efadcar.com,back_up@efadcar.com');
-		$this->email->subject('تأكيد الحجز');
-		$this->email->message($mail_body);
-		$response = $this->email->send();
-		*/
+	}
+	
+	function sendMembershipConfirmMail($mc_name, $membership_start, $membership_end, $membership_price, $membership_tax, $membership_total){
+		$mail_body = file_get_contents(MEMBERSHIP_CONFIRM_MAIL);
+		$mail_body = str_replace("MEMBERSHIP_NAME", $mc_name, $mail_body);
+		$mail_body = str_replace("MEMBERSHIP_START_DATE", $membership_start, $mail_body);
+		$mail_body = str_replace("MEMBERSHIP_END_DATE", $membership_end, $mail_body);
+		$mail_body = str_replace("MEMBERSHIP_PRICE", $membership_price, $mail_body);
+		$mail_body = str_replace("MEMBERSHIP_TAX", $membership_tax, $mail_body);
+		$mail_body = str_replace("MEMBERSHIP_TOTAL", $membership_total, $mail_body);
+		
+		$url = 'http://18.220.20.34/mail_api/v1/send';
+		$data = array('to' => $this->session->userdata('member_email'), 'subject' => 'تأكيد الاشتراك في العضوية', 'body' => $mail_body);
+
+		// use key 'http' even if you send the request to https://...
+		$options = array(
+			'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'POST',
+				'content' => http_build_query($data)
+			)
+		);
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);	
+		return $result;
 	}
 	
 	function search(){	
@@ -554,6 +582,8 @@ class Global_model extends CI_Model {
 				$membership_duration = 12;
 				break;
 		}
+		$membership_obj = $this->getMembershipByID($data['mc_uid']);
+		
 		$invoice2['related_uid'] = $data['mc_uid'];
 		$invoice2['member_uid'] = $member_uid;
 		$invoice2['invoice_start_date'] = date("Y-m-d", time());
@@ -571,6 +601,7 @@ class Global_model extends CI_Model {
 		}
 		$this->db->insert('invoices', $invoice2); 
 		if($this->db->affected_rows() > 0){
+			$this->sendMembershipConfirmMail($membership_obj->mc_name, date("Y-m-d", time()), $data['member_renewal_date'], $total, (($total / 100) * 5 ), $total + (($total / 100) * 5 ));
 			$this->messages->add("لقد تم الأشتراك بالعضوية بنجاح.", "success");
 			$this->db->where('member_uid', $member_uid);
 			$this->db->update('members', $data);
