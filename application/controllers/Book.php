@@ -221,11 +221,11 @@ class Book extends CI_Controller {
 						date_start.setDate(date_start.getDate()+".(BOOKED_DELIVERY_AFTER+$this->global_model->countWeekends(date('m'),date('Y'))).");
 						var date_end = new Date();
 						date_end.setDate(date_end.getDate()+".(BOOKED_DELIVERY_AFTER+$this->global_model->countWeekends(date('m'),date('Y'))+6).");
-						
+						console.log(date_end);
 						$('#date-end').bootstrapMaterialDatePicker
 						({
 							weekStart: 6,
-							format: 'DD-MM-YYYY',
+							format: 'DD-MMMM-YYYY',
 							disabledDays: [5],
 							minDate : date_end,
 							time: false,
@@ -238,7 +238,7 @@ class Book extends CI_Controller {
 						$('#date-start').bootstrapMaterialDatePicker
 						({
 							weekStart: 6, 
-							format: 'DD-MM-YYYY',
+							format: 'DD-MMMM-YYYY',
 							disabledDays: [5,6],
 							minDate : date_start,
 							time: false,
@@ -273,6 +273,7 @@ class Book extends CI_Controller {
 							var newDate = new Date(datee);
 							newDate.setDate(newDate.getDate() + 6);
 							$('#date-end').bootstrapMaterialDatePicker('setMinDate', newDate);
+							console.log(newDate);
 							clearTimeout(timeoutId);
 							timeoutId = setTimeout(function() {
 								saveToDB();
