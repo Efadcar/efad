@@ -286,6 +286,8 @@ class Global_model extends CI_Model {
 					$invoice2['invoice_tax_total'] = ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 );
 					$invoice2['invoice_total_fees_after_tax'] = RED_MEMBERSHIP_YEARLY_FEES + ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 );
 					$invoice2['invoice_payment_method'] = $payment_method;
+					$invoice2['is_membership'] = 1;
+					$invoice2['membership_duration'] = 12;
 					if($payment_method == "visa"){
 						$invoice2['invoice_status'] = 1;
 					}else{
