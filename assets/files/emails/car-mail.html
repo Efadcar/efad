@@ -135,8 +135,20 @@ img[class=RespoImage_AvatarW],img[class=RespoImage_Avatar]					 { width: 60px!im
   img[class=RespoImage_HalfFramedW],img[class=RespoImage_HalfFramed]	 { width: 240px!important; height: 173px!important; }
   img[class=RespoImage_TwoThirdsW],img[class=RespoImage_TwoThirds]		 { width: 280px!important; height: 174px!important; }
   img[class=RespoImage_AvatarW],img[class=RespoImage_Avatar]					 { width: 40px!important; height: 40px!important; }
+	
+	.priceWebView{
+		display: none;
+	}
+
+	.priceMobView{
+		display: block !important;
+	}
 }
-        				 
+
+.priceMobView{
+	display: none;
+}
+
 </style>
 </head>
 
@@ -179,13 +191,13 @@ img[class=RespoImage_AvatarW],img[class=RespoImage_Avatar]					 { width: 60px!im
 																	<td class="RespoHideMedium" height="5" ></td>
 																</tr><!-- // Horizontal Spacer \\ -->
 
-																<tr>
+																<tr class="priceWebView">
 																	<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: normal; font-style: normal; color: #333333; line-height: 35px; text-align: right;">رقم الحجز</td>
 																	<td ></td>
 																	<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: normal; font-style: normal; color: #333333; line-height: 35px; text-align: center;">تاريخ الحجز</td>
 																</tr>
 
-																<tr>
+																<tr class="priceWebView">
 																	<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; color: #9ca1a3; line-height: 20px; text-align: center;">BOOK_NUMBER</td>
 																	<td></td>
 																	<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; color: #9ca1a3; line-height: 20px; text-align: center;">DATE</td>
@@ -198,7 +210,7 @@ img[class=RespoImage_AvatarW],img[class=RespoImage_Avatar]					 { width: 60px!im
 														</td>
 
 														<td>
-															<a href="#" style="border: none;"><img alt="" border="0" height="58" src="https://www.efadcar.com/mail/last-logo.png" style="height: 58px; display: block;float: right;"></a>
+															<a href="https://www.efadcar.com" style="border: none;"><img alt="" border="0" height="58" src="https://www.efadcar.com/mail/last-logo.png" style="height: 58px; display: block;float: right;"></a>
 														</td>
 
 														<td width="20">&nbsp;</td><!-- // Vertical Spacer \\ -->
@@ -239,6 +251,7 @@ img[class=RespoImage_AvatarW],img[class=RespoImage_Avatar]					 { width: 60px!im
 
 														<td style="padding-left:15px; padding-right:20px; font-family: cairo, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: normal; font-style: normal; color: #333333; line-height: 35px; text-align: right;" align="right"> ! شكراً USER_NAME لثقتك بنا </td>
 													</tr>
+													
 												</tbody></table>
 											</td>
 										</tr>
@@ -255,7 +268,9 @@ img[class=RespoImage_AvatarW],img[class=RespoImage_Avatar]					 { width: 60px!im
                                     
 									<!-- Product Item -->
 									<table align="center" cellpadding="0" cellspacing="0" class="BoxWrap" style="background-color: #FFFFFF" width="600">
-										<tbody><tr>
+										<tbody>
+
+											<tr>
 											<td class="RespoHideSmall" width="20">&nbsp;</td><!-- // Vertical Spacer \\ -->
 
 											<td class="RespoHideSmall RespoImage_ThumbW">
@@ -266,7 +281,19 @@ img[class=RespoImage_AvatarW],img[class=RespoImage_Avatar]					 { width: 60px!im
 
 											<td dir="rtl">
 												<table cellpadding="0" cellspacing="0">
-													<tbody><tr>
+													<tbody>
+														<tr class="priceMobView">
+															<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: normal; font-style: normal; color: #333333; line-height: 35px; text-align: right;">رقم الحجز</td>
+															<td ></td>
+															<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: normal; font-style: normal; color: #333333; line-height: 35px; text-align: center;    padding-right: 66px;">تاريخ الحجز</td>
+														</tr>
+
+														<tr class="priceMobView" style="padding-bottom: 20px;">
+															<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; color: #9ca1a3; line-height: 20px; text-align: center;">BOOK_NUMBER</td>
+															<td></td>
+															<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; color: #9ca1a3; line-height: 20px; text-align: center;padding-right: 66px;">DATE</td>
+														</tr>
+														<tr>
 															<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: normal; font-style: normal; color: #333333; line-height: 30px; text-align: right;">
 												نوع السيارة : CAR_BRAND_MODEL_YEAR
 											</td>
@@ -277,7 +304,10 @@ img[class=RespoImage_AvatarW],img[class=RespoImage_Avatar]					 { width: 60px!im
 													<tr>
 														<td height="15"></td>
 													</tr><!-- // Horizontal Spacer \\ -->
-
+													<tr><img style="width: 100%;" src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&h=650&w=940%20940w,%20https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260%201260w,%20https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940%201880w,%20https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260%202520w"></tr>
+													<tr>
+														<td height="15"></td>
+													</tr><!-- // Horizontal Spacer \\ -->
 													<tr>
 														<td >
 
@@ -590,7 +620,92 @@ VAT Req. No. 310306397100003
 									</tbody></table><!-- Caption -->
 									<!-- Table's Row -->
 
-                                    <table align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
+									<table class="priceMobView" align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
+										<tbody><tr>
+
+											<td width="120">&nbsp;</td><!-- // Vertical Spacer \\ -->
+
+										<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 100; font-style: normal; color: #333333; line-height: 30px; text-align: right;" align="right">سعر الاشتراك: BOOK_PRICE ر.س</td>
+
+										
+
+										</tr>
+									</tbody></table><!-- Table's Row -->
+									<!-- Space -->
+
+                                    
+                                    <table align="center" cellpadding="0" cellspacing="0" width="100%">
+										<tbody><tr>
+											<td height="15" width="100%"></td>
+										</tr><!-- // Horizontal Spacer \\ -->
+
+										<tr>
+											<td bgcolor="#cccccc" height="1" style="background-color: #cccccc" width="100%"></td>
+										</tr><!-- // Horizontal Border \\ -->
+
+										<tr>
+											<td height="15" width="100%"></td>
+										</tr><!-- // Horizontal Spacer \\ -->
+									</tbody></table><!-- Table's Row -->
+                                    
+									<table class="priceMobView" align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
+										<tbody><tr>
+											<td width="20">&nbsp;</td><!-- // Vertical Spacer \\ -->
+
+                                            
+										<td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 100; font-style: normal; color: #333333; line-height: 30px; text-align: right;" align="right">ضريبة القيمة المضافة 5%: BOOK_TAX ر.س</td>
+
+										
+
+											<td width="20">&nbsp;</td><!-- // Vertical Spacer \\ -->
+										</tr>
+									</tbody></table><!-- Table's Row -->
+									<!-- Space -->
+
+									<table align="center" cellpadding="0" cellspacing="0" width="100%">
+										<tbody><tr>
+											<td height="15" width="100%"></td>
+										</tr><!-- // Horizontal Spacer \\ -->
+
+										<tr>
+											<td bgcolor="#cccccc" height="1" style="background-color: #cccccc" width="100%"></td>
+										</tr><!-- // Horizontal Border \\ -->
+
+										<tr>
+											<td height="15" width="100%"></td>
+										</tr><!-- // Horizontal Spacer \\ -->
+									</tbody></table><!-- Table's Row -->
+										<!-- Table's Row -->
+
+									<table class="priceMobView" align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
+										<tbody><tr>
+											<td width="120">&nbsp;</td><!-- // Vertical Spacer \\ -->
+
+
+                                            <td style="font-family: cairo, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 100; font-style: normal; color: #333333; line-height: 30px; text-align: right;" align="right">المبلغ الإجمالي: BOOK_TOTAL ر.س.</td>
+
+										
+
+											<td width="20">&nbsp;</td><!-- // Vertical Spacer \\ -->
+										</tr>
+									</tbody></table><!-- Table's Row -->
+
+									<table align="center" cellpadding="0" cellspacing="0" width="100%">
+										<tbody><tr>
+											<td height="15" width="100%"></td>
+										</tr><!-- // Horizontal Spacer \\ -->
+
+										<tr>
+											<td bgcolor="#cccccc" height="1" style="background-color: #cccccc" width="100%"></td>
+										</tr><!-- // Horizontal Border \\ -->
+
+										<tr>
+											<td height="15" width="100%"></td>
+										</tr><!-- // Horizontal Spacer \\ -->
+									</tbody></table><!-- Table's Row -->
+
+
+                                    <table class="priceWebView" align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
 										<tbody><tr>
 											<td width="20">&nbsp;</td><!-- // Vertical Spacer \\ -->
 
@@ -607,7 +722,7 @@ VAT Req. No. 310306397100003
 									</tbody></table><!-- Table's Row -->
 									<!-- Space -->
 
-									<table align="center" cellpadding="0" cellspacing="0" width="100%">
+									<table class="priceWebView" align="center" cellpadding="0" cellspacing="0" width="100%">
 										<tbody><tr>
 											<td height="15" width="100%"></td>
 										</tr><!-- // Horizontal Spacer \\ -->
@@ -623,7 +738,7 @@ VAT Req. No. 310306397100003
                                     
                                     
                                     
-									<table align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
+									<table class="priceWebView" align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
 										<tbody><tr>
 											<td width="20">&nbsp;</td><!-- // Vertical Spacer \\ -->
 
@@ -640,7 +755,7 @@ VAT Req. No. 310306397100003
 									</tbody></table><!-- Table's Row -->
 									<!-- Space -->
 
-									<table align="center" cellpadding="0" cellspacing="0" width="100%">
+									<table class="priceWebView" align="center" cellpadding="0" cellspacing="0" width="100%">
 										<tbody><tr>
 											<td height="15" width="100%"></td>
 										</tr><!-- // Horizontal Spacer \\ -->
@@ -656,7 +771,7 @@ VAT Req. No. 310306397100003
 
 										<!-- Table's Row -->
 
-									<table align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
+									<table class="priceWebView" align="center" cellpadding="0" cellspacing="0" style="background-color: #FFFFFF" width="100%">
 										<tbody><tr>
 											<td width="20">&nbsp;</td><!-- // Vertical Spacer \\ -->
 
@@ -673,7 +788,7 @@ VAT Req. No. 310306397100003
 									</tbody></table><!-- Table's Row -->
 									<!-- Space -->
 
-									<table align="center" cellpadding="0" cellspacing="0" width="100%">
+									<table class="priceWebView" align="center" cellpadding="0" cellspacing="0" width="100%">
 										<tbody><tr>
 											<td height="15" width="100%"></td>
 										</tr><!-- // Horizontal Spacer \\ -->
