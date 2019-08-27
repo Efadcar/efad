@@ -281,6 +281,7 @@ class Book extends CI_Controller {
 
 
 						function date_lang_converter(datee){
+							// alert(datee);
 							datee = datee.replace('الأحد', 'Sunday');
 							datee = datee.replace('الإثنين', 'Monday');
 							datee = datee.replace('الثلاثاء', 'Tuesday');
@@ -301,7 +302,6 @@ class Book extends CI_Controller {
 							datee = datee.replace('أكتوبر', 'October');
 							datee = datee.replace('نونبر', 'November');
 							datee = datee.replace('دجنبر', 'December');
-							// alert(datee);
 							return datee;
 						}
 
