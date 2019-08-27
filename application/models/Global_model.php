@@ -380,6 +380,8 @@ class Global_model extends CI_Model {
 		$mail_body = str_replace("MEMBERSHIP_PRICE", $membership_price, $mail_body);
 		$mail_body = str_replace("MEMBERSHIP_TAX", $membership_tax, $mail_body);
 		$mail_body = str_replace("MEMBERSHIP_TOTAL", $membership_total, $mail_body);
+		$mail_body = str_replace("DATE", $membership_start, $mail_body);
+		$mail_body = str_replace("USER_NAME", $this->session->userdata('member_full_name'), $mail_body);
 		
 		$url = 'http://18.220.20.34/mail_api/v1/send';
 		$data = array('to' => $this->session->userdata('member_email'), 'subject' => 'تأكيد الاشتراك في العضوية', 'body' => $mail_body);

@@ -85,13 +85,13 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<?= site_url('members/profile') ?>#tab3">
 						العضوية
-						<span class="badge badge-secondary float-right custom-badge mt-1" style="
+						<!-- <span class="badge badge-secondary float-right custom-badge mt-1" style="
 						    width: 30px;
 						    height: 18px;
 						    color: #d81720;
     						background-color: #d81720;
     						border-radius: 0.48rem;
-						">aaa</span>
+						">aaa</span> -->
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="<?= site_url('members/logout') ?>">تسجيل خروج</a>
