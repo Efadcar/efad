@@ -225,7 +225,7 @@ class Book extends CI_Controller {
 						$('#date-end').bootstrapMaterialDatePicker
 						({
 							weekStart: 6,
-							format: 'DD-MMMM-YYYY',
+							format: 'DD-MM-YYYY',
 							disabledDays: [5],
 							minDate : date_end,
 							time: false,
@@ -238,7 +238,7 @@ class Book extends CI_Controller {
 						$('#date-start').bootstrapMaterialDatePicker
 						({
 							weekStart: 6, 
-							format: 'DD-MMMM-YYYY',
+							format: 'DD-MM-YYYY',
 							disabledDays: [5,6],
 							minDate : date_start,
 							time: false,
@@ -259,7 +259,29 @@ class Book extends CI_Controller {
 
 							$('#date-end').prop( 'disabled', false );
 							var datee = $('#date-start').bootstrapMaterialDatePicker().val();
+							var end_datee = $('#date-end').bootstrapMaterialDatePicker().val();
 
+							// datee = new Date(date_lang_converter(datee));
+							// const months = ['JAN', 'FEB', 'MAR','APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+							// datee = datee.getDate() + '-' + months[(datee.getMonth())] + '-' +datee.getFullYear();
+
+							datee = date_lang_converter(datee);
+							end_datee = date_lang_converter(end_datee);
+
+							$('#date-start').bootstrapMaterialDatePicker().val(datee);
+							$('#date-end').bootstrapMaterialDatePicker().val(end_datee);
+							var newDate = new Date(datee);
+							newDate.setDate(newDate.getDate() + 6);
+							$('#date-end').bootstrapMaterialDatePicker('setMinDate', newDate);
+							clearTimeout(timeoutId);
+							timeoutId = setTimeout(function() {
+								saveToDB();
+							}, 500);
+						});
+
+
+						function date_lang_converter(datee){
+							// alert(datee);
 							datee = datee.replace('الأحد', 'Sunday');
 							datee = datee.replace('الإثنين', 'Monday');
 							datee = datee.replace('الثلاثاء', 'Tuesday');
@@ -280,16 +302,8 @@ class Book extends CI_Controller {
 							datee = datee.replace('أكتوبر', 'October');
 							datee = datee.replace('نونبر', 'November');
 							datee = datee.replace('دجنبر', 'December');
-
-							var newDate = new Date(datee);
-							newDate.setDate(newDate.getDate() + 6);
-							// console.log(datee);
-							$('#date-end').bootstrapMaterialDatePicker('setMinDate', newDate);
-							clearTimeout(timeoutId);
-							timeoutId = setTimeout(function() {
-								saveToDB();
-							}, 500);
-						});
+							return datee;
+						}
 
 						function saveToDB()
 						{
