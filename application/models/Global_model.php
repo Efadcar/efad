@@ -286,6 +286,7 @@ class Global_model extends CI_Model {
 				
 				$new_member = $this->session->userdata('current_booking')['new_member'];
 				if($new_member == 1){
+										
 					$membership_obj = $this->getMembershipByID(3);
 					$invoice_start_date = date("Y-m-d", time());
 					$invoice_end_date = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 365 day"));
@@ -307,7 +308,7 @@ class Global_model extends CI_Model {
 					$this->db->insert('invoices', $invoice2); 
 					if($this->db->affected_rows() > 0){
 						$this->messages->add("لقد تم حجز السيارة بنجاح.", "success");
-						$this->sendMembershipConfirmMail($membership_obj->mc_name, $invoice_start_date, $invoice_end_date, RED_MEMBERSHIP_YEARLY_FEES, ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 ), RED_MEMBERSHIP_YEARLY_FEES + ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 ));
+						$this->sendMembershipConfirmMail($membership_obj->mc_name, $invoice_start_date, $invoice_end_date, RED_MEMBERSHIP_YEARLY_FEES, ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 ), RED_MEMBERSHIP_YEARLY_FEES + ((RED_MEMBERSHIP_YEARLY_FEES / 100) * 5 ), "12 شهر");
 						// update user mc_uid
 						$data = array(
 							'mc_uid' => 3,
@@ -372,7 +373,7 @@ class Global_model extends CI_Model {
 		
 	}
 	
-	function sendMembershipConfirmMail($mc_name, $membership_start, $membership_end, $membership_price, $membership_tax, $membership_total){
+	function sendMembershipConfirmMail($mc_name, $membership_start, $membership_end, $membership_price, $membership_tax, $membership_total, $period_value){
 		$mail_body = file_get_contents(MEMBERSHIP_CONFIRM_MAIL);
 		$mail_body = str_replace("MEMBERSHIP_NAME", $mc_name, $mail_body);
 		$mail_body = str_replace("MEMBERSHIP_START_DATE", $membership_start, $mail_body);
@@ -382,6 +383,7 @@ class Global_model extends CI_Model {
 		$mail_body = str_replace("MEMBERSHIP_TOTAL", $membership_total, $mail_body);
 		$mail_body = str_replace("DATE", $membership_start, $mail_body);
 		$mail_body = str_replace("USER_NAME", $this->session->userdata('member_full_name'), $mail_body);
+		$mail_body = str_replace("MEMBERSHIP_PERIOD", $period_value, $mail_body);
 		
 		$url = 'http://18.220.20.34/mail_api/v1/send';
 		$data = array('to' => $this->session->userdata('member_email'), 'subject' => 'تأكيد الاشتراك في العضوية', 'body' => $mail_body);
@@ -574,14 +576,17 @@ class Global_model extends CI_Model {
 			case "mc_6months_price";
 				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 180 day"));
 				$membership_duration = 6;
+				$period_value = "6 أشهر";
 				break;
 			case "mc_9months_price";
 				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 270 day"));
 				$membership_duration = 9;
+				$period_value = "9 أشهر";
 				break;
 			case "mc_12months_price";
 				$data['member_renewal_date'] = date('Y-m-d',strtotime(date("Y-m-d", time()) . " + 360 day"));
 				$membership_duration = 12;
+				$period_value = "12 شهر";
 				break;
 		}
 		$membership_obj = $this->getMembershipByID($data['mc_uid']);
@@ -596,6 +601,7 @@ class Global_model extends CI_Model {
 		$invoice2['invoice_payment_method'] = $payment_method;
 		$invoice2['is_membership'] = 1;
 		$invoice2['membership_duration'] = $membership_duration;
+
 		if($payment_method == "visa"){
 			$invoice2['invoice_status'] = 1;
 		}else{
@@ -603,7 +609,7 @@ class Global_model extends CI_Model {
 		}
 		$this->db->insert('invoices', $invoice2); 
 		if($this->db->affected_rows() > 0){
-			$this->sendMembershipConfirmMail($membership_obj->mc_name, date("Y-m-d", time()), $data['member_renewal_date'], $total, (($total / 100) * 5 ), $total + (($total / 100) * 5 ));
+			$this->sendMembershipConfirmMail($membership_obj->mc_name, date("Y-m-d", time()), $data['member_renewal_date'], $total, (($total / 100) * 5 ), $total + (($total / 100) * 5 ), $period_value);
 			$this->messages->add("لقد تم الأشتراك بالعضوية بنجاح.", "success");
 			$this->db->where('member_uid', $member_uid);
 			$this->db->update('members', $data);

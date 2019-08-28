@@ -70,11 +70,11 @@ class Book extends CI_Controller {
 				$_SESSION['current_booking']['new_member'] = 1;
 			}else{
 				$result = $this->global_model->calculate($current_booking['book_start_date'], $current_booking['book_end_date'], $current_booking['car_uid'], $this->session->userdata('mc_uid'));
-				$_SESSION['current_booking']['new_member'] = 0;
 			}		
 			$_SESSION['current_booking']['city_uid'] = $city_uid;
 			$data['car'] = $this->global_model->getCarByID($current_booking['car_uid']);
 			//print_r($data['car']);exit;
+			$current_booking = $this->session->userdata('current_booking');
 			$data['current_booking'] = $current_booking;
 			$data['pageTitle'] = "دفع و تأكيد الحجز";
 			$data['main_content'] = 'book/pay';
@@ -130,13 +130,11 @@ class Book extends CI_Controller {
                     "'" . base_url() . "assets/rtl/js/bootstrap-toastr/toastr.min.js'",
                     "'" . base_url() . "assets/rtl/js/moment-with-locales.js'",
                     "'" . base_url() . "assets/rtl/js/bootstrap-material-datetimepicker.js'",
+                    "'" . base_url() . "assets/global/plugins/waitme/waitMe.js'",
                     "'" . base_url() . "assets/rtl/js/jquery.card.js'",
                     "'" . base_url() . "assets/rtl/js/efad-scripts.js'",
-                    "'" . base_url() . "assets/rtl/js/faq.js'",
   					"'" . base_url() . "assets/global/plugins/printPlugin/js/printThis.js'",
                 );
-				
-				
 				
 
                 break;
@@ -148,7 +146,7 @@ class Book extends CI_Controller {
     function _cssFiles($view) {
         switch ($view) {
             case 'book': 
-                $css = '';
+                $css = '<link type="text/css" rel="stylesheet" href="' . base_url() . 'assets/global/plugins/waitme/waitMe.css">';
                 break;
 
         }
@@ -262,10 +260,6 @@ class Book extends CI_Controller {
 							var datee = $('#date-start').bootstrapMaterialDatePicker().val();
 							var end_datee = $('#date-end').bootstrapMaterialDatePicker().val();
 
-							// datee = new Date(date_lang_converter(datee));
-							// const months = ['JAN', 'FEB', 'MAR','APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-							// datee = datee.getDate() + '-' + months[(datee.getMonth())] + '-' +datee.getFullYear();
-
 							datee = date_lang_converter(datee);
 							end_datee = date_lang_converter(end_datee);
 
@@ -280,7 +274,6 @@ class Book extends CI_Controller {
 								saveToDB();
 							}, 500);
 						});
-
 
 						function date_lang_converter(datee){
 							// alert(datee);
@@ -341,6 +334,44 @@ class Book extends CI_Controller {
 				<script type='text/javascript'>
 
 					$(document).ready(function () {
+					
+					
+						function run_waitMe(el, num, effect){
+							text = 'الرجاء الانتظار...';
+							fontSize = '';
+							switch (num) {
+								case 1:
+								maxSize = '';
+								textPos = 'vertical';
+								break;
+								case 2:
+								text = '';
+								maxSize = 30;
+								textPos = 'vertical';
+								break;
+								case 3:
+								maxSize = 30;
+								textPos = 'horizontal';
+								fontSize = '18px';
+								break;
+							}
+							el.waitMe({
+								effect: effect,
+								text: text,
+								bg: 'rgba(255,255,255,0.7)',
+								color: '#000',
+								maxSize: maxSize,
+								waitTime: -1,
+								source: 'img.svg',
+								textPos: textPos,
+								fontSize: fontSize,
+								onClose: function(el) {}
+							});
+						}
+
+					
+					
+					
 						$('#confirm-book').submit(function(e){
 							e.preventDefault();
 						});
@@ -349,7 +380,7 @@ class Book extends CI_Controller {
 						$('.cash-fees-tr').hide();
 						
 						$('#paynow').click( function() {
-							//console.log('hi');
+							run_waitMe($('body'), 1, 'ios');
 							$('#paynow').prop('disabled', true);
 							confirmBooking();
 						});

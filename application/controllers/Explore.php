@@ -61,6 +61,7 @@ class Explore extends CI_Controller {
                 $java = array(
                     "'" . base_url() . "assets/rtl/js/bootstrap-toastr/toastr.min.js'",
                     "'" . base_url() . "assets/rtl/js/filter/ion.rangeSlider.min.js'",
+                    "'" . base_url() . "assets/global/plugins/waitme/waitMe.js'",
                     "'https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.2.1/nouislider.min.js'",
                     "'" . base_url() . "assets/rtl/js/efad-scripts.js'",
                 );
@@ -85,7 +86,6 @@ class Explore extends CI_Controller {
         switch ($view) {
             case 'home':
                 $java = "
-					<script src='" . base_url() . "assets/global/plugins/waitme/waitMe.js'></script>
 					<script type='text/javascript'>
 
 						$(document).ready(function () {
@@ -128,6 +128,7 @@ class Explore extends CI_Controller {
 									onClose: function(el) {}
 								});
 							}
+							
 							function run_waitMe_body(effect){
 								$('body').addClass('waitMe_body');
 								var img = '';
