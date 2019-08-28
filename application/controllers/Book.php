@@ -295,14 +295,14 @@ class Book extends CI_Controller {
 							datee = datee.replace('فبراير', 'February');
 							datee = datee.replace('مارس', 'March');
 							datee = datee.replace('أبريل', 'April');
-							datee = datee.replace('ماي', 'May');
+							datee = datee.replace('مايو', 'May');
 							datee = datee.replace('يونيو', 'June');
-							datee = datee.replace('يوليوز', 'July');
-							datee = datee.replace('غشت', 'August');
-							datee = datee.replace('شتنبر', 'September');
+							datee = datee.replace('يوليه', 'July');
+							datee = datee.replace('اغسطس', 'August');
+							datee = datee.replace('سبتمبر', 'September');
 							datee = datee.replace('أكتوبر', 'October');
-							datee = datee.replace('نونبر', 'November');
-							datee = datee.replace('دجنبر', 'December');
+							datee = datee.replace('نوفمبر', 'November');
+							datee = datee.replace('ديسمبر', 'December');
 							return datee;
 						}
 
