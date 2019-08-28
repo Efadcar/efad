@@ -145,7 +145,7 @@
 						<input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
 						<label class="custom-control-label" for="cash">
 							<ul class="payment-img custom-pay-img">
-								<li> نقدي (كاش) <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ريال إضافية</span> </li>
+								<li> نقدي (كاش) <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ر.س. إضافية</span> </li>
 							</ul>
 						</label>
 					</div>

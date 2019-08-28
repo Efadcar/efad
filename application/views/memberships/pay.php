@@ -27,7 +27,8 @@
 			<!-- personal info -->
 			<div class="row pt-1">
 				<div class="col-sm-6">
-					<h3>أختار طريقة الدفع</h3>
+					<h3>أختر طريقة الدفع</h3>
+					<p style="font-size: 12px; color:#01355d;margin-top: -20px;">*جميع العضويات والاشتراكات لا تعتمد إلا بعد دفع المبالغ</p>
 				</div>
 				<div class="col-sm-6">
 					<h3>تفاصيل الفاتورة</h3>
@@ -35,20 +36,29 @@
 					<div class="col-sm-6">
 						
 						<div class="custom-control custom-radio col-sm-12 ml-4">
-							<input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="visa" checked>
-							<label class="custom-control-label" for="customRadio1">
-								<ul class="payment-img">
-									<li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/mada.png" alt="مدى"/ ></span> </li>
-									<li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/visa.png" alt="فيزا" /></span> </li>
-									<li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/master.png" alt="ماستر كارد" /></span> </li>
+							<input type="radio" id="transfer" name="customRadio" class="custom-control-input" value="transfer" checked>
+							<label class="custom-control-label" for="transfer">
+								<ul class="payment-img custom-pay-img">
+									<li> تحويل بنكي</li>
 								</ul>
 							</label>
+						</div>
+						<div class="row" id="transferInfo">
+							<div class="col-sm-12 ml-5">
+							<h5>حسابات شركة إفاد البنكية</h5>
+							<p>
+								رقم حساب بنك الإنماء :<br>
+								68202326900000<br><br>
+								رقم حساب البنك الأهلي التجاري :<br>
+								26900000231101
+							</p>
+							</div>
 						</div>
 						<div class="custom-control custom-radio col-sm-12 ml-4">
 							<input type="radio" id="cash" name="customRadio" class="custom-control-input" value="cash">
 							<label class="custom-control-label" for="cash">
-								<ul class="payment-img">
-									<li> <span> <img src="<?= base_url()."assets/".$direction; ?>/images/payment/cash.png"  alt="نقدى" ></span><span class="text-muted">(<?= CASH_PAYMENT_FEES ?> ريال إضافية)</span> </li>
+								<ul class="payment-img custom-pay-img">
+									<li> نقدي (كاش) <span style="color: red">* <?= CASH_PAYMENT_FEES ?> ر.س. إضافية</span> </li>
 								</ul>
 							</label>
 						</div>	
@@ -93,29 +103,29 @@
 									<table class="table mb-0">
 										<tbody>
 											<tr>
-												<td class="text-left">مصاريف أشتراك العضوية <?= $row->mc_name ?>
+												<td class="text-left">سعر أشتراك العضوية <?= $row->mc_name ?> لمدة <?= $period_value ?>
 												</td>
-												<td class="text-right">+
+												<td class="text-right">
 													<span>
 														<?= $row->$period ?>
-													</span> ريال</td>
+													</span> ر.س.</td>
 											</tr>
 											<tr>
-												<td class="text-left">ضريبة القيمه المضافة 5% للعضوية
+												<td class="text-left">ضريبة القيمه المضافة 5%
 												</td>
-												<td class="text-right">+
+												<td class="text-right">
 													<span id="tax-total">
 														<?php echo ($row->$period / 100) * 5 ?>
-													</span> ريال</td>
+													</span> ر.س.</td>
 											</tr>
 											<tr class="cash-fees-tr">
 												<td class="text-left">
-													 مصاريف الدفع النقدي للعضوية
+													 رسوم الدفع النقدي للعضوية
 												</td>
-												<td class="text-right">+
+												<td class="text-right">
 													<span id="tax-total">
 														<?= CASH_PAYMENT_FEES ?>
-													</span> ريال</td>
+													</span> ر.س.</td>
 											</tr>
 										</tbody>
 
@@ -132,7 +142,7 @@
 													<h3><strong>الاجمالى: </strong></h3>
 												</td>
 												<td class="text-right">
-													<h4><strong class="total-price"><?= $total_without_cash ?> </strong> ريال سعودى</h4>
+													<h4><strong class="total-price"><?= $total_without_cash ?> </strong> ر.س. سعودى</h4>
 													<input type="hidden" name="period" value="<?= $period ?>" />
 													<input type="hidden" name="total" value="<?= $row->$period ?>" />
 													<input type="hidden" name="mc_uid" value="<?= $row->mc_uid ?>" />
@@ -142,8 +152,11 @@
 									</table>						
 								</div>
 							</div>
+							<div class="col-sm-12 text-center mt-4 ">
+								<p class="" style="color: #000">بالضغط على " تأكيد الأشتراك " أنت توافق على <a href="<?= site_url('terms_and_conditions') ?>" target="_blank" style="text-decoration: underline; color: #01355d">شروط الاستخدام </a> و <a href="<?= site_url('privcy_policy') ?>" target="_blank" style="text-decoration: underline; color: #01355d">سياسة الخصوصية </a></p>
+							</div>
 							<div class="col-sm-12 text-center ">
-								<button class="btn btn-default  mb-2" id="paynow">تأكيد الحجز</button>
+								<button class="btn btn-default  mb-2" id="paynow">تأكيد الأشتراك</button>
 							</div>
 						
 						

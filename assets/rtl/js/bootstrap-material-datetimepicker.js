@@ -1234,8 +1234,9 @@
               },
               setDate: function (date)
               {
-                 this.params.currentDate = date;
-                 this.initDates();
+				this.params.currentDate = date;
+				this.$element.val(moment(this.params.currentDate).locale(this.params.lang).format(this.params.format));
+				this.$element.trigger("change", this.params.currentDate);
               },
               setMinDate: function (date)
               {

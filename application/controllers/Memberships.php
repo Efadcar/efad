@@ -17,7 +17,7 @@ class Memberships extends CI_Controller {
     public function subscribe() {
 		// get site direction return "rtl" or "ltr"
 		$data['direction'] = $this->global_model->getSiteDirection();
-		
+		$data['pageTitle'] = "مميزات العضوية";
         $data['main_content'] = 'memberships/subscribe';
 		$data['memberships'] = $this->global_model->getAllMemberships();
         $data['javascripts'] = $this->_javascript('memberships');
@@ -32,7 +32,19 @@ class Memberships extends CI_Controller {
 				$data['direction'] = $this->global_model->getSiteDirection();
 				$data['row'] = $this->global_model->getMembershipByID($_POST['mc_uid']);
 				$data['period'] = $_POST['period'];
+				switch($data['period']){
+					case "mc_6months_price":
+						$data['period_value'] = "6 أشهر";
+						break;
+					case "mc_9months_price":
+						$data['period_value'] = "9 أشهر";
+						break;
+					case "mc_12months_price":
+						$data['period_value'] = "12 شهر";
+						break;
+				}
 				$data['main_content'] = 'memberships/pay';
+				$data['pageTitle'] = "دفع و تأكيد الأشتراك";
 				$data['javascripts'] = $this->_javascript('pay');
 				$data['pageCssFiles'] = $this->_cssFiles('memberships');
 				$data['javascriptCode'] = $this->_javascriptCode('pay', "");
@@ -111,7 +123,7 @@ class Memberships extends CI_Controller {
 							e.preventDefault();
 						});
 					
-						//$('#paymentCard').hide();
+						$('#paymentCard').hide();
 						$('.cash-fees-tr').hide();
 					
 						$('#paynow').click( function() {
@@ -153,6 +165,7 @@ class Memberships extends CI_Controller {
 						$('input[type=radio][name=\"customRadio\"]').change(function() {							
 							if (this.value == 'visa') {
 								$('#paymentCard').show();
+								$('#transferInfo').hide();
 								$('.cash-fees-tr').hide();
 								$('.total-price').html($('#total_without_cash').val());
 								$('#paynow').html('دفع');
@@ -160,11 +173,21 @@ class Memberships extends CI_Controller {
 							}
 							else if (this.value == 'cash') {
 								$('#paymentCard').hide();
+								$('#transferInfo').hide();
 								$('.cash-fees-tr').show();
 								$('.total-price').html($('#total_with_cash').val());
 								$('#paynow').html('تأكيد الأشتراك');
 							}
+							else if (this.value == 'transfer') {
+								$('#transferInfo').show();
+								$('#paymentCard').hide();
+								$('.cash-fees-tr').hide();
+								$('.total-price').html($('#total_without_cash').val());
+								$('#paynow').html('تأكيد الأشتراك');
+							}
 						});
+						
+
 
 					</script> 
 
