@@ -70,6 +70,7 @@ class Book extends CI_Controller {
 				$_SESSION['current_booking']['new_member'] = 1;
 			}else{
 				$result = $this->global_model->calculate($current_booking['book_start_date'], $current_booking['book_end_date'], $current_booking['car_uid'], $this->session->userdata('mc_uid'));
+				$_SESSION['current_booking']['new_member'] = 0;
 			}		
 			$_SESSION['current_booking']['city_uid'] = $city_uid;
 			$data['car'] = $this->global_model->getCarByID($current_booking['car_uid']);
