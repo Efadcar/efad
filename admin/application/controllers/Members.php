@@ -19,23 +19,32 @@ class Members extends CI_Controller {
 		}
 		
 		//start pagination
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('members/members_list');
-		$config['total_rows'] = $this->db->get('dx_users')->num_rows();
-		$config['per_page'] = 10;
-		$config['num_links'] = 10;
-		$config['uri_segment'] = 3;
-		$config['use_page_numbers'] = false;
-		$config['full_tag_open'] = '<div class="pagination pagination-centered"><ul>';
-		$config['full_tag_close'] = '</ul></div>';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="active"><a>';
-		$config['cur_tag_close'] = '</a></li>';
-		$config['next_link'] = '>';
-		$config['first_link'] = '<div class="btn">الأول</div>';
-		$config['last_link'] = '<div class="btn">الأخير</div>';
-		$this->pagination->initialize($config);
+        $this->load->library('pagination');
+        $config['base_url'] = site_url('members/members_list');
+        $config['total_rows'] = $this->db->get('members')->num_rows();
+        $config['per_page'] = $this->session->userdata('sitePerPagePagination');
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 3;
+        $config['use_page_numbers'] = false;
+        $config['full_tag_open'] = '<ul class="pagination">';
+        $config['full_tag_close'] = '</ul>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li><a style="color: red">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['next_link'] = '<i class="fa fa-angle-left"></i>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['prev_link'] = '<i class="fa fa-angle-right"></i>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['first_link'] = 'الأول';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['last_link'] = 'الأخير';
+        $this->pagination->initialize($config);
 		//end pagination
 		$data['rows'] = $this->members_model->getAll( $config['per_page'], $this->uri->segment(3));
 		if($data['rows'] == false){
