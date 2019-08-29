@@ -82,7 +82,7 @@
                 </div>
 
             </div>
-            
+			<div class="col-md-12 text-center"><?= $this->pagination->create_links(); ?></div>
         </div>
 
     </div>
