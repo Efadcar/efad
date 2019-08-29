@@ -20,7 +20,7 @@ class Members extends CI_Controller {
 		
 		//start pagination
         $this->load->library('pagination');
-        $config['base_url'] = site_url('inventory/inventory_list');
+        $config['base_url'] = site_url('members/members_list');
         $config['total_rows'] = $this->db->get('members')->num_rows();
         $config['per_page'] = $this->session->userdata('sitePerPagePagination');
         $config['num_links'] = 5;
