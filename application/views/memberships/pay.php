@@ -46,12 +46,18 @@
 						<div class="row" id="transferInfo">
 							<div class="col-sm-12 ml-5">
 							<h5>حسابات شركة إفاد البنكية</h5>
-							<p>
-								رقم حساب بنك الإنماء :<br>
-								68202326900000<br><br>
-								رقم حساب البنك الأهلي التجاري :<br>
-								26900000231101
-							</p>
+							<!--
+						<p>
+							رقم حساب بنك الإنماء :<br>
+							68202326900000<br><br>
+							رقم حساب البنك الأهلي التجاري :<br>
+							26900000231101
+						</p>
+						-->
+						<p>
+							رقم حساب  :<br>
+							XXXXXXXXXXXXXXXXXXX<br><br>
+						</p>
 							</div>
 						</div>
 						<div class="custom-control custom-radio col-sm-12 ml-4">
