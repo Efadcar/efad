@@ -460,6 +460,10 @@ class Global_model extends CI_Model {
 					if($row->car_in_stock == 0){
 						$row->car_status = 2;
 					}
+					$check_if_car_avalible = $this->checkIfCarAvalible($row->car_uid);
+					if($check_if_car_avalible){
+						$row->car_status = 1;
+					}
 					$row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
 					$row->cm_uid = $this->getCarModelNameByID($row->cm_uid);
 					$data['result'][] = $row;
@@ -529,7 +533,7 @@ class Global_model extends CI_Model {
 				SELECT * FROM (
 				SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 				  FROM cars
-				WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color`, `car_status`
+				WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color`
 				) AS car ORDER BY `car_status` DESC, ".$field." ".$order_by."
 				");
 				$num_rows = $n->num_rows();
@@ -538,7 +542,7 @@ class Global_model extends CI_Model {
 			SELECT * FROM (
 			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 			  FROM cars
-			WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color`, `car_status`  LIMIT 15 OFFSET ".$offset."
+			WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color`  LIMIT 15 OFFSET ".$offset."
 			) AS car ORDER BY `car_status` DESC, ".$field." ".$order_by."
 			";
 			$q = $this->db->query($query);
@@ -550,6 +554,10 @@ class Global_model extends CI_Model {
 					$row->image = base_url().ALBUMS_IMAGES."sm_".$this->getShowMainImageByID($row->album_uid);
 					if($row->car_in_stock == 0){
 						$row->car_status = 2;
+					}
+					$check_if_car_avalible = $this->checkIfCarAvalible($row->car_uid);
+					if($check_if_car_avalible){
+						$row->car_status = 1;
 					}
 					$row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
 					$row->cm_uid = $this->getCarModelNameByID($row->cm_uid);
@@ -567,6 +575,14 @@ class Global_model extends CI_Model {
 		}
 	}
 	
+	function checkIfCarAvalible($car_uid){
+		$q =  $this->db->get_where('cars', array('car_uid' => $car_uid, "car_status" => 1),1);
+		if($q->num_rows() > 0) {
+			return true; 
+		}else{
+			return false;	
+		}
+	}
 	function confirmMembership($payment_method){		
 		$member_uid = $this->session->userdata('member_uid');
 		$data['mc_uid'] = $this->input->post('mc_uid');
