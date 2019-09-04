@@ -435,7 +435,7 @@ class Global_model extends CI_Model {
 			if($offset_before == 0){
 				$n = $this->db->query("
 			SELECT * FROM (
-			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
+			SELECT car_uid 
 			  FROM cars
 			WHERE car_search_text LIKE '%".$search_text."%' GROUP BY `car_link`, `car_color`
 			) AS car ORDER BY ".$field." ".$order_by." 
@@ -444,7 +444,7 @@ class Global_model extends CI_Model {
 			}
 			$query = "
 			SELECT * FROM (
-			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
+			SELECT car_uid,car_link, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 			  FROM cars
 			WHERE car_search_text LIKE '%".$search_text."%' GROUP BY `car_link`, `car_color` LIMIT 15 OFFSET ".$offset."
 			) AS car ORDER BY ".$field." ".$order_by." 
@@ -460,13 +460,12 @@ class Global_model extends CI_Model {
 					if($row->car_in_stock == 0){
 						$row->car_status = 2;
 					}
-					$check_if_car_avalible = $this->checkIfCarAvalible($row->car_uid);
+					$check_if_car_avalible = $this->checkIfCarAvalible($row->car_link);
 					if($check_if_car_avalible){
-						$row->car_status = 1;
+						$row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
+						$row->cm_uid = $this->getCarModelNameByID($row->cm_uid);
+						$data['result'][] = $row;
 					}
-					$row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
-					$row->cm_uid = $this->getCarModelNameByID($row->cm_uid);
-					$data['result'][] = $row;
 				}
 				$data['status'] = true;
 				$data['message'] = "تم العثور علي نتائج";
@@ -531,7 +530,7 @@ class Global_model extends CI_Model {
 			if($offset_before == 0){
 				$n = $this->db->query("
 				SELECT * FROM (
-				SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
+				SELECT car_uid 
 				  FROM cars
 				WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color`, `car_status`
 				) AS car ORDER BY `car_status` DESC, ".$field." ".$order_by."
@@ -540,7 +539,7 @@ class Global_model extends CI_Model {
 			}
 			$query = "
 			SELECT * FROM (
-			SELECT car_uid, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
+			SELECT car_uid,car_link, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 			  FROM cars
 			WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color`, `car_status`  LIMIT 15 OFFSET ".$offset."
 			) AS car ORDER BY `car_status` DESC, ".$field." ".$order_by."
@@ -555,7 +554,7 @@ class Global_model extends CI_Model {
 					if($row->car_in_stock == 0){
 						$row->car_status = 2;
 					}
-					$check_if_car_avalible = $this->checkIfCarAvalible($row->car_uid);
+					$check_if_car_avalible = $this->checkIfCarAvalible($row->car_link);
 					if($check_if_car_avalible){
 						$row->car_status = 1;
 						$row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
@@ -575,8 +574,8 @@ class Global_model extends CI_Model {
 		}
 	}
 	
-	function checkIfCarAvalible($car_uid){
-		$q =  $this->db->get_where('cars', array('car_uid' => $car_uid, "car_status" => 1),1);
+	function checkIfCarAvalible($car_link){
+		$q =  $this->db->get_where('cars', array('car_link' => $car_link, "car_status" => 1),1);
 		if($q->num_rows() > 0) {
 			return true; 
 		}else{
