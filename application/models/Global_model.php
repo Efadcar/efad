@@ -556,7 +556,6 @@ class Global_model extends CI_Model {
 					}
 					$check_if_car_avalible = $this->checkIfCarAvalible($row->car_link);
 					if(!$check_if_car_avalible && $row->car_status == 0){
-						$row->car_status = 1;
 						$row->cb_uid = $this->getCarBrandNameByID($row->cb_uid);
 						$row->cm_uid = $this->getCarModelNameByID($row->cm_uid);
 						$data['result'][] = $row;
