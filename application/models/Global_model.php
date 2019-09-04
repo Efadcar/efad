@@ -435,7 +435,7 @@ class Global_model extends CI_Model {
 			if($offset_before == 0){
 				$n = $this->db->query("
 			SELECT * FROM (
-			SELECT car_uid 
+			SELECT car_uid,car_link, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 			  FROM cars
 			WHERE car_search_text LIKE '%".$search_text."%' GROUP BY `car_link`, `car_color`
 			) AS car ORDER BY ".$field." ".$order_by." 
@@ -530,7 +530,7 @@ class Global_model extends CI_Model {
 			if($offset_before == 0){
 				$n = $this->db->query("
 				SELECT * FROM (
-				SELECT car_uid 
+				SELECT car_uid,car_link, cb_uid, cm_uid, car_color, car_model_year, album_uid, ".$field.", car_in_stock, car_status 
 				  FROM cars
 				WHERE car_model_year >= ".$year_from." AND car_model_year <= ".$year_to." ".$where." GROUP BY `car_link`, `".$field."`, `car_color`, `car_status`
 				) AS car ORDER BY `car_status` DESC, ".$field." ".$order_by."
