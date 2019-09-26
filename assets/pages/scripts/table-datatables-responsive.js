@@ -5,19 +5,25 @@ var TableDatatablesResponsive = function () {
 
         var oTable = table.dataTable({
             // Internationalisation. For more info refer to http://datatables.net/manual/i18n
-            "language": {
-                "aria": {
-                    "sortAscending": ": activate to sort column ascending",
-                    "sortDescending": ": activate to sort column descending"
-                },
-                "emptyTable": "No data available in table",
-                "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                "infoEmpty": "No entries found",
-                "infoFiltered": "(filtered1 from _MAX_ total entries)",
-                "lengthMenu": "_MENU_ entries",
-                "search": "Search:",
-                "zeroRecords": "No matching records found"
-            },
+			language: {
+				aria: {
+					sortAscending: ": activate to sort column ascending",
+					sortDescending: ": activate to sort column descending"
+				},
+				emptyTable: "لا توجد بيانات في الجدول",
+				info: "عرض _START_ الي _END_ من اجمالي _TOTAL_ نتيجة",
+				infoEmpty: "لا توجد نتائج",
+				infoFiltered: "(تم تصفية من إجمالي _MAX_ نتيجة)",
+				lengthMenu: "عرض _MENU_",
+				search: "البحث:",
+				zeroRecords: "لم يتم العثور على نتيجة مطابقة",
+				paginate: {
+					previous: "Prev",
+					next: "Next",
+					last: "Last",
+					first: "First"
+				}
+			},
 
             // Or you can use remote translation file
             //"language": {
