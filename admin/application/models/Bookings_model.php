@@ -135,34 +135,35 @@ class Bookings_model extends CI_Model {
 			$row->member_obj = $member_obj;
 			$i = $this->db->get_where('invoices',array("related_uid" => $row->book_uid));
 			foreach($i->result() as $irow) {
-				$invoice_obj = $irow;
-				$row->invoice_obj = $invoice_obj;
-				switch($row->invoice_obj->invoice_status){
+				switch($irow->invoice_status){
 					case 0:
-						$row->invoice_obj->invoice_status = '<span class="label label-warning"> غير مدفوع </span>';
+						$irow->invoice_status = '<span class="label label-warning"> غير مدفوع </span>';
 						break;
 					case 1:
-						$row->invoice_obj->invoice_status = '<span class="label label-success"> تم الدفع </span>';
+						$irow->invoice_status = '<span class="label label-success"> تم الدفع </span>';
 						break;
 					case 2:
-						$row->invoice_obj->invoice_status = '<span class="label label-primary"> بانتظار التأكيد </span>';
+						$irow->invoice_status = '<span class="label label-primary"> بانتظار التأكيد </span>';
 						break;
 					case 3:
-						$row->invoice_obj->invoice_status = '<span class="label label-danger"> أسترجاع </span>';
+						$irow->invoice_status = '<span class="label label-danger"> أسترجاع </span>';
 						break;
 				}
 
-				switch($row->invoice_obj->invoice_payment_method){
+				switch($irow->invoice_payment_method){
 					case "visa":
-						$row->invoice_obj->invoice_payment_method = '<span class="label label-primary"> أونلاين </span>';
+						$irow->invoice_payment_method = '<span class="label label-primary"> أونلاين </span>';
 						break;
 					case "transfer":
-						$row->invoice_obj->invoice_payment_method = '<span class="label label-primary"> تحويل بنكي </span>';
+						$irow->invoice_payment_method = '<span class="label label-primary"> تحويل بنكي </span>';
 						break;
 					case "cash":
-						$row->invoice_obj->invoice_payment_method = '<span class="label label-primary"> كاش </span>';
+						$irow->invoice_payment_method = '<span class="label label-primary"> كاش </span>';
 						break;
 				}
+				$invoice_obj = $irow;
+				$row->invoice_obj[] = $invoice_obj;
+
 			}
 
 			$row->car_obj = json_decode($row->car_obj);

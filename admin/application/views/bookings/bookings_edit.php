@@ -75,7 +75,7 @@
 				<div class="portlet light bordered">
                     <div class="portlet-title">
                         <div class="caption">
-                            <span class="caption-subject bold font-red uppercase"> <?= $pageTitle ?> </span>
+                            <span class="caption-subject bold font-red uppercase"> تعديل الفواتير </span>
                             
                         </div>
                     </div>
@@ -106,16 +106,15 @@
 									</div>
 									
 									<?php
-	print_r($row->invoice_obj);
 									if($row->invoice_obj != false){
 										foreach($row->invoice_obj as $invoice){
 									?>
-									
+									<div class="row">
 										<div class="col-md-12">
 											<div class="portlet light bordered">
 												<div class="portlet-title">
 													<div class="caption">
-														<span class="caption-subject bold font-red uppercase"> <?= $pageTitle ?> </span>
+														<span class="caption-subject bold font-red uppercase"> تعديل فاتورة رقم :  <?php echo $invoice->invoice_uid ?></span>
 
 													</div>
 												</div>
@@ -135,7 +134,7 @@
 															<p class="invoice-desc">
 																رقم الحجز: <?php echo $row->book_uid ?><br>
 																رقم الفاتورة: <?php echo $invoice->invoice_uid ?><br>
-																تاريخ الحجز: <?php echo $row->book_added_date ?><br>
+																تاريخ الفاتورة: <?php echo $invoice->invoice_add_date ?><br>
 
 
 															</p>
@@ -158,8 +157,8 @@
 																		<td>
 																			<h3>ايجار سيارة : <?php echo $row->car_obj->car_brand_name." ".$row->car_obj->car_model_name." موديل ".$row->car_obj->car_model_year." اللون ".$row->car_obj->car_color ?></h3>
 																			<p>
-																				تاريخ بداية الاشتراك: <?php echo $row->book_start_date ?><br>
-																				تاريخ نهاية الاشتراك: <?php echo $row->book_end_date ?><br>
+																				تاريخ بداية الاشتراك: <?php echo $invoice->invoice_start_date ?><br>
+																				تاريخ نهاية الاشتراك: <?php echo $invoice->invoice_end_date ?><br>
 																				مدينة استلام السيارة: <?php echo $row->delivery_city_uid ?><br>
 																				طريقة الدفع: <?php echo $invoice->invoice_payment_method ?>
 
@@ -212,9 +211,9 @@
 												
 											</div>
 										</div>
-									<?php }} ?>
-									</div>
 									
+									</div>
+									<?php }} ?>
 									<div class="row">
 										<div class="col-xs-12">
 											<a class="btn btn-lg green-haze hidden-print uppercase print-btn" onclick="javascript:window.print();">طباعة</a>

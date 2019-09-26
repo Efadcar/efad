@@ -6,6 +6,8 @@ application/config/config.php
 application/config/database.php
 assets/files/*
 system/*
+application/*
+index.php
 .htaccess
 admin/.htaccess
 api/*
