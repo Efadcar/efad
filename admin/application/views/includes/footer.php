@@ -180,6 +180,14 @@ if (isset($javascripts) && $javascripts != null) {
 
 	///////// ALBUMS PAGE - CHECK BASIC & SECONDARY COLORS //////////
 	$(document).ready(function(){
+		$('#sample_1 thead th').each( function () {
+			var title = $(this).text();
+			$(this).append( '<br><br><input type="text" class="form-control input-sm input-small searchTable" placeholder="بحث ب'+title+'" />' );
+		} );
+		
+		
+		
+		
 		$("#sample_1").on( 'row-reorder.dt', function ( e, diff, edit ) {
 			//console.log(diff);
 			$.ajax({

@@ -118,7 +118,7 @@
 					?>
 					<li class="nav-item  <?= $active ?>">
 						<a href="<?php echo site_url('bookings/bookings_all') ?>" class="nav-link nav-toggle">
-							<span class="title">كل الحجوزات</span>
+							<span class="title">جميع الحجوزات</span>
 						</a>
 					</li>
 

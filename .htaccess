@@ -14,7 +14,3 @@ RewriteCond %{THE_REQUEST} !\s/+[^/.]+\.php[?\s/] [NC]
 RewriteCond %{THE_REQUEST} !\s/+api/ [NC]
 RewriteCond %{THE_REQUEST} !\s/+[0-9]+\..+\.cpaneldcv [NC]
 RewriteRule ^(.*)$ index.php/$1 [L]  
-
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} !^www\.efadcar\.com$ [NC]
-RewriteRule ^(.*)$ https://www.efadcar.com/$1 [L,R=301]

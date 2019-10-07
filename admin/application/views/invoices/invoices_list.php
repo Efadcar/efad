@@ -29,12 +29,11 @@
                             <table class="table table-striped table-bordered table-hover dt-responsive dataTable no-footer dtr-inline collapsed" width="100%" id="sample_1" role="grid" aria-describedby="sample_1_info" style="width: 100%;">
                             <thead>
                             <tr>
-                                <th class="all">رقم الحجز</th>
+                                <th class="all">رقم الفاتورة</th>
+                                <th>رقم الحجز</th>
                                 <th class="none">رقم العضو</th>
                                 <th class="none">رقم الجوال</th>
                                 <th>اسم العميل</th>
-                                <th>مواصفات السيارة</th>
-                                <th>مدينة الاستلام</th>
 								<th>المدة</th>
                                 <th>وقت الحجز</th>
                                 <th>وقت الاستلام</th>
@@ -53,23 +52,22 @@
                                 ?>
                                 <tr>
 									<?php //print_r($row); ?>
-                                    <td><?php echo $row->book_uid ?></td>
+                                    <td><?php echo $row->invoice_uid ?></td>
+                                    <td><?php echo $row->booking_obj->book_uid ?></td>
                                     <td><?php echo $row->member_obj->member_uid ?></td>
                                     <td><?php echo $row->member_obj->member_mobile ?></td>
                                     <td><?php echo $row->member_obj->member_fname." ".$row->member_obj->member_lname ?></td>
-                                    <td><?php echo $row->car_obj->car_brand_name." ".$row->car_obj->car_model_name." ".$row->car_obj->car_model_year." ".$row->car_obj->car_color ?></td>
-                                    <td><?php echo $row->delivery_city_uid ?></td>
-									<td><?php echo $row->invoice_obj->book_total_days ?></td>
-                                    <td><?php echo $row->book_added_date ?></td>
-                                    <td><?php echo $row->book_start_date ?></td>
-                                    <td><?php echo $row->book_end_date ?></td>
-                                    <td><?php echo $row->invoice_obj->invoice_total_fees_after_tax ?></td>
-                                    <td><?php echo $row->invoice_obj->invoice_status ?></td>
-                                    <td><?php echo $row->invoice_obj->invoice_payment_method ?></td>
-                                    <td><?php echo $row->book_status ?></td>
+									<td><?php echo $row->book_total_days ?></td>
+                                    <td><?php echo $row->booking_obj->book_added_date ?></td>
+                                    <td><?php echo $row->booking_obj->book_start_date ?></td>
+                                    <td><?php echo $row->booking_obj->book_end_date ?></td>
+                                    <td><?php echo $row->invoice_total_fees_after_tax ?></td>
+                                    <td><?php echo $row->invoice_status ?></td>
+                                    <td><?php echo $row->invoice_payment_method ?></td>
+                                    <td><?php echo $row->booking_obj->book_status ?></td>
                                     <td>
-                                        <a data-toggle="modal" href="<?php echo site_url('bookings/bookings_view/'.$row->book_uid) ?>" class="btn btn-xs blue"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-eye"></i>تفاصيل</a>        
-                                        <a href="<?php echo site_url('bookings/bookings_edit/'.$row->book_uid) ?>" class="btn btn-xs yellow"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-pencil"></i>تعديل</a> 
+                                        <a data-toggle="modal" href="<?php echo site_url('bookings/bookings_view/'.$row->booking_obj->book_uid) ?>" class="btn btn-xs blue"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-eye"></i>تفاصيل</a>        
+                                        <a href="<?php echo site_url('bookings/bookings_edit/'.$row->booking_obj->book_uid) ?>" class="btn btn-xs yellow"><span class="md-click-circle md-click-animate" style="height: 62px; width: 62px; top: -18px; left: -3.09375px;"></span><i class="fa fa-pencil"></i>تعديل</a> 
                                         
                                     </td>
                                 </tr>

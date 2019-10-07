@@ -18,8 +18,8 @@ class Bookings extends CI_Controller {
         $data['main_content'] = 'bookings/bookings_list';
 		$data['pageCssFiles'] = $this->_cssFiles('bookings_add');
         $data['javascripts'] = $this->_javascript('bookings_add');
-		$data['pageTitle'] = "كل الحجوزات";
-		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض كل الحجوزات" => site_url('bookings/bookings_list'));
+		$data['pageTitle'] = "جميع الحجوزات";
+		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض جميع الحجوزات" => site_url('bookings/bookings_list'));
         $this->load->view('includes/template', $data);
     }
 
@@ -29,8 +29,8 @@ class Bookings extends CI_Controller {
         $data['main_content'] = 'bookings/bookings_list';
 		$data['pageCssFiles'] = $this->_cssFiles('bookings_add');
         $data['javascripts'] = $this->_javascript('bookings_add');
-		$data['pageTitle'] = "كل الحجوزات النشطة";
-		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض كل الحجوزات" => site_url('bookings/bookings_list'));
+		$data['pageTitle'] = "جميع الحجوزات النشطة";
+		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض جميع الحجوزات" => site_url('bookings/bookings_list'));
         $this->load->view('includes/template', $data);
     }
 
@@ -40,8 +40,8 @@ class Bookings extends CI_Controller {
         $data['main_content'] = 'bookings/bookings_list';
 		$data['pageCssFiles'] = $this->_cssFiles('bookings_add');
         $data['javascripts'] = $this->_javascript('bookings_add');
-		$data['pageTitle'] = "كل الحجوزات الملغاة";
-		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض كل الحجوزات" => site_url('bookings/bookings_list'));
+		$data['pageTitle'] = "جميع الحجوزات الملغاة";
+		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض جميع الحجوزات" => site_url('bookings/bookings_list'));
         $this->load->view('includes/template', $data);
     }
 
@@ -51,8 +51,8 @@ class Bookings extends CI_Controller {
         $data['main_content'] = 'bookings/bookings_list';
 		$data['pageCssFiles'] = $this->_cssFiles('bookings_add');
         $data['javascripts'] = $this->_javascript('bookings_add');
-		$data['pageTitle'] = "كل الحجوزات بأنتظار التأكيد";
-		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض كل الحجوزات" => site_url('bookings/bookings_list'));
+		$data['pageTitle'] = "جميع الحجوزات بأنتظار التأكيد";
+		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض جميع الحجوزات" => site_url('bookings/bookings_list'));
         $this->load->view('includes/template', $data);
     }
 
@@ -62,8 +62,8 @@ class Bookings extends CI_Controller {
         $data['main_content'] = 'bookings/bookings_list';
 		$data['pageCssFiles'] = $this->_cssFiles('bookings_add');
         $data['javascripts'] = $this->_javascript('bookings_add');
-		$data['pageTitle'] = "كل الحجوزات المنتهية";
-		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض كل الحجوزات" => site_url('bookings/bookings_list'));
+		$data['pageTitle'] = "جميع الحجوزات المنتهية";
+		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض جميع الحجوزات" => site_url('bookings/bookings_list'));
         $this->load->view('includes/template', $data);
     }
 
@@ -73,8 +73,8 @@ class Bookings extends CI_Controller {
         $data['main_content'] = 'bookings/bookings_list';
 		$data['pageCssFiles'] = $this->_cssFiles('bookings_add');
         $data['javascripts'] = $this->_javascript('bookings_add');
-		$data['pageTitle'] = "كل الحجوزات التي تنتهي قريباً";
-		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض كل الحجوزات" => site_url('bookings/bookings_list'));
+		$data['pageTitle'] = "جميع الحجوزات التي تنتهي قريباً";
+		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض جميع الحجوزات" => site_url('bookings/bookings_list'));
         $this->load->view('includes/template', $data);
     }
 
@@ -84,8 +84,8 @@ class Bookings extends CI_Controller {
         $data['main_content'] = 'bookings/bookings_list';
 		$data['pageCssFiles'] = $this->_cssFiles('bookings_add');
         $data['javascripts'] = $this->_javascript('bookings_add');
-		$data['pageTitle'] = "كل الحجوزات اليوم";
-		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض كل الحجوزات" => site_url('bookings/bookings_list'));
+		$data['pageTitle'] = "جميع الحجوزات اليوم";
+		$data['breadcrumbs'] = array("الحجوزات" => site_url('bookings/bookings_list'), "عرض جميع الحجوزات" => site_url('bookings/bookings_list'));
         $this->load->view('includes/template', $data);
     }
 
