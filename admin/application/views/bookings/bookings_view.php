@@ -24,36 +24,58 @@
 							</div>
 						</div>
 						<div class="col-md-5 col-xs-6">
-							<div class="company-address">
-								<span class="bold uppercase">Efad Car</span>
-								<br/> P.O. Box 3735 Riyadh 42313, Saudi Arabia
-								<br/>
-								<span class="bold">T</span> +966 555 2080 78
-								<br/>
-								<span class="bold">E</span> care@efadcar.com
-								<br/>
-								<span class="bold">W</span> www.efadcar.com </div>
+							
 						</div>
+						<div class="col-xs-12 text-center"><h3>
+							تفاصيل الحجز
+						</h3></div>
 					</div>
 					<div class="row invoice-cust-add">
 						<div class="col-xs-8">
 							<h2 class="invoice-title uppercase">بيانات العميل</h2>
 							<p class="invoice-desc">
-								رقم العميل: <?= $row->member_obj->member_uid ?><br>
-								الأسم: <?= $row->member_obj->member_fname." ".$row->member_obj->member_lname ?><br>
+								اسم العميل: <?= $row->member_obj->member_title."/ ".$row->member_obj->member_fname." ".$row->member_obj->member_lname ?><br>
 								رقم الجوال: <?= $row->member_obj->member_mobile ?><br>
+								البريد الإلكتروني: <?= $row->member_obj->member_email ?><br>
+								الدولة:  <?= $this->global_model->getCountryByID($row->member_obj->country_uid)->name ?><br>
+								المدينة:  <?= $this->global_model->getCityByID($row->member_obj->city_uid)->city_name_ar ?><br>
 							</p>
 						</div>
 						<div class="col-xs-4 text-right">
-							<h2 class="invoice-title uppercase">بيانات الفاتورة</h2>
+							
+						</div>
+						
+					</div>
+					<div class="row invoice-cust-add">
+						<div class="col-xs-7">
+							<h2 class="invoice-title uppercase">بيانات الحجز</h2>
 							<p class="invoice-desc">
 								رقم الحجز: <?php echo $row->book_uid ?><br>
-								رقم الفاتورة: <?php echo $row->invoice_obj->invoice_uid ?><br>
-								تاريخ الحجز: <?php echo $row->book_added_date ?><br>
+								تاريخ الحجز ووقت الحجز: <?php echo $row->book_added_date ?><br>
+								بيانات السيارة: <?php echo $row->car_obj->car_brand_name." ".$row->car_obj->car_model_name." موديل ".$row->car_obj->car_model_year." اللون ".$row->car_obj->car_color ?><br>
+								مدينة استلام السيارة: <?php echo $row->book_delivery_status ?><br>
+							</p>
+						</div>
+						<div class="col-xs-5 text-left">
+							<h2 class="invoice-title uppercase">&nbsp;</h2>
+							<p class="invoice-desc">
+								مدة الحجز: <?= $row->book_total_days ?> يوم<br>
+								حالة الحجز: <?= $row->book_status ?><br>
+								تاريخ ووقت استلام السيارة: <?= $row->book_start_date ?><br>
+								تاريخ ووقت تسليم السيارة: <?= $row->book_end_date ?><br>
 							</p>
 						</div>
 						
 					</div>
+					<?php if($row->book_status == '<span class="label label-primary"> بانتظار التأكيد </span>'){ ?>
+					<div class="row invoice-cust-add">
+						<div class="col-xs-12">
+							<p class="invoice-desc font-blue">
+								يتم تأكيد الحجز بشكل نهائي بعد سداد قيمة الحجز وسيتم إلغاء الحجز تلقائياً في حال لم يتم دفع. للمساعدة، يرجى التواصل مع فريق إيفاد للعناية بالعملاء من خلال المحادثة المباشرة أو على الواتس آب على الرقم :<a href="http://wa.me/966555208078">078 208 555 966 +</a> 
+							</p>
+						</div>
+					</div>
+					<?php } ?>
 					<?php
 					if($row->invoice_obj != false){
 						foreach($row->invoice_obj as $invoice){

@@ -80,7 +80,7 @@ class Bookings_model extends CI_Model {
 						$row->book_status = '<span class="label label-primary"> بانتظار التأكيد </span>';
 						break;
 					case 3:
-						$row->book_status = '<span class="label label-danger">  تم إلغاء الحجز لعدم دفع قيمة الحجز </span>';
+						$row->book_status = '<span class="label label-danger">  تم إلغاء الحجز  </span>';
 						break;
 				}
 				

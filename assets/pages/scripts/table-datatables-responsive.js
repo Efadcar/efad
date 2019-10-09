@@ -38,17 +38,10 @@ var TableDatatablesResponsive = function () {
                 { extend: 'csv', className: 'btn purple btn-outline ' }
             ],
 
-            // setup responsive extension: http://datatables.net/extensions/responsive/
-            responsive: {
-                details: {
-                   
-                }
-            },
 
             "order": [
                 [0, 'asc']
             ],
-            
             "lengthMenu": [
                 [5, 10, 15, 20, -1],
                 [5, 10, 15, 20, "All"] // change per page values here
@@ -67,10 +60,13 @@ var TableDatatablesResponsive = function () {
 					//console.log(this.footer());
 					var that = this;
 
-					$(this.header() ).on( 'keyup change clear', 'input', function () {
+					$(this.footer(), this.header()).on( 'keyup change clear', 'input.searchTable, select.searchTable', function () {
 						//console.log(this.value);
-						if ( that.search() !== this.value ) {
-							that.search(this.value ? '^'+this.value+'$' : '', true, false   ).draw();
+						if ( that.search() !== this.value && this.value !== "أختار" ) {
+							that.search(this.value ? '^'+this.value+'$' : '', true, false).draw();
+						}else if(this.value == "أختار" ){
+							//console.log('hi');
+							that.search('', true, false).draw();
 						}
 					} );
 				} );

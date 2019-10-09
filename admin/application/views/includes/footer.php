@@ -180,9 +180,14 @@ if (isset($javascripts) && $javascripts != null) {
 
 	///////// ALBUMS PAGE - CHECK BASIC & SECONDARY COLORS //////////
 	$(document).ready(function(){
-		$('#sample_1 thead th').each( function () {
+		$('#sample_1 tfoot tr.searchRow th.inputSearch').each( function () {
 			var title = $(this).text();
-			$(this).append( '<br><br><input type="text" class="form-control input-sm input-small searchTable" placeholder="بحث ب'+title+'" />' );
+			$(this).html( '<input type="text" class="form-control input-sm input-small searchTable" placeholder="بحث ب'+title+'" />' );
+		} );
+		
+		$('#sample_1 tfoot tr.searchRow th.selectPaymentMethod').each( function () {
+			var title = $(this).text();
+			$(this).html( '<select class="form-control searchTable"><option>أختار</option><option value="أونلاين">أونلاين</option><option value="تحويل بنكي">تحويل بنكي</option><option value="كاش">كاش</option></select>' );
 		} );
 		
 		

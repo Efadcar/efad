@@ -130,6 +130,16 @@ class Global_model extends CI_Model {
 		}
 	}
 
+	function getCityByID($id) {
+		$q =  $this->db->get_where('cities', array('city_uid' => $id));
+		if($q->num_rows() > 0) {
+			$row = $q->row();
+			return $row; 
+		}else{
+			return false;	
+		}
+	}
+
 	function getModelByID($id) {
 		$q =  $this->db->get_where('cars_models', array('cm_uid' => $id));
 		if($q->num_rows() > 0) {
@@ -193,7 +203,7 @@ class Global_model extends CI_Model {
      *
      *  @return array of secondary colors
      */
-    function getٍٍSecondaryColors($parentID) {
+    function getSecondaryColors($parentID) {
         $q = $this->db->get_where('cars_colors', array('parent_uid' => $parentID));
         if($q->num_rows() > 0) {
             foreach($q->result() as $row) {
@@ -206,6 +216,12 @@ class Global_model extends CI_Model {
             return false;   
         }
     }
+	
+	function calculateAge($dateOfBirth ){
+		$today = date("Y-m-d");
+		$diff = date_diff(date_create($dateOfBirth), date_create($today));
+		return $diff->format('%y');
+	}
 }
 
 ?>

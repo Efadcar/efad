@@ -24,13 +24,13 @@ class Invoices_model extends CI_Model {
 
 				switch($row->invoice_payment_method){
 					case "visa":
-						$row->invoice_payment_method = '<span class="label label-primary"> أونلاين </span>';
+						$row->invoice_payment_method = '<span class=\'label label-primary\'>أونلاين</span>';
 						break;
 					case "transfer":
-						$row->invoice_payment_method = '<span class="label label-primary"> تحويل بنكي </span>';
+						$row->invoice_payment_method = '<span class=\'label label-primary\'>تحويل بنكي</span>';
 						break;
 					case "cash":
-						$row->invoice_payment_method = '<span class="label label-primary"> كاش </span>';
+						$row->invoice_payment_method = '<span class=\'label label-primary\'>كاش</span>';
 						break;
 				}
 				
@@ -56,7 +56,7 @@ class Invoices_model extends CI_Model {
 						$row->booking_obj->book_status = '<span class="label label-primary"> بانتظار التأكيد </span>';
 						break;
 					case 3:
-						$row->booking_obj->book_status = '<span class="label label-danger">  تم إلغاء الحجز لعدم دفع قيمة الحجز </span>';
+						$row->booking_obj->book_status = '<span class="label label-danger">  تم إلغاء الحجز  </span>';
 						break;
 				}
 				

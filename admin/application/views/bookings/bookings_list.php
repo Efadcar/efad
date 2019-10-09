@@ -25,38 +25,64 @@
                     </div>
 					<div id="result"></div>
                     <div class="portlet-body">
+						<style>
+						tfoot {
+							display: table-header-group;
+						}
+						</style>
                         <div class="table-responsive" style="min-height:400px">
-                            <table class="table table-striped table-bordered table-hover dt-responsive dataTable no-footer dtr-inline collapsed" width="100%" id="sample_1" role="grid" aria-describedby="sample_1_info" style="width: 100%;">
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer collapsed" width="100%" id="sample_1" role="grid" aria-describedby="sample_1_info" style="width: 100%;">
                             <thead>
                             <tr>
-                                <th class="all">رقم الحجز</th>
-                                <th class="none">رقم العضو</th>
-                                <th class="none">رقم الجوال</th>
+                                <th>رقم الحجز</th>
+                                <th>رقم العميل</th>
+                                <th>رقم الجوال</th>
                                 <th>اسم العميل</th>
+                                <th>السن</th>
                                 <th>مواصفات السيارة</th>
                                 <th>مدينة الاستلام</th>
 								<th>المدة</th>
                                 <th>وقت الحجز</th>
                                 <th>وقت الاستلام</th>
-                                <th class="none">تاريخ التسليم</th>
-                                <th class="none">السعر</th>
-                                <th class="none">حالة الدفع</th>
-                                <th class="none">طريقة الدفع</th>
-                                <th class="none">حالة الحجز</th>
+                                <th>تاريخ التسليم</th>
+                                <th>السعر</th>
+                                <th>حالة الدفع</th>
+                                <th>طريقة الدفع</th>
+                                <th>حالة الحجز</th>
                                 <th>خيارات</th>
                             </tr>
                             </thead>
+                            <tfoot>
+                            <tr class="searchRow">
+                                <th class="inputSearch">رقم الحجز</th>
+                                <th class="inputSearch">رقم العميل</th>
+                                <th class="inputSearch">رقم الجوال</th>
+                                <th class="inputSearch">اسم العميل</th>
+                                <th class="inputSearch">السن</th>
+                                <th class="inputSearch">مواصفات السيارة</th>
+                                <th class="inputSearch">مدينة الاستلام</th>
+								<th class="inputSearch">المدة</th>
+                                <th class="inputSearch">وقت الحجز</th>
+                                <th class="inputSearch">وقت الاستلام</th>
+                                <th class="inputSearch">تاريخ التسليم</th>
+                                <th class="inputSearch">السعر</th>
+                                <th class="inputSearch">حالة الدفع</th>
+                                <th class="inputSearch">طريقة الدفع</th>
+                                <th class="inputSearch">حالة الحجز</th>
+                                <td></td>
+                            </tr>
+                            </tfoot>
                             <tbody class="sort">
                                 <?php
                                 if($rows != false)
                                 foreach($rows as $row){
                                 ?>
                                 <tr>
-									<?php //print_r($row); ?>
                                     <td><?php echo $row->book_uid ?></td>
                                     <td><?php echo $row->member_obj->member_uid ?></td>
                                     <td><?php echo $row->member_obj->member_mobile ?></td>
                                     <td><?php echo $row->member_obj->member_fname." ".$row->member_obj->member_lname ?></td>
+                                    <td><?php echo $this->global_model->calculateAge($row->member_obj->member_dob) ?></td>
                                     <td><?php echo $row->car_obj->car_brand_name." ".$row->car_obj->car_model_name." ".$row->car_obj->car_model_year." ".$row->car_obj->car_color ?></td>
                                     <td><?php echo $row->delivery_city_uid ?></td>
 									<td><?php echo $row->invoice_obj->book_total_days ?></td>
